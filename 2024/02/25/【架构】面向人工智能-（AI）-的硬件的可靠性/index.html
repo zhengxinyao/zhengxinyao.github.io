@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>tags | Xinyao</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="tags | Xinyao">
+  <title>【架构】面向人工智能 （AI） 的硬件的可靠性 | Xinyao</title>
+  <meta name="keywords" content=" 安全 , 架构 , AI , 加速器 ">
+  <meta name="description" content="【架构】面向人工智能 （AI） 的硬件的可靠性 | Xinyao">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="勇攀高峰">
 <meta property="og:type" content="website">
@@ -603,19 +603,40 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <article id="post-【架构】面向人工智能-（AI）-的硬件的可靠性" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">tags</h1>
+        <h1 class="article-title">【架构】面向人工智能 （AI） 的硬件的可靠性</h1>
     
     <div class="article-meta">
         
         
         
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="知识总结">知识总结</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color3">安全</a>
+            
+            <a class="color3">架构</a>
+            
+            <a class="color3">AI</a>
+            
+            <a class="color4">加速器</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-02-07 23:59:52'>2024-02-07 23:59</time>
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 22:42:24'>2024-02-25 22:33</time>
         
     </div>
     <div class="article-meta">
@@ -637,7 +658,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-%E7%A1%AC%E4%BB%B6%E5%BC%95%E8%B5%B7%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%A8%81%E8%83%81"><span class="toc-text">A. 硬件引起的可靠性威胁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-%E5%85%B7%E6%9C%89%E6%88%90%E6%9C%AC%E6%95%88%E7%9B%8A%E7%9A%84%E6%95%85%E9%9A%9C%E7%BC%93%E8%A7%A3%E6%8A%80%E6%9C%AF"><span class="toc-text">B. 具有成本效益的故障缓解技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%89-%E8%BD%AF%E9%94%99%E8%AF%AF%E7%BC%93%E8%A7%A3%EF%BC%9A"><span class="toc-text">1） 软错误缓解：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%89-%E6%B0%B8%E4%B9%85%E6%95%85%E9%9A%9C%E7%BC%93%E8%A7%A3%EF%BC%9A"><span class="toc-text">2） 永久故障缓解：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%89-%E8%80%81%E5%8C%96%E7%BC%93%E8%A7%A3%EF%BC%9A"><span class="toc-text">3） 老化缓解：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-%E5%BC%80%E5%8F%91%E9%AB%98%E5%BA%A6%E5%8F%AF%E9%9D%A0%E7%9A%84-DNN-%E7%9A%84%E6%8C%91%E6%88%98"><span class="toc-text">C. 开发高度可靠的 DNN 的挑战</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-text">参考文献</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -653,7 +674,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>由于激进的技术扩展，现代系统越来越容易受到可靠性威胁的影响，例如软错误、老化和工艺变化。这些威胁在硬件级别表现为位翻转，并且根据位置，可能会损坏输出，从而导致不准确或潜在的灾难性结果。</p>
+<p>传统的缓解技术基于冗余，例如双模块化冗余 （DMR） [16] 和三重模块化冗余 （TMR） [17]。然而，由于 DNN 的计算密集型性质，这些技术会导致巨大的开销，对系统的效率产生负面影响。</p>
+<p>纠错码 （ECC） 和指令重复 （ID） [18] 也存在类似的问题。因此，需要替代缓解技术，以<strong>低成本提高基于 DNN 的系统的弹性</strong>，同时不影响效率。这些技术通常是通过利用 DNN 的固有特征并仅在系统中的关键位置部署保护或将关键错误转换为非关键错误来开发的。</p>
+<h1 id="A-硬件引起的可靠性威胁"><a href="#A-硬件引起的可靠性威胁" class="headerlink" title="A. 硬件引起的可靠性威胁"></a>A. 硬件引起的可靠性威胁</h1><p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91%E9%9D%A2%E5%90%91%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%EF%BC%88AI%EF%BC%89-%E7%9A%84%E7%A1%AC%E4%BB%B6%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7/image-20240225223405758.png" alt="image-20240225223405758"></p>
+<p>上图突出显示了硬件引起的可靠性威胁的主要类型，以及它们如何影响基于 DNN 的系统的功能。</p>
+<ul>
+<li>软误差是由于高能粒子撞击硬件而引起的瞬态故障，这些故障在系统中表现为位翻转，并可能传播到应用层并影响系统的功能&#x2F;精度。</li>
+<li>CMOS器件的老化与各种物理现象有关，例如偏置温度不稳定（BTI）、热载流子注入（HCI）和电迁移（EM）老化会导致时序错误，从长远来看也可能导致永久性故障。</li>
+<li>工艺变化是由于制造过程中的缺陷而导致的硬件特性（例如晶体管通道长度和导线电阻）与所需特性的变化。这些变化通常会影响硬件的性能和效率，因为它们需要增加电源电压或降低工作频率以确保正确的功能。极端变化会导致永久性故障，从而影响制造过程的产量。</li>
+</ul>
+<h1 id="B-具有成本效益的故障缓解技术"><a href="#B-具有成本效益的故障缓解技术" class="headerlink" title="B. 具有成本效益的故障缓解技术"></a>B. 具有成本效益的故障缓解技术</h1><p>已经提出了各种技术来解决基于 DNN 的系统中硬件引起的可靠性威胁。</p>
+<h2 id="1）-软错误缓解："><a href="#1）-软错误缓解：" class="headerlink" title="1） 软错误缓解："></a>1） 软错误缓解：</h2><p>软错误是暂时性故障，在硬件级别表现为随机位翻转。这些故障有可能严重降低系统的性能，特别是当它们发生在关键位置时。在硬件层面，已经提出了改进的SRAM单元设计。辐射强化是另一种防止软错误的技术，它用更强大的节点替换易受攻击的硬件节点，提供更高的弹性[22]。但是，这些技术需要对硬件的大多数部分进行修改（附加硬件），这会导致高开销。</p>
+<p>为了克服这个问题，最近提出了范围限制技术[23][24]，该技术定义了激活值的工作范围，并将所有异常值视为故障，并根据一些预定义的策略将它们映射到该范围内。</p>
+<h2 id="2）-永久故障缓解："><a href="#2）-永久故障缓解：" class="headerlink" title="2） 永久故障缓解："></a>2） 永久故障缓解：</h2><p>在 DNN 的背景下，永久性故障缓解的主要目标是提高专用 DNN 加速器的制造良率。由于永久性故障是静态故障，因此对付它们最有效的技术之一是故障感知修剪（FAP）[25]。FAP 利用 DNN 的修剪弹性，通过丢弃映射到故障处理元素 （PE） 的相应计算来缓解永久性故障。它需要进行制造后测试来识别有故障的 PE，并在运行时使用此信息来识别需要绕过哪些 PE。</p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91%E9%9D%A2%E5%90%91%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%EF%BC%88AI%EF%BC%89-%E7%9A%84%E7%A1%AC%E4%BB%B6%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7/image-20240225223807481.png" alt="（a） 设计用于加速 DNN 推理的脉动阵列。（b） 改进的PE设计，以减轻永久性故障[25]。（c）改进了PE设计，以减轻时序误差[27]。"></p>
+<h2 id="3）-老化缓解："><a href="#3）-老化缓解：" class="headerlink" title="3） 老化缓解："></a>3） 老化缓解：</h2><p>CMOS电路中的老化会导致时序误差。为了检测和减轻DNN硬件加速器计算阵列中时序误差的影响，Zhang等人提出了ThunderVolt[27]，这是一种利用剃刀触发器以及DNN的修剪弹性来减轻时序错误的技术。在检测到时序错误时，ThunderVolt 会通过丢弃其计算来传递正确的结果，从而从后续的 MAC 操作中窃取一个周期。计算的删除避免了整个数组的停滞，而 DNN 对修剪的弹性有助于保持基线准确性。</p>
+<p><strong>为了缓解DNN加速器片上SRAM单元的老化，最近，Hanif等人提出了DNN-Life[28]。该技术采用读写传感器来平衡SRAM每个单元的占空比，从而最大限度地减少NBTI老化</strong>，这是现代纳米级器件中最突出的老化类型。</p>
+<h2 id="C-开发高度可靠的-DNN-的挑战"><a href="#C-开发高度可靠的-DNN-的挑战" class="headerlink" title="C. 开发高度可靠的 DNN 的挑战"></a>C. 开发高度可靠的 DNN 的挑战</h2><p>缓解技术的集成：对于每种类型的可靠性威胁，已经提出了各种缓解技术，其中一些是针对特定模块设计的，例如片上存储器或计算结构。每种缓解技术通常也会影响系统对其他可靠性威胁的弹性。因此，在构建一个强大而高效的基于 DNN 的系统时，重要的是要研究不同缓解技术的相互作用，并选择一组合适的技术，在定义的约束和条件下提供最佳弹性。</p>
+<p>对鲁棒算法的需求：深度学习的核心问题之一是对抗性示例，即注入小扰动会导致显著的精度损失。尽管对抗性示例仅在安全上下文中被认为是重要的，但它们还提供了有关 DNN 对故障&#x2F;错误的一般弹性的信息。强大的 DNN 可提供对对抗性噪声的高弹性，这将说明对可靠性威胁的更高弹性。研究人员提出了各种方法来提高 DNN 对对抗噪声的鲁棒性;然而，这些方法要么提供微小的收益，要么仅在特定条件下显示出改进。因此，迫切需要算法&#x2F;方法，以产生设计稳健的模型。</p>
+<p>新兴技术对新型测试技术的需求：内存处理 （PIM） 因其实现高能效的潜力而备受关注。它们通常基于新兴存储器，如ReRAM和自旋电子器件。此类器件具有独特的故障机制，无法用传统故障模型建模，也无法用传统测试方法进行测试[29;此外，PIM中的内存具有两种配置（存储和计算），这一事实对其测试提出了额外的要求[1;29]。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9465409">https://ieeexplore.ieee.org/document/9465409</a></p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
     </div>
