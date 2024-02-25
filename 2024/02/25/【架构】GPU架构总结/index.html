@@ -615,7 +615,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-02-25 22:09:17'>2024-02-25 20:52</time>
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 22:14:33'>2024-02-25 20:52</time>
         
     </div>
     <div class="article-meta">
@@ -664,15 +664,15 @@
 <li>RT Core（2018 年 Turing 架构引入 ）：光线追踪核心，负责处理光线追踪加速。</li>
 <li>NVIDIA GPU 架构还包括内存控制器、高速缓存控制器、CUDA 编译器和驱动程序等其他组件，这些组件与SM 和其他核心组件协同工作，可以实现高效的并行计算和内存访问，提高 GPU 的性能和能效。</li>
 </ul>
-<h2 id="GPU渲染"><a href="#GPU渲染" class="headerlink" title="GPU渲染"></a>GPU渲染</h2><p><img src="/image-20240225213858155.png" alt="image-20240225213858155"></p>
+<h2 id="GPU渲染"><a href="#GPU渲染" class="headerlink" title="GPU渲染"></a>GPU渲染</h2><p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225213858155.png"></p>
 <p>从Fermi开始NVIDIA使用类似的原理架构，使用一个Giga Thread Engine来管理所有正在进行的工作，GPU被划分成多个GPCs(Graphics Processing Cluster)，每个GPC拥有多个SM（SMX、SMM）和一个光栅化引擎(Raster Engine)，它们其中有很多的连接，最显著的是Crossbar，它可以连接GPCs和其它功能性模块（例如ROP或其他子系统）。</p>
 <p>程序员编写的shader是在SM上完成的。每个SM包含许多为线程执行数学运算的Core（核心）。例如，一个线程可以是顶点或像素着色器调用。这些Core和其它单元由Warp Scheduler驱动，Warp Scheduler管理一组32个线程作为Warp（线程束）并将要执行的指令移交给Dispatch Units。</p>
 <p>GPU中实际有多少这些单元（每个GPC有多少个SM，多少个GPC ……）取决于芯片配置本身。例如，GM204有4个GPC，每个GPC有4个SM，但Tegra X1有1个GPC和2个SM，它们均采用Maxwell设计。SM设计本身（内核数量，指令单位，调度程序……）也随着时间的推移而发生变化，并帮助使芯片变得如此高效，可以从高端台式机扩展到笔记本电脑移动。</p>
 <h2 id="内存架构"><a href="#内存架构" class="headerlink" title="内存架构"></a>内存架构</h2><p>部分架构的GPU与CPU类似，也有多级缓存结构：寄存器、L1缓存、L2缓存、GPU显存、系统显存。但是GPU-style的内存架构ALU定夺，GPU上下文（Context）多，吞吐量高，依赖高带宽与系统内存交换数据。</p>
-<p><img src="/image-20240225220555264.png" alt="image-20240225220555264"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225220555264.png"></p>
 <p>内存（Memory）是显卡用于存储数据和代码的部分，它可以快速访问大量数据，大大提高了显卡的运算速度。当前英伟达显卡的内存主要分为两种：GDDR5和GDDR6。GDDR5内存具有高带宽、低延迟和低功耗等特点，通常用于较低端的显卡；而GDDR6内存则具有更高的带宽、更低的延迟和更高的功耗，适用于高端游戏等需要更高性能的应用。</p>
 <p>显存（Video Memory）是显卡专门用来存储图形数据的部分，它比普通内存更快速，可以更好地支持图形运算。英伟达显卡的显存一般分为两种：GDDR5和GDDR6。GDDR5显存通常用于中低端显卡，而GDDR6显存则主要适用于高端的游戏和图形应用。</p>
-<h2 id="Streaming-Multiprocessor-SM"><a href="#Streaming-Multiprocessor-SM" class="headerlink" title="Streaming Multiprocessor(SM)"></a>Streaming Multiprocessor(SM)</h2><p><img src="/image-20240225220638185.png" alt="image-20240225220638185"></p>
+<h2 id="Streaming-Multiprocessor-SM"><a href="#Streaming-Multiprocessor-SM" class="headerlink" title="Streaming Multiprocessor(SM)"></a>Streaming Multiprocessor(SM)</h2><p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225220638185.png"></p>
 <p>SM是 GPU 的基本计算单元，每个 SM 由多个 CUDA 核心、纹理单元、Tensor Core、流控制器和存储器等辅助单元组成，可以同时执行多个计算任务，并具有高度的灵活性和性能。上图为一个SM的构成图，从上到下依次是：</p>
 <ul>
 <li><strong>PolyMorph Engine</strong>：多边形引擎负责<strong>属性装配（attribute Setup）</strong>、顶点拉取(VertexFetch)、曲面细分、栅格化（这个模块可以理解专门处理顶点相关的东西）。</li>
@@ -689,7 +689,7 @@
 <li><strong>纹理读取单元(Tex)</strong></li>
 </ul>
 <h2 id="CUDA-Core"><a href="#CUDA-Core" class="headerlink" title="CUDA Core"></a>CUDA Core</h2><p>CUDA 全称为统一计算设备架构 (Compute Unified Device Architecture) ，是一个并行计算平台，同时也是一个应用程序编程接口 (API)。目的在于让软件开发人员能够更好地控制他们可以使用的物理资源。使用 C 或 C++ 编码的计算机程序员对资源分配有很大的控制权。CUDA 系统极大地促进了 OpenACC 和 OpenCL 等框架的普及和使用。CUDA 核心也是并行处理器，允许不同处理器同时处理数据。这与双核或四核 CPU 类似，只不过 GPU 有数千个 CUDA 核心。</p>
-<p><img src="/image-20240225220503714.png" alt="image-20240225220503714"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225220503714.png"></p>
 <p>包括控制单元Dispatch Port、Operand Collector，以及浮点计算单元FP Unit、整数计算单元Int Unit，另外还包括计算结果队列。当然还有Compare、Logic、Branch等。相当于微型CPU。</p>
 <p>英伟达显卡的多模态构成主要由CUDA、OpenGL及OpenCL等技术构成。</p>
 <p>1.CUDA<br>CUDA（Compute Unified Device Architecture）平台是英伟达推出的一种并行计算技术，主要用于加速GPU的计算能力。通过CUDA平台，英伟达显卡可以高效地处理复杂的计算任务，提高计算性能。</p>
@@ -706,12 +706,12 @@
 <h2 id="RT-Core"><a href="#RT-Core" class="headerlink" title="RT Core"></a>RT Core</h2><p>2018 年 NVIDIA 发布了新一代的旗舰显卡 RTX 2080，搭载了全新的 Turing（图灵）架构。全新的架构也同时添加了名为 RT Core 的计算单元。该计算单元的目的是为了让 GPU 拥有实时光线追踪的能力，一种可以让画面更换新的渲染演算法。</p>
 <p>光线追踪（Ray Tracing）的原理是从用户端为起点，寻找光线反射和折射的路径并算出用户会看到的物体颜色及亮度。</p>
 <h2 id="CPU-GPU异构系统"><a href="#CPU-GPU异构系统" class="headerlink" title="CPU-GPU异构系统"></a>CPU-GPU异构系统</h2><p>根据CPU和GPU是否共享内存，可分为两种类型的CPU-GPU架构：</p>
-<p><img src="/image-20240225214430899.png" alt="image-20240225214430899"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225214430899.png"></p>
 <p>上图左是分离式架构，CPU和GPU各自有独立的缓存和内存，它们通过PCI-e等总线通讯。这种结构的缺点在于 PCI-e 相对于两者具有低带宽和高延迟，数据的传输成了其中的性能瓶颈。目前使用非常广泛，如PC、智能手机等。</p>
 <p>上图右是耦合式架构，CPU 和 GPU 共享内存和缓存。AMD 的 APU 采用的就是这种结构，目前主要使用在游戏主机中，如 PS4。</p>
 <p>在存储管理方面，分离式结构中 CPU 和 GPU 各自拥有独立的内存，两者共享一套虚拟地址空间，必要时会进行内存拷贝。对于耦合式结构，GPU 没有独立的内存，与 GPU 共享系统内存，由 MMU 进行存储管理。</p>
 <h2 id="GPU资源管理模型"><a href="#GPU资源管理模型" class="headerlink" title="GPU资源管理模型"></a><strong>GPU资源管理模型</strong></h2><p>下图是分离式架构的资源管理模型：</p>
-<p><img src="/1617944-20190906001903861-1080252910.png" alt="img"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/1617944-20190906001903861-1080252910.png"></p>
 <ul>
 <li><p><strong>MMIO（Memory Mapped IO）</strong></p>
 <ul>
@@ -777,26 +777,26 @@
 </li>
 </ul>
 <p>更多详细可以阅读论文：<a target="_blank" rel="noopener" href="http://www.ertl.jp/~shinpei/papers/icpads13.pdf">Data Transfer Matters for GPU Computing</a>。</p>
-<h1 id="GPU架构演进"><a href="#GPU架构演进" class="headerlink" title="GPU架构演进"></a>GPU架构演进</h1><p><img src="/image-20240225213457282.png" alt="image-20240225213457282"></p>
+<h1 id="GPU架构演进"><a href="#GPU架构演进" class="headerlink" title="GPU架构演进"></a>GPU架构演进</h1><p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225213457282.png"></p>
 <h2 id="G80-架构"><a href="#G80-架构" class="headerlink" title="G80 架构"></a>G80 架构</h2><p>英伟达第一个 GPU 架构，采用了 MIMD（多指令流多数据流）标量架构，拥有 128 个 SP（流处理器），核心频率范围从 250MHz 到 600MHz，搭配 DDR3 显存。该架构是当时最强大的 GPU 之一，但是功耗较高。</p>
 <h2 id="Fermi-架构"><a href="#Fermi-架构" class="headerlink" title="Fermi 架构"></a>Fermi 架构</h2><p><a target="_blank" rel="noopener" href="https://www.nvidia.com/content/PDF/fermi_white_papers/NVIDIA_Fermi_Compute_Architecture_Whitepaper.pdf">Fermi架构白皮书</a><br>Fermi 是 Nvidia 在 2010 年发布的架构，引入了很多今天也仍然不过时的概念。英伟达第一个采用 GPU-Direct 技术的 GPU 架构，它拥有 32 个 SM（流多处理器）和 16 个 PolyMorph Engine 阵列。该架构采用了 4 颗芯片的模块化设计，拥有 32 个光栅化处理单元和 16 个纹理单元，搭配 GDDR5 显存。</p>
 <p>GPU 通过 Host Interface 读取 CPU 指令，GigaThread Engine 将特定的数据从 Host Memory 中拷贝到内部的 Framebuffer 中。随后 GigaThread Engine 创建并分发多个 Thread Blocks 到多个 SM 上。多个 SM 彼此独立，并独立调度各自的多个 Thread Wraps 到 SM 内的 CUDA Cores 和其他执行单元上执行。</p>
 <p>上面这句话有几个概念解释一下：<br>SM: 对应于上图中的 SM 硬件实体，内部有很多的 CUDA Cores；<br>Thread Block: 一个 Thread Block 包含多个线程（比如几百个），多个 Blocks 之间的执行完全独立，硬件可以任意调度多个 Block 间的执行顺序，而 Block 内部的多个线程执行规则由程序员决定，程同时程序员可以决定一共有多少个 Blocks；<br>Thread Warp: 32 个线程为一个 Thread Warp，Warp 的调度有特殊规则</p>
-<p><img src="/image-20240225210211510.png" alt="image-20240225210211510"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225210211510.png"></p>
 <p>SM 内有 32 个 CUDA Cores，每个 CUDA Core 含有一个 Integer arithmetic logic unit (ALU)和一个 Floating point unit(FPU). 并且提供了对于单精度和双精度浮点数的 FMA 指令。</p>
 <p>SM 内还有 16 个 LD&#x2F;ST 单元，也就是 Load&#x2F;Store 单元，支持 16 个线程一起从 Cache&#x2F;DRAM 存取数据。</p>
 <p>4 个 SFU，是指 Special Function Unit，用于计算 sin&#x2F;cos 这类特殊指令。每个 SFU 每个时钟周期只能一个线程执行一条指令。而一个 Warp(32 线程)就需要执行 8 个时钟周期。SFU 的流水线是从 Dispatch Unit 解耦的，所以当 SFU 被占用时，Dispatch Unit 会去使用其他的执行单元。</p>
-<p><img src="/image-20240225210652105.png" alt="image-20240225210652105"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225210652105.png"></p>
 <p>之前一直提到 Warp，但之前只说明了是 32 个线程，我们在这里终于开始详细说明，首先来看 Dual Warp Scheduler 的概览。</p>
-<p><img src="/image-20240225215646943.png" alt="image-20240225215646943"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225215646943.png"></p>
 <p>在之前的 SM 概览图以及上图里，可以注意到 SM 内有两个 Warp Scheduler 和两个 Dispatch Unit. 这意味着，同一时刻，会并发运行两个 warp，每个 warp 会被分发到一个 Cuda Core Group(16 个 CUDA Core), 或者 16 个 load&#x2F;store 单元，或者 4 个 SFU 上去真正执行，且每次分发只执行 <strong>一条</strong> 指令，而 Warp Scheduler 维护了多个（比如几十个）的 Warp 状态。</p>
 <p>这里引入了一个核心的约束，任意时刻，一个 Warp 里的 Thread 都在执行同样的指令，对于程序员来说，观测不到一个 warp 里不同 thread 的不同执行情况。</p>
 <p>但是众所周知，不同线程可能会进入不同的分支，这时如何执行一样的指令？</p>
-<p><img src="/image-20240225215715218.png" alt="image-20240225215715218"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225215715218.png"></p>
 <p>可以看上图，当发生分支时，只会执行进入该分支的线程，如果进入该分支的线程少，则会发生资源浪费。</p>
 <p>在 SM 概览图里，我们可以看到 SM 内 64KB 的 On-Chip Memory，其中 48KB 作为 shared memory, 16KB 作为 L1 Cache. 对于 L1 Cache 以及非 On-Chip 的 L2 Cache，其作用与 CPU 多级缓存结构中的 L1&#x2F;L2 Cache 非常接近，而 Shared Memory，则是相比 CPU 的一个大区别。无论是 CPU 还是 GPU 中的 L1&#x2F;L2 Cache，一般意义上都是无法被程序员调度的，而 Shared Memory 设计出来就是让渡给程序员进行调度的片上高速缓存。</p>
 <h2 id="Maxwell架构"><a href="#Maxwell架构" class="headerlink" title="Maxwell架构"></a>Maxwell架构</h2><p><a target="_blank" rel="noopener" href="https://developer.nvidia.com/maxwell-compute-architecture">Maxwell架构白皮书</a></p>
-<p><img src="/image-20240225211108772.png" alt="image-20240225211108772"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225211108772.png"></p>
 <p>Maxwell的 SM 开始做减法了，每个 SM（SMM）中包含：</p>
 <ul>
 <li>4 个 Warp Scheduler，8 个 Dispatch Unit</li>
@@ -809,7 +809,7 @@
 <li>32 个 CUDA Core</li>
 <li>8 个 SFU 和 LD&#x2F;ST Unit</li>
 </ul>
-<h2 id="Tesla架构"><a href="#Tesla架构" class="headerlink" title="Tesla架构"></a>Tesla架构</h2><p><img src="/image-20240225213614483.png" alt="image-20240225213614483"></p>
+<h2 id="Tesla架构"><a href="#Tesla架构" class="headerlink" title="Tesla架构"></a>Tesla架构</h2><p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225213614483.png"></p>
 <p>Tesla微观架构总览图如上。下面将阐述它的特性和概念：</p>
 <ul>
 <li>拥有7组TPC（Texture&#x2F;Processor Cluster，纹理处理簇）</li>
@@ -876,12 +876,12 @@
 <li>CUDA Core 也有了升级，现在硬件上直接支持 FP16 的半精计算了，半精性能是单精的 2 倍。</li>
 </ul>
 <h2 id="Volta-架构-1"><a href="#Volta-架构-1" class="headerlink" title="Volta 架构"></a>Volta 架构</h2><p><a target="_blank" rel="noopener" href="https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf">Volta白皮书</a></p>
-<p><img src="/image-20240225220024587.png" alt="image-20240225220024587"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225220024587.png"></p>
 <p>2017年。采用了全新的设计理念和技术，拥有 256 个 SM 和 32 个 PolyMorph Engine 阵列，每个 SM 都拥有 64 个 CUDA 核心。该架构采用了全新的 Tensor 张量核心、ResNet 和 InceptionV3 加速模块等技术，搭配 GDDR6X 显存。这个架构可以说是完全以 Deep Learning 为核心了，相比 Pascal 也是一个大版本。<br>和 Pascal 的改变类似，到了 Volta，直接拆了 4 个区块，每个区块多配了一个 L0 指令缓存，而 Shared Memory&#x2F;Register File 这都没有变少，也就和 Pascal 的改变一样，单个线程可使用的资源更多了。单个区块还多个两个名为 Tensor Core 的单元，这就是这个版本的核心了。可以吐槽一下，这个版本又把 L1 和 Shared Memory 合并了。</p>
 <p>我们首先看 CUDA Core, 可以看到，原本的 CUDA Core 被拆成了 FP32 Cuda Core 和 INT32 Cuda Core，这意味着可以同时执行 FP32 和 INT32 的操作。</p>
 <h2 id="Turing架构"><a href="#Turing架构" class="headerlink" title="Turing架构"></a>Turing架构</h2><p><a target="_blank" rel="noopener" href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/technologies/turing-architecture/NVIDIA-Turing-Architecture-Whitepaper.pdf">Turing架构白皮书</a></p>
-<p><img src="/image-20240225212108966.png" alt="image-20240225212108966"></p>
-<p><img src="/image-20240225212216439.png" alt="image-20240225212216439"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225212108966.png"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225212216439.png"></p>
 <p>每个GPC均包含一个专用的光栅化引擎和6个TPC，且每个TPC均包含两个SM。每个SM包含：</p>
 <ul>
 <li>64个CUDA核心</li>
@@ -892,7 +892,7 @@
 </ul>
 <p>Turing架构采用全新SM设计，每个TPC均包含两个SM，每个SM共有64个FP32核心和64个INT32核心。Turing SM支持并行执行FP32与INT32运算，每个Turing SM还拥有8个混合精度Turing Tensor核心和1个RT核心。</p>
 <h2 id="Ampere-架构"><a href="#Ampere-架构" class="headerlink" title="Ampere 架构"></a>Ampere 架构</h2><p><a target="_blank" rel="noopener" href="https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/nvidia-ampere-architecture-whitepaper.pdf">Ampere架构白皮书</a><br>代表产品为 GeForce RTX 30 系列。该架构继续优化并行计算能力，并引入了更先进的 GDDR6X 内存技术，大幅提高了内存带宽和性能。相比 Turing 架构，Ampere 架构中的 SM 在 Turing 基础上增加了一倍的 FP32 运算单元，这使得每个 SM 的 FP32 运算单元数量提高了一倍，同时吞吐量也就变为了一倍。此外，安培架构还改进了着色器性能和张量核（Tensor Cores），进一步加速深度学习和人工智能任务的处理速度。</p>
-<p><img src="/image-20240225212433137.png" alt="image-20240225212433137"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225212433137.png"></p>
 <p>NVIDIA Ampere GA100 GPU架构满配如下：</p>
 <ul>
 <li>8 GPCs,</li>
@@ -912,35 +912,36 @@
 </ul>
 <p>NVIDIA A100基于7nm Ampere GA100 GPU，具有6912 CUDA内核和432 Tensor Core，540亿个晶体管数，108个流式多处理器。采用第三代NVLINK，GPU和服务器双向带宽为4.8 TB&#x2F;s，GPU间的互连速度为600 GB&#x2F;s。另外，Tesla A100在5120条内存总线上的HBM2内存可达40GB。</p>
 <h2 id="Hopper架构"><a href="#Hopper架构" class="headerlink" title="Hopper架构"></a>Hopper架构</h2><p><a target="_blank" rel="noopener" href="https://resources.nvidia.com/en-us-tensor-core">Hopper架构白皮书</a></p>
-<p><img src="/image-20240225212642414.png" alt="image-20240225212642414"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/image-20240225212642414.png"></p>
 <p>作为面向专业计算的GPU，H100采用HBM3高带宽显存，NVIDIA将六颗HBM3高带宽显存堆栈在核心两侧。核心内建5120-bit的HBM3显存位宽，英伟达可配置最高80GB显存，SXM5版（HBM3显存）带宽更是达到3TB&#x2F;s，PCIe版本（HBM2e）则是2TB&#x2F;s。</p>
 <p>H100的主机接口同样迎来升级，SXM外形的PCB板配备新一代NVLink，拥有900GB&#x2F;s的带宽。面对AIC插卡版本采用PCIe 5.0 x16(拥有128GB&#x2F;s)接口，两者均引入了资源池(resource-pooling)功能，加速GPU之间的数据交换。</p>
 <p>虽然H100拥有144组单元，但SXM版也只启用其中的132组单元。PCIe版本更是只有114组，两者的最高频率均为1.8GHz。不仅如此，H100核心的功率高达700W，PCIe版本也达到350W，上一代的A100仅为400W;在提升性能的同时，H100的功耗也在大幅上升。</p>
-<h2 id="GPU的未来"><a href="#GPU的未来" class="headerlink" title="GPU的未来"></a><strong>GPU的未来</strong></h2><ul>
+<h2 id="GPU的未来"><a href="#GPU的未来" class="headerlink" title="GPU的未来"></a>GPU的未来</h2><p>从章节[2.2 GPU历史](#2.2 GPU历史)可以得出一些结论，也可以推测GPU发展的趋势：</p>
+<ul>
 <li><p><strong>硬件升级</strong>。更多运算单元，更多存储空间，更高并发，更高带宽，更低延时。。。</p>
 </li>
 <li><p><strong>Tile-Based Rendering的集成</strong>。基于瓦片的渲染可以一定程度降低带宽和提升光照计算效率，目前部分移动端及桌面的GPU已经引入这个技术，未来将有望成为常态。</p>
-<p><img src="https://img2018.cnblogs.com/blog/1617944/201909/1617944-20190906002505353-1795972401.png" alt="img"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/1617944-20190906002505353-1795972401.png"></p>
 </li>
 <li><p><strong>3D内存技术</strong>。目前大多数传统的内存是2D的，3D内存则不同，在物理结构上是3D的，类似立方体结构，集成于芯片内。可获得几倍的访问速度和效能比。</p>
-<p><img src="https://img2018.cnblogs.com/blog/1617944/201909/1617944-20190906002515798-390893434.png" alt="img"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/1617944-20190906002515798-390893434.png"></p>
 </li>
 <li><p><strong>GPU愈加可编程化</strong>。GPU天生是并行且相对固定的，未来将会开放越来越多的shader可供编程，而CPU刚好相反，将往并行化发展。也就是说，未来的GPU越来越像CPU，而CPU越来越像GPU。难道它们应验了古语：合久必分，分久必合么？</p>
-<p><img src="https://img2018.cnblogs.com/blog/1617944/201909/1617944-20190906002526368-869362108.png" alt="img"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/1617944-20190906002526368-869362108.png"></p>
 </li>
 <li><p><strong>实时光照追踪的普及</strong>。基于Turing架构的GPU已经加入大量RT Core、HVB、AI降噪等技术，<strong>Hybrid Rendering Pipeline</strong>就是此架构的光线追踪渲染管线，能够同时结合光栅化器、RT Core、Compute Core执行混合渲染：</p>
-<p><img src="https://img2018.cnblogs.com/blog/1617944/201909/1617944-20190906002614137-1649844728.png" alt="img"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/1617944-20190906002614137-1649844728.png"></p>
 <p>Hybrid Rendering Pipeline相当于光线追踪渲染管线和光栅化渲染管线的合体：</p>
-<p><img src="https://img2018.cnblogs.com/blog/1617944/201909/1617944-20190906002640206-1719797478.png" alt="img"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/1617944-20190906002640206-1719797478.png"></p>
 </li>
 <li><p><strong>数据并发提升、深度神经网络、GPU计算单元等普及及提升</strong>。</p>
-<p><img src="https://img2018.cnblogs.com/blog/1617944/201909/1617944-20190906002651828-1748826144.png" alt="img"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/1617944-20190906002651828-1748826144.png"></p>
 </li>
 <li><p><strong>AI降噪和AI抗锯齿</strong>。AI降噪已经在部分RTX系列的光线追踪版本得到应用，而AI抗锯齿（Super Res）可用于超高分辨率的视频图像抗锯齿：</p>
-<p><img src="https://img2018.cnblogs.com/blog/1617944/201909/1617944-20190906002700010-1369006901.png" alt="img"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/1617944-20190906002700010-1369006901.png"></p>
 </li>
 <li><p><strong>基于任务和网格着色器的渲染管线</strong>。基于任务和网格着色器的渲染管线（Graphics Pipeline with Task and Mesh Shaders）与传统的光栅化渲染光线有着很大的差异，它以线程组（Thread Group）、任务着色器（Task shader）和网格着色器（Mesh shader）为基础，形成一种全新的渲染管线：</p>
-<p><img src="https://img2018.cnblogs.com/blog/1617944/201909/1617944-20190906002714352-1153921712.png" alt="img"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/1617944-20190906002714352-1153921712.png"></p>
 <p>关于此技术的更多详情可阅读：<a target="_blank" rel="noopener" href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/technologies/turing-architecture/NVIDIA-Turing-Architecture-Whitepaper.pdf">NVIDIA Turing Architecture Whitepaper</a>。</p>
 </li>
 <li><p><strong>可变速率着色（Variable Rate Shading）</strong>。可变利率着色技术可判断画面区域的重要性（或由应用程序指定），然后根据画面区域的重要性程度采用不同的着色分辨率精度，可以显著降低功耗，提高着色效率。</p>
