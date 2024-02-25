@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【TEE】可信执行环境保障大模型安全 | Xinyao</title>
+  <meta name="keywords" content=" TEE , LLM ">
+  <meta name="description" content="【TEE】可信执行环境保障大模型安全 | Xinyao">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="勇攀高峰">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://zhengxinyao.github.io/tags/index.html">
+<meta property="og:site_name" content="Xinyao">
+<meta property="og:description" content="勇攀高峰">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-07T15:59:52.000Z">
+<meta property="article:modified_time" content="2024-02-07T15:59:52.773Z">
+<meta property="article:author" content="ICT-IPRC">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/favicon.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/myself.png"/>
+</a>
+<div class="author">
+    <span>ICT-IPRC</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/zhengxinyao"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="linkedin"
+               href="https://www.linkedin.com/in/%E6%98%95%E7%91%B6-%E9%83%91-956a732b5/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-linkedin"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/destiny-44-90-76"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qq_43543209?spm=1010.2135.3001.5343"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1601835186@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1601835186&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(8)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文记录">
+            
+            论文记录
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识总结">
+            
+            知识总结
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识记录">
+            
+            知识记录
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="8">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>论文</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI加速器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV- SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV-SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ARM CCA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel TDX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PENGLAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TEE</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/"
+           data-tag="TEE,LLM"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境保障大模型安全">【TEE】可信执行环境保障大模型安全</span>
+            <span class="post-date" title="2024-02-25 19:52:39">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91PENGLAI-TEE/"
+           data-tag="TEE,PENGLAI"
+           data-author="" >
+            <span class="post-title" title="【TEE】PENGLAI TEE">【TEE】PENGLAI TEE</span>
+            <span class="post-date" title="2024-02-25 19:51:30">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识记录 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91AMD-SEV-SNP%E5%92%8CIntel-TDX%E7%9A%84%E6%A6%82%E8%BF%B0/"
+           data-tag="TEE,AMD SEV- SNP,Intel TDX"
+           data-author="" >
+            <span class="post-title" title="【TEE】AMD SEV- SNP和Intel TDX的概述">【TEE】AMD SEV- SNP和Intel TDX的概述</span>
+            <span class="post-date" title="2024-02-25 19:36:13">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/"
+           data-tag="TEE,ARM CCA"
+           data-author="" >
+            <span class="post-title" title="【TEE】ARM CCA 可信计算架构">【TEE】ARM CCA 可信计算架构</span>
+            <span class="post-date" title="2024-02-25 19:24:38">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/"
+           data-tag="TEE,AMD SEV-SNP"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离">【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离</span>
+            <span class="post-date" title="2024-02-25 19:11:12">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/"
+           data-tag="TEE,AMD SEV"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV内存加密】 白皮书">【TEE】【AMD SEV内存加密】 白皮书</span>
+            <span class="post-date" title="2024-02-25 19:05:02">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Computing-within-an-AI-Accelerator/"
+           data-tag="TEE,论文,AI加速器,架构设计"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Computing within an AI Accelerator">【TEE论文】Confidential Computing within an AI Accelerator</span>
+            <span class="post-date" title="2024-02-25 18:53:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/"
+           data-tag="TEE"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境业界资料">【TEE】可信执行环境业界资料</span>
+            <span class="post-date" title="2024-02-25 18:31:25">2024/02/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【TEE】可信执行环境保障大模型安全" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【TEE】可信执行环境保障大模型安全</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="知识总结">知识总结</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">TEE</a>
+            
+            <a class="color4">LLM</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 19:53:43'>2024-02-25 19:52</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-TEE-LLM"><span class="toc-text">1.TEE+LLM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Intel%E5%B9%B3%E5%8F%B0%E5%8A%A0%E9%80%9FTEE%E5%92%8CLLM%E8%9E%8D%E5%90%88%E6%96%B9%E6%A1%88"><span class="toc-text">2. Intel平台加速TEE和LLM融合方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-OpaquePrompts%E9%9A%90%E8%97%8F%E6%95%8F%E6%84%9F%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">3. OpaquePrompts隐藏敏感输入数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-NVIDIA-H100"><span class="toc-text">4.NVIDIA H100</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%AE%89%E5%85%A8%E5%8F%AF%E4%BF%A1%E7%9A%84LLM"><span class="toc-text">5. 安全可信的LLM</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-TEE-LLM"><span class="toc-text">1.TEE+LLM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Intel%E5%B9%B3%E5%8F%B0%E5%8A%A0%E9%80%9FTEE%E5%92%8CLLM%E8%9E%8D%E5%90%88%E6%96%B9%E6%A1%88"><span class="toc-text">2. Intel平台加速TEE和LLM融合方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-OpaquePrompts%E9%9A%90%E8%97%8F%E6%95%8F%E6%84%9F%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">3. OpaquePrompts隐藏敏感输入数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-NVIDIA-H100"><span class="toc-text">4.NVIDIA H100</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%AE%89%E5%85%A8%E5%8F%AF%E4%BF%A1%E7%9A%84LLM"><span class="toc-text">5. 安全可信的LLM</span></a></li></ol></div></p>
+<h1 id="1-TEE-LLM"><a href="#1-TEE-LLM" class="headerlink" title="1.TEE+LLM"></a>1.TEE+LLM</h1><p><strong>大模型安全隐患</strong></p>
+<p>数据泄露、数据滥用、模型被攻击和知识产权被窃取等一系列隐私和安全风险。</p>
+<ul>
+<li>数据泄露：在公共云中使用 LLM 时，必须考虑用于推理的数据的敏感性。</li>
+<li>数据滥用：实施数据清理和验证技术，以确保提示不会无意中泄露敏感信息</li>
+<li>模型攻击：实施强大的访问控制来限制谁可以访问和使用经过微调的模型</li>
+</ul>
+<p><strong>可信执行环境机制</strong></p>
+<ul>
+<li>安全隔离：通过硬件加密和内存隔离等硬件隔离技术，将敏感数据和关键代码与其他应用及操作系统相隔离。</li>
+<li>安全验证：在启动过程中进行身份验证和完整性检查，确保只有经过授权的代码和数据可以在其中运行，防止恶意软件或未经授权的访问。</li>
+<li>安全执行环境：提供包含加密算法、安全协议和密钥管理等防护功能的执行环境，以增强数据在执行过程中的保密性和完整性。</li>
+</ul>
+<p><strong>LLM和TEE融合需求</strong></p>
+<p>LM 在许多行业的不同场景都有着广泛应用，例如金融行业的风险评估和交易分析，医疗保健领域的医学图像识别、病历纪录和疾病预测，以及法律和合规行业的法律咨询、合同审查和文书处理等。</p>
+<p> TEE 是由支持机密计算 (CC) 的硬件提供的安全且隔离的环境，可防止在使用时对应用程序和数据进行未经授权的访问或修改。</p>
+<ul>
+<li>训练阶段：允许用户使用特定领域或语言的专有数据来培训 LLM，而无需与其他人共享。经过训练的模型和数据保持私密性，只有容器内的用户和 LLM 可以访问。此外，用户可以确认代码和参数没有被其他人更改。</li>
+<li>推理阶段：TEE 则可保护用户输入和模型结果的隐私。</li>
+<li>微调阶段：可以使用机密容器针对特定领域的任务在其特定数据集上微调预训练的 LLM，确保只有机密容器内的用户才能访问数据和模型。</li>
+</ul>
+<p>仅在成功验证运行环境的完整性（使用 远程证明）后，机密才会在机密容器内传递。由于解密的模型和代码在 TEE 内部运行，因此任何不受信任的实体都无法对其进行未经授权的访问。</p>
+<p><img src="/251320f08e61476d8ca9758eefaf6bf6.png"></p>
+<p><strong>TEE和LLM融合的挑战</strong></p>
+<ul>
+<li>资源限制：TEE 的计算资源和存储空间通常都非常有限，LLM 庞大的模型参数和计算需求可能会超出一般 TEE 的能力范围。</li>
+<li>性能下降：I&#x2F;O 数据的加密和安全计算操作会引入额外的计算开销，导致模型训练和推理性能有一定程度下降。</li>
+</ul>
+<h1 id="2-Intel平台加速TEE和LLM融合方案"><a href="#2-Intel平台加速TEE和LLM融合方案" class="headerlink" title="2. Intel平台加速TEE和LLM融合方案"></a>2. Intel平台加速TEE和LLM融合方案</h1><p><strong>SGX&#x2F;TDX解决方案</strong><br>SGX 安全飞地的容量最多可达单颗 CPU 512GB，双路共计 1TB 容量，可满足目前千亿大模型的执行空间需求。该技术提供支持的机密计算可实现应用层、虚拟机 (VM)、容器和功能层的数据隔离。 无论是在云端、边缘还是本地环境，都能确保计算与数据始终在私密性和安全性上获得更全面的保护，以免暴露给云服务提供商、未经授权的管理员和操作系统，甚至是特权应用。</p>
+<p>TDX将客户机操作系统和虚拟机应用与云端主机、系统管理程序和平台的其他虚拟机隔离开来。 它的<strong>信任边界较SGX 应用层的隔离边界更大</strong>，使受其保护的机密虚拟机比基于SGX 的安全飞地的应用更易于进行大规模部署和管理，在部署 LLM 这类复杂应用时，TDX 在易用性上更具优势。</p>
+<p><img src="/e2575355f69641e2bf7ba385ed9af3b3.png"><br>英特尔在 SDK 的基础上，推出了开源的 lib OS 项目 Gramine 来帮助开发者更好地使用基于SGX的 TEE，助推 LLM 与 TEE 的融合。</p>
+<p><strong>TEE保护LLM推理</strong></p>
+<p>在数据上传云端前，查询可先通过客户端对传输内容加密，云端只需在SGX&#x2F;TDX 中解密查询问题，然后输入大模型的推理服务中，并将所得结果在云端的 TEE 中加密后传输回本地客户端。 在整个工作流程中，客户端以外的数据和运行态程序均处于密态环境当中，效率远远高于其他基于纯密码学的解决方案。<br><img src="/931a381e15994cdf9bc93f702e7958f7.png"><br><strong>端到端大模型和TEE融合</strong></p>
+<p>LLM 在端到端应用中的痛点包括：</p>
+<ul>
+<li>软件栈复杂，难以确保端到端应用的安全。 LLM 的训练和推理常依赖较多的软件栈、服务和硬件。 为保护用户数据和模型产权，需确保每个环节的安全性（不同硬件、运行环境、网络和存储等）。</li>
+<li>计算量大，且对性能敏感。 LLM 的计算量非常大，需引入足够多的性能优化。 但是，不同模型、平台和软件栈需要使用不同的优化方案，要在特定平台上实现更理想的性能，需要长时间的性能调优。</li>
+</ul>
+<p>英特尔主导的开源项目 BigDL：</p>
+<ul>
+<li>提供端到端的安全保护：在不修改代码的情况下，为单机和分布式的 LLM 应用提供端到端的安全保护功能，包括基于SGX&#x2F;TDX 的 TEE、远程证明、统一的密钥管理接口、透明的加解密 API 等。</li>
+<li>实现一站式性能优化：让现有 LLM 应用在几乎不用修改代码的情况下受益于英特尔® AMX、英特尔® AVX-512 和英特尔® Extension for PyTorch，用户还可利用 BigDL Nano 提供的 LLM API，快速构建应用。</li>
+</ul>
+<p><img src="/e0dbcf230e4043d2b18f6c4339b66870.png"><br>在应用了 PPML（Privacy Preserving Machine Learning，隐私保护的机器学习）提供的安全技术后，由于更强的安全和隐私保护会带来额外开销，端到端应用性能会略有下降； 但应用了 BigDL Nano 提供的优化功能后，端到端的性能得到了显著改善，总体性能甚至高于没有任何保护的明文性能。</p>
+<p><img src="/1b687f7f4ebb4f119102365ffa94a1fa.png"></p>
+<h1 id="3-OpaquePrompts隐藏敏感输入数据"><a href="#3-OpaquePrompts隐藏敏感输入数据" class="headerlink" title="3. OpaquePrompts隐藏敏感输入数据"></a>3. OpaquePrompts隐藏敏感输入数据</h1><p><strong>动机</strong><br><a target="_blank" rel="noopener" href="https://openai.com/policies/privacy-policy">OpenAI 面向消费者的 ChatGPT</a>不断根据用户输入训练其模型，并与第三方提供商共享用户输入。<br><a target="_blank" rel="noopener" href="https://support.anthropic.com/en/articles/7996866-how-long-do-you-store-personal-data">Anthropic 的 Claude</a>  默认保留我们的数据至少 30 天。<br><a target="_blank" rel="noopener" href="https://support.google.com/bard/answer/13594961?hl=en#your_data">Google 的 Bard</a> 会将我们的活动保留至少 3 个月，最长可能保留 3 年。它还使用输入数据来持续训练其模型。</p>
+<p>通过在个人或敏感数据到达 LLM 之前对其进行清理，不再需要依赖 LLM 提供商来遵循任何特定的数据保留或处理政策。这就是 OpaquePrompts 提供的功能。通过利用机密计算和可信执行环境 (TEE)，托管 OpaquePrompts 的 Opaque 也不会看到提示，从而确保只有用户才能看到prompt中包含的任何信息。</p>
+<p><strong>OpaquePrompts</strong><br>工作流程如下：</p>
+<ol>
+<li>给定用户提供的输入，LLM 应用程序会像以前一样构建提示，可能包括检索到的上下文、内存和用户查询。LLM 应用程序将此提示转发给 OpaquePrompts。</li>
+<li>在 TEE 中，OpaquePrompts 使用基于自然语言处理 (NLP) 的机器学习来识别提示中的敏感标记。</li>
+<li>在 TEE 中，OpaquePrompts 通过加密所有个人和敏感令牌来清理（换句话说，加密和编辑）提示，然后再将清理后的提示返回到 LLM 应用程序。</li>
+<li>LLM 申请将提示提交给他们选择的 LLM（例如 ChatGPT 或 Claude），LLM 将清理响应（包含具有个人信息的令牌的清理版本的响应）返回给 LLM 应用程序。</li>
+<li>在 TEE 中，OpaquePrompts 从 LLM 应用程序接收经过净化的响应并对其进行去净化，用其明文等效项替换经过净化的令牌。</li>
+<li>LLM 应用程序将经过净化的响应返回给用户。<br><img src="/47ae4ae535874301a164231fde63221b.png"></li>
+</ol>
+<p>借助 OpaquePrompts，LLM 申请者在使用第三方 LLM 之前不再需要依赖用户手动删除任何敏感信息并、。</p>
+<h1 id="4-NVIDIA-H100"><a href="#4-NVIDIA-H100" class="headerlink" title="4.NVIDIA H100"></a>4.NVIDIA H100</h1><p><strong>机密GPU</strong><br>Intel 和 AMD 等公司的 CPU 允许创建 TEE，它可以隔离进程或整个来宾虚拟机 (VM)，从而有效地将主机操作系统和虚拟机管理程序从信任边界中消除。机密GPU的愿景是将这种信任边界扩展到 GPU，允许在 CPU TEE 中运行的代码将计算和数据安全地卸载到 GPU。<br><img src="/7daf6384cb1544bf8358e80074ea25d4.png"><br>图 1：使用 NVIDIA GPU 实现机密计算的愿景。</p>
+<p>挑战：</p>
+<ul>
+<li>必须防范各种攻击，例如中间人攻击，攻击者可以观察或篡改 PCIe 总线或 NVIDIA NVLink 上的流量连接多个 GPU 以及模拟攻击</li>
+<li>必须确保Azure主机操作系统对GPU有足够的控制权来执行管理任务</li>
+<li>增加的保护不得带来较大的性能开销，增加功率可能需要对 GPU 微架构进行重大更改<br>解决方案，扩展以下功能：</li>
+<li>一种新模式，其中 GPU 上的所有敏感状态（包括 GPU 内存）与主机隔离</li>
+<li>GPU 芯片上的硬件信任根，可以生成可验证的证明，捕获 GPU 的所有安全敏感状态，包括所有固件和微代码 </li>
+<li>对 GPU 驱动程序的扩展，用于验证 GPU 证明、与 GPU 建立安全通信通道以及透明地加密 CPU 和 GPU 之间的所有通信 </li>
+<li>硬件支持通过 NVLink 透明加密所有 GPU-GPU 通信  </li>
+<li>支持客户操作系统和虚拟机管理程序将 GPU 安全地连接到 CPU TEE，即使 CPU TEE 的内容已加密</li>
+</ul>
+<p><strong>A100的实现</strong></p>
+<p>NVIDIA 和 Azure 通过 NVIDIA A100 Tensor Core GPU 中名为APM的新功能，朝着实现这一愿景迈出了重要一步。</p>
+<p>APM 在 A100 GPU 中引入了一种新的机密执行模式。当 GPU 在此模式下初始化时，GPU 会将高带宽内存 (HBM) 中的一个区域指定为受保护区域，防止从主机和对等 GPU 访问该区域的内存映射 I&#x2F;O (MMIO) 造成泄漏。仅允许经过身份验证和加密的流量进出该区域。  </p>
+<p>在机密模式下，GPU 可以与任何外部实体配对，例如主机 CPU 上的 TEE。为了实现这种配对，GPU 包含一个硬件信任根 (HRoT)。NVIDIA 为 HRoT 提供唯一的身份以及在制造过程中创建的相应证书。HRoT 还通过测量 GPU 以及 GPU 上其他微控制器（包括名为 SEC2 的安全微控制器）的固件来实现身份验证和测量启动。反过来，SEC2 可以生成包含这些测量值并由新的证明密钥签名的证明报告，该新的证明密钥由唯一的设备密钥认可。任何外部实体都可以使用这些报告来验证 GPU 是否处于机密模式并运行最后一次已知的良好固件。  </p>
+<p>当CPU TEE中的NVIDIA GPU驱动程序加载时，它会检查GPU是否处于机密模式。如果是，驱动程序会请求一份认证报告，并检查 GPU 是否是运行已知良好固件的正品 NVIDIA GPU。一旦确认，驱动程序将使用安全协议和数据模型 (SPDM) 支持的基于 Diffie-Hellman 的密钥交换协议与 GPU 上的 SEC2 微控制器建立安全通道，以建立新的会话密钥。当交换完成时，GPU 驱动程序和 SEC2 都持有相同的对称会话密钥。  </p>
+<p>GPU 驱动程序使用共享会话密钥来加密进出 GPU 的所有后续数据传输。由于分配给 CPU TEE 的页面在内存中进行了加密，并且 GPU DMA 引擎无法读取，因此 GPU 驱动程序会在 CPU TEE 外部分配页面并将加密数据写入这些页面。在GPU端，SEC2微控制器负责解密从CPU传输的加密数据并将其复制到受保护区域。一旦数据以明文形式存储在高带宽内存 (HBM) 中，GPU 内核就可以自由地使用它进行计算。</p>
+<p><img src="/c7e3e7fd1f214e5e9d53481537a06737.png"><br>图 2：主机 CPU 上的 GPU 驱动程序和 NVIDIA A100 Tensor Core GPU 上的 SEC2 微控制器协同工作，实现数据传输的端到端加密。</p>
+<p><strong>H100</strong></p>
+<ul>
+<li>基于硬件的安全和隔离：在本地、云端或边缘实现虚拟机 (VM) 的完全隔离。CPU 和 H200 或 H100 GPU 之间的数据传输以 PCIe 线速加密和解密。大部分 GPU 内存被配置为计算保护区 (CPR)，使用内置硬件防火墙创建物理隔离的可信执行环境 (TEE)，以保护 H200 或 H100 GPU 上的整个工作负载。</li>
+<li>防止未经授权的访问：保护使用中的数据和人工智能工作负载的机密性和完整性。未经授权的实体（包括虚拟机管理程序、主机操作系统、云提供商）无法在执行期间查看或修改人工智能应用程序和数据。</li>
+<li>设备证明的可验证性：确保只有授权的最终用户才能在 H200 或 H100 的 TEE 中放置要执行的数据和代码。此外，设备认证可验证用户是否正在与真实的 NVIDIA GPU 进行通信、固件是否未被篡改以及 GPU 固件是否已按预期更新。</li>
+<li>无需更改应用程序代码：在大多数情况下， GPU 加速工作负载无需更改代码，即可充分利用机密计算的所有优势，，同时保持安全性、隐私性。</li>
+</ul>
+<h1 id="5-安全可信的LLM"><a href="#5-安全可信的LLM" class="headerlink" title="5. 安全可信的LLM"></a>5. 安全可信的LLM</h1><p>在 TEE 中保护用户隐私的同时，需要平衡性能需求，TEE 和异构硬件的结合将成为未来发展趋势。 随着 CPU 性能的提升以及内置 AI 加速技术的升级和更新，在方便部署的场景下，CPU 会是大模型推理和 TEE 结合的首选；在训练的场景下，基于 CPU 的 TEE 结合异构硬件的加密支持，则会是大模型训练甚至大模型联邦训练的技术方向。</p>
+<p>中国信通院《大模型可信赖研究报告》提出了大模型可信赖六大目标，包括可靠性、健壮性、安全性、公平性、可问责和可解释，同时提出大模型可信风险来自于框架、数据、模型和生成内容等四大方面。</p>
+<p>大模型AI安全可信，是一组相关数据、技术、产品、方案和服务等组合起来的能力集合，其中包括：数据采集、标注和清洗等数据服务；模型设计、评估与微调等模型服务；基于人类反馈的增强学习服务；数据保护与隐私安全；咨询服务等等诸多领域，涉及到了大模型全生命周期的方方面面。</p>
+<p>在大模型公有云服务方面，以百度、阿里等为代表的互联网与云服务公司，从大模型全生命周期视角出发，涵盖大模型训练、精调、推理、大模型部署、大模型运营等关键阶段面临的安全风险与业务挑战，在自有技术体系内进行深入布局，探索打造安全产品与服务。</p>
+<p>360等第三方独立的人工智能与安全科技公司，探索“以模型管理模型”方式，打造以大模型为核心的AI Agent（AI智能体）,带入企业真实安全运营场景中，以“虚拟安全专家”的形象，满足企业对安全业务的需求。</p>
+<p>开源社区也积极推出大模型安全可信开源工具。LLM Guard是一个保护和强化大型语言模型安全性的开源工具包，LLM Guard的目的是通过提供开箱即用的所有必要工具来简化公司安全采用大模型的过程。</p>
+<p>[1] <a target="_blank" rel="noopener" href="https://www.intel.cn/content/www/cn/zh/customer-spotlight/cases/privacy-security-challenge-large-language-model.html">https://www.intel.cn/content/www/cn/zh/customer-spotlight/cases/privacy-security-challenge-large-language-model.html</a><br>[2] <a target="_blank" rel="noopener" href="https://pradiptabanerjee.medium.com/confidential-containers-for-large-language-models-42477436345a">https://pradiptabanerjee.medium.com/confidential-containers-for-large-language-models-42477436345a</a><br>[3] <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/6hdBb0fDQUZIQiHjEnpG5g">https://mp.weixin.qq.com/s/6hdBb0fDQUZIQiHjEnpG5g</a><br>[4] <a target="_blank" rel="noopener" href="https://techcommunity.microsoft.com/t5/azure-confidential-computing/unlocking-the-potential-of-privacy-preserving-ai-with-azure/ba-p/3776838">https://techcommunity.microsoft.com/t5/azure-confidential-computing/unlocking-the-potential-of-privacy-preserving-ai-with-azure/ba-p/3776838</a></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 zxy
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
