@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【TEE】片外内存保护：AES分组算法+MAC完整性验证 | Xinyao</title>
+  <meta name="keywords" content=" TEE , 内存保护 , 分组加密 ">
+  <meta name="description" content="【TEE】片外内存保护：AES分组算法+MAC完整性验证 | Xinyao">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="勇攀高峰">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://zhengxinyao.github.io/tags/index.html">
+<meta property="og:site_name" content="Xinyao">
+<meta property="og:description" content="勇攀高峰">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-07T15:59:52.000Z">
+<meta property="article:modified_time" content="2024-02-07T15:59:52.773Z">
+<meta property="article:author" content="ICT-IPRC">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/favicon.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/myself.png"/>
+</a>
+<div class="author">
+    <span>ICT-IPRC</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/zhengxinyao"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="linkedin"
+               href="https://www.linkedin.com/in/%E6%98%95%E7%91%B6-%E9%83%91-956a732b5/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-linkedin"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/destiny-44-90-76"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qq_43543209?spm=1010.2135.3001.5343"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1601835186@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1601835186&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(16)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文记录">
+            
+            论文记录
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识总结">
+            
+            知识总结
+            <small>(9)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识记录">
+            
+            知识记录
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="16">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分组加密</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>共享内存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>论文</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存保护</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI加速器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV- SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV-SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ARM CCA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel SGX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel TDX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PENGLAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TEE</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Reusable-Enclaves-for-Confidential-Serverless-Computing%EF%BC%88usenixsecurity23%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）">【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）</span>
+            <span class="post-date" title="2024-02-25 20:14:26">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Serverless-Made-Efficient-with-Plug-In-Enclaves-%EF%BC%882021-ISCA%EF%BC%89/"
+           data-tag="TEE,论文,共享内存"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）">【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）</span>
+            <span class="post-date" title="2024-02-25 20:12:45">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service">【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service</span>
+            <span class="post-date" title="2024-02-25 20:11:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91-HETEE-Enabling-rack-scale-confidential-computing-using-heterogeneous-TEE-2020-SP/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)">【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)</span>
+            <span class="post-date" title="2024-02-25 20:08:42">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）">【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）</span>
+            <span class="post-date" title="2024-02-25 20:07:36">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/"
+           data-tag="TEE,内存保护,分组加密"
+           data-author="" >
+            <span class="post-title" title="【TEE】片外内存保护：AES分组算法+MAC完整性验证">【TEE】片外内存保护：AES分组算法+MAC完整性验证</span>
+            <span class="post-date" title="2024-02-25 20:05:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"
+           data-tag="TEE,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel SGX的不足和解决方案">【TEE】Intel SGX的不足和解决方案</span>
+            <span class="post-date" title="2024-02-25 19:59:35">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/"
+           data-tag="TEE,Intel TDX,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel可信执行环境的前世今生">【TEE】Intel可信执行环境的前世今生</span>
+            <span class="post-date" title="2024-02-25 19:54:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/"
+           data-tag="TEE,LLM"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境保障大模型安全">【TEE】可信执行环境保障大模型安全</span>
+            <span class="post-date" title="2024-02-25 19:52:39">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91PENGLAI-TEE/"
+           data-tag="TEE,PENGLAI"
+           data-author="" >
+            <span class="post-title" title="【TEE】PENGLAI TEE">【TEE】PENGLAI TEE</span>
+            <span class="post-date" title="2024-02-25 19:51:30">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识记录 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91AMD-SEV-SNP%E5%92%8CIntel-TDX%E7%9A%84%E6%A6%82%E8%BF%B0/"
+           data-tag="TEE,AMD SEV- SNP,Intel TDX"
+           data-author="" >
+            <span class="post-title" title="【TEE】AMD SEV- SNP和Intel TDX的概述">【TEE】AMD SEV- SNP和Intel TDX的概述</span>
+            <span class="post-date" title="2024-02-25 19:36:13">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/"
+           data-tag="TEE,ARM CCA"
+           data-author="" >
+            <span class="post-title" title="【TEE】ARM CCA 可信计算架构">【TEE】ARM CCA 可信计算架构</span>
+            <span class="post-date" title="2024-02-25 19:24:38">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/"
+           data-tag="TEE,AMD SEV-SNP"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离">【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离</span>
+            <span class="post-date" title="2024-02-25 19:11:12">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/"
+           data-tag="TEE,AMD SEV"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV内存加密】 白皮书">【TEE】【AMD SEV内存加密】 白皮书</span>
+            <span class="post-date" title="2024-02-25 19:05:02">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Computing-within-an-AI-Accelerator/"
+           data-tag="TEE,论文,AI加速器,架构设计"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Computing within an AI Accelerator">【TEE论文】Confidential Computing within an AI Accelerator</span>
+            <span class="post-date" title="2024-02-25 18:53:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/"
+           data-tag="TEE"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境业界资料">【TEE】可信执行环境业界资料</span>
+            <span class="post-date" title="2024-02-25 18:31:25">2024/02/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【TEE】片外内存保护：AES分组算法-MAC完整性验证" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【TEE】片外内存保护：AES分组算法+MAC完整性验证</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="知识总结">知识总结</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">TEE</a>
+            
+            <a class="color5">内存保护</a>
+            
+            <a class="color5">分组加密</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 20:06:02'>2024-02-25 20:05</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E6%94%BB%E5%87%BB%E9%9D%A2"><span class="toc-text">片外内存攻击面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%AF%86%E6%80%A7"><span class="toc-text">AES分组算法保护机密性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ECB%E6%A8%A1%E5%BC%8F%EF%BC%88%E7%94%B5%E5%AD%90%E5%AF%86%E7%A0%81%E6%9C%AC%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">1.ECB模式（电子密码本模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-CBC%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%AF%86%E7%A0%81%E5%88%86%E7%BB%84%E9%93%BE%E6%8E%A5%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">2.CBC模式（密码分组链接模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-CTR%E6%A8%A1%E5%BC%8F%EF%BC%88%E8%AE%A1%E6%95%B0%E5%99%A8%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">3.CTR模式（计数器模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-CFB%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%AF%86%E7%A0%81%E5%8F%8D%E9%A6%88%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">4.CFB模式（密码反馈模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-OFB%E6%A8%A1%E5%BC%8F%EF%BC%88%E8%BE%93%E5%87%BA%E5%8F%8D%E9%A6%88%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">5.OFB模式（输出反馈模式）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%9D%E6%8A%A4%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-text">保护完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Xom"><span class="toc-text">Xom</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E9%B2%9C%E6%80%A7%EF%BC%8CMerkel-Tree-%E9%98%B2%E9%87%8D%E6%94%BE"><span class="toc-text">新鲜性，Merkel Tree 防重放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%EF%BC%9ACounter%E7%9A%84%E5%8E%8B%E7%BC%A9%E6%A8%A1%E5%BC%8F"><span class="toc-text">优化：Counter的压缩模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%EF%BC%9AAISE"><span class="toc-text">优化：AISE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">其他优化方向</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%B0%E6%9C%89TEE%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4"><span class="toc-text">现有TEE完整性保护</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel-SGX"><span class="toc-text">Intel SGX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SGX-V2-Scalable-SGX"><span class="toc-text">SGX V2&#x2F;Scalable SGX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel-TDX-MLTME-AMD-SEV"><span class="toc-text">Intel TDX&#x2F;MLTME&#x2F;AMD SEV</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>@<div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E6%94%BB%E5%87%BB%E9%9D%A2"><span class="toc-text">片外内存攻击面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%AF%86%E6%80%A7"><span class="toc-text">AES分组算法保护机密性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ECB%E6%A8%A1%E5%BC%8F%EF%BC%88%E7%94%B5%E5%AD%90%E5%AF%86%E7%A0%81%E6%9C%AC%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">1.ECB模式（电子密码本模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-CBC%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%AF%86%E7%A0%81%E5%88%86%E7%BB%84%E9%93%BE%E6%8E%A5%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">2.CBC模式（密码分组链接模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-CTR%E6%A8%A1%E5%BC%8F%EF%BC%88%E8%AE%A1%E6%95%B0%E5%99%A8%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">3.CTR模式（计数器模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-CFB%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%AF%86%E7%A0%81%E5%8F%8D%E9%A6%88%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">4.CFB模式（密码反馈模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-OFB%E6%A8%A1%E5%BC%8F%EF%BC%88%E8%BE%93%E5%87%BA%E5%8F%8D%E9%A6%88%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">5.OFB模式（输出反馈模式）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%9D%E6%8A%A4%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-text">保护完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Xom"><span class="toc-text">Xom</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E9%B2%9C%E6%80%A7%EF%BC%8CMerkel-Tree-%E9%98%B2%E9%87%8D%E6%94%BE"><span class="toc-text">新鲜性，Merkel Tree 防重放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%EF%BC%9ACounter%E7%9A%84%E5%8E%8B%E7%BC%A9%E6%A8%A1%E5%BC%8F"><span class="toc-text">优化：Counter的压缩模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%EF%BC%9AAISE"><span class="toc-text">优化：AISE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">其他优化方向</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%B0%E6%9C%89TEE%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4"><span class="toc-text">现有TEE完整性保护</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel-SGX"><span class="toc-text">Intel SGX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SGX-V2-Scalable-SGX"><span class="toc-text">SGX V2&#x2F;Scalable SGX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel-TDX-MLTME-AMD-SEV"><span class="toc-text">Intel TDX&#x2F;MLTME&#x2F;AMD SEV</span></a></li></ol></li></ol></div></p>
+<h1 id="片外内存攻击面"><a href="#片外内存攻击面" class="headerlink" title="片外内存攻击面"></a>片外内存攻击面</h1><ul>
+<li>攻击者通过操纵片外的未保护的内存<ul>
+<li>直接观察</li>
+<li>解决方案：内存加密</li>
+</ul>
+</li>
+<li>篡改数据<ul>
+<li>任意修改（spoofing），拼接（splicing），重放（replay）</li>
+<li>解决方案：完整性保护和防重放</li>
+</ul>
+</li>
+<li>观察地址总线的访问模式<ul>
+<li>侧信道</li>
+<li>解决方案：ORAM</li>
+</ul>
+</li>
+</ul>
+<h1 id="AES分组算法保护机密性"><a href="#AES分组算法保护机密性" class="headerlink" title="AES分组算法保护机密性"></a>AES分组算法保护机密性</h1><ul>
+<li>内存加密模式<ul>
+<li>AES+ECB&#x2F;CBC&#x2F;CTR&#x2F;XTS&#x2F;GCM</li>
+<li>可调分组密码：QARMA</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-ECB模式（电子密码本模式）"><a href="#1-ECB模式（电子密码本模式）" class="headerlink" title="1.ECB模式（电子密码本模式）"></a>1.ECB模式（电子密码本模式）</h2><p>用相同的密钥分别对明文组加密；各个分组独立加密和解密。</p>
+<p>优点：<br>算法简单，加解密速度快。<br>易于并行计算，因此在硬件中实现时非常高效。</p>
+<p>缺点：<br>不支持并行加解密，因此安全性较差。<br>明文块内部存在重复，容易受到攻击。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/e4604571a53d4b33930efc69c6f8af36.png"></p>
+<h2 id="2-CBC模式（密码分组链接模式）"><a href="#2-CBC模式（密码分组链接模式）" class="headerlink" title="2.CBC模式（密码分组链接模式）"></a>2.CBC模式（密码分组链接模式）</h2><p>当前明文分组先和前一个密文异或，再加密；初始向量IV，不必保密，但需要保存并占据空间</p>
+<p>优点：<br>相邻的明文块加密后的密文块是不同的，增加了加密的安全性。<br>可以处理变长的明文，适用性更广。</p>
+<p>缺点：<br>加密过程是串行的，无法并行，不适合硬件加速。<br>初始向量IV必须是随机的，否则容易受到攻击。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/7316c87837a1483f9fb9df725f83b2ae.png"></p>
+<h2 id="3-CTR模式（计数器模式）"><a href="#3-CTR模式（计数器模式）" class="headerlink" title="3.CTR模式（计数器模式）"></a>3.CTR模式（计数器模式）</h2><p>CTR模式是一种通过将逐次累加的计数器进行加密来生成密钥流的流密码。最终的密文分组是通过将计数器加密的到的比特序列，与明文分组进行XOR而得到的。</p>
+<p>优点：不泄露明文；仅需实现加密函数；无需填充；可并行计算。</p>
+<p>缺点：需要瞬时值IV，难以保证IV的唯一性。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/383c40165acd4e2ea131e30f7cb460bb.png"></p>
+<h2 id="4-CFB模式（密码反馈模式）"><a href="#4-CFB模式（密码反馈模式）" class="headerlink" title="4.CFB模式（密码反馈模式）"></a>4.CFB模式（密码反馈模式）</h2><p>在CFB模式中，前一个密文分组会被送回到密码算法的输入端。所谓反馈，这里指的就是返回输入端的意思。类似于CBC，可以将块密码变为自同步的流密码；工作过程亦非常相似，CFB的解密过程几乎就是颠倒的CBC的加密过程：</p>
+<p>优点：<br>支持加密和解密的输出反馈模式，因此可以进行流加密。<br>可以处理变长的明文，适用性更广。</p>
+<p>缺点：<br>加密过程是串行的，不适合硬件加速。<br>密钥流的产生需要时间，因此加解密的时延较大。</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/f00023179c4e4ab1be449a899670678d.png"></p>
+<h2 id="5-OFB模式（输出反馈模式）"><a href="#5-OFB模式（输出反馈模式）" class="headerlink" title="5.OFB模式（输出反馈模式）"></a>5.OFB模式（输出反馈模式）</h2><p>可以将块密码变成同步的流密码。它产生密钥流的块，然后将其与明文块进行异或，得到密文。与其它流密码一样，密文中一个位的翻转会使明文中同样位置的位也产生翻转。这种特性使得许多错误校正码，例如奇偶校验位，即使在加密前计算，而在加密后进行校验也可以得出正确结果。<br>密码反馈模式也需要一个初始量，无须保密，但对每条消息必须有一个不同的初始量。</p>
+<p>优点：<br>支持加密和解密的输出反馈模式，因此可以进行流加密。<br>可以处理变长的明文，适用性更广。</p>
+<p>缺点：<br>加密过程是串行的，不适合硬件加速。<br>密钥流的产生需要时间，因此加解密的时延较大。<br>需要注意的是，以上模式中，ECB模式安全性最差，CBC、CFB和OFB模式相对安全性更高，因此在选择加密模式时需要根据实际情况和安全需求进行选择。</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/975b47f1a8614bc1904f4480d5b6c35f.png"></p>
+<p><strong>6.XTS</strong></p>
+<ul>
+<li>明文和密钥之外，算法包括一个tweak作为输入</li>
+<li>相比CBC、CTR等模式，不需要额外的存储IV和counter</li>
+<li>整体与ECB类似，例如可以并行<ul>
+<li>但规避了ECB的缺点：频率分析攻击，密文替换攻击<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/9dadc752d15c46d08b03cb4d1999c05a.png"></li>
+</ul>
+</li>
+</ul>
+<h1 id="保护完整性"><a href="#保护完整性" class="headerlink" title="保护完整性"></a>保护完整性</h1><ul>
+<li>MAC<ul>
+<li>SHA1&#x2F;SHA3……</li>
+</ul>
+</li>
+<li>认证加密模式<ul>
+<li>CTR+GMAC</li>
+<li>Counter需要保存、不能重复</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/9368edf27d0d40b090315c88e3903742.png"></p>
+<h2 id="Xom"><a href="#Xom" class="headerlink" title="Xom"></a>Xom</h2><p>Architectural Support for Copy and Tamper Resistant Software  ASPLOS 2000</p>
+<ul>
+<li>机密性</li>
+<li>CTR模式<ul>
+<li>cipher &#x3D; plain ⊕ encryptedkey(address || seq)</li>
+<li>plain &#x3D; cipher ⊕ encryptedkey(address || seq) <ul>
+<li>key &#x3D; XOM ID</li>
+<li>address &#x3D; virtual address of data&#x2F;instruction</li>
+<li>seq &#x3D; mutating sequence number</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>encryptedkey(address + seq)的计算可以与内存访问并行，最终的计算只需要1个cycle进行异或</li>
+</ul>
+<p><strong>为什么需要address作为counter的一部分？</strong><br>防止从一个内存地址复制合法的密文，替换到另外一个内存地址<br>    - cipher &#x3D; plain ⊕ encryptedkey(address || seq)<br>    - plain &#x3D; cipher ⊕ encryptedkey(address || seq)<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/6a31355457544e0a937da38c4dd4d589.png"><br><strong>Xom的问题</strong>：无法提供新鲜性保证<br>使用同一地址的旧的数据替换该地址的新的数据–&gt;需要防重放攻击</p>
+<h2 id="新鲜性，Merkel-Tree-防重放"><a href="#新鲜性，Merkel-Tree-防重放" class="headerlink" title="新鲜性，Merkel Tree 防重放"></a>新鲜性，Merkel Tree 防重放</h2><p>Caches and Merkle Trees for Efficient Memory Integrity Verification. HPCA 2003<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/a0a0d2aa62b54578b331ac17fdd644c7.png"><strong>优化</strong></p>
+<ul>
+<li>若每次都计算到根节点<ul>
+<li>4GB内存，128-bit hash，性能损失可以达到10倍</li>
+</ul>
+</li>
+<li>专门的cache结构，缓存了最近使用的内部hash块<ul>
+<li>不需要计算到根节点，只需要计算到查找到的中间节点</li>
+<li>若中间节点被换出，则将其父节点放入cache，并更新父节点</li>
+<li>平均22%，最坏52%</li>
+</ul>
+</li>
+</ul>
+<h2 id="优化：Counter的压缩模式"><a href="#优化：Counter的压缩模式" class="headerlink" title="优化：Counter的压缩模式"></a>优化：Counter的压缩模式</h2><p>Improving Cost, Performance, and Security of Memory Encryption and Authentication. ISCA 2006</p>
+<ul>
+<li>CTR的问题<ul>
+<li>每次cache write back需要增加一次counte<ul>
+<li>每个chuck一个counter+addr</li>
+</ul>
+</li>
+<li>当counter溢出时，需要换一个AES key <ul>
+<li>但整个内存加密只有一个key，因此需要重新加密整个物理内存 – freeze the system</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/ab23f2cd92f44d6399a051b43ac37173.png"></p>
+<ul>
+<li>Counter &#x3D; Major Counter || Minor Counter<ul>
+<li>Major Counter<ul>
+<li>每个加密的页面内所有的数据块共享一个major counter </li>
+<li>在系统的生命周期内都不会溢出（64 bit）</li>
+</ul>
+</li>
+<li>Minor Counter<ul>
+<li>页面内每个数据块具有的独立的counter</li>
+<li>长度较短，容易溢出，但溢出时只需要更换一个major counter，并重新加密该页面，而不是全部的物理内存</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Stored together in a counter cache line<ul>
+<li>存储开销为1&#x2F;64&#x3D;1.6%<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/87dd9a2058cb417bb3e419ae43ef504c.png"></li>
+</ul>
+</li>
+<li>使用GMAC优化完整性保护<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/0dfa3aa01c4e411c96c29621fd99942b.png"></li>
+</ul>
+<h2 id="优化：AISE"><a href="#优化：AISE" class="headerlink" title="优化：AISE"></a>优化：AISE</h2><p>Using address Independent Seed Encryption and Bonsai Merkle Trees to Make Secure Processors OS- and Performance-Friendly. MICRO 2007</p>
+<p><strong>motivation</strong></p>
+<ul>
+<li>内存加密<ul>
+<li>CTR模式可以隐藏内存访问关键路径的延迟，但是该模式下要求counter是唯一的<ul>
+<li>之前的工作，采用了地址（spatial uniqueness，va或pa）作为counter的一部分</li>
+<li>每次write操作，counter+1，用于保证temporal uniqueness</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>问题<ul>
+<li>使用物理地址，则每次page swapping都需要重新加密和解密<ul>
+<li>且需要增加额外的完整性保护机制</li>
+</ul>
+</li>
+<li>使用虚拟地址，但不同的进程可以使用同样的虚拟地址<ul>
+<li>若把每个进程的ID也作为counter的一部分<ul>
+<li>无法支持shared memory based IPC和shared library – process fork的copy on write的优化不可用，原因是parent&#x2F;child的counter是不一样的</li>
+<li>进程ID是由不信任的OS指定的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>主要优化</strong></p>
+<ul>
+<li>Address Independent Seed Encryption （AISE）<ul>
+<li>为每个页分配一个逻辑识别码（logical identifiers）；与虚拟地址或物理地址无关，在整个系 统的生命周期确保对所有的内存页都是不同的<ul>
+<li>可以避免page swapping等的性能问题</li>
+<li>可以支持shared memory&#x2F;shared library等机制</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/fbb27934464745d48b7a0e55506502e0.png"></p>
+<ul>
+<li>LPID<ul>
+<li>在页分配时分配的唯一值（unique value）</li>
+<li>在生命周期（系统启动到关闭）内与页绑定，包括物理页和交换空间页</li>
+<li>Global Page Counter：64比特<ul>
+<li>无法篡改，几乎不会溢出</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>LPID的存储：与压缩counter结合<br><img src="/../%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/9b56a0a15a4b4d1dab711bf5a199bb6c.png" alt="-"></li>
+<li>以1个4KB的页为例，每个block为64字节，每个block的LPID长度为64比特，每个 block分配一个7比特的counter<ul>
+<li>若block counter溢出，则为该页分配一个新的LPID，并重新加密该页</li>
+<li>存储开销为1&#x2F;64&#x3D;1.6%</li>
+</ul>
+</li>
+</ul>
+<h2 id="其他优化方向"><a href="#其他优化方向" class="headerlink" title="其他优化方向"></a>其他优化方向</h2><ul>
+<li><p>1.Merkle Tree的目的是防止replay attack，而CTR模式为每个block提供了一个 counter</p>
+<ul>
+<li>如果我们能够保证counter的新鲜性（freshness），则可以保证数据的新鲜性</li>
+<li>因此，只需要使用Merkle Tree保护counter的新鲜性<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/804cabb8cc7b465589f7722302aed2e1.png"></li>
+</ul>
+</li>
+<li><p>2.counter要比data小的多（64B v.s. 4KB），因此一个Tree node可以容纳更多的 counter</p>
+<ul>
+<li>cache压力更小，查询更快<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/eca1b604f23e42ba9f3f4f35cfea6fd5.png"></li>
+</ul>
+</li>
+<li><p>3.VAULT. ASPLOS 2018：增加可以支持的受保护内存大小</p>
+<ul>
+<li><pre><code>EPC hit: 200 cycles；EPC miss 40K cycles
+</code></pre>
+</li>
+<li>SGX中树的每一层8个节点，VAULT使用了16到64个可变节点</li>
+<li>压缩MAC的存储</li>
+<li>16 GB受保护内存<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/c1c700653dea4ebe857031b0a63f9caa.png"></li>
+</ul>
+</li>
+<li><p>4.Morphable Counters. MICRO 2018</p>
+<ul>
+<li>根据应用程序的特点，每个cache line中的counter数量是动态可变的（counter的大小可变，之 前的方案都是固定的64个）</li>
+<li>通过对counter做压缩，降低Merkle tree的大小以及占用的cache大小，减少counter溢出后的 重加密代价</li>
+<li>16GB受保护内存<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/3c0aecc5f46e446ab23dcd104d053d3e.png"></li>
+</ul>
+</li>
+<li><p>5.Synergy. HPCA 2018</p>
+<ul>
+<li>将MAC放在ECC区域，对MAC的存取不需要额外的一次memory transaction</li>
+</ul>
+</li>
+<li><p>6.Compact Leakage-Free Support for Integrity and Reliability. ISCA 2020</p>
+<ul>
+<li>对integrity tree中的metadata布局的优化，降低metadata miss的概率</li>
+</ul>
+</li>
+</ul>
+<h1 id="现有TEE完整性保护"><a href="#现有TEE完整性保护" class="headerlink" title="现有TEE完整性保护"></a>现有TEE完整性保护</h1><h2 id="Intel-SGX"><a href="#Intel-SGX" class="headerlink" title="Intel SGX"></a>Intel SGX</h2><p>A Memory Encryption Engine Suitable for General Purpose Processors</p>
+<ul>
+<li>只对counter进行完整性保护</li>
+<li>counter：包括时间和空间counter，没有做压缩<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/631a4ac104244ddfbc5c2ce246032d40.png"></li>
+</ul>
+<h2 id="SGX-V2-Scalable-SGX"><a href="#SGX-V2-Scalable-SGX" class="headerlink" title="SGX V2&#x2F;Scalable SGX"></a>SGX V2&#x2F;Scalable SGX</h2><ul>
+<li>移除了基于Merkle Tree的完整性检查</li>
+<li>利用ECC比特表明每个cache line是否属于某个enclave</li>
+<li>降低了对片外存储的完整性保护<ul>
+<li>无法防御memory bus replay attacks</li>
+</ul>
+</li>
+</ul>
+<h2 id="Intel-TDX-MLTME-AMD-SEV"><a href="#Intel-TDX-MLTME-AMD-SEV" class="headerlink" title="Intel TDX&#x2F;MLTME&#x2F;AMD SEV"></a>Intel TDX&#x2F;MLTME&#x2F;AMD SEV</h2><ul>
+<li>使用XTS加密模式<ul>
+<li>使用物理地址作为tweak</li>
+<li>同样的明文，在不同的物理地址，其密文是 不同的</li>
+</ul>
+</li>
+<li>SEV<ul>
+<li>除加密外，不包含任何可以保护完整性的metadata</li>
+<li>不知道密钥的情况下的任何修改，会使得其变为随机值<ul>
+<li>仍然可以被利用（*）</li>
+<li>仅适用于AMD SEV-SNP之前的版本</li>
+</ul>
+</li>
+<li>逆向tweak后，可以使用已知的明文覆盖目标的物理地址<ul>
+<li>仅适用于AMD SEV-SNP之前的版本</li>
+</ul>
+</li>
+<li>SEV-SNP防止了基于软件的完整性破坏<ul>
+<li>但是无法防御基于物理的内存完整性攻击（包括bus replay attack）</li>
+</ul>
+</li>
+<li>允许对加密数据进行读取，通过观察数据是否改变同样泄露信息</li>
+</ul>
+</li>
+<li>TDX<ul>
+<li>为每个64B自动生成28-bit的截断的sha-3输出作为MAC</li>
+<li>MAC存储在DRAM ECC-bit之内，提供完整性保护</li>
+<li>1个额外比特用于表明cache line是否属于某个TD</li>
+</ul>
+</li>
+</ul>
+<p>参考文献：<br>[1] <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F#">https://zh.wikipedia.org/wiki/分组密码工作模式#</a><br>[2] <a target="_blank" rel="noopener" href="https://heartever.github.io/files/understanding_tee_design.pdf">https://heartever.github.io/files/understanding_tee_design.pdf</a></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 zxy
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

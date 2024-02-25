@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service | Xinyao</title>
+  <meta name="keywords" content=" TEE , 论文 ">
+  <meta name="description" content="【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service | Xinyao">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="勇攀高峰">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://zhengxinyao.github.io/tags/index.html">
+<meta property="og:site_name" content="Xinyao">
+<meta property="og:description" content="勇攀高峰">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-07T15:59:52.000Z">
+<meta property="article:modified_time" content="2024-02-07T15:59:52.773Z">
+<meta property="article:author" content="ICT-IPRC">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/favicon.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/myself.png"/>
+</a>
+<div class="author">
+    <span>ICT-IPRC</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/zhengxinyao"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="linkedin"
+               href="https://www.linkedin.com/in/%E6%98%95%E7%91%B6-%E9%83%91-956a732b5/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-linkedin"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/destiny-44-90-76"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qq_43543209?spm=1010.2135.3001.5343"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1601835186@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1601835186&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(16)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文记录">
+            
+            论文记录
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识总结">
+            
+            知识总结
+            <small>(9)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识记录">
+            
+            知识记录
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="16">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分组加密</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>共享内存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>论文</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存保护</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI加速器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV- SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV-SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ARM CCA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel SGX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel TDX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PENGLAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TEE</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Reusable-Enclaves-for-Confidential-Serverless-Computing%EF%BC%88usenixsecurity23%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）">【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）</span>
+            <span class="post-date" title="2024-02-25 20:14:26">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Serverless-Made-Efficient-with-Plug-In-Enclaves-%EF%BC%882021-ISCA%EF%BC%89/"
+           data-tag="TEE,论文,共享内存"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）">【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）</span>
+            <span class="post-date" title="2024-02-25 20:12:45">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service">【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service</span>
+            <span class="post-date" title="2024-02-25 20:11:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91-HETEE-Enabling-rack-scale-confidential-computing-using-heterogeneous-TEE-2020-SP/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)">【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)</span>
+            <span class="post-date" title="2024-02-25 20:08:42">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）">【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）</span>
+            <span class="post-date" title="2024-02-25 20:07:36">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/"
+           data-tag="TEE,内存保护,分组加密"
+           data-author="" >
+            <span class="post-title" title="【TEE】片外内存保护：AES分组算法+MAC完整性验证">【TEE】片外内存保护：AES分组算法+MAC完整性验证</span>
+            <span class="post-date" title="2024-02-25 20:05:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"
+           data-tag="TEE,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel SGX的不足和解决方案">【TEE】Intel SGX的不足和解决方案</span>
+            <span class="post-date" title="2024-02-25 19:59:35">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/"
+           data-tag="TEE,Intel TDX,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel可信执行环境的前世今生">【TEE】Intel可信执行环境的前世今生</span>
+            <span class="post-date" title="2024-02-25 19:54:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/"
+           data-tag="TEE,LLM"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境保障大模型安全">【TEE】可信执行环境保障大模型安全</span>
+            <span class="post-date" title="2024-02-25 19:52:39">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91PENGLAI-TEE/"
+           data-tag="TEE,PENGLAI"
+           data-author="" >
+            <span class="post-title" title="【TEE】PENGLAI TEE">【TEE】PENGLAI TEE</span>
+            <span class="post-date" title="2024-02-25 19:51:30">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识记录 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91AMD-SEV-SNP%E5%92%8CIntel-TDX%E7%9A%84%E6%A6%82%E8%BF%B0/"
+           data-tag="TEE,AMD SEV- SNP,Intel TDX"
+           data-author="" >
+            <span class="post-title" title="【TEE】AMD SEV- SNP和Intel TDX的概述">【TEE】AMD SEV- SNP和Intel TDX的概述</span>
+            <span class="post-date" title="2024-02-25 19:36:13">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/"
+           data-tag="TEE,ARM CCA"
+           data-author="" >
+            <span class="post-title" title="【TEE】ARM CCA 可信计算架构">【TEE】ARM CCA 可信计算架构</span>
+            <span class="post-date" title="2024-02-25 19:24:38">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/"
+           data-tag="TEE,AMD SEV-SNP"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离">【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离</span>
+            <span class="post-date" title="2024-02-25 19:11:12">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/"
+           data-tag="TEE,AMD SEV"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV内存加密】 白皮书">【TEE】【AMD SEV内存加密】 白皮书</span>
+            <span class="post-date" title="2024-02-25 19:05:02">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Computing-within-an-AI-Accelerator/"
+           data-tag="TEE,论文,AI加速器,架构设计"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Computing within an AI Accelerator">【TEE论文】Confidential Computing within an AI Accelerator</span>
+            <span class="post-date" title="2024-02-25 18:53:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/"
+           data-tag="TEE"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境业界资料">【TEE】可信执行环境业界资料</span>
+            <span class="post-date" title="2024-02-25 18:31:25">2024/02/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【TEE论文】Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="论文记录">论文记录</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">TEE</a>
+            
+            <a class="color3">论文</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 20:12:31'>2024-02-25 20:11</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%92%8C%E5%8A%A8%E6%9C%BA"><span class="toc-text">问题和动机</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A8%81%E8%83%81%E6%A8%A1%E5%9E%8B"><span class="toc-text">威胁模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Liveries%E8%AE%BE%E8%AE%A1"><span class="toc-text">Liveries设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%90%E5%88%B6%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-text">限制指令执行</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SGX1%E4%B8%8A%E5%90%AF%E7%94%A8Liveries"><span class="toc-text">SGX1上启用Liveries</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E5%8C%BA%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E5%99%A8%EF%BC%88ESC%EF%BC%89"><span class="toc-text">安全区安全配置器（ESC）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E7%9B%91%E6%8E%A7SM"><span class="toc-text">安全监控SM</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SGX2%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-text">SGX2的多线程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E5%92%8C%E8%AF%84%E4%BC%B0"><span class="toc-text">分析和评估</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90"><span class="toc-text">安全分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-text">性能分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E5%9F%BA%E4%BA%8ESFI%E6%96%B9%E6%A1%88%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">与基于SFI方案的比较</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9664230">Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service</a>（2021  IEEE Transactions on Dependable and Secure Computing  CCF-A）</p>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>现实世界的微服务用户执行的任务很小，无法支持为每个用户创建单独飞地的资源和延迟，无法在单个飞地允许不同用户的任务。本文开发一种方法，实现飞地内用户隔离，以保护分时服务。</p>
+<ul>
+<li>配置安全区的时候限制安全区内线程的权限</li>
+<li>在用户切换时对安全区数据执行完整性检查和清理</li>
+<li>性能目标：轻量级（1%开销）、可验证（3200行代码）</li>
+</ul>
+<h1 id="问题和动机"><a href="#问题和动机" class="headerlink" title="问题和动机"></a>问题和动机</h1><p>动机</p>
+<ul>
+<li>创建、维护、销毁enclave和远程执行证明会产生成本，为每个用户保留一个飞地没有必要也不现实。</li>
+<li>为每个用户保留一个 enclave 不太可能扩展到（数百万用户）。在用户请求到来时创建一个 enclave，并在服务完成后销毁它，将导致每个请求的数百毫秒延迟。</li>
+<li>每个用户的请求仍然需要通过远程证明来验证 enclave 并建立安全通道，这可能需要几秒钟才能与证明服务进行通信</li>
+<li>当关键数据和关键指令不受保护时，对远程证明的中间人攻击仍然有效。</li>
+</ul>
+<p>现有工作的问题</p>
+<ul>
+<li>多用户共享一个安全区存在风险，软件故障隔离（Ryoan、Occlum、CHANCEL）引入大量性能、内存开销，以及难以验证的大TCB</li>
+</ul>
+<p>本文设计</p>
+<ul>
+<li>Liveries，enclave 托管一项服务，该服务一次为一组用户提供服务，每个用户间歇性地发出一批任务，一个用户的任务批处理完成后，才会清理 enclave 状态以服务于一个用户。</li>
+</ul>
+<p>挑战</p>
+<ul>
+<li>恶意用户破坏了服务程序并获得了对整个飞地的控制权</li>
+<li>服务的状态在其操作期间会发生变化，因此应确保飞地运行时状态的正确性。</li>
+</ul>
+<p>解决策略：</p>
+<ul>
+<li>构建 enclave 时静态限制 in-enclave 程序的权限，又在运行时动态控制其操作（通过 Enclave Security Configurator （ESC） 在 SGX 上实施）</li>
+<li><strong>ESC 在 enclave 创建期间最大限度地减少了 enclave 内服务的特权</strong></li>
+<li>ESC 确保安全关键指令的执行受到限制，每一个只能在一个 sblock 中运行，一个原子代码块，一旦调用，它将运行完成或被回滚，以防止滥用指令</li>
+<li>SM用于检查和清理用户服务运行时状态</li>
+<li><strong>SM 旨在检查服务期间的敏感数据的完整性，并在运行其他用户的任务批处理之前删除用户数据</strong>。</li>
+</ul>
+<p>本文贡献：</p>
+<ul>
+<li>轻量级隔离，不依赖软件故障隔离，利用安全配置限制 enclave 代码的权限和运行时控制；用户之间分时共享 enclave</li>
+<li>安全分析和验证：小型TCB使形式化验证成为可能，使用模块化软件验证工具链 SMACK 和模型检查工具 Spin进行 sblocks 验证</li>
+<li>实现：在 SGX1 和 SGX2 平台上对设计进行了原型设计</li>
+</ul>
+<h1 id="威胁模型"><a href="#威胁模型" class="headerlink" title="威胁模型"></a>威胁模型</h1><p>总结攻击者控制飞地后可以利用的攻击媒介，提供轻量级方案保护用户免受以下攻击：</p>
+<ul>
+<li>针对远程证明的中间人攻击：损坏的飞地可以帮助在飞地外运行的恶意程序生成由QE认证和签名的“合法”加密报告，从而软件模拟SGX环境，窃取后续用户的所有数据。原因：失去对关键数据（在飞地外生成私钥和公钥）和关键指令（滥用 EREPORT 指令以生成不受信任数据的报告）的控制</li>
+<li>窥探并发运行的任务或暴露先前用户的数据：内存读写攻击来获取同时运行的其他用户数据或先前用户残留数据（会话密钥、中间结果等）</li>
+<li>篡改 Enclave 数据使后续用户受害：篡改enclave，干扰后续用户请求的服务或数据</li>
+</ul>
+<p>假设一个强大的对手：</p>
+<ul>
+<li>完全了解 enclave 服务的源代码和二进制代码以及 enclave 的内存布局</li>
+<li>任意内存读取和写入</li>
+<li>操作 enclave 的控制流</li>
+<li>对手无法规避 TEE 的硬件保护</li>
+<li>不考虑侧信道攻击（例如，推测执行攻击）和基于电压操纵的故障攻击</li>
+<li>拒绝服务攻击超出了范围</li>
+</ul>
+<h1 id="Liveries设计"><a href="#Liveries设计" class="headerlink" title="Liveries设计"></a>Liveries设计</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>专为顺序服务模型而设计，enclave 为一组用户提供服务，但一次处理来自同一用户的任务。</p>
+<ul>
+<li>每个用户都需要对 enclave 运行远程证明，并在首次与 enclave 交互时交换会话密钥</li>
+<li>顺序服务模型以“无状态”和“短生存期”为特征，与软件故障隔离（SFI）相比，有助于简化用户隔离，带来诸如低性能&#x2F;内存开销和极小的 TCB 等好处</li>
+</ul>
+<p>使用安全区安全配置器（ESC）构建安全区，以对其进行“硬编码”，保护关键程序组件和数据（例如，会话密钥），并限制关键指令（例如，可能更改安全区安全设置的指令）的使用。从而限制了攻击者通过劫持线程的控制流可以实现的目标。使用安全监视器 （SM） 对服务在其运行期间上传的关键数据的完整性执行运行时检查，并在下一个任务进入之前清理用户留下的敏感内容。<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/b0d89123003f410eb05d342e1ca05fcc.png"></p>
+<h2 id="限制指令执行"><a href="#限制指令执行" class="headerlink" title="限制指令执行"></a>限制指令执行</h2><p>重要性，要确保关键指令不会被对手带入安全区：</p>
+<ul>
+<li>EREPORT将为证明和密钥交换而生成的公钥与SGX安全区状态的测量绑定在一起，并可能被恶意安全区程序滥用，将证明报告链接到由对手控制的密钥，以进行中间人攻击</li>
+<li>EGETKEY 从特定于处理器的密钥层次结构中返回一个 128 位密钥，如果安全区受到安全区程序的保护，则该密钥可用于隐藏安全区内的密钥</li>
+</ul>
+<p>ESC 首先从 enclave 中的所有代码（service、SM 和 SGX SDK）中找到关键指令，然后为每个指令构建一个保护块。sblock 是一组带有进入和退出指令的指令，通过sblock的原子性保护关键指令以授权的方式使用。例如，EREPORT 只能将授权的公钥作为输入;EGETKEY获取的密钥在解密后会立即被删除，以避免暴露给sblock之外的指令</p>
+<p>设计采用了一种独特的策略：ESC 在块的开头设置一个标志，在块的末尾检查该标志，如果正确则重置（检查和清除寄存器）;否则，SBLOCK 将终止整个 enclave 服务。</p>
+<p>sblock：表示为三元组 （C,entry,exit），其中C是指令块，entry是块的唯一入口点指令，并且exit是唯一的出口点指令<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/905b142a806145eaa93c14fe81c209ea.png"></p>
+<p>ESC 禁用了 enclave 中的多线程，并强制执行例外策略 （P2） 以确保线程只能通过 ERESUME 重新进入 enclave，因此执行将从中断发生的地方恢复，并且所有 enclave 状态完好无损。<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/2b209c98005f445e848b27e90c011bdf.png"></p>
+<h1 id="SGX1上启用Liveries"><a href="#SGX1上启用Liveries" class="headerlink" title="SGX1上启用Liveries"></a>SGX1上启用Liveries</h1><h2 id="安全区安全配置器（ESC）"><a href="#安全区安全配置器（ESC）" class="headerlink" title="安全区安全配置器（ESC）"></a>安全区安全配置器（ESC）</h2><p>ESC 旨在根据一组安全策略在创建其 enclave 之前配置对 enclave 服务的保护。这些配置旨在限制对手的能力，即使他控制了整个飞地，并且在飞地的生命周期内无法更改。</p>
+<p>通过配置强制实施的策略包括内存保护 （P0）、顺序服务模型 （P1和P2）、 使用 sblocks进行指令保护（P3）和数据保护 （P4），以及 SM 保护 （P5)。</p>
+<ul>
+<li>P0：在所有常规 enclave 页面上强制执行 X 策略，完成并验证给 SGX1 平台上的 enclave 用户，页面属性是 enclave 测量的一部分，并且在 enclave 初始化后无法更改</li>
+<li>P1：单线程 Enclave，在 SGX1 平台上将 TCSNUM 设置为 1来禁用多线程（SGX2 上支持多线程）</li>
+<li>P2：安全异常处理，对 sblock 原子性的另一个威胁是异常，它可能由安全区内部和外部的事件触发，在 sblock 运行时发生异常，则其所有上下文（内存和寄存器内容）将由 AEX 保存到正在运行的线程 （SSA） 的状态保存区域。<ul>
+<li>异常处理：将 EENTER 的条目设置为 SM ，指令执行触发时，它首先检查标志（通过从 SSA 检索 GS 寄存器），如果设置（sblock 被中断），它会立即退出 enclave。这确保了在 sblock 操作期间，enclave 只能通过 ERESUME 进入，而其他情况下的异常处理将照常进行。</li>
+<li>在所有 sblock 链中都包含了在离开链之前清理 SSA 的指令，因为如果发生异常，该区域中的内容将始终存在。</li>
+</ul>
+</li>
+<li>P3：关键指令保护，使用 sblock 链保护 EGETKEY 和 EREPORT 等关键指令<ul>
+<li>在二进制代码级别上，这些指令都被编译成ENCLU；ENCLU根据寄存器EAX中设置的参数调用不同的SGX非特权叶函数（EGETKEY、EREPORT等）。 应该对所有其他出现的 ENCLU 进行适当的保护，以确保其输入参数没有被更改以运行不同的指令</li>
+<li>下图的sblock链足够，因为大多数构建在 ENCLU 之上的指令不会对从 ENCLU 开始到标志检查结束的代码块造成任何控制流更改。唯一的例外是 EEXIT，它将线程移动到 enclave 之外。为了防止攻击者滥用其底层 ENCLU，ESC 只需在 EEXIT 之后立即添加一个 ud2 指令，如果该指令正确运行并导致 EEXIT 发生，则永远不会使用 ud2，因为当前线程离开了 enclave;如果攻击者在块外更改 EAX 并跳转到 ENCLU 以创建 EGETKEY 或其他，则将运行 ud2 并终止 enclave。<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/a47f229b5d164528981a652ef38d857b.png"></li>
+</ul>
+</li>
+<li>P4：保护关键数据，利用 EGETKEY 从 SGX 硬件派生密钥并使用密钥加密关键数据（会话密钥、公钥&#x2F;私钥对）<ul>
+<li>构建了一个派生密钥的 sblock 链，解密密钥下的秘密数据，对密钥执行所需的操作，然后删除派生的密钥和密钥</li>
+<li>如图a，如果编译器可能会将一些密钥泄漏到堆栈中，则需要在退出 sblock 链之前清理所有寄存器和堆栈。利用 sblock 链的原子性，确保对手只能观察链执行前后的状态，因此不会损害数据的机密性。</li>
+<li>如图b，通过将 EGETKEY 和 EREPORT 链接在一起，可以生成加密报告以与新用户远程认证时保护公钥的完整性。该链首先运行 EGETKEY 来检索密钥以解封公钥，然后删除派生密钥，然后将公钥传递给 EREPORT 以将其绑定到报告。在这个过程中，链的原子性确保了在报告中使用正确的公钥，从而防御中间人攻击。<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/06893b167bf74110bc095bb769c95624.png"></li>
+</ul>
+</li>
+<li>P5：安全监视器的不可绕过性，SM 的代码受页面权限保护，其数据使用受保护的 EGETKEY 进行密封。将 enclave 的条目（保存在 TCS 中，并且在 enclave 生命周期内不可变）设置为指向 SM，因此每次使用 EENTER 通过 ECALL 将新任务传递到安全区时，都会调用它。SM，将用户数据的完整性检查、内存清理和解密整合到一个 sblock 链中，以确保其原子执行</li>
+</ul>
+<h2 id="安全监控SM"><a href="#安全监控SM" class="headerlink" title="安全监控SM"></a>安全监控SM</h2><p>SM 在创建 ECALL 时调用，ECALL 首先确定是否在 enclave 内触发了异常。这是通过监视 SSA 来确定的。SM 首先执行完整性检查，以确保服务的关键系统参数未被篡改，并执行出口清理以“重置”服务状态并删除所有退出用户的数据。这些操作一旦成功，就会解密新用户的数据。所有这些操作都受到 sblock 链的保护，以确保原子执行。</p>
+<p>完整性检查。完整性检查通过计算 MEASURE_AREA 的哈希度量值并将其与预期值（用 RUNTIME_HASH 表示）进行比较来进行。如果检查失败，则服务将终止。否则，任务数据将被解密并移交给服务器。</p>
+<p>在初始化 enclave 之前，如果预先确定了所有服务参数，则 RUNTIME_HASH 的生成和保护非常简单。可以简单地计算其参数的RUNTIME_HASH，并在构建 enclave 时将其保留在只读页面上。</p>
+<p>服务参数在安全区运行时上传，并可能由服务提供商更新。机器学习推理即服务，其中神经网络参数可以在 enclave 初始化后加载，并且可以在以后由服务提供商更改。发生这种情况时，只能在运行时生成RUNTIME_HASH，并且需要防止未经授权的修改。</p>
+<p>退出清理。退出清理的目的是重置服务状态并清理以前用户的数据。</p>
+<p>原子执行保护。SM 使用 sblock 链来保证其操作的原子性：只有在完整性检查通过并清理完所有内存状态后，才会解密新用户的数据或新的服务参数;此外，所有关键数据（例如派生密钥和RUNTIME_HASH）都将被删除或加密。</p>
+<h1 id="SGX2的多线程"><a href="#SGX2的多线程" class="headerlink" title="SGX2的多线程"></a>SGX2的多线程</h1><p>在并发运行线程的监视下，sblock 的执行已无法再保证所涉及数据的机密性。</p>
+<p>SGX2 引入了一组新的叶函数，具有以下功能：（1） 动态创建页面并将其添加到已初始化的 enclave;（2）更新EPC页面的权限;（3）更改EPC页面的类型。</p>
+<p>保护关键数据 （P4）。利用 SGX2 功能，我们能够在运行涉及敏感数据的 sblock 链时强制将 enclave 降级为单线程，然后恢复多线程模式，从而保护数据机密性。这是通过动态调整 TCS（线程控制结构）页数来完成的。</p>
+<p>关键指令保护 （P3）。使用 GS 来托管 sblock 的标志。GS 在 AEX 上保存到内存中，并在 ERESUME 上恢复。在多线程设置中，重要的是，在线程通过 AEX 离开 enclave 后，内存不能被另一个线程更改。</p>
+<h1 id="分析和评估"><a href="#分析和评估" class="headerlink" title="分析和评估"></a>分析和评估</h1><h2 id="安全分析"><a href="#安全分析" class="headerlink" title="安全分析"></a>安全分析</h2><p>与软件故障隔离 （SFI） 相比，TCB 要小得多，它不包括大部分 SGX SDK 库代码，并且只引入了一个小的软件堆栈（软件 TCB 总共包含大约 3,200 个 LoC）</p>
+<ul>
+<li>两个用于保护关键数据的 sblock 链（强制执行P4).这增加了大约 300 行 C 代码 （LoC），用于 AES 实现和使用 EGETKEY 进行解封&#x2F;密封。</li>
+<li>用于生成 ECDH 密钥对的 sblock 链，大约 1,100   LoC </li>
+<li>两个 sblock 链，用于在远程认证协议中创建 enclave 报告和生成 MSG3，大约 1,000 个 LoC</li>
+<li>一个用于计算RUNTIME_HASH的 sblock 链和一个用于使用 RUNTIME_HASH 进行完整性检查的 sblock 链，引入了大约 500 个 LoC</li>
+<li>三个 sblock 链，用于保护 SGX2 机器上的 EREPORT 和 EACCEPT 指令，大约 200 个 LoC<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/329726253ae04a559abd7cab4a2344cc.png"></li>
+</ul>
+<h2 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h2><ul>
+<li>与创建和销毁 enclave 以及为每个服务请求执行远程证明的基线相比，设计带来的性能提升有多大？<ul>
+<li>即使不考虑远程证明的时间，我们的方法仍然快几个数量级：例如，当堆大小为 1 MB 时，我们的方法要快 827×。当堆大小较大时，性能提升会变小（256 MB 堆为 52×），这可能是由页面交换引起的。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/02664d9263c5492a893cfb83e736e38c.png"></p>
+<ul>
+<li>SM（即完整性检查和出口清理）对实际案例研究带来的开销是多少？<ul>
+<li>将模型加载到MEASURE_AREA中，而要处理的输入数据则加载到TMP_AREA中，测量了用户切换时完整性检查和退出清理带来的开销。<ul>
+<li>MNIST数据集上的多层感知器<img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/f13aa863f332468598d947a81e23a2d4.png"></li>
+<li>MNIST 数据集上的变体自动编码器</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p> <img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/4136bb3396ac4734b8f7e32e93673cf5.png"><br>        - MNIST 数据集上的 CNN<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/be228a62c2c74be0859deeb3bd2358e1.png"></p>
+<ul>
+<li>enclave 二进制文件中有多少个 ENCLU 和 WRGSBASE 小工具？如果有的话，删除它们的开销是多少？<ul>
+<li>构建了自己的小工具查找工具，以查找流行的飞地二进制文件中 ENCLU 和 WRGSBASE 小工具的出现；收集了 10 个流行的开源 SGX 项目以及 SGX-nbench [49] 和 lmbench [50]，使用默认配置编译</li>
+<li>对于英特尔-SGX-SSL 中唯一的 ENCLU 小工具，我们确认只需使用内联汇编添加 NOP 指令而不影响功能，然后重新编译代码即可删除该小工具。引入可以忽略不计的性能开销。<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/8f842254510441d3a3ed99935c354610.png"></li>
+</ul>
+</li>
+</ul>
+<h2 id="与基于SFI方案的比较"><a href="#与基于SFI方案的比较" class="headerlink" title="与基于SFI方案的比较"></a>与基于SFI方案的比较</h2><ul>
+<li>SFI 需要检测 enclave 代码以检查内存引用和控制流指令，这会产生较大的性能和内存开销，以及用于验证 SFI 合规性的大型 TCB</li>
+<li>本文简化了顺序服务模型下的用户隔离，带来了诸如低性能&#x2F;内存开销（平均 1%）和极小的 TCB（3200 个 LoC）等优势。</li>
+<li>下述实验表示：在大多数情况下，SFI方法 Occlum 和 WAMR 比基线慢得多（平均分别约为 5.21× 和 1.51× 减速）。<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/aaa7b93015a746a4b8b0a5a40430a32a.png"></li>
+</ul>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 zxy
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
