@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【TEE】【AMD SEV内存加密】 白皮书 | Xinyao</title>
+  <meta name="keywords" content=" TEE , AMD SEV ">
+  <meta name="description" content="【TEE】【AMD SEV内存加密】 白皮书 | Xinyao">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="勇攀高峰">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://zhengxinyao.github.io/tags/index.html">
+<meta property="og:site_name" content="Xinyao">
+<meta property="og:description" content="勇攀高峰">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-07T15:59:52.000Z">
+<meta property="article:modified_time" content="2024-02-07T15:59:52.773Z">
+<meta property="article:author" content="ICT-IPRC">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/favicon.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/myself.png"/>
+</a>
+<div class="author">
+    <span>ICT-IPRC</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/zhengxinyao"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+            <a title="linkedin"
+               href="https://www.linkedin.com/in/%E6%98%95%E7%91%B6-%E9%83%91-956a732b5/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-linkedin"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/destiny-44-90-76"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qq_43543209?spm=1010.2135.3001.5343"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:1601835186@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1601835186&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(4)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文记录">
+            
+            论文记录
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识总结">
+            
+            知识总结
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="4">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>论文</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI加速器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV-SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TEE</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/"
+           data-tag="TEE,AMD SEV-SNP"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离">【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离</span>
+            <span class="post-date" title="2024-02-25 19:11:12">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/"
+           data-tag="TEE,AMD SEV"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV内存加密】 白皮书">【TEE】【AMD SEV内存加密】 白皮书</span>
+            <span class="post-date" title="2024-02-25 19:05:02">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Computing-within-an-AI-Accelerator/"
+           data-tag="TEE,论文,AI加速器,架构设计"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Computing within an AI Accelerator">【TEE论文】Confidential Computing within an AI Accelerator</span>
+            <span class="post-date" title="2024-02-25 18:53:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/"
+           data-tag="TEE"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境业界资料">【TEE】可信执行环境业界资料</span>
+            <span class="post-date" title="2024-02-25 18:31:25">2024/02/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【TEE】【AMD-SEV内存加密】-白皮书" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【TEE】【AMD SEV内存加密】 白皮书</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="知识总结">知识总结</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">TEE</a>
+            
+            <a class="color3">AMD SEV</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 19:23:45'>2024-02-25 19:05</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86-SME"><span class="toc-text">安全内存加密(SME )</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E5%8A%A0%E5%AF%86%E8%99%9A%E6%8B%9F%E5%8C%96-SEV"><span class="toc-text">安全加密虚拟化( SEV )</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SME%E6%8A%80%E6%9C%AF"><span class="toc-text">SME技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SME%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="toc-text">SME使用模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SME%E7%89%B9%E6%AE%8A%E8%80%83%E8%99%91"><span class="toc-text">SME特殊考虑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%8F%E6%98%8E%E7%9A%84SME%EF%BC%88TSME%EF%BC%89"><span class="toc-text">透明的SME（TSME）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SEV%E6%8A%80%E6%9C%AF"><span class="toc-text">SEV技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SEV%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B"><span class="toc-text">SEV安全模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SEV-%E7%94%A8%E4%BE%8B"><span class="toc-text">SEV 用例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SEV%E6%9E%B6%E6%9E%84"><span class="toc-text">SEV架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SEV%E8%BD%AF%E4%BB%B6%E5%AE%9E%E7%8E%B0"><span class="toc-text">SEV软件实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SEV-%E7%89%B9%E6%AE%8A%E8%80%83%E8%99%91"><span class="toc-text">SEV 特殊考虑</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86-SME"><span class="toc-text">安全内存加密(SME )</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E5%8A%A0%E5%AF%86%E8%99%9A%E6%8B%9F%E5%8C%96-SEV"><span class="toc-text">安全加密虚拟化( SEV )</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SME%E6%8A%80%E6%9C%AF"><span class="toc-text">SME技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SME%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="toc-text">SME使用模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SME%E7%89%B9%E6%AE%8A%E8%80%83%E8%99%91"><span class="toc-text">SME特殊考虑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%8F%E6%98%8E%E7%9A%84SME%EF%BC%88TSME%EF%BC%89"><span class="toc-text">透明的SME（TSME）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SEV%E6%8A%80%E6%9C%AF"><span class="toc-text">SEV技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SEV%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B"><span class="toc-text">SEV安全模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SEV-%E7%94%A8%E4%BE%8B"><span class="toc-text">SEV 用例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SEV%E6%9E%B6%E6%9E%84"><span class="toc-text">SEV架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SEV%E8%BD%AF%E4%BB%B6%E5%AE%9E%E7%8E%B0"><span class="toc-text">SEV软件实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SEV-%E7%89%B9%E6%AE%8A%E8%80%83%E8%99%91"><span class="toc-text">SEV 特殊考虑</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li></ol></div></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>系统复杂性的增加、云的增长以及新技术的出现都在促成一个难以保护但又至关重要的计算环境。AMD认识到这些严峻的挑战，并开发了新的内存加密技术，旨在跨越各种系统来满足这些需求。</p>
+<h2 id="安全内存加密-SME"><a href="#安全内存加密-SME" class="headerlink" title="安全内存加密(SME )"></a>安全内存加密(SME )</h2><p>SME是一种通用的机制，具有灵活性，集成到CPU架构中，可扩展从嵌入式到高端服务器的工作负载，<strong>并且不需要对应用软件进行修改</strong>。<br>主存加密可以用来保护系统免受各种攻击。数据在磁盘上存储时通常是加密的，但通常以明文形式存储在DRAM中。这会使数据容易受到未经授权的管理员或软件或硬件探测的窥探。在没有加密的情况下，任何存储的信息，如敏感数据、密码或密钥都可以很容易地被泄露。</p>
+<h2 id="安全加密虚拟化-SEV"><a href="#安全加密虚拟化-SEV" class="headerlink" title="安全加密虚拟化( SEV )"></a>安全加密虚拟化( SEV )</h2><p>将主存加密功能与现有的AMD - V虚拟化架构相融合，支持<strong>加密虚拟机</strong>。对虚拟机进行加密不仅可以保护虚拟机免受物理威胁，还可以保护虚拟机免受其他虚拟机甚至虚拟机管理程序本身的攻击。因此，SEV代表了一种新的虚拟化安全范式，特别适用于虚拟机不需要完全信任主机系统的管理程序和管理员的云计算。<strong>与SME一样，不需要修改应用软件来支持SEV</strong>。</p>
+<p>本文介绍了SME和SEV的技术概况，并描述了它们如何被 <strong>操作系统( OS )、虚拟机管理程序( HV )和客户虚拟机( VM )</strong> 软件在各种不同的环境中使用，以保护DRAM中的数据。</p>
+<h1 id="SME技术"><a href="#SME技术" class="headerlink" title="SME技术"></a>SME技术</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>主存加密通过片内存储器控制器中的专用硬件实现。每个控制器包括一个高性能的高级加密标准( AES )引擎，当<strong>数据写入DRAM时对其加密，读取时对其解密</strong>，如图1所示：内存加密行为。数据的加密是在一个128位密钥的模式下完成的，该模式使用额外的基于物理地址的调整来防止密文块移动攻击。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/d8fdd35a6b3a479d95d947035f2ff083.png" alt="内存加密行为"></p>
+<p>带SME的AES引擎使用的加密密钥是在<strong>系统重置时随机生成的</strong>，对于CPU核上运行的任何<strong>软件不可见</strong>。该密钥完全由AMD安全处理器( AMD-SP )管理，该处理器是一个32位微控制器( ARM ® Cortex ® - A5)，作为AMD SOC内集成的专用安全子系统。密钥由符合NIST SP 800 - 90标准的硬件随机数发生器产生，<strong>存储在专用硬件寄存器中，且不会暴露在SOC之外</strong>。不同于后面描述的SEV模式，SME不需要运行在CPU核上的软件参与密钥管理。</p>
+<p>通过<strong>软件托管页表中的OS或HV控制对内存哪些页进行加密</strong>。启用内存加密后，使用物理地址位47 ( aka为C位,如as in en Crypted)标记是否保护内存页。如下图所示，OS或HV在页表项( page table entry，PTE )中将某个物理地址的<strong>位47设置为1，表示该页需要加密</strong>，导致对该内存的访问被内存控制器中的AES引擎自动加密解密。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/414d7ae95fd144bba028de070ef4b774.png" alt="加密位"></p>
+<p>通过AES引擎对内存进行加密和解密确实会给DRAM内存访问带来少量的额外延迟。这种延迟对软件的影响非常依赖于系统工作负载，但估计对系统性能的总体影响非常小。如果仅对内存的一个子集进行加密，则性能影响将较小，因为未加密的访问一般不会产生额外的延迟。</p>
+<h2 id="SME使用模型"><a href="#SME使用模型" class="headerlink" title="SME使用模型"></a>SME使用模型</h2><p>在第一个模型中，所有的DRAM都被加密，而在第二个模型中，只有一个选择区域(对应于客户VM)被加密。</p>
+<p><strong>全内存加密</strong></p>
+<p>在全内存加密的情况下，所有DRAM内容都使用随机密钥进行加密，<strong>该密钥对冷启动、DRAM接口窥探和类似的攻击提供了强大的保护</strong>。对于使用NVDIMM的系统，全内存加密还提供了对攻击者移除内存模块并试图提取其内容的保护。</p>
+<p>支持SME的全内存加密是<strong>通过OS或HV在所有页表的所有DRAM物理地址中设置C位来实现的</strong>。这既包括指令页和数据页，也包括页表本身对应的页。本质上，操作系统或HV软件可能将系统视为具有以地址0x8000 _ 0000 _ 0000为起点的DRAM。在HV设置C位加密所有物理内存的情况下，<strong>HV控制的所有VM都与HV一起加密，并使用相同的加密密钥</strong>。</p>
+<p>值得注意的是，支持通过SME加密DMA到内存的数据。</p>
+<p><strong>部分内存加密</strong></p>
+<p>页表中C位的使用为操作系统或HV提供了灵活性，可以根据需要只对内存的一个子集进行选择性加密。这样做仍然提供了加密内存的物理保护，也可以提高非敏感数据上的性能。此外，加密与非加密内存的选择可以用于为关键工作负载提供隔离层。</p>
+<p>这种隔离的一个例子是<strong>只将访客虚拟机使用的内存标记为加密的系统</strong>。这可以在不对客户VM进行任何修改的情况下完成。通过在DRAM (如图3所示:加密虚拟机)对应的所有嵌套页表项中设置C位，虚拟机管理程序仅对VM内存进行加密。</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/f3cd459866b742d59743e65ebf6c5f53.png" alt="加密VM"></p>
+<p>这样的场景可以用来<strong>保护VM免受流氓机器管理员的攻击</strong>。虽然管理员可以访问硬件和主机系统，但即使使用内存扫描工具，他们也无法检查客户VM数据。</p>
+<h2 id="SME特殊考虑"><a href="#SME特殊考虑" class="headerlink" title="SME特殊考虑"></a>SME特殊考虑</h2><p>SME为软件加密部分或全部内存页提供了一种直观的方法。然而，在使用加密内存时，有一些重要的特殊编程考虑必须考虑到。</p>
+<p>首要考虑的是，<strong>硬件并不管理同一页面中加密和未加密副本之间的一致性</strong>。因此，软件在修改页面的C位时必须小心谨慎，<strong>如果需要修改页面的C位，则必须在修改页表之前从CPU缓存中刷新该页</strong>。</p>
+<p>值得注意的是，允许设备向加密内存发出DMA，但与CPU访问一样，它们必须设置物理地址的47位，这在一些32位的旧设备上是不可能的，软件可以利用IOMMU将设备请求地址重新映射为有C位的地址。</p>
+<p>SME功能的其他技术细节可以在AMD程序员手册( APM )第2卷的最新版本中找到。</p>
+<h2 id="透明的SME（TSME）"><a href="#透明的SME（TSME）" class="headerlink" title="透明的SME（TSME）"></a>透明的SME（TSME）</h2><p>虽然SME为管理主存加密提供了很大的灵活性，但它确实需要OS &#x2F; HV的支持。<strong>透明SME ( TSME )是希望SME的物理保护与OS &#x2F; HV解耦</strong>。在TSME中，<strong>所有内存都是加密的，而不管特定页面上的C位值如何</strong>。该模式提供了一种无需软件修改即可启用加密的简单方法。</p>
+<p>在支持的平台上，可以通过BIOS设置启用TSME。</p>
+<h2 id="SEV技术"><a href="#SEV技术" class="headerlink" title="SEV技术"></a>SEV技术</h2><p>随着硬件和软件的进步，今天的计算系统比以往更加复杂。<strong>软件的规模和功能急剧增加，尤其是系统中负责安全的最具权限的内核级软件</strong>。如下图所示，Linux内核已经从不足200k行的代码发展到如今的近2200万行。</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/563b11d28cc44acaac063363c5b7a9bd.png" alt="代码量"><br>然而，复杂性和整合性都会对系统的安全性产生普遍的负面影响。<strong>复杂的软件更难验证，更有可能存在黑客可以利用的漏洞。</strong>一个典型的Linux系统将近5.5 MB的内核代码加载到内存中，内存必须是无bug的，以避免破坏系统。</p>
+<p>整合系统允许不同的软件**使用相同的硬件和共享资源(如内存)**，通过增加攻击面对安全性产生负面影响。这种组合产生了一个依赖于大量特权无bug代码的安全模型，为入侵提供了更大的可能性。</p>
+<p>为了对抗这些力量，安全加密虚拟化( Secure Encrypted Virtualization )是在AMD架构中加入的新特性，旨在<strong>更好地应对现代系统的复杂性和隔离需求</strong>。SEV通过使用密码学、加密代码和数据来增强隔离性，并实现了一种全新的安全模型，可以对代码进行加密保护，使其免受更高特权代码(如hypervisor )的攻击。</p>
+<h2 id="SEV安全模型"><a href="#SEV安全模型" class="headerlink" title="SEV安全模型"></a>SEV安全模型</h2><p>传统的计算系统采用基于环的安全模型运行。在该模型中，<strong>高特权代码可以完全访问其所在层级和所有低特权层级的资源</strong>。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/e9cdd29eed5046acbaf553585fb27b1c.png" alt="传统安全层"><br>如下图所示，在SEV模型中，在不同级别(即管理者vs客户)上执行的代码是孤立的，因此不能访问对方的资源。尽管管理程序级别传统上比客户级别”更有特权”，但<strong>SEV通过密码隔离将这些级别分离</strong>。 这<strong>为低特权代码提供了额外的安全性</strong>，而不需要低特权代码启动和执行所依赖的高特权代码的信任。管理程序和客户机之间的通信仍然是可能的，但是这些通信路径是严格控制的。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/736b30fd87d04f1b92117a126ffe5884.png" alt="SEV安全模型"><br>因此，SEV技术建立在一个威胁模型的基础上，假设攻击者不仅可以在目标机器上执行用户级别的特权代码，而且可能在更高权限的虚拟机管理程序级别执行恶意软件。<strong>攻击者也可能拥有对机器的物理访问权限，包括对DRAM芯片本身的访问权限</strong>。在所有这些情况下，SEV提供额外的保证来<strong>帮助保护客户虚拟机代码和数据免受攻击者的攻击</strong>。注意，SEV并不能抵御针对客户的拒绝服务攻击。</p>
+<h2 id="SEV-用例"><a href="#SEV-用例" class="headerlink" title="SEV 用例"></a>SEV 用例</h2><p>SEV围绕硬件虚拟机的概念构建，可以在多种用例中用于增强安全性。由于使用了主存加密，SEV提供了与前面描述的SME相同的物理攻击防护安全收益。除此之外，SEV还可以用于保护以下环境。</p>
+<p><strong>云</strong></p>
+<p>基础设施即服务( IaaS )数据中心的增长使得云计算能力变得便宜。然而，这种增长也带来安全挑战，因为云基础设施&#x2F;人员可能并不总是值得信赖的。在处理敏感数据时尤其如此，例如健康记录或商业秘密。此外，<strong>在多个客户之间共享硬件引起用户的安全担忧</strong>。尽管软件设计者付出了最大的努力，但已经出现了许多这种隔离失败的案例。</p>
+<p>SEV可以通过提供更好的安全隔离来提高这些IaaS云中的安全级别，其根源在于硬件本身。虽然现有的安全技术可以保护硬盘中的静态数据，如微软的BitLocker装置加密和LUKS，<strong>但SEV保护使用中的数据</strong>，使客户的工作负载能够在密码学上相互隔离并且免受主机软件的损害，云数据中心中具有恶意意图的管理员将无法访问托管VM中的数据。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/e76e9610f25c4185bb24556041d995fc.png" alt="云中加密的虚拟机"><br><strong>沙盒</strong></p>
+<p>通过使用硬件VM构造，SEV是围绕一个安全沙箱环境的想法构建的，其中软件可以执行，并与系统上的其他软件进行隔离开。这些<strong>沙盒可以像一个完整的VM一样大，有自己的磁盘和操作系统，也可以很小，用于更细粒度的隔离</strong>。例如，SEV硬件可用于将Docker容器与主机系统进行加密隔离，以更好地保护机密数据。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/7d32d534bcbc4a1bb63cacea9365c49c.png" alt="沙盒"></p>
+<h2 id="SEV架构"><a href="#SEV架构" class="headerlink" title="SEV架构"></a>SEV架构</h2><p><strong>技术概述</strong></p>
+<p>SEV是对AMD - V架构的扩展，支持在虚拟机管理程序的控制下运行多个虚拟机。当启用时，<strong>SEV硬件使用VM ASID标记所有代码和数据</strong>，该标记指示数据来自或打算用于哪个VM。该标签和数据一起保存至在SOC内部，并防止数据被所有者以外的任何人使用。标签保护SOC内部的VM数据，AES采用128位加密保护SOC外部的数据。当数据离开或进入SOC时，基于关联标签的密钥分别对其进行加密&#x2F;解密。</p>
+<p>每个VM以及虚拟机管理程序都与一个标签相关联，从而产生一个相关联的加密密钥。<strong>由于标签和内存加密，数据仅限于使用该标签的VM</strong>。如果数据被任何人访问，包括管理程序，他们将只能看到数据的加密形式。这提供了<strong>虚拟机之间以及虚拟机与虚拟机管理程序之间的强加密隔离</strong>。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/fccc6fec778f45a68c35d8b96ee8eb5b.png" alt="SEV架构"><br><strong>加密内存</strong></p>
+<p>SEV使用与前面描述的SME特征相同的高性能内存加密引擎。它还在页表中使用相同的C位来标记加密的页面，尽管有一些额外的限制。</p>
+<p>SEV的一个关键特性是<strong>客户虚拟机能够选择他们想要私有的数据内存页</strong>。这个选择是使用标准的CPU页表完成的，并且完全由客户控制。<strong>私有内存使用访客专用密钥加密，而共享内存可以使用管理程序密钥加密</strong>。该特性允许虚拟机标记他们想要保护机密性(私有)的内存数据的选定页，其他页用于与其他VM或管理程序的通信。出于安全考虑，SEV硬件要求某些类型的内存(包括指令页和页表)始终是私有的，以保护虚拟机。</p>
+<p>示例通信配置如图10所示。在本例中，启用SEV的客户和管理程序通过内存进行通信，两个实体都标记为共享。其他所有访客内存均使用访客密钥( HV无法使用)进行加密。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/cea3f319f6b14b9499b18c1c682cb2ec.png" alt="客户/HV的通信"><br><strong>密钥管理</strong></p>
+<p>SEV的安全性高度依赖于内存加密密钥的安全性。暴露于恶意实体，如恶意的或错误的虚拟机管理程序，会危及SEV保护的客户。虽然虚拟机管理程序必须管理客户及其资源，但是<strong>虚拟机管理程序本身绝不能获取内存加密密钥</strong>。运行在AMD - SP内部的SEV固件提供了一个<strong>安全的密钥管理接口</strong>来实现这一点。管理程序使用该接口为安全客户机启用SEV，并执行常见的管理程序活动，如启动、运行、快照、迁移和调试客户机。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/53dd7f94b1134e28842202e2d7f2d070.png" alt="验证固件"><br>为了保护启用了SEV的访客，固件辅助执行了三个主要的安全属性：平台的真实性、已启动客户的认证和客户数据的机密性。</p>
+<p>对平台进行认证可以防止恶意软件或流氓设备伪装成合法平台。<strong>平台的真实性由其身份密钥来证明</strong>。该密钥由AMD签署，以证明该平台是具有SEV功能的真实AMD平台。它还由平台的所有者签署，以显示谁管理和拥有机器给客户的所有者或远程平台上的其他固件实例。</p>
+<p>客户启动的证明向客户所有者证明安全启动。<strong>固件向客户所有者提供与SEV相关的客户状态的各种组件的签名</strong>- -包括内存的初始内容- -以验证客户处于预期状态。通过该证明，客户所有者可以确保管理程序在向客户传输机密信息之前不干扰SEV的初始化。</p>
+<p>这个过程的一个例子如图12所示。最初，客户所有者向云系统提供客户镜像。SEV固件协助启动客户并提供证明给客户拥有者。如果客户拥有者认为证明正确， 他们提供额外的秘密（例如硬盘解密密钥）给正在运行的客户机以允许继续启动。</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/82f1df9d340b42e2b8735b6ad0e3ebeb.png" alt="客户机验证示例"><br>访客的机密性是通过使用只有SEV固件知道的内存加密密钥对内存进行加密来完成的。SEV管理接口不允许内存加密密钥- -或任何其他秘密SEV状态- -在固件外部导出，而不对接收者进行适当的认证。<strong>这使得管理程序无法访问密钥，从而无法访问客户的数据</strong>。</p>
+<p>该接口还<strong>提供了将客户数据迁移到另一个SEV能力平台的机制</strong>。在此操作中，客人的内存内容在传输过程中保持加密。一旦远程平台被认证，SEV固件会安全地发送客户的内存加密密钥，以便远程平台可以自行运行客户。这种传输机制允许管理程序在启用SEV的情况下<strong>安全地实现迁移和快照功能</strong>。</p>
+<h2 id="SEV软件实现"><a href="#SEV软件实现" class="headerlink" title="SEV软件实现"></a>SEV软件实现</h2><p><strong>虚拟机管理程序</strong></p>
+<p>与传统虚拟化一样，SEV继续依赖虚拟机管理程序实现设备仿真和调度等诸多VM功能，但降低了对虚拟机管理程序安全性的依赖。启用了SEV的客户机仍然根据需要使用虚拟机管理程序，但是当内存页不打算在VM外部共享时，可以通过将其标记为私有来保护自己。</p>
+<p>运行时<strong>虚拟机管理程序与AMD - SP进行通信，以协调内存加密密钥的管理</strong>。这种通信是通过AMD - SP驱动程序完成的，涉及到在VM即将运行时通知AMD - SP等任务，从而允许AMD - SP将适当的加密密钥加载到AES - 128加密引擎中。<strong>虚拟机管理程序还与AMD - SP通信，建立安全机制执行客户认证、执行迁移</strong>等。</p>
+<p>虽然管理程序可以控制用于运行VM和选择加密密钥的ASID，但这并不被认为是一个安全问题，因为加载的加密密钥是没有意义的，除非客户已经使用该密钥加密。如果加载了错误的密钥或者对访客使用了错误的ASID，那么访客的第一个指令获取将失败，内存将被错误的密钥解密，导致垃圾数据被执行(并且极有可能造成故障)。</p>
+<p><strong>客户机</strong></p>
+<p>支持SEV的客户机中的操作系统必须意识到这一新的硬件特性并适当地配置其页表。这可以用类似于SME全内存加密模式的方法来完成，其中大多数DRAM地址被配置为C位(位47 )设置为1。</p>
+<p>对于支持SEV的客户来说，一个重要的考虑因素是SEV硬件<strong>出于安全原因不允许DMA进入客户加密内存</strong>。所有的DMA，无论是来自真实硬件还是HV仿真设备，都必须发生在共享访客内存中。因此，客户操作系统可以选择将分配给DMA的内存页作为共享的( C位清除)，或者将数据复制到&#x2F;从特殊的缓冲区进行DMA。</p>
+<p>最后，值得注意的是，SEV支持多核客户，<strong>并且数据可以在这些核心之间共享，不会带来额外的性能损失</strong>。管理程序必须对特定客户的<strong>所有虚拟CPU实例使用相同的ASID</strong>。</p>
+<h2 id="SEV-特殊考虑"><a href="#SEV-特殊考虑" class="headerlink" title="SEV 特殊考虑"></a>SEV 特殊考虑</h2><p>先前列出的关于SME功能的许多特殊考虑也适用于SEV。特别地，与SME一样，在使用不同的C位访问页之前，必须从缓存中刷新页面。此外，在更换硬件内存加密密钥之前，管理程序软件必须执行完整的缓存刷新，以确保使用该密钥的任何修改数据都已写回DRAM。最后，由于在64位或32位PAE模式下，C位只能由客户操作系统控制，因此在所有其他模式下，SEV硬件都将C位强制为1。这使得客户操作系统可以立即开始运行加密代码，然后安全地过渡到它的最终模式。</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>本文提出的两个内存加密特性代表了通用计算机安全中的主要步骤，可以在各种环境中使用。</p>
+<p>安全内存加密技术是一种灵活而强大的架构特性，它允许对操作系统或管理程序的主存进行加密。本文阐述了内存加密的几种具体使用模型，包括全内存加密、选择性加密和透明加密。所有模型都提供了针对物理硬件攻击的新保护，并且在某些情况下可以用来帮助保护系统免受流氓管理员的攻击。其他的使用模型也是可能的，可以提供额外的选择和性能&#x2F;安全权衡。SME不需要对应用软件进行任何修改，只要对操作系统或管理程序进行适当的修改，系统中的所有应用都可以得到保护。</p>
+<p>此外，可通过安全加密虚拟化增强VM安全性，支持运行管理程序无法直接访问的加密客户。这不仅为云用户提供了新的保护，也为希望限制其对客户数据可见性的云主机提供了新的保护。基于AMD - V技术，SEV可同时用于云端和Docker类型的模型，为虚拟化环境提供了一种新的安全模型。与SME技术一样，不需要对客户机进行应用软件更改，通过专用硬件引擎快速透明地执行VM加密。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 zxy
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

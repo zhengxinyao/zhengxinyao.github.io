@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离 | Xinyao</title>
+  <meta name="keywords" content=" TEE , AMD SEV-SNP ">
+  <meta name="description" content="【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离 | Xinyao">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="勇攀高峰">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://zhengxinyao.github.io/tags/index.html">
+<meta property="og:site_name" content="Xinyao">
+<meta property="og:description" content="勇攀高峰">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-07T15:59:52.000Z">
+<meta property="article:modified_time" content="2024-02-07T15:59:52.773Z">
+<meta property="article:author" content="ICT-IPRC">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/favicon.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/myself.png"/>
+</a>
+<div class="author">
+    <span>ICT-IPRC</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/zhengxinyao"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+            <a title="linkedin"
+               href="https://www.linkedin.com/in/%E6%98%95%E7%91%B6-%E9%83%91-956a732b5/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-linkedin"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/destiny-44-90-76"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qq_43543209?spm=1010.2135.3001.5343"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:1601835186@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1601835186&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(4)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文记录">
+            
+            论文记录
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识总结">
+            
+            知识总结
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="4">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>论文</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI加速器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV-SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TEE</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/"
+           data-tag="TEE,AMD SEV-SNP"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离">【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离</span>
+            <span class="post-date" title="2024-02-25 19:11:12">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/"
+           data-tag="TEE,AMD SEV"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV内存加密】 白皮书">【TEE】【AMD SEV内存加密】 白皮书</span>
+            <span class="post-date" title="2024-02-25 19:05:02">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Computing-within-an-AI-Accelerator/"
+           data-tag="TEE,论文,AI加速器,架构设计"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Computing within an AI Accelerator">【TEE论文】Confidential Computing within an AI Accelerator</span>
+            <span class="post-date" title="2024-02-25 18:53:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/"
+           data-tag="TEE"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境业界资料">【TEE】可信执行环境业界资料</span>
+            <span class="post-date" title="2024-02-25 18:31:25">2024/02/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【TEE】【AMD-SEV-SNP-白皮书】通过完整性保护加强VM隔离" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="知识总结">知识总结</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">TEE</a>
+            
+            <a class="color2">AMD SEV-SNP</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 19:23:40'>2024-02-25 19:11</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BB%8B%E7%BB%8D"><span class="toc-text">完整性介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A8%81%E8%83%81%E6%A8%A1%E5%9E%8B%E7%BB%86%E8%8A%82"><span class="toc-text">威胁模型细节</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E6%80%A7%E5%A8%81%E8%83%81"><span class="toc-text">完整性威胁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8D%E5%90%91%E6%98%A0%E5%B0%84%E8%A1%A8-RMP"><span class="toc-text">反向映射表 RMP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B5%E8%A1%A8%E9%AA%8C%E8%AF%81"><span class="toc-text">页表验证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B5%E8%A1%A8%E7%8A%B6%E6%80%81"><span class="toc-text">页表状态</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%89%B9%E6%9D%83%E7%BA%A7%E5%88%AB"><span class="toc-text">虚拟机特权级别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E3%80%81%E5%BC%82%E5%B8%B8%E4%BF%9D%E6%8A%A4"><span class="toc-text">中断、异常保护</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AF%E4%BF%A1%E5%B9%B3%E5%8F%B0%E4%BF%A1%E6%81%AF"><span class="toc-text">可信平台信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TCB%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="toc-text">TCB版本控制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%90%AF%E5%8A%A8%E5%92%8C%E9%AA%8C%E8%AF%81"><span class="toc-text">虚拟机启动和验证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%BF%81%E7%A7%BB"><span class="toc-text">虚拟机迁移</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%A7%E4%BF%A1%E9%81%93"><span class="toc-text">侧信道</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BB%8B%E7%BB%8D"><span class="toc-text">完整性介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A8%81%E8%83%81%E6%A8%A1%E5%9E%8B%E7%BB%86%E8%8A%82"><span class="toc-text">威胁模型细节</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E6%80%A7%E5%A8%81%E8%83%81"><span class="toc-text">完整性威胁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8D%E5%90%91%E6%98%A0%E5%B0%84%E8%A1%A8-RMP"><span class="toc-text">反向映射表 RMP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B5%E8%A1%A8%E9%AA%8C%E8%AF%81"><span class="toc-text">页表验证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B5%E8%A1%A8%E7%8A%B6%E6%80%81"><span class="toc-text">页表状态</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%89%B9%E6%9D%83%E7%BA%A7%E5%88%AB"><span class="toc-text">虚拟机特权级别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E3%80%81%E5%BC%82%E5%B8%B8%E4%BF%9D%E6%8A%A4"><span class="toc-text">中断、异常保护</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AF%E4%BF%A1%E5%B9%B3%E5%8F%B0%E4%BF%A1%E6%81%AF"><span class="toc-text">可信平台信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TCB%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="toc-text">TCB版本控制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%90%AF%E5%8A%A8%E5%92%8C%E9%AA%8C%E8%AF%81"><span class="toc-text">虚拟机启动和验证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%BF%81%E7%A7%BB"><span class="toc-text">虚拟机迁移</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%A7%E4%BF%A1%E9%81%93"><span class="toc-text">侧信道</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li></ol></div></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>2016年，AMD推出了第一个x86技术- -<strong>安全加密虚拟化( Secure Encrypted Virtualization，SEV )，旨在将虚拟机与虚拟机管理程序隔离</strong>。虽然虚拟机管理程序在传统上是虚拟化安全模型中的可信组件，但许多市场可以从不同的VM信任模型中获益。例如，在云中，客户可能希望基于VM的工作负载免受云管理员的损害，以保持数据机密性，并尽量减少暴露在云提供商的基础设施中的缺陷。这就导致了在硬件级别上将 “虚拟机” 与 “虚拟机管理程序和可能在物理服务器上共存的其他代码” 隔离的需求。</p>
+<p>AMD开始通过在SEV中使用主存加密来应对这一挑战。通过该技术，可以为单个VM分配唯一的AES加密密钥，用于自动加密其正在使用的数据。当管理程序等组件试图读取访客内部的内存时，它只能看到加密的字节。</p>
+<p>2017年，AMD推出了<strong>SEV - ES ( Encrypted State )<strong>特性，为</strong>CPU寄存器状态增加了额外的保护</strong>。在SEV - ES中，每个虚拟机管理程序变迁上的虚拟机寄存器状态都被加密，这样虚拟机管理程序无法看到虚拟机正在主动使用的数据。与SEV一起，SEV - ES可以通过帮助保护内存中数据的机密性来减少VM的攻击面。</p>
+<p>本白皮书介绍了<strong>下一代SEV - SNP (Secure Nested Paging)<strong>。SEV - SNP在现有SEV和SEV - ES功能的基础上，增加了新的基于硬件的安全防护。SEV - SNP增加了强大的</strong>内存完整性保护，以帮助防止数据重放、内存重映射等基于虚拟机管理程序的恶意攻击</strong>，从而创建隔离的执行环境。此外，SEV - SNP引入了一些额外的可选安全增强，旨在支持额外的VM使用模型，<strong>提供更强的中断行为保护，并提供更多的保护来抵御最近披露的侧信道攻击</strong>。</p>
+<p>本文将SEV、SEV - ES和SEV - SNP统称为AMD SEV技术。</p>
+<h1 id="完整性介绍"><a href="#完整性介绍" class="headerlink" title="完整性介绍"></a>完整性介绍</h1><p>与AMD SEV技术结合使用的AES加密提供了更高的内存机密性保护。不知道加密密钥的攻击者无法破译存储在DRAM中的VM数据。SEV内存加密密钥本身由硬件随机数发生器产生，存储在软件无法直接读取的专用硬件寄存器中。此外，硬件的设计使得相同的明文在不同的内存位置会有不同的加密方式。</p>
+<p>尽管进行了加密，但即使不知道加密密钥，<strong>攻击者也可能试图改变内存中的值。这些类型的攻击被称为完整性攻击</strong>，因为内存中的值与VM的意图不一样。攻击者无法在不知道加密密钥的情况下轻易地将已知数据放入VM的内存中，但他们可能会破坏内存，使VM看到随机值或进行重放攻击。<strong>在重放攻击中，攻击者在某一时间点捕获密文，然后用先前捕获的数据替换内存</strong>。如果攻击者知道原始数据是什么，这种类型的攻击更加有效。</p>
+<p>完整性攻击本身并不会直接危害VM，VM内部的软件必须利用不正确的数据导致信息泄露。这样的攻击是否成功取决于VM内部的软件以及它在遇到这种泄露的数据时的行为。由于VM中的软件通常不知道其内存完整性是否已受损，因此其在这种情况下的行为可能具有挑战性。</p>
+<p><strong>SEV - SNP旨在防止基于软件的完整性攻击，并降低与内存完整性受损相关的风险</strong>。SEV - SNP完整性的基本原理是，如果一个VM能够读取一个私有(加密)的内存页，那么它必须始终读取上一次写入的值。这意味着，如果VM向内存位置X写入一个值A，那么每当它以后读取X时，它必须要么看到值A，要么必须得到一个异常，表明该内存不能被读取。SEV - SNP的设计是为了使VM不能看到与内存位置X不同的值。</p>
+<p>在典型的用例中，虚拟机既要执行自己的任务，又要通过I &#x2F; O与外部实体进行通信。这可能包括通过网络链路、与存储服务器或其他组件进行通信。在<strong>SEV架构中，这种通信是使用共享(未加密)内存完成的。VM希望提供的任何传出数据都被放置在内存的共享页中</strong>，任何传入数据也必须被放置在共享页中。由于共享内存不使用虚拟机的特定密钥进行加密，因此I&#x2F;O流的安全性需要使用合适的软件加密协议，如HTTPS。</p>
+<p>MD SEV虚拟机使用客户页表中的加密位( en Crypted bit，C-bit )控制内存页是私有还是共享。共享(未加密)内存被VM标记为C &#x3D; 0，表明它不必用VM的内存加密密钥进行加密。私有(加密)内存页用于该VM的独占使用，并标记为C &#x3D; 1。在一个典型的虚拟机中，<strong>大多数页面被标记为私有的，只有用于外部通信的选择页面被标记为共享的</strong>。与SEV的机密性保证一样，SEV - SNP的<strong>完整性保证只适用于私有的客户页面</strong>。</p>
+<h1 id="威胁模型细节"><a href="#威胁模型细节" class="headerlink" title="威胁模型细节"></a>威胁模型细节</h1><p>与之前的SEV和SEV - ES特征一样，在SEV - SNP下，AMD片上系统( SOC )硬件、AMD安全处理器( AMD-SP )和VM本身都被视为完全可信。VM负责保护自身及其接口，对于它使用的任何I&#x2F;O数据，如网络流量、硬盘数据等，都应该遵循标准的最佳实践。为此，AMD强烈建议<strong>使用带有受保护VM的全磁盘加密( Full Disk Encryption，FDE )解决方案</strong>，因为<strong>所有的SEV技术只保护正在使用的数据</strong>。FDE保护静态数据并且存在许多流行的商业解决方案。</p>
+<p>在SEV - SNP下，所有<strong>其他CPU软件组件和PCI设备被视为完全不可信</strong>，如图2所示。包括主机系统上的BIOS、虚拟机管理程序、设备驱动程序、其他VM等。完全不可信是指这些组件被认为是恶意的，可能与其他不可信组件合谋，以损害SEV - SNP VM的安全保证。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/5b70021e9247427381d2bb4c2ba8921d.png" alt="SEV-SNP可信部件"></p>
+<p>SEV - SNP威胁模型包含了比以往AMD SEV技术更多的用于抵御额外威胁的特征。SEV和SEV - ES采用”良性但脆弱”的管理程序威胁模型。在这种威胁模型中，管理程序并不被认为是100 %安全的，但它被信任以良性的意图行事。也就是说，管理程序虽然没有积极地试图对其下方的SEV虚拟机进行损害，但其本身可能存在可利用的漏洞。通过阻止或增加某些攻击的难度，SEV和SEV - ES技术有助于限制某些类别管理程序bug的潜在暴露或显著提高利用难度。SEV - SNP解决了额外的攻击向量和VM安全的潜在威胁。在表1中总结了各种SEV技术所面临和未解决的威胁。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/5f9e697606744785ae675b411004e736.png" alt="SEV三代的安全功能"><br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/5faed364cac94908adaee2ee79455a41.png" alt="在这里插入图片描述"><br><strong>机密性</strong>：机密性威胁是基于硬件的内存加密来处理的。SEV - ES技术为VM寄存器状态增加了机密性保护，在VM退出到虚拟机管理程序时对该状态进行加密。这种保护作用同样存在于SEV - SNP中。</p>
+<p><strong>完整性</strong>：SEV - SNP技术旨在防止完整性攻击，包括数据重放、损坏、重新映射和基于别名的攻击。</p>
+<p><strong>可用性</strong>：任何虚拟化平台都有两个方面的可用性。首先，<strong>确保管理程序保留对系统的控制，并且客户VM不能拒绝管理程序的运行</strong>，否则将导致物理机器不可用。所有的SEV技术都支持这种级别的可用性，并保证管理程序在需要时总能重新获得控制，或者在没有该虚拟机同意的情况下随时终止客户。可用性的第二个方面是<strong>客户是否享有任何可用性保证，如最低运行时间</strong>。这不是任何SEV技术威胁模型的一部分，因为恶意管理程序总是可以选择永远不运行某个客户虚拟机。</p>
+<p><strong>物理访问攻击</strong>：虽然某些物理攻击，如DRAM冷启动攻击(对DRAM芯片进行离线分析)可以被防御，但在线DRAM完整性攻击，如在VM积极运行时攻击DDR总线，则不在考虑范围之内。这些攻击是非常复杂的，需要很大程度的本地访问和资源来执行。</p>
+<p><strong>杂项</strong>：存在其他几种类型的针对安全虚拟机的潜在攻击，其中一些在这个威胁模型范围内的。例如，SEV - SNP包含了防止可信计算基础( TCB )回滚攻击的特征。</p>
+<p>此外，SEV - SNP可选地支持<strong>限制中断和异常注入VM的能力</strong>。它还可以支持<strong>分支目标缓冲区( Branch Target Buffer，BTB )保护</strong>以抵御某些类型的侧信道攻击。这两种保护在本白皮书后面进行了讨论。</p>
+<p>最后，还有某些类别的攻击不属于这三个特征中的任何一类。<strong>针对CPU数据结构的架构侧信道攻击</strong>并不能通过任何硬件手段进行针对性的防范。与标准的软件安全实践一样，对这种侧信道攻击(例如,密码学库)敏感的代码应该以一种有助于防止这种攻击的方式写入。<strong>指纹识别攻击防护</strong>在当前这些技术的产生中也是不被支持的。指纹攻击试图<strong>通过监视虚拟机的访问模式、性能计数器信息等来确定虚拟机正在运行的代码</strong>。虽然指纹有时可以提供VM内部正在运行的代码的信息，但<strong>通常最敏感的信息是数据本身(例如,数据库中的数据)，而不是正在运行的代码</strong>(例如,正在使用哪个版本的数据库软件)。因此，当前的SEV技术主要侧重于保护敏感的VM数据内容。在未来的SEV技术中，可以针对某些指纹攻击提供额外的保护。</p>
+<h1 id="完整性威胁"><a href="#完整性威胁" class="headerlink" title="完整性威胁"></a>完整性威胁</h1><p>上一节重点介绍了四类独特的完整性威胁：重放保护、数据损坏、内存别名和内存重新映射。防范这些威胁需要执行不同的安全属性，如表2所示。<strong>在基于重放保护和数据损坏的攻击中，这些攻击依赖于不可信代码能够写入受保护VM的内存</strong>。SEV - SNP通过强制只有内存页(例如,页面被分配到的SEV - SNP VM)的所有者可以写入该页来解决这个问题。这种<strong>强制执行使用下一节中描述的反向映射表( Reverse Map Table，RMP )机制</strong>来完成。</p>
+<p><strong>内存别名攻击</strong>涉及管理程序恶意地同时<strong>将两个不同的访客页映射到同一个物理内存页</strong>。访客自然希望其访客物理地址空间中的不同页面映射到不同的内存，因此任何混叠都可能导致无意的数据损坏。解决这一威胁需要<strong>确保内存的每个物理页面一次只能映射到一个访客页面。再次，RMP结构被用于强制实施这一属性</strong>。</p>
+<p><strong>内存重映射</strong>( Memory Re-Mapping )，涉及到<strong>虚拟机管理程序将单个访客页恶意地重映射到多个不同的物理内存页。</strong>在这种威胁下，客人可能会看到一个不一致的内存视图，其中只有它写的数据子集出现在内存中。应对这种威胁需要<strong>确保每个客户页面一次只映射到一页物理内存，并且这种映射不能被改变</strong>，除非像AMD - SP这样的可信实体。SEV - SNP使用一种名为<strong>Page Validation的机制来应对这一威胁</strong>。页面验证依靠新的RMP机制与新的VM代码相结合来管理访客内存与系统内存之间的内部映射关系。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/f84397e2ac354a07bbdd1f438a31db85.png" alt="安全威胁"></p>
+<h1 id="反向映射表-RMP"><a href="#反向映射表-RMP" class="headerlink" title="反向映射表 RMP"></a>反向映射表 RMP</h1><p>如前所述，SEV - SNP的许多完整性保证都是通过一种名为反向映射表( Reverse Map Table，RMP )的新结构来实现的。<strong>RMP是一个在整个系统中共享的单一数据结构，每个4k页的DRAM有一个入口</strong>，这些入口可能会被VM使用。RMP的目标很简单：<strong>它跟踪每一页内存的所有者。内存页可以是管理程序拥有的，也可以是特定虚拟机拥有的，还可以是AMD - SP拥有的。对内存的访问是受控制的，因此只有该页的所有者才能写入</strong>。RMP与标准的x86页表一起使用，以强制执行内存限制和页面访问权限。</p>
+<p>RMP由系统物理地址索引，并<strong>在CPU和IOMMU表table-walks的末尾进行检查</strong>。例如，在native (非VM )模式下，使用标准的x86页表将虚拟地址转换为物理地址。在翻译之后，最终的物理地址被用来索引RMP。<strong>RMP条目被读出并检查。如果RMP表项表明该页面是管理程序拥有的页面，则检查通过，并创建新的TLB表项。如果RMP项表明该页面不是管理程序拥有的页面，则table-walks失败（#PF）并拒绝访问。</strong><br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/5e75df125fac41a9b55710ce5e605c71.png" alt="PMP检查"></p>
+<p>当在SEV - SNP VM中运行时，RMP检查稍微复杂一些。与本地模式一样，虚拟地址首先被翻译成系统物理地址。在这种情况下，使用AMD - V 2级分页将客户虚拟地址( GVA )转换为客户物理地址( GPA )，最后转换为系统物理地址( SPA )。<strong>使用SPA对RMP进行索引，并对条目进行检查</strong>。RMP表项包含了应该映射的GPA，并且硬件验证了这个GPA与当前table-walks的GPA相匹配。如果这个或任何其他检查失败，则产生异常，并拒绝访问。</p>
+<p>并非每个内存访问都需要RMP检查。特别地，<strong>来自管理程序的读访问不需要RMP检查</strong>，因为数据机密性已经通过AES内存加密保护。<strong>任何模式下的所有写访问都需要RMP检查</strong>，对SEV - SNP内部私有内存页的读写访问都需要RMP检查。写访问包括标准内存写入和作为页表遍历的一部分的A &#x2F; D位更新。与标准的x86分页一样，RMP检查的结果被缓存在CPU的TLB和相关结构中。</p>
+<p>由于RMP用于对内存实施访问控制，因此表本身不能被软件直接写入。新的CPU指令的存在是为了实现对RMP条目的操作，允许管理程序将页面分配给特定的访客，取回页面等。在需要时，硬件自动执行TLB失效，以确保系统中所有处理器都能看到更新的RMP条目信息。</p>
+<h1 id="页表验证"><a href="#页表验证" class="headerlink" title="页表验证"></a>页表验证</h1><p>如前所述，<strong>每个RMP条目都包含了DRAM的特定页面需要映射的GPA。这样通过构造保证了每个SPA一次只能映射到单个GPA</strong>。反过来，单个GPA映射到多个SPA，也不能满足SEV - SNP完整性保证。<strong>嵌套页表保证每个GPA只能映射到一个SPA</strong>，但是管理程序可能随时更改这些表。SEV - SNP完整性要求以这种方式操纵表不能破坏期望的完整性，这通过验证的概念来解决。</p>
+<p><strong>每个RMP条目内部都有一个Validated位</strong>，当为客户创建一个新的RMP条目时，该位被CPU硬件自动清空为0。<strong>被分配给客户机但具有Validated bit clear的页面不能被管理程序使用，也不能作为私人访客页面使用，因为该页面没有被验证</strong>。客户机只能通过新的CPU指令PVALIDATE<strong>设置Validated bit后才能使用该页面</strong>。只有访客才能使用PVALIDATE，每个访客VM只能验证自己的内存。</p>
+<p>因此，向客户VM添加新页面需要一个2步的过程，如图4所示。首先，管理程序<strong>使用新的RMPUPDATE指令将页面分配给客户</strong>。这将页面过渡到Guest - Invalid状态。其次，<strong>客户验证页面使用新的PVALIDATE指令将页面过渡到Guest - Valid状态</strong>，从那里可以使用它。</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/b85b0574a7fb4592a34eb0a89e63b9f3.png" alt="基本的页状态"></p>
+<p>为了满足SEV - SNP所期望的完整性，客户虚拟机不应该多次验证与同一个GPA对应的内存。这可以简单地通过客户虚拟机在启动时验证其所有内存，并拒绝再验证额外的内存来实现。或者，<strong>客户虚拟机可以跟踪其已验证的内存位置，并拒绝对同一内存位置进行两次验证</strong>。假设客户虚拟机正确验证其内存，这保证了GPAs和SPAs之间的内射映射。客户只对每个GPA进行一次验证，通过构建RMP表，保证每个SPA只能映射到一个GPA。</p>
+<p>当正确执行时，页面验证可以像图5所示的那样<strong>阻止重映射攻击</strong>。在这个例子中，GPA A最初被映射到SPA X，客户做一个PVALIDATE来验证这个转换，这导致Validated bit被设置在SPA X对应的RMP条目中。如果管理程序随后恶意试图将A重新映射到不同的SPA Y，它将首先为SPA Y创建一个RMP条目，试图使用RMPUPDATE指令映射相同的GPA A。然后，管理程序恶意修改嵌套页表( NPT )，将GPA A重新映射到Y。然而，<strong>当客户访问Y时，它将获得# VC ( VMM Communication )异常</strong>。出现此异常是因为SPA Y对应的RMP条目中Validated bit是clear的(当RMPUPDATE被执行为客户分配一个新的页面时,它最初清除了Validated bit)。由于客户知道自己已经验证了GPA A，所以知道自己不应该收到验证错误，因此受到攻击，管理程序的行为不正确。作为回应，客户机可以终止或采取其他措施来保护自己。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/5d389618f4404f76a2a73caab17884e0.png" alt="页面重映射攻击"></p>
+<h1 id="页表状态"><a href="#页表状态" class="headerlink" title="页表状态"></a>页表状态</h1><p>如图所示，SEV - SNP中的RMP跟踪每一页内存的状态。这些状态决定了内存可以用于什么，谁可以读写方法它，以及页面以后可以过渡到什么状态。例如，处于管理程序状态的页面可以被管理程序读&#x2F;写，也可以被SEV - SNP虚拟机以C &#x3D; 0 (共享页面)的方式访问内存。</p>
+<p>相反，处于Guest - Valid状态的页面可以被SEV - SNP VM读取&#x2F;写入，但不能被管理程序写入。图4描述了三种基本的页面状态：管理程序状态、Guest - Valid状态和Guest - Invalid状态。总的来说，SEV - SNP架构定义了8个主要的页面状态，如表3所示。</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/3acb5bc6ae264a61803ac08c37bb8a21.png" alt="SEV-SNP页状态"></p>
+<p>与以往的SEV技术一样，SEV - SNP在AMD - SP中实现了一个VM管理API。<strong>管理程序调用该接口来辅助VM生命周期任务和页面管理</strong>。出于安全的考虑，AMD - SP将要操作的任何页面都必须在发出必要的API调用之前被放置到特殊的状态中，<strong>称为不可变状态</strong>。处于不可变状态的页面不能被CPU (管理员或客人)上的任何软件写入，也不能被AMD-SP以外的任何对象修改其RMP条目。当AMD - SP在其中一个Immutable状态中处理完一个页面时，它可能会根据特定的API调用将其转换到另一个状态。</p>
+<p>例如，”元数据”页面是不可变页面的一种。这些页面仅可由AMD SP写入，用于保存与已交换到磁盘的客户页面相关的元数据条目。由于SEV - SNP的完整性保证，<strong>任何被交换到磁盘的页面必须经过完整性确认后才能被交换回内存</strong>。当一个页面被交换到磁盘时，AMD - SP会创建一个包含认证标签(来自AES - GCM)的元数据项，以及来自该页面RMP条目的数据，例如它所在的GPA。<strong>由于元数据页面本身是管理程序不可写的，因此保证了这些信息的完整性。</strong>当页面被交换回内存时，AMD - SP验证内容是否被修改，并确保页面在之前相同的位置进入客户机地址空间。元数据页本身也可以以类似的方式交换到磁盘中，允许在需要时将整个客户机保存到磁盘中。</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/cd7e938cbc534379a771dc78b3800517.png" alt="页状态转换"></p>
+<h1 id="虚拟机特权级别"><a href="#虚拟机特权级别" class="headerlink" title="虚拟机特权级别"></a>虚拟机特权级别</h1><p>虚拟机权限级别( VMPLs )是SEV - SNP架构中的一个新的可选特性，它允许客户虚拟机将其地址空间划分为4个级别。这些可用于在VM内提供硬件隔离的抽象层，<strong>用于额外的安全控制</strong>，以及协助管理与虚拟机管理程序的通信。</p>
+<p>这些层次在本质上是分层的，其中VMPL0是最高特权级，VMPL3是最低特权级。<strong>当该功能被启用时，VM的每个vCPU被分配一个VMPL</strong>。私有访客内存的每个页面的RMP条目也增加了与每个VMPL对应的页面访问权限，并且除了标准的分页权限外还被应用。具体来说，<strong>个人客户页面可以被标记为可读的、可写的、管理员模式可执行的和用户模式可执行的</strong>。默认情况下，当一个页面被访问者首次验证时，VMPL0被授予该页面的全部权限，其他所有VMPL均不授予任何权限。客人可以选择通过新的RMPADJUST指令修改VMPL权限。</p>
+<p>RMPADJUST指令允许给定的VMPL修改权限较小的VMPL的权限。例如，VMPL0可以将页面上的(但不执行)权限授予VMPL1。这是受到限制的，因此一个级别不能授予比它当前拥有的更多的权限。VMPL主要用于设置额外的页面权限检查，否则与其他x86安全特性正交。</p>
+<p><strong>RMP页面权限检查在表遍历结束时的RMP查找时执行。</strong>页面权限检查在本质上是限制性的，因此<strong>对于要可写的客户页面，必须在客户管理的页表(对应于主动vCPU)、嵌套页表(由管理程序管理)以及RMP表(由较高特权的VMPL管理)中标记可写</strong>。</p>
+<p>MPL在某些方面类似于嵌套虚拟化，<strong>客户机可能包含自己的管理层，该管理层运行在VMPL较高的位置，并控制其他页面的权限</strong>。这使得诸如安全措施管理程序的安全虚拟化等用例成为可能。而在裸机系统上，标准的管理程序可以用来强制某些页面是只读的，不可执行的等，SEV SNP可以在云环境中实现相同的使用模型。在这种情况下，当云中的真实管理程序被视为不可信时，客户机内部的VMPL0将执行所需的页面权限。</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/d2df4e5f46cb4e9eaa8a9be2ed4c9920.png" alt="VMPLs"></p>
+<p>VMPL在几个额外的场景以及抽象层中都很有用。例如，APIC仿真是传统上由管理程序处理的任务。在SEV - SNP中，某些虚拟机可能希望在客户机的信任域内移动APIC模拟，这种环境的限制性更强。在这种情况下，<strong>VMPL0可以用来执行可信的APIC仿真，同时允许其余的客户机运行在较低的VMPL中，而不知道仿真</strong>。</p>
+<p><strong>VMPL0也可以作为客户与管理程序通信的中介</strong>。在此之前，SEV和SEV - ES技术都需要一个了解这些安全特性的开明客户操作系统。客户机操作系统需要完成页表中C位的设置、处理# VC异常(在SEV - ES中)等操作。在SEV - SNP的情况下，可以选择将这些任务委托给VMPL0。</p>
+<p>在这个使用模型中，VMPL0可以用来配置另一个vCPU中的哪些访客内存是私有的( C &#x3D; 1 )，而哪些访客内存是共享的( C &#x3D; 0 )。vTOM以下的内存地址被自动视为私有，vTOM以上的内存地址被视为共享。使用vTOM以这种方式分离内存，避免了对标准x86页表增加C位标记的需要，简化了客户操作系统软件。</p>
+<p>此外，VMPL0还可以用来处理发生在另一个vCPU中的# VC事件。可以配置一个SEV - SNP VM，使得当一个vCPU (例如, RDMSR)中执行被拦截的指令时，vCPU退出并调用VMPL0。VMPL0可以直接从原始vCP的加密保存区域查看执行截获的信息，执行任何必要的超调用，并模拟代表原始vCPU的指令，如图8所示。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/d12a0ceebeb24833b2b608778521e1c2.png" alt="VMPL0 #VC事件"></p>
+<h1 id="中断、异常保护"><a href="#中断、异常保护" class="headerlink" title="中断、异常保护"></a>中断、异常保护</h1><p>虽然几乎所有的VM操作系统都支持中断和异常处理，但一些操作系统可能内置了基于裸机硬件的中断和异常行为假设。如果恶意管理程序能够违反这些假设，那么这种行为就有可能违反操作系统设计的假设。</p>
+<p>为了解决这些问题，SEV - SNP增加了VM可以选择的两种可选模式，<strong>以支持VM和管理程序之间关于中断和异常的更严格的接口</strong>。第一种模式称为<strong>限制注入，它禁用虚拟中断排队，部分禁用中断注入接口</strong>。在这种模式下，管理程序只允许注入一个新定义的异常向量# HV来充当门铃。受限注入假设VM和管理程序将以半虚拟化的方式进行事件通信，例如共享内存中的事件队列。# HV异常可以作为客户机向重审事件队列发送新信息的信号。</p>
+<p>第二种模式称为<strong>交替注入( Alternate Injection )，允许标准的虚拟中断排队和注入接口，但这些只能由客户机自己控制</strong>。在加密保存区(称为虚拟机保存区域( VMSA ))中增加了新的字段，允许中断排队和事件注入。在VMSA中，这些字段只能由访问客户机VMSA数据的人员进行操作，如VMPL0。在交替注入模式下，所有与中断相关的安全敏感状态(如TPR)被保存到VMSA中，因此不能被恶意的管理程序操作。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/8636de4bc5dc4982b20e183f08e96e3f.png" alt="VMPL 中断处理"></p>
+<p>这两种模式的结合使<strong>VMPL0能够执行中断处理和APIC仿真</strong>，用于运行VMPL0的vCPU可以在启用限制注入的情况下运行，因此它们使用半虚拟化接口和# HV异常与管理程序通信，用于运行其他VMPL的vCPU可以在启用交替注入的情况下运行(其中,推测客户机的主OS运行)。这样，<strong>VMPL0可以在安全的情况下向主操作系统注入事件和虚拟中断</strong>。从软件的角度来看，主操作系统可以使用标准的APIC或x2APIC接口，它所需要的任何APIC访问都可以在VMPL0中捕获和仿真。</p>
+<h1 id="可信平台信息"><a href="#可信平台信息" class="headerlink" title="可信平台信息"></a>可信平台信息</h1><p>平台功能和能力传统上是通过CPUID指令发现的。虚拟机管理程序通常会捕获和模拟CPUID指令，原因有很多，包括限制客户可能使用的特性以使其更容易迁移。在许多情况下，恶意虚拟机管理程序只能通过谎报CPUID特征来对客户造成拒绝服务。</p>
+<p>然而，在某些情况下，错误的CPUID信息可能会导致安全问题。例如，一个大小约为x86扩展保存区域(配合XSAVE &#x2F; XRSTOR CPU指令使用)的虚拟机管理程序在<strong>执行硬件XSAVE指令时可能会导致客户机分配的内存区域过小和缓冲区溢出</strong>。虽然在许多情况下，客户虚拟机可以尝试验证其接收到的(例如,通过检查报告的XSAVE缓冲区大小是否正确)的CPUID，但这可能是具有挑战性的，尤其是在启动过程中。</p>
+<p>为了简化客户机必须做的检查，SEV - SNP支持通过AMD - SP过滤CPUID结果的可选功能。AMD - SP将验证管理程序报告的CPUID结果不大于平台的能力，以及安全敏感信息，如x86扩展保存区域大小是否正确。</p>
+<h1 id="TCB版本控制"><a href="#TCB版本控制" class="headerlink" title="TCB版本控制"></a>TCB版本控制</h1><p>在SEV - SNP架构中，有多个可升级的固件组件，包括AMD - SP API、CPU微码补丁等。由于这些固件组件在SEV - SNP威胁模型中被认为是可信的，因此它们构成了该架构的TCB。随着bug的修复或功能的升级，这些组件的新版本可能会被发布。如果在其中一个组件中发现安全漏洞，客户机所有者可能需要保证他们的VM在修补固件下运行，而不是易受攻击的版本。</p>
+<p>之前的SEV和SEV - ES特征都依赖于一个自报的AMD - SP版本号来实现TCB版本控制。客户机所有者可以指定AMD - SP固件的最小版本，并且VM不能加载到旧的固件上。在SEV - SNP中，这种检查被增强为密码学上的强。在SEV - SNP中，**所有TCB组件的版本号与一个称为芯片背书密钥的融合秘密相结合，创建一个有版本的芯片背书密钥(有版本的Chip Endorsement Key，VCEK )**。VCEK是每个AMD芯片所独有的私有ECDSA密钥，运行特定的TCB版本。VCEK的构造使用了密码学哈希函数，使得给定的TCB版本不能假冒为更新的TCB。VCEK有多种使用方式，包括用于签发认证报告。</p>
+<h1 id="虚拟机启动和验证"><a href="#虚拟机启动和验证" class="headerlink" title="虚拟机启动和验证"></a>虚拟机启动和验证</h1><p>与之前的SEV和SEV - ES架构一样，SEV - SNP虚拟机从初始未加密镜像开始。这个初始映像预计包含客户VM启动代码之类的东西，但由于它开始未加密，因此不应该包含任何秘密。在启动过程中，管理程序要求AMD - SP在客户机安装这组初始页面。<strong>AMD - SP对这些页面的内容进行密码学度量，形成一个启动摘要。在SEV - SNP架构中，AMD - SP还度量了与这些页面相关的元数据，即页面所在的GPA以及页面所在的类型</strong>。</p>
+<p>在SEV - SNP中，在启动过程结束时，客户机所有者可以提供一个签名的身份块( Identity Block，IDB )来关联VM。<strong>IDB包含允许客户所有者唯一识别VM的字段，并包含预期的启动摘要</strong>。DB只能与与预期发布摘要相匹配的VM相关联，并作为认证报告的一部分纳入。</p>
+<p>而SEV和SEV - ES只支持客户启动期间的认证，SEV - SNP支持更灵活的认证。<strong>客户VM可以通过AMD - SP的一条受保护的路径随时向AMD - SP请求认证报告</strong>。作为SEV - SNP虚拟机启动的一部分，<strong>由AMD - SP创建一组私有通信密钥，客户机可以使用这些密钥直接与AMD - SP通信</strong>。访客可以使用该路径请求认证报告、加密密钥等。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/effe0aa12c364f12af8e338796f3e9e1.png" alt="SEV-SNP验证"></p>
+<p>测试报告包含了<strong>来自启动的IDB信息，系统信息，以及作为报告请求的一部分由客户VM提供的任意数据块</strong>。认证报告由AMD - SP固件使用VCEK签署。认证报告使第三方(如客人所有者)能够验证某些数据来自某个VM。</p>
+<p>例如，VM可以发布一个公钥，并向AMD - SP请求包含该公钥哈希的认证报告，如图10所示。然后，第三方可以通过认证报告来验证该公钥与该VM相关联。认证报告也证明VM运行时启用了相应的安全功能，并在一个真实的AMD平台上启动。<strong>由于该认证报告是由VCEK签发的，因此该报告的验证既证明了平台的真实性，也证明了使用(由于VCEK源自TCB版本)的TCB版本的真实性</strong>。在认证成功后，第三方(如客户所有者)可以选择向虚拟机提供秘密，如磁盘解密密钥，或其他操作所需的密钥。</p>
+<p>除了远程证明，<strong>SEV-SNP VM可以直接从AMD - SP请求密钥，用于数据密封等多种目的。这些密钥可能来自不同的源，VM可以根据需要为其用例选择使用哪个源</strong>。例如，可以请求特定于某个TCB级别的当前部分和特定于IDB签名密钥的本地密封密钥。通过这些控制，VM可以请求保证不能由恶意参与者或其他设备派生的密钥。</p>
+<h1 id="虚拟机迁移"><a href="#虚拟机迁移" class="headerlink" title="虚拟机迁移"></a>虚拟机迁移</h1><p>虚拟机迁移，特别是动态虚拟机迁移，是现代云架构的标准特征。当<strong>需要进行负载均衡、主机系统维护和其他目的时，实时虚拟机迁移允许将一个虚拟机不间断地迁移到另一个物理系统</strong>。所有的SEV技术都支持虚拟机迁移，但SEV - SNP增强了迁移的灵活性。</p>
+<p>在SEV和SEV - ES中，<strong>VM迁移由客户所有者提供策略决定</strong>。该策略表明VM是否是可移植的的，如果是，那么是什么类型的系统。AMD - SP负责执行该迁移策略，并通过在迁移开始前对目的机器上的AMD - SP进行认证来实现。</p>
+<p>在SEV - SNP中，迁移政策执行的角色被卸载到一个名为”迁移代理” ( Migration Agent，MA )的新实体。<strong>MA本身是一个SEV - SNP VM，运行在与主VM相同的物理系统上</strong>。当一个VM启动时，它可以有选择地与一个已经运行的MA相关联。<strong>VM的MA绑定信息存在于其认证报告中，因为MA是客户TCB的一部分。每个VM只能与单个MA相关联，但单个MA可以管理任意数量的VM的迁移</strong>。</p>
+<p>MA负责确定主虚拟机可以迁移到哪些系统。虽然MA架构的细节超出了本白皮书的范围，但MA可以利用它想要的任何手段来实施复杂的迁移政策。</p>
+<p>在典型的云情景下，<strong>MA本身并不具有可迁移性</strong>。取而代之的是，MA的一个单独的实例在每个物理机器上运行。<strong>当VM即将迁移时，源机器上的MA对目标机器上的MA进行身份验证，建立受保护的网络连接</strong>。如果成功，MA传输所需的客户机信息，从而可以在新机器上重新构造客户机。值得注意的是，由于MA的灵活性，不要求源机器和目的机器同时在线。当一个VM被暂停时，它的状态可以输出给它的MA。MA可以选择立即将该状态转移到另一个MA上进行动态迁移。之后，该VM可以根据MA的要求在同一台机器或另一台机器上重构。</p>
+<h1 id="侧信道"><a href="#侧信道" class="headerlink" title="侧信道"></a>侧信道</h1><p>近来大量的安全研究集中在CPU侧信道攻击，即利用CPU内部结构<a target="_blank" rel="noopener" href="https://www.amd.com/en/corporate/product-security">泄露信息</a>的攻击。<a target="_blank" rel="noopener" href="https://www.amd.com/en/corporate/product-security">Spectre</a>等推测性侧信道攻击已经被证明可以利用硬件分支预测等标准技术在特定场景下造成数据泄露。AMD增加了<a target="_blank" rel="noopener" href="https://developer.amd.com/wp-content/resources/Architecture_Guidelines_Update_Indirect_Branch_Control.pdf">硬件功能</a>，以帮助软件防御某些攻击，如Spectre Variant 2。</p>
+<p>Spectre Variant 2证明了间接分支预测器( BTB )可以在特定的软件环境下被利用，并且假设攻击者能够影响另一个实体的分支预测。在最近的CPU设计中，AMD增加了对SPEC _ CTRL MSR和PRED _ CMD MSR的支持，这使得更多的软件控制BTB结构成为可能。在SEV - SNP架构中，SPEC _ CTRL MSR被虚拟化，允许客户机独立于管理程序选择自己的推测执行策略。</p>
+<p>在传统的虚拟化中，管理程序采取步骤来保护自己免受基于客户的攻击。这可能包括retpoline或使用IBRS集运行等技术。当管理程序不被信任时，客户机也可能担心基于管理程序的攻击。例如，一个恶意的管理程序可能企图毒化客户将使用的BTB条目，或者可能在SEV - SNP客户运行之前尝试使用另一个VM来毒化BTB。</p>
+<p>为了防止这些攻击，SEV-SNP虚拟机可能会选择额外的保护，这样CPU硬件就<strong>可以防止虚拟机投机性地使用另一个实体安装的BTB条目</strong>。该特性在虚拟机管理程序或其他软件安装BTB条目时进行跟踪，并在需要时自动执行BTB刷新，从而使SEV - SNP虚拟机不会猜测性地使用这些BTB条目。</p>
+<p>同时多线程( Simultaneous Multi-Thread，SMT )是CPU硬件的另一个领域，一直是侧信道研究的热点。<strong>由于SMT设计中共享的硬件资源，使得更多的侧信道观测成为可能</strong>。相信自己对这种观察特别敏感的SEV - SNP虚拟机可能会选择一种策略，限制它们只能在SMT禁用的系统上运行。</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>SEV - SNP表示在不可信的托管环境中运行的虚拟机的安全性和隔离性的增强级别。SEV - SNP在SEV和SEV - ES特征的基础上，增加了针对可能存在漏洞的虚拟机管理程序的数据机密性保护，从而<strong>增加了能够保护虚拟机免受恶意虚拟机管理程序攻击的完整性保证</strong>。除了完整性保护，<strong>SEV - SNP还提供了新的架构灵活性，包括多个VMPL，新的证明和密钥派生架构，以及任意灵活的迁移策略</strong>。</p>
+<p>SEV - SNP还通过提供可选的保护来<strong>防止恶意中断注入、某些推测的侧信道攻击和TCB回滚攻击</strong>，从而提高了安全性。与以前的SEV和SEV - ES功能一样，这些功能被设计为在客户操作系统级别启用，这意味着不需要对虚拟机内部的应用程序进行任何更改。</p>
+<p>对于现代云计算环境，虚拟机隔离是一项具有挑战性的任务。<strong>SEV - SNP是第一个同时支持对孤立虚拟机的机密性和完整性保护的x86架构，能够为各种工作负载提供更安全的云计算</strong>。AMD认为，安全的云计算是未来数据中心的关键工作负载，SEV - SNP是实现这一目标的下一步。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 zxy
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
