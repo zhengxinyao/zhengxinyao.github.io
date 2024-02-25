@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Xinyao</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Xinyao">
+  <title>【TEE】Intel SGX的不足和解决方案 | Xinyao</title>
+  <meta name="keywords" content=" TEE , Intel SGX ">
+  <meta name="description" content="【TEE】Intel SGX的不足和解决方案 | Xinyao">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="勇攀高峰">
 <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -421,12 +421,60 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-【TEE】Intel-SGX的不足和解决方案" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#My-Page"><span class="toc-text">My Page</span></a></li></ol>
+        <h1 class="article-title">【TEE】Intel SGX的不足和解决方案</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="知识总结">知识总结</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">TEE</a>
+            
+            <a class="color5">Intel SGX</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 20:01:51'>2024-02-25 19:59</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E8%AE%A1%E7%AE%97%E8%83%BD%E5%8A%9B%E5%BC%B1"><span class="toc-text">1 计算能力弱</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E4%BE%A7%E4%BF%A1%E9%81%93%E6%94%BB%E5%87%BB"><span class="toc-text">2 侧信道攻击</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Function-Privacy%EF%BC%88%E8%BF%9C%E7%A8%8B%E8%AE%A4%E8%AF%81%E9%9C%80%E8%A6%81%E8%AF%81%E6%98%8E%E4%BB%A3%E7%A0%81%EF%BC%89"><span class="toc-text">3 Function Privacy（远程认证需要证明代码）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Memory-Safety"><span class="toc-text">4 Memory Safety</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8A%B6%E6%80%81"><span class="toc-text">5 运行时状态</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E7%BC%96%E7%A8%8B%E5%92%8C%E6%98%93%E7%94%A8%E6%80%A7"><span class="toc-text">6 编程和易用性</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -439,17 +487,77 @@
     }
 </style>
 </div>
-            <h1 id="My-Page"><a href="#My-Page" class="headerlink" title="My Page"></a>My Page</h1><p>本科：同济大学，计算机+数学（2018-2022）</p>
-<p>硕士：计算技术研究所，智能处理器研究中心（2022至今）</p>
-<p>相关方向：AI，架构，安全</p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[基于硬件可信执行环境的隐私计算（2021）阅读记录<br><a target="_blank" rel="noopener" href="https://heartever.github.io/files/ConfidentialComputing-tianjin.pdf">https://heartever.github.io/files/ConfidentialComputing-tianjin.pdf</a><br><a target="_blank" rel="noopener" href="https://heartever.github.io/files/ConfidentialComputing-Guilin.pdf">https://heartever.github.io/files/ConfidentialComputing-Guilin.pdf</a><br><a target="_blank" rel="noopener" href="https://heartever.github.io/files/HETEE_slides.pdf">https://heartever.github.io/files/HETEE_slides.pdf</a></p>
+<p>@<div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E8%AE%A1%E7%AE%97%E8%83%BD%E5%8A%9B%E5%BC%B1"><span class="toc-text">1 计算能力弱</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E4%BE%A7%E4%BF%A1%E9%81%93%E6%94%BB%E5%87%BB"><span class="toc-text">2 侧信道攻击</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Function-Privacy%EF%BC%88%E8%BF%9C%E7%A8%8B%E8%AE%A4%E8%AF%81%E9%9C%80%E8%A6%81%E8%AF%81%E6%98%8E%E4%BB%A3%E7%A0%81%EF%BC%89"><span class="toc-text">3 Function Privacy（远程认证需要证明代码）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Memory-Safety"><span class="toc-text">4 Memory Safety</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8A%B6%E6%80%81"><span class="toc-text">5 运行时状态</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E7%BC%96%E7%A8%8B%E5%92%8C%E6%98%93%E7%94%A8%E6%80%A7"><span class="toc-text">6 编程和易用性</span></a></li></ol></div></p>
+<h1 id="1-计算能力弱"><a href="#1-计算能力弱" class="headerlink" title="1 计算能力弱"></a>1 计算能力弱</h1><p>计算能力弱：CPU至多8核，128&#x2F;256MB加密内存<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/559f0fd12ff442cc9e535351f71e79f7.png"></p>
+<p>解决方法：可以扩展到GPU（Graviton，HIX）、 FPGA（SGX-FPGA，shEF）、 AI加速器（TNPU，TACC）等架构，提高计算能力</p>
+<p>缺点：</p>
+<ul>
+<li>需要更改GPU（Graviton）或者CPU（HIX）</li>
+<li>GPU runtime等heavy software stack需要在可信环境内（Graviton）</li>
+<li>频繁通信的加解密开销</li>
+<li>GPU runtime和GPU的通信可能泄露侧信道信息（Telekine）</li>
+</ul>
+<p>相关解决方案：HETEE，极简TCB，物理强隔离</p>
+<h1 id="2-侧信道攻击"><a href="#2-侧信道攻击" class="headerlink" title="2 侧信道攻击"></a>2 侧信道攻击</h1><p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/07659eafaa784453b2b6808d1b180d27.png"></p>
+<p><strong>解决方案</strong><br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/3959137169ab4e0988b8f533942ce2f3.png"></p>
+<ul>
+<li><p>系统角度</p>
+<ul>
+<li>检测异常中断(T-SGX、De javu)</li>
+<li>检测cache eviction (TSX, Usenix 18)</li>
+<li>检测SMT（hyper-threading）（HyperRace, SP 2018 <a target="_blank" rel="noopener" href="https://heartever.github.io/files/SideChannelRisks.pdf%EF%BC%89">https://heartever.github.io/files/SideChannelRisks.pdf）</a></li>
+</ul>
+</li>
+<li><p>软件开发者的角度</p>
+<ul>
+<li>ORAM</li>
+<li>Oblivious program execution</li>
+<li>Code&#x2F;data randdomization<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/c5baa330c4984407a2f784b09851ebf3.png"></li>
+</ul>
+</li>
+</ul>
+<h1 id="3-Function-Privacy（远程认证需要证明代码）"><a href="#3-Function-Privacy（远程认证需要证明代码）" class="headerlink" title="3 Function Privacy（远程认证需要证明代码）"></a>3 Function Privacy（远程认证需要证明代码）</h1><p>为证明自身，service provider需 要向remote user展示自己的代码<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/f8d2b594d9eb472598427ede0a5d63ae.png"></p>
+<p>保证代码安全的认证：</p>
+<ul>
+<li>在SGX内实现一个binary loader + checker</li>
+<li>在SGX外提供编译器</li>
+<li>Checker检查代码，并向remote user提供证据</li>
+<li>思路来源于proof carrying code（PCC）<br>硬 成S 1</li>
+</ul>
+<h1 id="4-Memory-Safety"><a href="#4-Memory-Safety" class="headerlink" title="4 Memory Safety"></a>4 Memory Safety</h1><p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/ad82d3c693e244dfb90cf1ae0e259782.png"><br>若代码存在漏洞，则用户数据可能被泄露<br>思路：代码具备某些属性，即使 control flow被任意redirect，仍能保证数据不被泄露</p>
+<h1 id="5-运行时状态"><a href="#5-运行时状态" class="headerlink" title="5 运行时状态"></a>5 运行时状态</h1><p>如何保证运行时状态的正确性？<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/761ef9d258254137a070088560bad170.png"></p>
+<h1 id="6-编程和易用性"><a href="#6-编程和易用性" class="headerlink" title="6 编程和易用性"></a>6 编程和易用性</h1><ul>
+<li>LibOS：Haven(Windows[BPH,OSDI’14])、Graphene-SGX(linux[TPV,ATC’17])、<br>SCONE[ATG+,OSDI’16]、Occlum(蚂蚁金服)</li>
+<li>程序自动分割：Glamdring(c&#x2F;c++[LPM+,ATC’17])，Civet(Java[TSJ+,Security’20])</li>
+<li>编程语言支持：python(MesaPy，百度), Javascript[GWM+,Eurosec’17],GO</li>
+<li>微容器：Panoply[STT+,NDSS’17]</li>
+<li>中间件：Open Enclave(微软)、Asylo(Google)、SOFAEnclave(蚂蚁金服)</li>
+</ul>
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -458,11 +566,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>
