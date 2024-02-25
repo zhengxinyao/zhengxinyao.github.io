@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【TEE】ARM CCA 可信计算架构 | Xinyao</title>
+  <meta name="keywords" content=" TEE , ARM CCA ">
+  <meta name="description" content="【TEE】ARM CCA 可信计算架构 | Xinyao">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="勇攀高峰">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://zhengxinyao.github.io/tags/index.html">
+<meta property="og:site_name" content="Xinyao">
+<meta property="og:description" content="勇攀高峰">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-07T15:59:52.000Z">
+<meta property="article:modified_time" content="2024-02-07T15:59:52.773Z">
+<meta property="article:author" content="ICT-IPRC">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/favicon.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/myself.png"/>
+</a>
+<div class="author">
+    <span>ICT-IPRC</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/zhengxinyao"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="linkedin"
+               href="https://www.linkedin.com/in/%E6%98%95%E7%91%B6-%E9%83%91-956a732b5/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-linkedin"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/destiny-44-90-76"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qq_43543209?spm=1010.2135.3001.5343"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1601835186@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1601835186&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(5)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文记录">
+            
+            论文记录
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识总结">
+            
+            知识总结
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="5">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>论文</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI加速器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV-SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ARM CCA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TEE</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/"
+           data-tag="TEE,ARM CCA"
+           data-author="" >
+            <span class="post-title" title="【TEE】ARM CCA 可信计算架构">【TEE】ARM CCA 可信计算架构</span>
+            <span class="post-date" title="2024-02-25 19:24:38">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/"
+           data-tag="TEE,AMD SEV-SNP"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离">【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离</span>
+            <span class="post-date" title="2024-02-25 19:11:12">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/"
+           data-tag="TEE,AMD SEV"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV内存加密】 白皮书">【TEE】【AMD SEV内存加密】 白皮书</span>
+            <span class="post-date" title="2024-02-25 19:05:02">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Computing-within-an-AI-Accelerator/"
+           data-tag="TEE,论文,AI加速器,架构设计"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Computing within an AI Accelerator">【TEE论文】Confidential Computing within an AI Accelerator</span>
+            <span class="post-date" title="2024-02-25 18:53:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/"
+           data-tag="TEE"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境业界资料">【TEE】可信执行环境业界资料</span>
+            <span class="post-date" title="2024-02-25 18:31:25">2024/02/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【TEE】ARM-CCA-可信计算架构" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【TEE】ARM CCA 可信计算架构</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="知识总结">知识总结</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">TEE</a>
+            
+            <a class="color3">ARM CCA</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 19:29:16'>2024-02-25 19:24</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%BA%E5%AF%86%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B"><span class="toc-text">机密计算架构简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="toc-text">1. 概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">引言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%AF%86%E8%AE%A1%E7%AE%97%EF%BC%9F"><span class="toc-text">2. 什么是机密计算？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Arm-CCA-%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82"><span class="toc-text">Arm CCA 相关要求</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Arm-CCA-%E6%89%A9%E5%B1%95"><span class="toc-text">3.Arm CCA 扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Realms"><span class="toc-text">Realms</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Realm-world-%E5%92%8C-Root-world"><span class="toc-text">Realm world 和 Root world</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Arm-TrustZone-%E6%89%A9%E5%B1%95%E5%92%8C-Arm-RME-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">Arm TrustZone 扩展和 Arm RME 之间的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Arm-CCA-%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84"><span class="toc-text">4. Arm CCA 硬件架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Realm-world-%E7%9A%84%E8%A6%81%E6%B1%82"><span class="toc-text">Realm world 的要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Arm-CCA-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-text">Arm CCA 内存管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%81%E6%98%8E"><span class="toc-text">证明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-Arm-CCA-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84"><span class="toc-text">5. Arm CCA 软件架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%A0%88%E6%A6%82%E8%BF%B0"><span class="toc-text">软件栈概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Realm-%E7%AE%A1%E7%90%86%E7%9B%91%E8%A7%86%E5%99%A8"><span class="toc-text">Realm 管理监视器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Realm-Management-Interface"><span class="toc-text">Realm Management Interface</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Realm-Services-Interface"><span class="toc-text">Realm Services Interface</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E8%AE%BE%E5%A4%87%E5%88%86%E9%85%8D-%EF%BC%88DA%EF%BC%89-%E5%92%8C%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E4%B8%8A%E4%B8%8B%E6%96%87-%EF%BC%88MEC%EF%BC%89"><span class="toc-text">6.设备分配 （DA） 和内存加密上下文 （MEC）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E5%88%86%E9%85%8D"><span class="toc-text">设备分配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Arm-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%A7%84%E8%8C%83"><span class="toc-text">Arm 系统架构规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PCI-TDISP-%E5%92%8C%E8%AE%BE%E5%A4%87%E8%AE%A4%E8%AF%81%E5%92%8C%E5%88%86%E9%85%8D"><span class="toc-text">PCI TDISP 和设备认证和分配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E5%88%86%E9%85%8D%E6%B5%81%E7%A8%8B"><span class="toc-text">设备分配流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E8%AF%81%E6%98%8E"><span class="toc-text">设备证明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ID-%E5%AF%86%E9%92%A5%E7%BC%96%E7%A8%8B"><span class="toc-text">ID 密钥编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%AD%E5%BC%80-Realm-%E8%BF%9E%E6%8E%A5"><span class="toc-text">断开 Realm 连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E4%B8%8A%E4%B8%8B%E6%96%87-%EF%BC%88MEC%EF%BC%89"><span class="toc-text">内存加密上下文 （MEC）</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>作者：Arm 首席应用工程师 David Brooke<br>原文：<br><a target="_blank" rel="noopener" href="https://developer.arm.com/documentation/den0125/0100">Learn the architecture - Introducing Arm Confidential Compute Architecture Version 3.0</a></p>
+<p><a href="https://link.zhihu.com/?target=https://www.anandtech.com/show/16584/arm-announces-armv9-architecture/2">Introducing the Confidential Compute Architecture</a></p>
+<p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%BA%E5%AF%86%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B"><span class="toc-text">机密计算架构简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="toc-text">1. 概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">引言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%AF%86%E8%AE%A1%E7%AE%97%EF%BC%9F"><span class="toc-text">2. 什么是机密计算？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Arm-CCA-%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82"><span class="toc-text">Arm CCA 相关要求</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Arm-CCA-%E6%89%A9%E5%B1%95"><span class="toc-text">3.Arm CCA 扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Realms"><span class="toc-text">Realms</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Realm-world-%E5%92%8C-Root-world"><span class="toc-text">Realm world 和 Root world</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Arm-TrustZone-%E6%89%A9%E5%B1%95%E5%92%8C-Arm-RME-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">Arm TrustZone 扩展和 Arm RME 之间的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Arm-CCA-%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84"><span class="toc-text">4. Arm CCA 硬件架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Realm-world-%E7%9A%84%E8%A6%81%E6%B1%82"><span class="toc-text">Realm world 的要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Arm-CCA-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-text">Arm CCA 内存管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%81%E6%98%8E"><span class="toc-text">证明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-Arm-CCA-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84"><span class="toc-text">5. Arm CCA 软件架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%A0%88%E6%A6%82%E8%BF%B0"><span class="toc-text">软件栈概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Realm-%E7%AE%A1%E7%90%86%E7%9B%91%E8%A7%86%E5%99%A8"><span class="toc-text">Realm 管理监视器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Realm-Management-Interface"><span class="toc-text">Realm Management Interface</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Realm-Services-Interface"><span class="toc-text">Realm Services Interface</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E8%AE%BE%E5%A4%87%E5%88%86%E9%85%8D-%EF%BC%88DA%EF%BC%89-%E5%92%8C%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E4%B8%8A%E4%B8%8B%E6%96%87-%EF%BC%88MEC%EF%BC%89"><span class="toc-text">6.设备分配 （DA） 和内存加密上下文 （MEC）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E5%88%86%E9%85%8D"><span class="toc-text">设备分配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Arm-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%A7%84%E8%8C%83"><span class="toc-text">Arm 系统架构规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PCI-TDISP-%E5%92%8C%E8%AE%BE%E5%A4%87%E8%AE%A4%E8%AF%81%E5%92%8C%E5%88%86%E9%85%8D"><span class="toc-text">PCI TDISP 和设备认证和分配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E5%88%86%E9%85%8D%E6%B5%81%E7%A8%8B"><span class="toc-text">设备分配流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E8%AF%81%E6%98%8E"><span class="toc-text">设备证明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ID-%E5%AF%86%E9%92%A5%E7%BC%96%E7%A8%8B"><span class="toc-text">ID 密钥编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%AD%E5%BC%80-Realm-%E8%BF%9E%E6%8E%A5"><span class="toc-text">断开 Realm 连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E4%B8%8A%E4%B8%8B%E6%96%87-%EF%BC%88MEC%EF%BC%89"><span class="toc-text">内存加密上下文 （MEC）</span></a></li></ol></li></ol></div></p>
+<h1 id="机密计算架构简介"><a href="#机密计算架构简介" class="headerlink" title="机密计算架构简介"></a>机密计算架构简介</h1><p><strong>Hign Level设计</strong><br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/a4513435973e4d67859931b47ad779a3.png"></p>
+<p><strong>安全威胁模型</strong><br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/2db903d1cdcc4d23b8ae75e7514ebab3.png"><br><strong>用法</strong><br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/c7cabe4507204fdc90f3e9b68296f4fa.png"><br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/d18e1532645e4856aaf2a7bcf9410375.png"><br><strong>内存安全问题</strong><br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/7bd3fc6e876a4ae7a1305080581f3a24.png"><br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/c64815d76a6a4b8b9534e69d6f35550c.png"></p>
+<hr>
+<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><p>在本指南中，我们将探讨机密计算在现代计算平台中的作用，并解释机密计算的原理。然后，我们将介绍 Arm 机密计算架构 （Arm CCA） 如何在 Arm 计算平台中实现机密计算。</p>
+<p>在本指南结束时，您将能够：</p>
+<ul>
+<li>定义机密计算</li>
+<li>描述一个复杂的系统信任链</li>
+<li>了解 Realm 是由 Arm CCA 引入的受保护的执行环境</li>
+<li>解释如何在 Arm CCA 的实现上创建、管理和执行 Realm</li>
+<li>定义可信执行环境 （TEE） 和 Realm 之间的区别</li>
+<li>解释 Realm 所有者如何在 Realm 中建立信任</li>
+</ul>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>本指南假定你熟悉 Arm 异常模型和内存管理。如果您不熟悉这些主题，请阅读我们的<a target="_blank" rel="noopener" href="https://developer.arm.com/documentation/102412/latest">AArch64 异常模型</a>和<a target="_blank" rel="noopener" href="https://developer.arm.com/documentation/101811/latest">AArch64 内存管理指南</a>.</p>
+<p>Arm CCA 的一些操作涉及虚拟机和虚拟化。如果您不熟悉这些概念，请参阅<a target="_blank" rel="noopener" href="https://developer.arm.com/documentation/102142/latest/">AArch64 虚拟化</a>.</p>
+<p>如果您不熟悉 Arm 安全概念，请参阅<a target="_blank" rel="noopener" href="https://developer.arm.com/documentation/102406/latest/">安全简介</a>。</p>
+<hr>
+<h1 id="2-什么是机密计算？"><a href="#2-什么是机密计算？" class="headerlink" title="2. 什么是机密计算？"></a>2. 什么是机密计算？</h1><p>机密计算是指在基于硬件支持的可信的安全环境中运行计算任务，以此对使用中的数据进行保护。这种保护能让代码和数据免于被特权软件和硬件代理所监控和修改。</p>
+<p>在机密计算环境中执行的任何应用程序或操作系统都将独立于系统的其他部分单独执行。任何由此种独立执行所生成或消费的数据，在没有明确许可的情况下，都不会被同一平台上的任何其他角色监视。</p>
+<h2 id="Arm-CCA-相关要求"><a href="#Arm-CCA-相关要求" class="headerlink" title="Arm CCA 相关要求"></a>Arm CCA 相关要求</h2><p>在 Arm CCA 系统中执行的代码不必信任在环境中执行的大型复杂软件堆栈或任何可能影响它的外围设备。例如，支持 DMA 的设备。Arm CCA 消除了与软件堆栈或硬件开发人员建立许多关系的需要。</p>
+<p>如果安全架构师在云服务器系统上部署负载，而他们可能不知道该系统的虚拟机管理程序开发人员是谁。由于虚拟机监控程序是未知的，这可能会导致在没有 Arm CCA 的情况下对平台上的执行缺乏信任。</p>
+<p>Arm CCA 允许应用程序开发人员安全地部署工作负载，而无需信任底层软件基础设施，例如在安全环境中运行的虚拟机管理程序或代码。</p>
+<p>若要允许 Arm CCA，平台必须提供以下信息：</p>
+<ul>
+<li>一个能隔离所有不可信任者的执行环境</li>
+<li>一个能将该执行环境初始化为值得信任的状态的机制。此初始化要求这个执行环境有自己的信任链 (Chain of Trust)，而此信任链是独立于平台上并行使用的不可信任环境的信任链。</li>
+</ul>
+<p>在本指南中，我们将解释 Arm CCA 如何通过硬件实现和软件使用来满足这些要求。</p>
+<hr>
+<h1 id="3-Arm-CCA-扩展"><a href="#3-Arm-CCA-扩展" class="headerlink" title="3.Arm CCA 扩展"></a>3.Arm CCA 扩展</h1><p>Arm CCA 让您能在部署应用程序或虚拟机的同时，阻止例如 hypervisor 等特权软件的访问。但是，内存等资源通常由这些特权软件来管理。在这种情况下，特权软件（例如 hypervisor ）就具有访问应用程序或虚拟机内存的权限。</p>
+<p><strong>Arm CCA 允许虚拟机监控程序控制 VM，但删除了访问该 VM 使用的代码、寄存器状态或数据的权限。</strong></p>
+<p>通过<strong>创建称为 Realms 的受保护 VM 执行空间来实现分离。Realm 在代码执行和数据访问方面与正常世界完全隔离。</strong>Arm CCA 通过架构硬件扩展和固件的组合来实现这种分离。</p>
+<p>在 Arm CCA 中，Arm 应用程序 PE 上的硬件扩展称为领域管理扩展 （RME）。RME与领域控制的专用固件（称为领域管理监视器（RMM））和异常级别3的监视器代码进行交互。</p>
+<h2 id="Realms"><a href="#Realms" class="headerlink" title="Realms"></a>Realms</h2><p>Realm 是一种 Arm CCA 环境，能被 Normal world 主机动态分配。主机是指能管理应用程序或虚拟机的监控软件。</p>
+<p><strong>Realm 及其所在平台的初始化状态都可以得到验证。这一过程使 Realm 的所有者能在向它提供任何机密前就建立信任。Realm 不必从控制它的非安全虚拟机管理程序继承信任。</strong></p>
+<p>主机可以分配和管理资源配置。主机可以管理 Realm 虚拟机操作的调度。但是，主机不能观察或修改 Realm 执行的指令。</p>
+<p>在主机控制下，Realm 可以被创建并被销毁。可以通过主机请求添加或删除页面，其方式类似于管理任何其他非机密虚拟机的虚拟机管理程序。</p>
+<p>为了运行 CCA 系统，需要对主机进行修改。主机继续控制非机密虚拟机，但需要与 Arm CCA 固件（特别是领域管理监视器 （RMM））进行通信。</p>
+<h2 id="Realm-world-和-Root-world"><a href="#Realm-world-和-Root-world" class="headerlink" title="Realm world 和 Root world"></a>Realm world 和 Root world</h2><p>Armv8-A TrustZone 扩展拥有两个独立的环境，分别是 Secure world 和 Normal world ，支持代码的安全执行和数据的隔离。</p>
+<p>这里 World 是由 PE 的安全状态和物理地址空间组成。PE 执行时的安全状态会决定 PE 能访问哪种物理地址空间。在安全状态下，PE 可以访问安全和非安全的物理地址空间，但是在非安全的状态下，它只能访问非安全的物理地址空间。 Normal world 一般用来指非安全的状态和非安全的物理地址空间的组合。</p>
+<p>Arm CCA 是 Armv9-A 的一部分，引入了 Realm Management Extension (RME)。该扩展引入了两个额外的 World，分别是 Realm world 和 Root world：</p>
+<ul>
+<li><p>Root world 引入了 Root 安全状态和 Root 物理地址空间。PE 在 Exception level 3运行时，处于 Root 安全状态。Root PA 与 Secure PA 是分开的。这是与 Armv8-A TrustZone 的主要区别，在 Armv8-A TrustZone 中，异常级别 3 代码没有专用地址空间，而是使用安全 PA。后者仍被 S_EL2&#x2F;1&#x2F;0 使用。监视器在 Root 世界中运行。</p>
+</li>
+<li><p>Realm world 与 TrustZone 技术下的安全环境类似。Realm world 包括 Realm 安全状态和 Realm PA。Realm 状态代码可以在 R_EL2, R_EL1 和 R_EL0 上执行。在 Realm world 中运行的控制固件可以访问 Normal world 中的内存，支持共享缓冲。</p>
+</li>
+</ul>
+<p>下图说明了四个基于 RME 的 world 以及它们与 SCR_EL3 NS 和 NSE 位之间的关系：</p>
+<p>图 1：Arm CCA 四个 world 的位置<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/c3b403b399eb41ef9de6f9e08afa8d5b.png"></p>
+<p>Root world 支持可信的启动执行和不同环境之间的切换。PE 复位到 Root world中。</p>
+<p>Realm world 为虚拟机提供了一个与 Normal 和 Secure world 隔离的执行环境。<strong>虚拟机需要 Normal world 中主机的控制。为能全面控制 Realm 创建和执行</strong>，Arm CCA 系统将提供：</p>
+<ul>
+<li>Realm Management Extension：这是底层架构所要求的硬件扩展，<strong>让隔离的 Realm 虚拟机得以运行</strong></li>
+<li>Realm Management Monitor：这属于固件的一部分，用于<strong>按照 Normal world 主机的请求来管理 Realm 的创建和执行</strong></li>
+</ul>
+<p>在 Arm CCA 硬件架构和 Arm CCA 软件架构的章节中，我们会对这些部件进行更详细的介绍。</p>
+<p>在不支持 RME 的 PE 中的 world 切换由 SCR_EL3.NS 位控制。在切换为 Secure world 时，Exception level 3 软件设置 NS 为 0，切换为 Normal world 时设置 NS 为 1。支持 RME 的 PE 中进行 world 切换是通过在 SCR_EL3 寄存器增加一个新的 SCR_EL3.NSE 位来扩展的。</p>
+<p>下表显示了“这些寄存器位”是如何控制四个环境之间的执行和访问：</p>
+<p>表 1：World 控制和状态位<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/d421751d6f014121ac1074bb221175e9.png"></p>
+<h2 id="Arm-TrustZone-扩展和-Arm-RME-之间的区别"><a href="#Arm-TrustZone-扩展和-Arm-RME-之间的区别" class="headerlink" title="Arm TrustZone 扩展和 Arm RME 之间的区别"></a>Arm TrustZone 扩展和 Arm RME 之间的区别</h2><p>所有 Arm A系列的处理器都可以选择实施 Arm TrustZone 架构扩展。这些扩展支持开发隔离的执行和数据环境。可信操作系统（Trusted Operating System, TOS）等组件可以服务在隔离环境中执行的可信应用程序，响应 Normal world 中运行的 Rich OS 的安全服务器请求。</p>
+<p><strong>在 Armv8.4-A 中将虚拟化添加到安全世界中，允许您在安全环境中管理多个安全分区</strong>。此功能可以允许将多个 TOS 应用于一个系统。在S_EL2执行的安全分区管理器 （SPM） 是安全分区的管理器。SPM 具有与普通世界中的虚拟机管理程序类似的功能。</p>
+<p>在操作中，可信操作系统通常是信任链的一部分，它由更高权限的固件验证，在某些系统中，这可能是 SPM。这意味着 TOS 依赖于与更高权限固件开发人员的关系。</p>
+<p>有两种方法可以启动 TOS 的执行：</p>
+<ul>
+<li>富操作系统生成，其中富操作系统进入空闲循环并执行 SMC 指令以通过监视器调用 TOS</li>
+<li>针对受信任操作系统的中断。安全类型 1 中断用于执行 TOS。在正常世界执行期间断言的安全类型 1 中断通过监控器调用 TOS。</li>
+</ul>
+<p><strong>Realm 虚拟机不同于受信任的操作系统或受信任的应用程序，因为 Realm 虚拟机是由普通世界的主机控制的。在创建和内存分配等方面，Realm 虚拟机的行为与主机控制的任何其他虚拟机一样。</strong></p>
+<p>Realm VM 执行和 Trusted OS 执行之间的区别在于 <strong>Realm 没有启用任何物理中断。Realm 的所有中断都由虚拟机管理程序虚拟化，然后通过传递给 RMM 的命令向 Realm 发出信号。</strong>这意味着被入侵的虚拟机管理程序可能会阻止 Realm 虚拟机的执行，因此无法保证 Realm 的执行。</p>
+<p><strong>Realm 的执行和内存访问由控制主机软件（例如虚拟机管理程序）初始化</strong>。Realm 不必由主机验证。Realm 有一个独立的信任链，独立于正常和安全世界使用的信任链。有关更多信息，请参阅<a target="_blank" rel="noopener" href="https://developer.arm.com/documentation/den0125/0300/Arm-CCA-Hardware-Architecture?lang=en#md332-arm-cca-hardware-architecture__attestation">证明</a> 。Realm 也与控制软件完全隔离。如果 Realm 是由 Host 初始化的，那么 Host 就无法查看 Realm 的数据或数据存储器。</p>
+<p>使用 Realms 和 TOS 的主要区别在于安全执行和 Realm 执行之间的设计意图。</p>
+<p>可信应用程序用于与系统开发关系密切的参与者（如有机硅供应商 （SiP） 和原始设备制造商 （OEM））所拥有的特定于平台的服务。</p>
+<p><strong>Realm 执行的目的是允许普通开发人员在系统上执行代码，而无需与计算系统中的开发人员建立复杂的业务关系</strong>。</p>
+<p><strong>Arm CCA 允许在普通世界宿主的控制下按需创建和销毁领域。资源可以动态地添加或检索到 Realms</strong>。</p>
+<p>信任通常根据机密性、完整性和真实性进行定义，并在以下列表中进行了说明：</p>
+<ul>
+<li>在机密性方面，Arm CCA 环境的代码数据或状态无法被同一设备上运行的其他软件监视，即使这个软件具有更高的特权</li>
+<li>在完整性方面，Arm CCA 环境的代码数据或状态无法被同一设备上运行的其他软件修改，即便这个软件具有更高的特权</li>
+<li>在真实性方面，代码或数据可被运行在同一设备上的其他软件修改，但任何改动都能被识别</li>
+</ul>
+<p><strong>可信应用程序和 TOS 为系统提供机密性、完整性和真实性。 Realm 执行可为系统提供机密性和完整性。</strong></p>
+<p>Arm CCA 提供的四个 world 使 Secure world 和 Realm world 之间完全隔离开。这意味着可信应用程序无需担心任何 Realm 虚拟机的执行， Realm虚拟机也无需担心任何被执行的可信应用程序。</p>
+<h1 id="4-Arm-CCA-硬件架构"><a href="#4-Arm-CCA-硬件架构" class="headerlink" title="4. Arm CCA 硬件架构"></a>4. Arm CCA 硬件架构</h1><p>这一章节主要介绍 Realm Management Extension，即对 PE 架构的改动，使 PE 能运行 Realm。</p>
+<h2 id="Realm-world-的要求"><a href="#Realm-world-的要求" class="headerlink" title="Realm world 的要求"></a>Realm world 的要求</h2><p>下图完整说明了 Realm 是如何配合 ARM CCA 系统的：</p>
+<p>图 2： Realm world 软件执行<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/6b9cf1dc16d64832abecf14d40ef20bf.png"></p>
+<p><strong>Realm 世界必须能够执行代码，访问内存和可信设备，与所有其他非 Root 世界和设备完全隔离</strong>。</p>
+<p>就像安全状态一样，Realm 世界有三个异常级别，R_EL0、R_EL1 和 R_EL2。Realm 虚拟机以R_EL1和R_EL0运行。Realm Management Monitor （RMM） 在 R_EL2 中运行。RMM 在 Arm CCA 软件堆栈中进行了描述。</p>
+<p>隔离是通过架构 Realm Management Extension 在硬件上强制实施的，<strong>它允许控制内存管理、执行以及 Realm 的上下文和数据隔离</strong>。隔离意味着通过 PE 或加密或 Realm 和 Root 环境的错误异常来阻止访问。</p>
+<p>在下图中，隔离的 Realm 虚拟机由虚拟机管理程序在 Normal 世界中生成和控制，但物理执行在 Realm 世界中：</p>
+<p>图 3： Realm 虚拟机执行<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/a5bd7c67853840fb91835f031ecbd47b.png"></p>
+<p>Realm 虚拟机的执行通过 hypervisor 命令初始化，<strong>这些命令被传达到 Monitor，然后通过 Monitor 推送到 RMM</strong>。</p>
+<p><strong>Monitor 在不同的 world 之间扮演着守门人的角色。它控制着 Normal，Secure 和 Realm world 之间的通道，确保各个 world 之间的隔离能一直得以维持，同时在需要的地方支持通信和控制。</strong></p>
+<h2 id="Arm-CCA-内存管理"><a href="#Arm-CCA-内存管理" class="headerlink" title="Arm CCA 内存管理"></a>Arm CCA 内存管理</h2><p>实施 TrustZone 安全扩展的 Arm A 系列处理器具有两个物理地址空间 (PAS)：</p>
+<ul>
+<li>Non-Secure 物理地址空间</li>
+<li>Secure 物理地址空间</li>
+</ul>
+<p>Realm Management Extension 增加了另外两个物理地址空间：</p>
+<ul>
+<li>Realm 物理地址空间</li>
+<li>Root 物理地址空间</li>
+</ul>
+<p>下图描述了这些物理地址空间以及如何在工作系统中实施这些空间：</p>
+<p>图 4：物理地址空间<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/ae2e97ca1b7d4f978c0d679752c5a115.png"></p>
+<p>不同 world 之间的 PAS 访问由硬件强制执行，见下表：</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/4a5d713b56b74db683fe6891ab2aa7be.png" alt="安全状态
+image.png"></p>
+<p>表 2：物理地址访问权限</p>
+<p>如表所示，<strong>根状态可以访问所有物理地址空间。Root 状态允许内存在非安全 PAS 和安全或领域 PAS 之间转换（如果需要）。</strong></p>
+<p>为确保强制执行所有世界的隔离规则，上表中的物理内存访问控制由下游的内存管理单元 （MMU） 强制执行。此过程称为粒度保护检查 （GPC）。</p>
+<p>每个物理内存粒度的 PAS 分配在粒度保护表 （GPT） 中进行了描述。<strong>异常级别 3 中的监控器可以动态更新 GPT，从而允许物理内存在世界之间移动</strong>。</p>
+<p><strong>任何访问控制冲突都会导致一种新型故障，称为粒度保护故障 （GPF）</strong>。GPC 的启用、GPT 的内容和 GPF 的路由由 Root 状态控制。</p>
+<p>属于 Realm 的资源必须位于 Realm 拥有的内存中，也就是 Realm PAS 的一部分，以确保隔离。但是，Realm 可能需要访问非安全内存中保存的一些资源，例如启用消息传递。这意味着 <strong>Realm 需要能够访问 Realm 和非安全 PAS 中的物理地址。</strong></p>
+<p>任何 Realm 虚拟机都在 Realm 世界中执行，但在普通世界主机的控制下执行。Realm 虚拟机需要能够访问普通世界 PAS 和 Ream 世界 PAS 中的内存。对不同 PAS 的访问由 Realm 阶段 2 转换表中 NS 位的状态控制。</p>
+<p>下图显示了 GPC 在虚拟地址 （VA） 到物理地址 （PA） 链中的完整阶段和位置。在此图中，TTD 是转换表描述符，GPTD 是粒度保护表描述符：</p>
+<p>图 5：粒度保护检查</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/028dbfb639da4e878b656669e288b17b.png"></p>
+<p>此图显示了具有 RME 的平台的虚拟地址到物理地址的转换阶段。</p>
+<p>如需了解 stage 1 和 stage 2 转换的详细信息，请参阅 <a target="_blank" rel="noopener" href="https://developer.arm.com/documentation/101811/0102/">AARCH64 内存管理</a>。但是，在这个例子中，<strong>Exception level 3 的 stage 2 页表条目定义了一个额外的位，目的是允许通过 Monitor 访问四个 PAS</strong>。这就是转换表定义中的非安全扩展（Non-secure Extension, NSE）位。</p>
+<p>Normal world，Realm world 和 Secure world 都可以有 Exception level 1，Exception level 2 的 stage 1 转换，如有必要，Exception level 2 还可以有 stage 2 转换。</p>
+<p>RME 在 stage 1 和 stage 2 转换过程后增加了GPC。<strong>GPC 对照 GPT 检查所有物理地址和 PAS，目的是允许访问或是产生 fault</strong>。GPT 保存Root 内存中，以确保它能与所有其他 world 隔离开。<strong>GPT 只可以通过在 Root world 运行的代码从 Monitor 代码或可信固件创建和修改</strong>。</p>
+<p>如果非 PE 请求者连接到请求者端过滤器（如系统 MMU （SMMU）），他们也将包含在此检查中。</p>
+<h2 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h2><p>在 Realms 中运行的代码将管理机密数据或运行机密算法。因此，该代码需要确保它运行的是真正的 Arm CCA 平台，而不是一些模拟。代码还需要知道它已正确加载且未被篡改。最后，代码还需要知道整个平台或领域没有处于可能泄露其机密的调试状态。建立此信任的过程称为证明。</p>
+<p>证明分为两个关键部分：</p>
+<ul>
+<li>平台证明</li>
+<li>领域初始状态的证明</li>
+</ul>
+<p><strong>这两个部分组合在一起创建证明报告，领域代码可以随时请求这些报告</strong>。然后，可以使用这些报告来验证平台和领域中代码的有效性。</p>
+<p>平台证明包括证明 Realm 背后的芯片和固件是真实的。这就对硬件提出了要求。需要使用标识预配硬件。同样，硬件需要支持对关键固件映像（如监视器、RMM 和平台中可能对安全性产生重大影响的任何其他控制器（如电源控制器）的固件的测量。</p>
+<h1 id="5-Arm-CCA-软件架构"><a href="#5-Arm-CCA-软件架构" class="headerlink" title="5. Arm CCA 软件架构"></a>5. Arm CCA 软件架构</h1><p>Arm CCA平台是由许多额外的硬件组合（如 PE 中的 RME）和固件组件（特别是 Monitor 和 Realm Management Monitor ）组成。这一章节主要介绍面向 Arm CCA 平台的软件栈。</p>
+<h2 id="软件栈概述"><a href="#软件栈概述" class="headerlink" title="软件栈概述"></a>软件栈概述</h2><p>Realm 虚拟机的执行旨在与正常世界隔离，<strong>Realm 虚拟机由正常世界主机启动和控制。为了允许独立执行 Realm VM，引入了一个名为 Realm Management Monitor （RMM） 的新组件</strong>，该组件在 R_EL2 时执行。</p>
+<p><strong>RMM 负责管理通信和上下文切换</strong>。RMM 不会做出策略决策，例如运行哪个 Realm 或分配给 Realm 什么内存。这些决定仍由主机虚拟机管理程序决定。</p>
+<p>RMM 通过 Realm 世界中第 2 阶段的页表将 Realm 彼此隔离开来。</p>
+<p><strong>RMM 直接连接到监视器，监视器还与安全世界和正常世界连接</strong>。在异常级别 3 中运行的<strong>监视器具有特定于平台的代码，这些代码必须为系统的所有受信任功能提供服务</strong>。RMM 响应特定的接口，并具有完全定义的功能来管理来自主机和领域的请求。由于此接口定义明确，因此 RMM 可以是所有 Arm CCA 系统的通用代码。</p>
+<p>下图显示了在 Realm 世界中运行机密 Realm VM 的完整 Arm CCA 平台：</p>
+<p>图 6： Realm 虚拟机执行</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/fab2b467c0364e7b8edc173bb8ec284d.png"></p>
+<p>RMM 是 Realm 世界中的控制软件，<strong>它对 Normal 世界中 hypervisor 的请求做出反应，从而允许管理 Realm VM 的执行</strong>。RMM <strong>通过 Root 环境中的 Monitor 进行通信，以控制 Realm 内存管理功能，以便在 NS PAS 和 Realm PAS 之间转换内存</strong>。</p>
+<p>SMC 指令允许 RMM、虚拟机管理程序和 SPM 将控制权返回给监控器，并允许在所有异常级别 2 软件和监控器之间实现通信通道。下图显示了监控器与每个世界中不同控制软件之间的通信通道：</p>
+<p>图 7：通过 SMC 通道实现 world 之间的通信<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/2199bf1a695447b5bbcd66770f4152cf.png"></p>
+<p>在每个 world 中，<strong>Exception level 2 执行可以通过执行 SMC 指令对 Exception level 3 的 Monitor 进行调用</strong>。SMC 指令的使用为个别 Exception 二级控制主机和 Exception level 3 Monitor之间的通信信道建立了基础。这就是 Normal world Exception level 2上的主机通过 Monitor 与 Realm world Exception level 2 上的 RMM 建立通信的方法。</p>
+<h2 id="Realm-管理监视器"><a href="#Realm-管理监视器" class="headerlink" title="Realm 管理监视器"></a>Realm 管理监视器</h2><p>Realm Management Monitor（RMM）是 Realm 世界的固件，用于管理 Realm 虚拟机的执行以及它们在 Normal 环境中与 hypervisor 的交互。RMM 在 Realm 世界中以异常级别 2 运行，称为 R_EL2。</p>
+<p>RMM 在 Arm CCA 系统中有两组职责，<strong>RMM 向主机提供服务，允许主机管理 Realms，RME 还直接向 Realm 提供服务</strong>。</p>
+<p>主机服务可以分为“策略”和“机制”区域。</p>
+<p>对于策略功能，主机拥有所有策略决策，包括以下内容：</p>
+<ul>
+<li>何时创建或销毁 Realm</li>
+<li>何时在 Realm 中添加或删除内存</li>
+<li>何时安排 Realm 的输入或输出</li>
+</ul>
+<p>RMM 通过提供以下功能来支持主机策略：</p>
+<ul>
+<li>提供操作 Realm 页表的服务，这些页表用于创建或销毁以及添加或删除 Realm 内存</li>
+<li>管理 Realm 上下文。这是调度中使用的上下文保存和恢复。</li>
+<li>中断支持</li>
+<li>PSCI 呼叫拦截。这是电源管理请求。RMM 还为 Realms 提供服务，主要是证明和加密服务。</li>
+</ul>
+<p>最后，RMM 还为 Realm 维护以下安全原语：</p>
+<ul>
+<li>RMM 验证主机请求的正确性</li>
+<li>RMM 将 Realm 彼此隔离</li>
+</ul>
+<p>RMM 规范定义了两个通信通道，允许在正常世界主机和 Realm VM 之间请求和控制所有功能。<strong>从主机到 RMM 的通信通道称为领域管理接口 （RMI）</strong>。<strong>在 RMM 和 Realm VM 之间定义的第二个通道称为 Realm 服务接口 （RSI）</strong>。RSI 是从 RMM 请求服务的通道。<br>在下面的章节中，我们将介绍每个接口。</p>
+<h2 id="Realm-Management-Interface"><a href="#Realm-Management-Interface" class="headerlink" title="Realm Management Interface"></a>Realm Management Interface</h2><p>领域管理接口 （RMI） 是 RMM 和正常世界主机之间的接口。</p>
+<p>RMI 允许正常世界虚拟机管理程序向将管理该领域的 RMM 发出指令。<strong>RMI 使用来自主机虚拟机监控程序的 SMC 调用来请求 RMM 的管理控制</strong>。</p>
+<p>RMI 支持对 Realm 管理的控制，包括 Realm 的创建、填充、执行和销毁。</p>
+<p>下图显示了在正常世界主机、监视器和 RMM 之间实现 RMI 的位置：</p>
+<p>图 8： Realm Management Interface 的路径<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/3556e51eaa1f4dfd9917a61254fbc9ab.png"></p>
+<h2 id="Realm-Services-Interface"><a href="#Realm-Services-Interface" class="headerlink" title="Realm Services Interface"></a>Realm Services Interface</h2><p>Realm 服务接口 （RSI） 是 Realm VM 和 RMM 之间的接口。</p>
+<p>RSI 允许外部服务有一个通道，某些 Realm 管理操作需要从 RMM 传递到 Realm。<strong>这些服务可以包括加密服务和证明</strong>。RSI 也是从 Realm VM 到 RMM 的内存管理请求的通道。</p>
+<p>下图显示了 RMM 和每个 Realm VM 之间 RSI 的位置：</p>
+<p>图 9：Realm 服务接口<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/340cb321b67f4c48ab4a8c67be94d85b.png"></p>
+<h1 id="6-设备分配-（DA）-和内存加密上下文-（MEC）"><a href="#6-设备分配-（DA）-和内存加密上下文-（MEC）" class="headerlink" title="6.设备分配 （DA） 和内存加密上下文 （MEC）"></a>6.设备分配 （DA） 和内存加密上下文 （MEC）</h1><p>本指南的前几节介绍了 Realm 如何提供一个与普通世界的富操作系统、Hypervisor 和 TrustZone 完全隔离的执行环境。<strong>一个 Realm 可以在初始化时得到充分的证明，以保证它的初始内容，并且它运行在基于 RME 的平台上</strong>。</p>
+<p>在大多数操作情况下，任何 Realm 软件的执行都需要访问系统中可用的设备。<strong>默认情况下，系统中的所有设备都会被阻止访问所有 Realm 领域的内容。如果 Realm 需要使用某个设备，它必须首先证明该设备，然后向 RMM 表示同意才能授予访问权限</strong>。</p>
+<p>此设备分配过程维护机密计算体系结构提供的安全保证。<strong>使用标准RME功能，可以保证对不支持DMA且具有固定地址范围的SoC外设的隔离</strong>。这可以使用 RMM 页表和 GPT 或完成器端 PAS 过滤器来实现，以允许或拒绝对该内存区域的访问。</p>
+<p>但是，某些设备系统（例如根端口输入）通过单个内存区域控制和访问多个设备。这意味着<strong>仅靠内存访问控制是不够的。此外，设备可能还具有自己的缓存，需要对其进行管理</strong>。</p>
+<h2 id="设备分配"><a href="#设备分配" class="headerlink" title="设备分配"></a>设备分配</h2><p>设备分配 （DA） 是一种允许将设备唯一分配给单个 Realm 的方法，并允许 Realm 在授予设备访问 Realm 内容之前对设备进行认证的方法。DA 可以防止 Realm 不信任的代理（包括其他 Realm 和 hypervisor）访问或控制分配的设备。这包括保护设备 MMIO 接口和设备缓存。<strong>DA 提供了一种标准机制，用于证明所有设备类型</strong>，而 RMM 对被证明的设备没有任何特殊知识，无论是静态内存映射还是 PCIe 根端口后面。<a target="_blank" rel="noopener" href="http://www.pcisig.com/">PCI SR-IOV</a>是最普遍的设备分配体系结构。</p>
+<p>硬件设备通常支持多个接口，这些接口可以分配给各个虚拟机。<strong>主机虚拟机监控程序控制分配过程，从而生成可由特定虚拟机直接管理的设备的硬件接口。</strong>设备分配体系结构的典型属性如下：</p>
+<ul>
+<li><p>它依赖于标准化。这使主机能够将设备分配给 VM，而<strong>无需特定于设备的驱动程序</strong>（例如 GPU 驱动程序）。</p>
+</li>
+<li><p>设备接口的 MMIO 可供分配给它的 VM 访问。这意味着 <strong>VM 可以直接与设备接互</strong>。主机对 MMU 进行编程以启用此功能。</p>
+</li>
+<li><p>来自设备接口的<strong>直接内存访问 （DMA） 可以访问 VM 的内存</strong>。主机对 SMMU 进行编程以启用此功能。</p>
+</li>
+<li><p>来自<strong>设备接口的中断可由 VM 处理</strong>。主机确保转发这些中断。</p>
+</li>
+</ul>
+<p>在引入 RME 设备分配 （RME-DA） 之前，RME 架构不允许从设备到 Realm 内存的 DMA。<strong>为了与设备交互，Realms 需要对设备接口进行编程，以允许 DMA 到非安全内存</strong>。RME-DA 是 RME 架构的补充，它克服了这一限制，并描述了如何将设备接口分配给 Realms。在功能级别上，RME-DA 具有与分配给 VM 相同的属性：</p>
+<ul>
+<li><p>分配方法依赖于标准化，使其与设备无关。</p>
+</li>
+<li><p>Realm 可以访问设备接口的 MMIO。</p>
+</li>
+<li><p>设备接口可以对分配的 Realm 内存执行 DMA。</p>
+</li>
+<li><p>Realm 接受与设备接口相关的中断。</p>
+</li>
+</ul>
+<p>虽然 <strong>RME-DA 在功能上类似于向 VM 分配设备，但 RME-DA 也支持 Realm 安全模型</strong>。这导致了以下安全模型和安全保证：</p>
+<ul>
+<li><p>Realm 可以<strong>根据认证过程决定是否接受设备接口进入其可信计算库 （TCB）</strong>。被 Realm 接受的设备接口可以访问 Realm 的内存。但是，任何不被 Realm 接受的设备接口都不能访问该 Realm 使用的内存区域。</p>
+</li>
+<li><p><strong>所有 Realm 数据都受到保护</strong>，不会处于非安全状态。</p>
+</li>
+<li><p>对于支持多个接口的设备，<strong>Realm 必须信任该设备来隔离它为每个接口保存的设备上下文</strong>。</p>
+</li>
+<li><p>可以通过设备接口上的不受信任的通道<strong>建立和控制对设备的信任</strong>。</p>
+</li>
+<li><p>如果设备是离散的，并且与主机不在同一 SoC 上，则<strong>必须保护它们之间的物理链路（用于通信 Realm 转换）免受物理攻击</strong>。链路保护方案必须提供机密性、完整性和重放保护。</p>
+</li>
+</ul>
+<p>为了实现这种安全模型，主机体系结构必须提供必要的保护和机制。RME-DA描述了这种架构，由两部分组成：</p>
+<ul>
+<li>Arm系统架构规格：<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.arm.com/documentation/ihi0070">RME-DA 的 SMMU 架构</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.arm.com/documentation/den0126">RME系统架构</a></li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="http://www.pcisig.com/">PCI 规格</a>:<ul>
+<li>TEE 设备接口安全协议 （TDISP） 规范</li>
+<li>完整性和数据加密 （IDE）</li>
+</ul>
+</li>
+</ul>
+<p>设备分配的生命周期由 RMM 管理，并使用 TDSP（TEE 设备接口安全协议）实现。主机平台保护 RMM 和 Realm 免受未通过证明接受的设备的影响。</p>
+<h2 id="Arm-系统架构规范"><a href="#Arm-系统架构规范" class="headerlink" title="Arm 系统架构规范"></a>Arm 系统架构规范</h2><p>RME-DA 扩展了<a target="_blank" rel="noopener" href="https://developer.arm.com/documentation/ihi0070">SMMU 规范</a>启用对 DMA 进入 Realm 内存的支持。SMMU 规范现在包含一个 Realm 编程接口。这允许 RMM 管理针对设备 DMA 到 Realm 内存的 Realm 流。这包括对下面描述的 MEC 功能的支持。</p>
+<p>添加了对使用已翻译事务的设备的支持。这些设备在设备内本地缓存地址转换，并向内存系统提供物理地址。恶意设备接口可能会为内存提供物理地址，而该内存位于其所分配的领域边界之外。为了防止主机出现这种情况，SMMU 体系结构中添加了一个新结构，即设备权限表。这个结构将一个设备接口与一个特定的 Realm 相关联，并用于检查来自该设备接口的事务是否在其关联 Realm 的内存占用范围内。只有在支持转换事务的设备（例如 PCI-ATS）上才需要 DPT。</p>
+<p>此外，RME-DA 扩展了<a target="_blank" rel="noopener" href="https://developer.arm.com/documentation/den0126">RME系统架构</a>提供对 PCI 根端口和互连的要求。这些要求标准化了 RP 功能，以实现独立于平台的 RMM，解决了 PCI TDISP 和相关规范留下的差距。看<a target="_blank" rel="noopener" href="https://developer.arm.com/documentation/den0125/0300/Device-Assignment--DA--and-Memory-Encryption-Contexts--MEC-?lang=en#md798-device-assignment-da-and-memory-encryption-contexts-mec__pci-tdisp-and-device-attestation-and-assignment">PCI TDISP 和设备认证和分配</a>了解更多信息。RME-DA 系统架构还涵盖了 Arm 内存系统和 PCI 事务属性之间的架构映射，并定义了 RCiEP 设备的要求。</p>
+<h2 id="PCI-TDISP-和设备认证和分配"><a href="#PCI-TDISP-和设备认证和分配" class="headerlink" title="PCI TDISP 和设备认证和分配"></a>PCI TDISP 和设备认证和分配</h2><p><strong>TEE 设备接口安全协议 （TDISP） 提供了一种标准化方法来管理设备接口分配的生命周期</strong>。这个生命周期包括 Realm 对设备进行认证的能力。根据获得的数据，<strong>Realm 可以决定是否接受设备加入其可信计算库 （TCB）</strong>。TDISP 参考体系结构定义了一组组件、它们的角色和职责，以及它们可以通过它们进行通信的标准接口。下表简要总结了 TDISP 组件以及 CCA 中的相应组件。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/e01622ccd1c94443a55f7c2fcd9e3846.png"></p>
+<p>TDISP 依赖于一组相关协议，总结如下。</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/4bfdedb226ef4bb58603ab1e4a77d5cb.png"></p>
+<h2 id="设备分配流程"><a href="#设备分配流程" class="headerlink" title="设备分配流程"></a>设备分配流程</h2><p>要通过 PCI 开始设备分配，需要<strong>将设备物理连接到主机中的根端口</strong>。</p>
+<p>然后，TDISP 在分配角色和职责时定义参考体系结构结构和状态机。主机内部的软件实体连接到设备中的元素。主机软件实体的示例包括设备驱动程序、VM 和 TEE 安全管理器 （RMM） 。连接设备元素的示例包括设备的物理功能、受信任的设备接口和设备安全管理器。</p>
+<p>图10  Realm World、Non-secure 和 Secure world 的异常级别<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/21ab174486f44ffdbc127cf1c163767b.png"></p>
+<p>分配受信任设备接口 （TDI） 的过程是通过领域管理监视器 （RMM） 协商的。这是系统中受信任的代理，它使用 SPDM（安全协议和数据模型）、TDSP 和 ID_KM（ID 密钥管理）协议与 DSM（设备安全管理器）进行通信，以确保 Realm 能够以安全的方式访问所需的数据。</p>
+<h2 id="设备证明"><a href="#设备证明" class="headerlink" title="设备证明"></a>设备证明</h2><p>在任何时间点，<strong>支持 TDISP 的多功能 PCIe 设备都可以将 TDI 分配给领域，将标准虚拟功能分配给非安全虚拟机</strong>。<strong>与设备关联的 PCIe 事务带有一个 T 位</strong>，对于所有与 Realm 相关的流量，该 T 位设置为 1，无论是 Realm 对 TDI MMIO 的访问，还是来自 TDI 的 DMA。与非安全 VM 或 VMM 关联的事务将 T 位设置为零。这允许硬件将需要保护的流量与其他流量区分开来，并提供检测和丢弃非法访问的机制。</p>
+<p>将 TDI 分配给 Realm 的过程如下：</p>
+<ul>
+<li><p>TDI 以解锁状态启动。在此状态下，VMM 可以访问和修改 TDI 的配置空间。VMM 配置 TDI 以准备分配给领域。</p>
+</li>
+<li><p>VMM 将控制权传递给 RMM （TSM），RMM 使用 SPDM 与 DSM 建立安全通信通道。</p>
+</li>
+<li><p>使用此通信通道，RMM 将 TDI 转换为锁定状态。此时，VMM 无法再更改 TDI 的配置。在此阶段，将配置 IDE。</p>
+</li>
+<li><p>RMM 查询 DSM 以获取 TDI 配置和设备认证信息。</p>
+</li>
+<li><p>RMM 将配置和身份验证信息转发到 Realm。Realm 根据这些数据决定是否接受设备加入其可信计算库 （TCB）。Realm 将其决定传达给 RMM。已检查 IDE 配置。</p>
+</li>
+<li><p>如果接受 TDI，RMM 将执行以下操作：</p>
+<ul>
+<li><p>如果这是设备的第一个 TDI，则 RMM 会在 RP 和设备之间设置 IDE 流。</p>
+</li>
+<li><p>在 SMMU 中对 Realm 流进行编程，并将其与 Realm 的第 2 阶段页表相关联。</p>
+</li>
+<li><p>如果设备使用 ATS，则 DPT 也会被编程为将 TDI 可以访问的 Realm 中的颗粒与 Realm 的 VMID 相关联。</p>
+</li>
+</ul>
+</li>
+<li><p>RMM 将设备转换为运行状态。此时，设备可以对 Realm 的地址空间执行 DMA。</p>
+</li>
+</ul>
+<p>DSM 监控 TDI 组件的配置和状态，如果在锁定配置或运行状态下检测到威胁或安全违规，则可以将 TDI 转换为错误状态。在错误状态下，TDI 无法交易，只能重置回解锁状态。作为该转换的一部分，将清除与设备中保存的 TDI 关联的任何机密信息。</p>
+<h2 id="ID-密钥编程"><a href="#ID-密钥编程" class="headerlink" title="ID 密钥编程"></a>ID 密钥编程</h2><p>设备密钥由 IDE-KM（ID 密钥管理）协议编程。为了将 RMM 的复杂性降至最低，根端口密钥在 EL3 的监视器中编程。器件按键的编程由 RMM 执行，使用 SPDM 上的 IDE-KM。</p>
+<p>配置 ID 流后，可以使用 TDISP 协议锁定设备，并且 VMM 无法再访问或更改设备。如果 VMM 尝试更改锁定的 TDI 的配置，则 TDI 将进入错误状态。</p>
+<h2 id="断开-Realm-连接"><a href="#断开-Realm-连接" class="headerlink" title="断开 Realm 连接"></a>断开 Realm 连接</h2><p>Realm 可以随时停止使用该设备，只需请求 RMM 停止使用该设备并断开其与 TCB 的连接。为此，RMM 会向 DSM 发出一条消息，请求断开连接。DSM 确保 TDI 执行以下操作：</p>
+<ul>
+<li>中止任何现有的已接受操作。</li>
+<li>完成或中止任何现有事务。</li>
+<li>停止显示中断。</li>
+<li>停止显示地址转换服务 （ATS） 和页面请求接口 （PRI） 请求（如果正在使用）。<br>此外，设备会清理与 TDI 关联的任何内部状态，并在使用 ATS 时使为该 TDI 缓存的转换无效。当这些操作竞争时，TDI 将转移回解锁状态。</li>
+</ul>
+<h2 id="内存加密上下文-（MEC）"><a href="#内存加密上下文-（MEC）" class="headerlink" title="内存加密上下文 （MEC）"></a>内存加密上下文 （MEC）</h2><p>内存加密上下文是与 MMU 分配的内存区域关联的加密配置。</p>
+<p>MEC 是 Arm 领域管理扩展 （RME） 的扩展。RME系统架构要求对 Realm、Secure 和 Root PAS 进行加密。<strong>与这些 PAS 中的每一个一起使用的加密密钥或调整或加密上下文在该 PAS 中是全局的</strong>。因此，举例来说，对于 Realm PAS，<strong>所有的 Realm 内存都使用相同的加密上下文</strong>。在 MEC 中，这个概念得到了扩展，特别是对于 Realm PAS，我们允许每个 Realm 都有一个唯一的加密上下文。这为RME中已经提供的隔离提供了额外的深度防御。<strong>Realms 和 RMM 本身都可以有单独的加密</strong>。</p>
+<p>MECID 正在识别与不同内存加密上下文关联的标记。MECID 被分配给系统中的不同软件实体，例如 Realms 或 RMM。如下图所示，其中每个 Realm 都有一个单独的 MECID：</p>
+<p>图11. 非 MEC 和 MEC 之间的比较<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/15efb76253e34a5aa4c367e89a28e872.png"></p>
+<p>MECID 本身不是系统全局标识符。要成为系统全局标识符，它们必须与物理地址 （PA） 空间相关联。</p>
+<p>MECID 由软件（Realm PAS 的 RMM）使用系统寄存器值和页表位的组合进行分配。MEC 允许软件主体、领域和 RMM 使用多个 MECID 寄存器，页表位用于选择哪个 MECID 寄存器适用于映射到该软件主体的特定内存区域。例如，这使得 RMM 能够使用一个 MECID 寄存器来管理它自己的数据结构，并使用另一个寄存器来管理它当前管理的 Realm 的数据结构，例如 Realm 的阶段页表。<strong>对于一个 Realm 来说，拥有多个 MECID 寄存器意味着它可以与其他 Realm 共享加密的 Realm PAS 内存</strong>。这意味着可以为内存空间分配一个内存加密上下文，<strong>该上下文可以在多个 Realm 之间共享，以允许这些 Realm 共享加密内存</strong>。此外，来自任何具有 MECID 的实体的每个高级微控制器总线架构 （AMBA） 事务都使用该实体的 MECID 属性进行注释。</p>
+<p>当执行涉及与 MECID 关联的内存区域的事务时，MECID 用于检索用于加密或解密事务的调整或加密密钥（加密上下文）。加密密钥是修改加密操作的数据。在系统启动时，内存保护引擎 （MPE） 会生成并存储一组加密上下文。这些上下文由 MECID 索引，当系统中的其他实体重用 MECID 时，可以从根世界的请求进行更新。</p>
+<p>MECID 大小介于 1 到 16 位之间，在体系结构上是可发现的。MECID 的大小意味着它们太小而无法用作调整。<strong>由于 MECID 的大小是有限的，这意味着在正在运行的系统的生命周期内，MECID 将在系统中的不同实体之间重复使用</strong>。因此，MECID 的每个分配只有在 MECID 的关联加密上下文失效后才能发生，然后才能重新生成。</p>
+<p>MEC 加密密钥只能存储在一次性写入寄存器中，只能由 Root 请求访问。重置密钥后，必须将该值设置为不同于所有其他活动 MEC 加密密钥的默认值。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 zxy
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
