@@ -151,7 +151,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(8)</small>
+                <small>(9)</small>
             
         </div>
     </li>
@@ -178,7 +178,7 @@
         <div data-rel="知识总结">
             
             知识总结
-            <small>(6)</small>
+            <small>(7)</small>
         </div>
         
     </li>
@@ -214,7 +214,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="8">
+<input type="hidden" id="yelog_site_posts_number" value="9">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -289,6 +289,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel SGX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>Intel TDX</a>
             </li>
         
@@ -310,6 +314,15 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/"
+           data-tag="TEE,Intel TDX,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel可信执行环境的前世今生">【TEE】Intel可信执行环境的前世今生</span>
+            <span class="post-date" title="2024-02-25 19:54:18">2024/02/25</span>
+        </a>
         
         
         <a  class="全部文章 知识总结 "
@@ -430,7 +443,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-02-25 19:53:43'>2024-02-25 19:52</time>
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 19:58:53'>2024-02-25 19:52</time>
         
     </div>
     <div class="article-meta">
@@ -491,7 +504,7 @@
 <li>微调阶段：可以使用机密容器针对特定领域的任务在其特定数据集上微调预训练的 LLM，确保只有机密容器内的用户才能访问数据和模型。</li>
 </ul>
 <p>仅在成功验证运行环境的完整性（使用 远程证明）后，机密才会在机密容器内传递。由于解密的模型和代码在 TEE 内部运行，因此任何不受信任的实体都无法对其进行未经授权的访问。</p>
-<p><img src="/251320f08e61476d8ca9758eefaf6bf6.png"></p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/251320f08e61476d8ca9758eefaf6bf6.png"></p>
 <p><strong>TEE和LLM融合的挑战</strong></p>
 <ul>
 <li>资源限制：TEE 的计算资源和存储空间通常都非常有限，LLM 庞大的模型参数和计算需求可能会超出一般 TEE 的能力范围。</li>
@@ -499,9 +512,9 @@
 </ul>
 <h1 id="2-Intel平台加速TEE和LLM融合方案"><a href="#2-Intel平台加速TEE和LLM融合方案" class="headerlink" title="2. Intel平台加速TEE和LLM融合方案"></a>2. Intel平台加速TEE和LLM融合方案</h1><p><strong>SGX&#x2F;TDX解决方案</strong><br>SGX 安全飞地的容量最多可达单颗 CPU 512GB，双路共计 1TB 容量，可满足目前千亿大模型的执行空间需求。该技术提供支持的机密计算可实现应用层、虚拟机 (VM)、容器和功能层的数据隔离。 无论是在云端、边缘还是本地环境，都能确保计算与数据始终在私密性和安全性上获得更全面的保护，以免暴露给云服务提供商、未经授权的管理员和操作系统，甚至是特权应用。</p>
 <p>TDX将客户机操作系统和虚拟机应用与云端主机、系统管理程序和平台的其他虚拟机隔离开来。 它的<strong>信任边界较SGX 应用层的隔离边界更大</strong>，使受其保护的机密虚拟机比基于SGX 的安全飞地的应用更易于进行大规模部署和管理，在部署 LLM 这类复杂应用时，TDX 在易用性上更具优势。</p>
-<p><img src="/e2575355f69641e2bf7ba385ed9af3b3.png"><br>英特尔在 SDK 的基础上，推出了开源的 lib OS 项目 Gramine 来帮助开发者更好地使用基于SGX的 TEE，助推 LLM 与 TEE 的融合。</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/e2575355f69641e2bf7ba385ed9af3b3.png"><br>英特尔在 SDK 的基础上，推出了开源的 lib OS 项目 Gramine 来帮助开发者更好地使用基于SGX的 TEE，助推 LLM 与 TEE 的融合。</p>
 <p><strong>TEE保护LLM推理</strong></p>
-<p>在数据上传云端前，查询可先通过客户端对传输内容加密，云端只需在SGX&#x2F;TDX 中解密查询问题，然后输入大模型的推理服务中，并将所得结果在云端的 TEE 中加密后传输回本地客户端。 在整个工作流程中，客户端以外的数据和运行态程序均处于密态环境当中，效率远远高于其他基于纯密码学的解决方案。<br><img src="/931a381e15994cdf9bc93f702e7958f7.png"><br><strong>端到端大模型和TEE融合</strong></p>
+<p>在数据上传云端前，查询可先通过客户端对传输内容加密，云端只需在SGX&#x2F;TDX 中解密查询问题，然后输入大模型的推理服务中，并将所得结果在云端的 TEE 中加密后传输回本地客户端。 在整个工作流程中，客户端以外的数据和运行态程序均处于密态环境当中，效率远远高于其他基于纯密码学的解决方案。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/931a381e15994cdf9bc93f702e7958f7.png"><br><strong>端到端大模型和TEE融合</strong></p>
 <p>LLM 在端到端应用中的痛点包括：</p>
 <ul>
 <li>软件栈复杂，难以确保端到端应用的安全。 LLM 的训练和推理常依赖较多的软件栈、服务和硬件。 为保护用户数据和模型产权，需确保每个环节的安全性（不同硬件、运行环境、网络和存储等）。</li>
@@ -512,8 +525,8 @@
 <li>提供端到端的安全保护：在不修改代码的情况下，为单机和分布式的 LLM 应用提供端到端的安全保护功能，包括基于SGX&#x2F;TDX 的 TEE、远程证明、统一的密钥管理接口、透明的加解密 API 等。</li>
 <li>实现一站式性能优化：让现有 LLM 应用在几乎不用修改代码的情况下受益于英特尔® AMX、英特尔® AVX-512 和英特尔® Extension for PyTorch，用户还可利用 BigDL Nano 提供的 LLM API，快速构建应用。</li>
 </ul>
-<p><img src="/e0dbcf230e4043d2b18f6c4339b66870.png"><br>在应用了 PPML（Privacy Preserving Machine Learning，隐私保护的机器学习）提供的安全技术后，由于更强的安全和隐私保护会带来额外开销，端到端应用性能会略有下降； 但应用了 BigDL Nano 提供的优化功能后，端到端的性能得到了显著改善，总体性能甚至高于没有任何保护的明文性能。</p>
-<p><img src="/1b687f7f4ebb4f119102365ffa94a1fa.png"></p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/e0dbcf230e4043d2b18f6c4339b66870.png"><br>在应用了 PPML（Privacy Preserving Machine Learning，隐私保护的机器学习）提供的安全技术后，由于更强的安全和隐私保护会带来额外开销，端到端应用性能会略有下降； 但应用了 BigDL Nano 提供的优化功能后，端到端的性能得到了显著改善，总体性能甚至高于没有任何保护的明文性能。</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/1b687f7f4ebb4f119102365ffa94a1fa.png"></p>
 <h1 id="3-OpaquePrompts隐藏敏感输入数据"><a href="#3-OpaquePrompts隐藏敏感输入数据" class="headerlink" title="3. OpaquePrompts隐藏敏感输入数据"></a>3. OpaquePrompts隐藏敏感输入数据</h1><p><strong>动机</strong><br><a target="_blank" rel="noopener" href="https://openai.com/policies/privacy-policy">OpenAI 面向消费者的 ChatGPT</a>不断根据用户输入训练其模型，并与第三方提供商共享用户输入。<br><a target="_blank" rel="noopener" href="https://support.anthropic.com/en/articles/7996866-how-long-do-you-store-personal-data">Anthropic 的 Claude</a>  默认保留我们的数据至少 30 天。<br><a target="_blank" rel="noopener" href="https://support.google.com/bard/answer/13594961?hl=en#your_data">Google 的 Bard</a> 会将我们的活动保留至少 3 个月，最长可能保留 3 年。它还使用输入数据来持续训练其模型。</p>
 <p>通过在个人或敏感数据到达 LLM 之前对其进行清理，不再需要依赖 LLM 提供商来遵循任何特定的数据保留或处理政策。这就是 OpaquePrompts 提供的功能。通过利用机密计算和可信执行环境 (TEE)，托管 OpaquePrompts 的 Opaque 也不会看到提示，从而确保只有用户才能看到prompt中包含的任何信息。</p>
 <p><strong>OpaquePrompts</strong><br>工作流程如下：</p>
@@ -523,10 +536,10 @@
 <li>在 TEE 中，OpaquePrompts 通过加密所有个人和敏感令牌来清理（换句话说，加密和编辑）提示，然后再将清理后的提示返回到 LLM 应用程序。</li>
 <li>LLM 申请将提示提交给他们选择的 LLM（例如 ChatGPT 或 Claude），LLM 将清理响应（包含具有个人信息的令牌的清理版本的响应）返回给 LLM 应用程序。</li>
 <li>在 TEE 中，OpaquePrompts 从 LLM 应用程序接收经过净化的响应并对其进行去净化，用其明文等效项替换经过净化的令牌。</li>
-<li>LLM 应用程序将经过净化的响应返回给用户。<br><img src="/47ae4ae535874301a164231fde63221b.png"></li>
+<li>LLM 应用程序将经过净化的响应返回给用户。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/47ae4ae535874301a164231fde63221b.png"></li>
 </ol>
 <p>借助 OpaquePrompts，LLM 申请者在使用第三方 LLM 之前不再需要依赖用户手动删除任何敏感信息并、。</p>
-<h1 id="4-NVIDIA-H100"><a href="#4-NVIDIA-H100" class="headerlink" title="4.NVIDIA H100"></a>4.NVIDIA H100</h1><p><strong>机密GPU</strong><br>Intel 和 AMD 等公司的 CPU 允许创建 TEE，它可以隔离进程或整个来宾虚拟机 (VM)，从而有效地将主机操作系统和虚拟机管理程序从信任边界中消除。机密GPU的愿景是将这种信任边界扩展到 GPU，允许在 CPU TEE 中运行的代码将计算和数据安全地卸载到 GPU。<br><img src="/7daf6384cb1544bf8358e80074ea25d4.png"><br>图 1：使用 NVIDIA GPU 实现机密计算的愿景。</p>
+<h1 id="4-NVIDIA-H100"><a href="#4-NVIDIA-H100" class="headerlink" title="4.NVIDIA H100"></a>4.NVIDIA H100</h1><p><strong>机密GPU</strong><br>Intel 和 AMD 等公司的 CPU 允许创建 TEE，它可以隔离进程或整个来宾虚拟机 (VM)，从而有效地将主机操作系统和虚拟机管理程序从信任边界中消除。机密GPU的愿景是将这种信任边界扩展到 GPU，允许在 CPU TEE 中运行的代码将计算和数据安全地卸载到 GPU。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/7daf6384cb1544bf8358e80074ea25d4.png"><br>图 1：使用 NVIDIA GPU 实现机密计算的愿景。</p>
 <p>挑战：</p>
 <ul>
 <li>必须防范各种攻击，例如中间人攻击，攻击者可以观察或篡改 PCIe 总线或 NVIDIA NVLink 上的流量连接多个 GPU 以及模拟攻击</li>
@@ -544,7 +557,7 @@
 <p>在机密模式下，GPU 可以与任何外部实体配对，例如主机 CPU 上的 TEE。为了实现这种配对，GPU 包含一个硬件信任根 (HRoT)。NVIDIA 为 HRoT 提供唯一的身份以及在制造过程中创建的相应证书。HRoT 还通过测量 GPU 以及 GPU 上其他微控制器（包括名为 SEC2 的安全微控制器）的固件来实现身份验证和测量启动。反过来，SEC2 可以生成包含这些测量值并由新的证明密钥签名的证明报告，该新的证明密钥由唯一的设备密钥认可。任何外部实体都可以使用这些报告来验证 GPU 是否处于机密模式并运行最后一次已知的良好固件。  </p>
 <p>当CPU TEE中的NVIDIA GPU驱动程序加载时，它会检查GPU是否处于机密模式。如果是，驱动程序会请求一份认证报告，并检查 GPU 是否是运行已知良好固件的正品 NVIDIA GPU。一旦确认，驱动程序将使用安全协议和数据模型 (SPDM) 支持的基于 Diffie-Hellman 的密钥交换协议与 GPU 上的 SEC2 微控制器建立安全通道，以建立新的会话密钥。当交换完成时，GPU 驱动程序和 SEC2 都持有相同的对称会话密钥。  </p>
 <p>GPU 驱动程序使用共享会话密钥来加密进出 GPU 的所有后续数据传输。由于分配给 CPU TEE 的页面在内存中进行了加密，并且 GPU DMA 引擎无法读取，因此 GPU 驱动程序会在 CPU TEE 外部分配页面并将加密数据写入这些页面。在GPU端，SEC2微控制器负责解密从CPU传输的加密数据并将其复制到受保护区域。一旦数据以明文形式存储在高带宽内存 (HBM) 中，GPU 内核就可以自由地使用它进行计算。</p>
-<p><img src="/c7e3e7fd1f214e5e9d53481537a06737.png"><br>图 2：主机 CPU 上的 GPU 驱动程序和 NVIDIA A100 Tensor Core GPU 上的 SEC2 微控制器协同工作，实现数据传输的端到端加密。</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/c7e3e7fd1f214e5e9d53481537a06737.png"><br>图 2：主机 CPU 上的 GPU 驱动程序和 NVIDIA A100 Tensor Core GPU 上的 SEC2 微控制器协同工作，实现数据传输的端到端加密。</p>
 <p><strong>H100</strong></p>
 <ul>
 <li>基于硬件的安全和隔离：在本地、云端或边缘实现虚拟机 (VM) 的完全隔离。CPU 和 H200 或 H100 GPU 之间的数据传输以 PCIe 线速加密和解密。大部分 GPU 内存被配置为计算保护区 (CPR)，使用内置硬件防火墙创建物理隔离的可信执行环境 (TEE)，以保护 H200 或 H100 GPU 上的整个工作负载。</li>
