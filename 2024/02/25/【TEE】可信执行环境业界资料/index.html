@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【TEE】可信执行环境业界资料 | Xinyao</title>
+  <meta name="keywords" content=" TEE ">
+  <meta name="description" content="【TEE】可信执行环境业界资料 | Xinyao">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="勇攀高峰">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://zhengxinyao.github.io/tags/index.html">
+<meta property="og:site_name" content="Xinyao">
+<meta property="og:description" content="勇攀高峰">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-07T15:59:52.000Z">
+<meta property="article:modified_time" content="2024-02-07T15:59:52.773Z">
+<meta property="article:author" content="ICT-IPRC">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/favicon.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/myself.png"/>
+</a>
+<div class="author">
+    <span>ICT-IPRC</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/zhengxinyao"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+            <a title="linkedin"
+               href="https://www.linkedin.com/in/%E6%98%95%E7%91%B6-%E9%83%91-956a732b5/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-linkedin"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/destiny-44-90-76"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qq_43543209?spm=1010.2135.3001.5343"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:1601835186@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1601835186&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(1)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识总结">
+            
+            知识总结
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="1">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TEE</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/"
+           data-tag="TEE"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境业界资料">【TEE】可信执行环境业界资料</span>
+            <span class="post-date" title="2024-02-25 18:31:25">2024/02/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【TEE】可信执行环境业界资料" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【TEE】可信执行环境业界资料</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="知识总结">知识总结</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">TEE</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 18:50:31'>2024-02-25 18:31</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TEE%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C"><span class="toc-text">TEE可信执行</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel-SGX"><span class="toc-text">Intel SGX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel-TDX"><span class="toc-text">Intel TDX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ARM-TrustZone-CCA"><span class="toc-text">ARM TrustZone&#x2F;CCA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AMD-SEV"><span class="toc-text">AMD SEV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RISC-V-Keystone"><span class="toc-text">RISC-V Keystone</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%B7%E5%85%89CSV"><span class="toc-text">海光CSV</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TEE%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C"><span class="toc-text">TEE可信执行</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel-SGX"><span class="toc-text">Intel SGX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel-TDX"><span class="toc-text">Intel TDX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ARM-TrustZone-CCA"><span class="toc-text">ARM TrustZone&#x2F;CCA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AMD-SEV"><span class="toc-text">AMD SEV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RISC-V-Keystone"><span class="toc-text">RISC-V Keystone</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%B7%E5%85%89CSV"><span class="toc-text">海光CSV</span></a></li></ol></li></ol></div></p>
+<h1 id="TEE可信执行"><a href="#TEE可信执行" class="headerlink" title="TEE可信执行"></a>TEE可信执行</h1><p>研究Intel SGX,ARM Trustzone,AMD SEV的安全机制与应用转化</p>
+<h2 id="Intel-SGX"><a href="#Intel-SGX" class="headerlink" title="Intel SGX"></a>Intel SGX</h2><p>项目位置链接<br><a target="_blank" rel="noopener" href="https://github.com/intel/linux-sgx">https://github.com/intel/linux-sgx</a><br><a target="_blank" rel="noopener" href="https://github.com/intel/SGXDataCenterAttestationPrimitives">https://github.com/intel/SGXDataCenterAttestationPrimitives</a><br>入门必读：<a target="_blank" rel="noopener" href="https://eprint.iacr.org/2016/086.pdf">Intel SGX Explained</a><br>学术论文：<a target="_blank" rel="noopener" href="https://github.com/vschiavoni/sgx-papers">SGX-papers</a><br>开源项目：<a target="_blank" rel="noopener" href="https://github.com/Maxul/Awesome-SGX-Open-Source">Awesome-SGX-Open-Source</a><br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/4f9cfdb97d3a4fb8bbb540158bf408ef.png" alt="Intel SGX程序生命流"></p>
+<p>英特尔软件防护扩展（Intel Software Guard Extensions，SGX）是一组安全相关的指令，它被内置于一些现代Intel 中央处理器（CPU）中。它们允许用户态及内核态代码定义将特定内存区域，设置为私有区域，此区域也被称作飞地（Enclaves）。其内容受到保护，不能被本身以外的任何进程存取，包括以更高权限级别运行的进程。CPU对受SGX保护的内存进行加密处理。受保护区域的代码和数据的加解密操作在CPU内部动态完成。因此，处理器可以保护代码不被其他代码窥视或检查。</p>
+<p>SGX提供了硬件指令级安全保障，保障了运行时的可信执行环境, 使恶意代码无法访问与篡改其他程序运行时的保护内容。Intel从第六代CPU开始支持SGX，SGX已经成为学术界的热点，各大云厂商也开始在云上部署基于SGX的应用。</p>
+<h2 id="Intel-TDX"><a href="#Intel-TDX" class="headerlink" title="Intel TDX"></a>Intel TDX</h2><p>Intel TDX：<a target="_blank" rel="noopener" href="https://www.intel.com/content/www/us/en/developer/tools/trust-domain-extensions/overview.html">Intel TDX</a><br>TDX和SGX的区别：<a target="_blank" rel="noopener" href="https://github.com/Maxul/Awesome-SGX-Open-Source/blob/master/SGX-vs-TDX.md">SGX-vs-TDX</a><br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/d1d4f04f7f0148b89315e283510d34d9.png" alt="Intel TDX"></p>
+<p>Intel Trust Domain Extensions（简称TDX）引入了一种新的、基于硬件隔离的虚拟机工作负载形态，所谓的Trust Domain（简称TD）。TDX是一种典型的机密计算技术，可以在在租户不可信的云基础设施上，为租户的工作负载提供一个系统级（相比Intel SGX机密计算技术提供的应用级粒度）的安全可信的执行环境，同时保证租户运行环境的机密性和完整性。为此，需要将当前租户的TD，与CSP控制的特权级系统组件（比如VMM&#x2F;hypervisor）、VM以及其他租户的TD都隔离开来，并将它们排除出当前租户的TCB，以确保当前租户的TD不受上述组件的影响。</p>
+<p>与VM相比，TD额外增加了以下能力：</p>
+<ul>
+<li>提供了VM内存的机密性和完整性保护</li>
+<li>地址转换完整性保护</li>
+<li>CPU状态机密性和完整性保护</li>
+<li>对安全中断和异常的分发机制</li>
+<li>远程证明</li>
+<li>TDX技术综合了MKTME（多密钥全加密内存）与VMX虚拟化技术，再添加新的指令集、处理器模式和强制实施的访问控制等设计。</li>
+</ul>
+<h2 id="ARM-TrustZone-CCA"><a href="#ARM-TrustZone-CCA" class="headerlink" title="ARM TrustZone&#x2F;CCA"></a>ARM TrustZone&#x2F;CCA</h2><p><a target="_blank" rel="noopener" href="https://www.arm.com/zh-TW/technologies/trustzone-for-cortex-a">ARM Trustzone</a><br><a target="_blank" rel="noopener" href="https://www.arm.com/zh-TW/architecture/security-features/arm-confidential-compute-architecture">ARM CCA</a></p>
+<p>项目位置链接<br>Veracuz: <a target="_blank" rel="noopener" href="https://github.com/veracruz-project/veracruz">https://github.com/veracruz-project/veracruz</a><br>VERAISON-VERificAtIon of atteStatiON: <a target="_blank" rel="noopener" href="https://github.com/veraison/veraison">https://github.com/veraison/veraison</a></p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/77c9762b81e247c5bed56ad7b699921d.png" alt="CCA安全和非安全区"></p>
+<p>TrustZone是Arm为设备安全提供的一个安全架构，通过硬件隔离和权限分层的方式将系统内分为安全世界（Secure world）和正常世界（Normal &#x2F; Non-Secure world）。</p>
+<p>在安全环境中，通过底层硬件隔离，不同执行级别，安全鉴权方式等方式，从最根本的安全机制上提供基于信任根（Root of Trust）的可信执行环境TEE（Trusted Execution Environment）,通过可信服务（Trusted Services）接口与和通用环境REE（Rich Execution Environment）进行安全通信，可以保护TEE中的安全内容不能被非安全环境的任何软件，包括操作系统底层软件等所访问，窃取，篡改和伪造等。因此一些安全的私密数据，比如一些安全密钥，密码，指纹以及人脸数据等都是可以放在安全世界的数据区中进行保护。当前，Trustzone机制已经非常成熟稳定，并得到大规模的应用，并以开源的方式给业界提供实现参考。可以访问<a target="_blank" rel="noopener" href="https://www.trustedfirmware.org/">https://www.trustedfirmware.org/</a> 获取更多信息。</p>
+<p>然而，TrustZone所提供的安全机制和TEE环境只能提供硬件级别的安全隔离。通常情况下，安全物理地址空间的内存在系统引导时静态分配，适用于数量有限的平台。对于大规模云服务器的机密计算，旨在允许任何第三方开发人员保护他们的虚拟机（VM）或应用程序，必须能够在运行时保护与VM或应用程序关联的任何内存，而不受限制或分割。</p>
+<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/b554fed5d7e44f3da50776c98d4b90f7.png" alt="CCA的四个区域"></p>
+<p>Arm CCA引入了一种新的机密计算世界：机密领域（Realm）。在Arm CCA中，硬件扩展被称为Realm Management Extension (RME)，RME 会和被称之为机密领域管理监控器 (Realm Management Monitor, RMM)，用来控制机密领域的专用固件，及在 Exception level 3 中的 Monitor 代码交互。</p>
+<p>Realm是一种Arm CCA环境，能被Normal world主机动态分配。主机是指能管理应用程序或虚拟机的监控软件。Realm及其所在平台的初始化状态都可以得到验证。这一过程使Realm的所有者能在向它提供任何机密前就建立信任。因此，Realm不必继承来自控制它的Non-secure hypervisor的信任。主机可以分配和管理资源配置,管理调度Realm虚拟机。然而，主机不可以监控或修改Realm执行的指令。在主机控制下，Realm可以被创建并被销毁。通过主机请求，可以增加或移除页面，这与hypervisor管理任何其他非机密虚拟机的操作方式类似。</p>
+<p>Arm CCA技术能够从根本上解决用户敏感应用数据的安全计算问题。它充分利用软硬件实现的信任根提供的数据和程序的物理隔离、保护、通信和认证体系，并在传统TrustZone的基础上，增加了被称为领域（Realm）的隔离区域，从最底层的安全机制和原理上解决用户程序和数据的隔离需求。</p>
+<p>Realm内运行的代码将管理机密数据或运行机密算法，这些代码需要确保正在运行真正的Arm CCA平台，而不是冒充者。这些代码还需要知道自己已经被正确地加载，没有遭到篡改。并且，这些代码还需要知道整个平台或Realm并不处于可能导致机密泄露的调试状态。建立这种信任的过程被称为“证明”。ARM正在与包括机密计算联盟成员在内的主要行业合作伙伴合作，定义这一证明机制的属性，确保在不同的产品和设备上使用常见的平台真实性和来源方法。Arm主导的开源软件Veracuz是一个框架，用于在一组相互不信任的个人之间定义和部署协作的、保护隐私的计算；VERAISON-VERificAtIon of atteStatiON构建可用于证明验证服务的软件组件。</p>
+<p>Armv9-A架构引入了Arm CCA的RME功能特性，采用对应架构的芯片也将拥有此项功能。此外，基于CCA的软件支持已经在虚拟硬件平台上进行开发、测试和验证，将在硬件设备问世的同时实现同步支持。更多信息，可以访问 <a target="_blank" rel="noopener" href="https://arm.com/armcca">https://arm.com/armcca</a> 获取更多信息。</p>
+<h2 id="AMD-SEV"><a href="#AMD-SEV" class="headerlink" title="AMD SEV"></a>AMD SEV</h2><p><a target="_blank" rel="noopener" href="https://developer.amd.com/sev/">White Papers </a><br>项目位置链接<br><a target="_blank" rel="noopener" href="https://github.com/AMDESE/AMDSEV">https://github.com/AMDESE/AMDSEV</a></p>
+<p>AMD SEV技术基于AMD EPYC CPU，将物理机密计算能力传导至虚拟机实例，在公有云上打造一个立体化可信加密环境。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/d568bbeb3c124ed5bb7c9e7596b402b8.png" alt="AMD SEV-SNP加密模式"></p>
+<p>SEV可保证单个虚拟机实例使用独立的硬件密钥对内存加密，同时提供高性能支持。密钥由AMD平台安全处理器 (PSP)在实例创建期间生成，而且仅位于处理器中，云厂商无法访问这些密钥。</p>
+<p>AMD SEV提供了硬件级的内存加密方案, 用以实现安全加密的虚拟化：</p>
+<p>内存控制器中集成了AES-128硬件加速引擎: 客户操作系统通过页表选择要加密的页, 对终端用户的应用程序没有任何改变。</p>
+<p>AMD安全内存加密（SME）: 所有内存由单一的密钥进行加密, 仅仅在BIOS中开启就可以实现（TSME）。</p>
+<p>AMD安全加密虚拟化（SEV）: 每台虚拟机都会被分配自己的独立加密密钥, 宿主机和客户虚拟机之间相互加密隔离。</p>
+<p>Confidential Virtual Machine也可以称作Secure Virtual Machine (SVM)，是最终实现机密计算的实体，本身作为一个可信域存在，SVM自身和在其中运行的用户程序可以不受来自SVM之外的非可信特权软件和硬件的的攻击，从而实现对用户的机密数据和代码的保护。</p>
+<p>因为是整个虚拟机作为一个可信域，所以对运行于其中的用户程序可以做到透明，无需重构用户程序，对最终用户而言可以实现零成本可信 （Trust Native）.</p>
+<h2 id="RISC-V-Keystone"><a href="#RISC-V-Keystone" class="headerlink" title="RISC-V Keystone"></a>RISC-V Keystone</h2><p><a target="_blank" rel="noopener" href="https://keystone-enclave.org/">文档</a><br><a target="_blank" rel="noopener" href="https://github.com/keystone-enclave/keystone">项目</a><br><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/abs/10.1145/3342195.3387532">论文</a></p>
+<h2 id="海光CSV"><a href="#海光CSV" class="headerlink" title="海光CSV"></a>海光CSV</h2><p>项目位置链接<br><a target="_blank" rel="noopener" href="https://gitee.com/anolis/cloud-kernel">https://gitee.com/anolis/cloud-kernel</a><br><a target="_blank" rel="noopener" href="https://gitee.com/anolis/hygon-edk2">https://gitee.com/anolis/hygon-edk2</a><br><a target="_blank" rel="noopener" href="https://gitee.com/anolis/hygon-qemu">https://gitee.com/anolis/hygon-qemu</a><br><a target="_blank" rel="noopener" href="https://github.com/inclavare-containers/librats">https://github.com/inclavare-containers/librats</a><br><a target="_blank" rel="noopener" href="https://github.com/inclavare-containers/rats-tls">https://github.com/inclavare-containers/rats-tls</a></p>
+<p>项目归属SIG<br>云原生机密计算SIG</p>
+<p>容器技术的出现，使应用程序的打包、分发变得非常简单易用，Kubernetes等容器编排技术的出现，进一步加速了容器生态的普及和发展，目前容器已经逐渐成为云计算的主要运行单元。但是由于传统容器共享操作系统内核，在隔离性和安全性上比传统虚拟机差。为了解决这个问题，Kata容器应运而生，Kata容器运行在轻量级虚拟机里，比起传统容器提供了更好的隔离性和安全性，使Kata容器同时具有容器技术带来的易用性和虚拟机技术带来的安全性。随着机密计算需求的出现，CPU厂商纷纷推出了硬件TEE技术，传统虚拟机技术已无法满足机密计算的需要，Kata容器的安全性需要进一步增强以便应用于机密计算场景。</p>
+<p>虚拟化是云计算的底层基础技术，随着云计算的发展而被广泛应用。由于虚拟机的全部资源被主机操作系统和虚拟机管理器管理和控制，虚拟化本身有较严重的安全缺陷，主机操作系统和虚拟机管理器可任意读取和修改虚拟机资源且虚拟机无法察觉。主机操作系统和虚拟机管理器有权读写虚拟机代码段，虚拟机内存数据，虚拟机磁盘数据，并有权重映射虚拟机内存等。攻击者可利用主机操作系统和虚拟机管理器的安全缺陷获取操作系统的权限后攻击虚拟机，给虚拟机最终用户造成重大损失。</p>
+<p>CSV是海光自主研发的安全虚拟化技术，采用国密算法实现，CSV虚拟机在写内存数据时CPU硬件自动加密，读内存数据时硬件自动解密，每个CSV虚拟机使用不同的密钥。海光CPU内部使用ASID（Address Space ID）区分不同的CSV虚拟机和主机，每个CSV虚拟机使用独立的Cache、TLB等CPU资源，实现CSV虚拟机、主机之间的资源隔离。CSV虚拟机使用隔离的硬件资源，支持启动度量、远程认证等功能，是安全的硬件可信执行环境。</p>
+<p>CSV机密容器技术将安全虚拟化技术与Kata容器技术结合，实现容器运行环境的度量和加密，容器中的程序可以使用远程认证功能实现身份证明。CSV机密容器和普通容器的接口完全兼容，用户可以使用Docker或者Kubernetes启动机密容器，实现对容器数据的隔离和保护。</p>
+<p>CSV技术构建了以安全加密虚拟机为基础的可信执行环境。在安全加密虚拟机保证了虚拟机数据机密性的基础上，更进一步保证了虚拟机数据的完整性，主机操作系统和虚拟机管理无法通过改写虚拟机嵌套页表对虚拟机实施重映射攻击。</p>
+<p>参考文献<br>[1] <a target="_blank" rel="noopener" href="https://houhuiting.github.io/cncc-sig-white-paper/cc_platform/hygon_csv.html">https://houhuiting.github.io/cncc-sig-white-paper/cc_platform/hygon_csv.html</a></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 zxy
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
