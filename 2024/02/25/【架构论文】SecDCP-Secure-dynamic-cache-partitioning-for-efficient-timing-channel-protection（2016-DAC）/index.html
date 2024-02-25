@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC） | Xinyao</title>
+  <meta name="keywords" content=" 论文 , 动态缓存划分 ">
+  <meta name="description" content="【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC） | Xinyao">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="勇攀高峰">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://zhengxinyao.github.io/tags/index.html">
+<meta property="og:site_name" content="Xinyao">
+<meta property="og:description" content="勇攀高峰">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-07T15:59:52.000Z">
+<meta property="article:modified_time" content="2024-02-07T15:59:52.773Z">
+<meta property="article:author" content="ICT-IPRC">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/favicon.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/myself.png"/>
+</a>
+<div class="author">
+    <span>ICT-IPRC</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/zhengxinyao"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="linkedin"
+               href="https://www.linkedin.com/in/%E6%98%95%E7%91%B6-%E9%83%91-956a732b5/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-linkedin"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/destiny-44-90-76"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qq_43543209?spm=1010.2135.3001.5343"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1601835186@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1601835186&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(25)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文记录">
+            
+            论文记录
+            <small>(12)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识总结">
+            
+            知识总结
+            <small>(13)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="25">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>侧信道</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态缓存划分</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多租户调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分组加密</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>共享内存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>论文</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存保护</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>虚拟化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>云安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI加速器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV- SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV-SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ARM CCA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPU</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel SGX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel TDX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NVM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PENGLAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TEE</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91SoK%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E9%9A%94%E7%A6%BB%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E6%80%A7%E7%9A%84%E7%A0%94%E7%A9%B6%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89-2016/"
+           data-tag="TEE,安全,架构"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】SoK：使用硬件辅助隔离执行环境实现安全性的研究（综述） 2016">【TEE论文】SoK：使用硬件辅助隔离执行环境实现安全性的研究（综述） 2016</span>
+            <span class="post-date" title="2024-02-25 20:30:40">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E5%AE%89%E5%85%A8%E5%85%A8%E9%9D%A2%E8%B0%83%E6%9F%A5%EF%BC%9A%E4%BB%8E%E8%BE%B9%E7%BC%98%E5%88%B0%E4%BA%91%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89/"
+           data-tag="TEE,安全,架构"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】硬件辅助安全全面调查：从边缘到云（综述）">【TEE论文】硬件辅助安全全面调查：从边缘到云（综述）</span>
+            <span class="post-date" title="2024-02-25 20:29:23">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E5%AE%89%E5%85%A8%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E7%BB%BC%E8%BF%B0/"
+           data-tag="LLM,安全"
+           data-author="" >
+            <span class="post-title" title="【安全】大模型安全综述">【安全】大模型安全综述</span>
+            <span class="post-date" title="2024-02-25 20:28:32">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91ProMT-Optimizing-Integrity-Tree-Updates-for-Write-Intensive-Pages-in-Secure-NVMs/"
+           data-tag="NVM,内存安全"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】ProMT: Optimizing Integrity Tree Updates for Write-Intensive Pages in Secure NVMs">【TEE论文】ProMT: Optimizing Integrity Tree Updates for Write-Intensive Pages in Secure NVMs</span>
+            <span class="post-date" title="2024-02-25 20:27:27">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E8%99%9A%E6%8B%9F%E5%8C%96/"
+           data-tag="GPU,虚拟化"
+           data-author="" >
+            <span class="post-title" title="【架构】GPU虚拟化">【架构】GPU虚拟化</span>
+            <span class="post-date" title="2024-02-25 20:26:11">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/"
+           data-tag="云安全"
+           data-author="" >
+            <span class="post-title" title="【云安全】传输层安全性（TLS）大汇总">【云安全】传输层安全性（TLS）大汇总</span>
+            <span class="post-date" title="2024-02-25 20:22:53">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/"
+           data-tag="架构,多租户调度"
+           data-author="" >
+            <span class="post-title" title="【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation">【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation</span>
+            <span class="post-date" title="2024-02-25 20:21:48">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/"
+           data-tag="TEE,架构,侧信道"
+           data-author="" >
+            <span class="post-title" title="【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）">【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）</span>
+            <span class="post-date" title="2024-02-25 20:19:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/"
+           data-tag="论文,动态缓存划分"
+           data-author="" >
+            <span class="post-title" title="【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）">【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）</span>
+            <span class="post-date" title="2024-02-25 20:17:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Reusable-Enclaves-for-Confidential-Serverless-Computing%EF%BC%88usenixsecurity23%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）">【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）</span>
+            <span class="post-date" title="2024-02-25 20:14:26">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Serverless-Made-Efficient-with-Plug-In-Enclaves-%EF%BC%882021-ISCA%EF%BC%89/"
+           data-tag="TEE,论文,共享内存"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）">【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）</span>
+            <span class="post-date" title="2024-02-25 20:12:45">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service">【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service</span>
+            <span class="post-date" title="2024-02-25 20:11:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91-HETEE-Enabling-rack-scale-confidential-computing-using-heterogeneous-TEE-2020-SP/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)">【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)</span>
+            <span class="post-date" title="2024-02-25 20:08:42">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）">【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）</span>
+            <span class="post-date" title="2024-02-25 20:07:36">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/"
+           data-tag="TEE,内存保护,分组加密"
+           data-author="" >
+            <span class="post-title" title="【TEE】片外内存保护：AES分组算法+MAC完整性验证">【TEE】片外内存保护：AES分组算法+MAC完整性验证</span>
+            <span class="post-date" title="2024-02-25 20:05:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"
+           data-tag="TEE,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel SGX的不足和解决方案">【TEE】Intel SGX的不足和解决方案</span>
+            <span class="post-date" title="2024-02-25 19:59:35">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/"
+           data-tag="TEE,Intel TDX,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel可信执行环境的前世今生">【TEE】Intel可信执行环境的前世今生</span>
+            <span class="post-date" title="2024-02-25 19:54:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/"
+           data-tag="TEE,LLM"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境保障大模型安全">【TEE】可信执行环境保障大模型安全</span>
+            <span class="post-date" title="2024-02-25 19:52:39">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91PENGLAI-TEE/"
+           data-tag="TEE,PENGLAI"
+           data-author="" >
+            <span class="post-title" title="【TEE】PENGLAI TEE">【TEE】PENGLAI TEE</span>
+            <span class="post-date" title="2024-02-25 19:51:30">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91AMD-SEV-SNP%E5%92%8CIntel-TDX%E7%9A%84%E6%A6%82%E8%BF%B0/"
+           data-tag="TEE,AMD SEV- SNP,Intel TDX"
+           data-author="" >
+            <span class="post-title" title="【TEE】AMD SEV- SNP和Intel TDX的概述">【TEE】AMD SEV- SNP和Intel TDX的概述</span>
+            <span class="post-date" title="2024-02-25 19:36:13">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/"
+           data-tag="TEE,ARM CCA"
+           data-author="" >
+            <span class="post-title" title="【TEE】ARM CCA 可信计算架构">【TEE】ARM CCA 可信计算架构</span>
+            <span class="post-date" title="2024-02-25 19:24:38">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/"
+           data-tag="TEE,AMD SEV-SNP"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离">【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离</span>
+            <span class="post-date" title="2024-02-25 19:11:12">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/"
+           data-tag="TEE,AMD SEV"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV内存加密】 白皮书">【TEE】【AMD SEV内存加密】 白皮书</span>
+            <span class="post-date" title="2024-02-25 19:05:02">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Computing-within-an-AI-Accelerator/"
+           data-tag="TEE,论文,AI加速器,架构设计"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Computing within an AI Accelerator">【TEE论文】Confidential Computing within an AI Accelerator</span>
+            <span class="post-date" title="2024-02-25 18:53:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/"
+           data-tag="TEE"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境业界资料">【TEE】可信执行环境业界资料</span>
+            <span class="post-date" title="2024-02-25 18:31:25">2024/02/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【架构论文】SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection（2016-DAC）" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="论文记录">论文记录</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color3">论文</a>
+            
+            <a class="color2">动态缓存划分</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 20:24:20'>2024-02-25 20:17</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A8%81%E8%83%81%E6%A8%A1%E5%9E%8B"><span class="toc-text">威胁模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SECDCP%E8%AE%BE%E8%AE%A1"><span class="toc-text">SECDCP设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%91%E6%88%98"><span class="toc-text">挑战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E5%AE%89%E5%85%A8%E7%BA%A7%E5%88%AB%E7%9A%84SecDCP"><span class="toc-text">两个安全级别的SecDCP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PAA%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AE%97%E6%B3%95"><span class="toc-text">PAA分区分配算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PEM%E5%88%86%E5%8C%BA%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="toc-text">PEM分区执行机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%88%E7%8E%87%E5%88%86%E6%9E%90"><span class="toc-text">效率分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84SecDCP"><span class="toc-text">一般情况下的SecDCP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PAA%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AE%97%E6%B3%95-1"><span class="toc-text">PAA分区分配算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PEM"><span class="toc-text">PEM</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0"><span class="toc-text">评估</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%96%B9%E6%B3%95"><span class="toc-text">实验方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD"><span class="toc-text">性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%88%E5%80%BC%E5%92%8C%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5"><span class="toc-text">阈值和安全策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/7544317">SecDCP: Secure dynamic cache partitioning for efficient timing channel protection</a></p>
+<p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A8%81%E8%83%81%E6%A8%A1%E5%9E%8B"><span class="toc-text">威胁模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SECDCP%E8%AE%BE%E8%AE%A1"><span class="toc-text">SECDCP设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%91%E6%88%98"><span class="toc-text">挑战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E5%AE%89%E5%85%A8%E7%BA%A7%E5%88%AB%E7%9A%84SecDCP"><span class="toc-text">两个安全级别的SecDCP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PAA%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AE%97%E6%B3%95"><span class="toc-text">PAA分区分配算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PEM%E5%88%86%E5%8C%BA%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="toc-text">PEM分区执行机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%88%E7%8E%87%E5%88%86%E6%9E%90"><span class="toc-text">效率分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84SecDCP"><span class="toc-text">一般情况下的SecDCP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PAA%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AE%97%E6%B3%95-1"><span class="toc-text">PAA分区分配算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PEM"><span class="toc-text">PEM</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0"><span class="toc-text">评估</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%96%B9%E6%B3%95"><span class="toc-text">实验方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD"><span class="toc-text">性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%88%E5%80%BC%E5%92%8C%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5"><span class="toc-text">阈值和安全策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li></ol></div></p>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>多核处理器并发进程共享LLC提高资源利用率，但容易收到定时信道攻击。静态缓存分区可以消除定时信道但是开销大；本文使用动态缓存分区在运行时更改缓存分区大小，安全的同时保证性能。与静态缓存分区相比，性能提高43%，平均提高12.5%。</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>安全问题：最后一级核心是共享的，不同应用程序通过逐出彼此的缓存条目来互相干扰，并发起定时攻击。<br>现有方法：</p>
+<ul>
+<li>静态缓存分区，共享缓存静态划分为多个分区，每个进程使用自己的分区，消除缓存干扰；但是分区大小无法适应每个应用程序变化的缓存行为，性能开销大。</li>
+<li>先前的动态缓存分区技术，根据应用程序的运行需求动态改变分区大小，分区策略依赖应用程序的运行时行为，容易受到缓存定时信道攻击。</li>
+<li>本文提出动态缓存分区，提供数据流的单向保护，防止信息从机密应用泄漏到公共应用，但允许信息从公共应用流向机密应用。<strong>使用公共应用程序的缓存需求来更改分区大小，不泄露机密应用的运行需求，系统性能也会整体提高</strong>。</li>
+</ul>
+<h1 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h1><ul>
+<li>软件解决方案：依赖于重写软件来删除已知的定时通道，因此它们是针对特定攻击的，并且会产生显着的性能开销。</li>
+<li>随机化方法：内存到缓存的映射被随机化以混淆攻击者的测量，并不能隐藏缓存访问的数量，随机化无法防御隐蔽通道攻击（在隐蔽通道攻击中，攻击者故意操纵缓存访问的数量来发送机密信息）。</li>
+<li>分区方法：缓存被静态地划分为多个分区。每个分区只能被一个进程使用，从而消除了受害者和攻击者之间的缓存干扰。开销大，分区大小无法适应每个进程的运行时缓存行为。</li>
+<li>动态分区：利用每个应用程序的运行时缓存需求信息来调整分区大小，很容易受到定时信道攻击。</li>
+</ul>
+<h1 id="威胁模型"><a href="#威胁模型" class="headerlink" title="威胁模型"></a>威胁模型</h1><p>目标：消除多核处理器中不同应用程序之间的缓存计时通道。<br>底层操作系统为每个应用程序分配一个安全类别，<strong>信息流动受限：信息不能在同一安全层中的两个安全类之间流动；允许信息从较低安全层流向较高安全层</strong>。安全策略定义了安全类之间允许哪些信息流，目标是防止不允许的信息流通过缓存计时通道。</p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/0f811839515940338b04edfa00fce458.png"><br>SecDCP 假设一个强攻击者模型。</p>
+<ul>
+<li>攻击者能够测量其自己的单独缓存访问的时间</li>
+<li>SecDCP 还处理隐蔽通道攻击，防止高安全层的受损应用程序将信息泄露给低安全层的应用程序</li>
+<li>SecDCP 假设硬件计数器由操作系统或虚拟机管理程序控制，并且用户进程无法访问，攻击者无法通过直接访问缓存硬件计数器来推断受害者的缓存行为。</li>
+</ul>
+<h1 id="SECDCP设计"><a href="#SECDCP设计" class="headerlink" title="SECDCP设计"></a>SECDCP设计</h1><h2 id="挑战"><a href="#挑战" class="headerlink" title="挑战"></a>挑战</h2><ul>
+<li>1.分区大小取决于机密应用程序的需求</li>
+<li>2.更改分区大小并未严格执行（以前的动态缓存分区方法在替换时强制执行新的分区大小。如果缓存分区的大小减小，<strong>缓存行不会立即被驱逐</strong>，它们保留在高速缓存中，直到来自另一个进程的某些高速缓存行替换它们。<strong>这意味着一个进程的缓存行的驱逐取决于其他进程的缓存访问</strong>——这是定时通道攻击的一个漏洞。）</li>
+</ul>
+<p>分层安全策略本质上是不对称的，SecDCP利用这种不对称能解决上述问题。</p>
+<h2 id="两个安全级别的SecDCP"><a href="#两个安全级别的SecDCP" class="headerlink" title="两个安全级别的SecDCP"></a>两个安全级别的SecDCP</h2><p>为了说明 SecDCP 的思想，我们首先描述具有两个安全类的简单层次结构的 SecDCP 设计。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/a5617bed399c4d97a02c305bf71002d3.png"></p>
+<p>设计规则：</p>
+<ul>
+<li>1 分区大小与机密应用程序无关</li>
+<li>2 更改分区大小的操作不会泄露机密应用程序的信息。</li>
+</ul>
+<p>主要算法：</p>
+<ul>
+<li>分区分配算法（PAA）：负责在运行时分配每个分区的大小</li>
+<li>分区执行机制（PEM）：负责在PAA选择新的缓存分配后强制执行新的分区大小。</li>
+</ul>
+<h3 id="PAA分区分配算法"><a href="#PAA分区分配算法" class="headerlink" title="PAA分区分配算法"></a>PAA分区分配算法</h3><p>每个epoch结束，PPA使用L的需求分配分区大小；epoch内，利用监控器（UMON）记录L利用率得到未命中曲线，如下图。利用曲线可以计算增加缓存大小的收益和减少缓存大小的损失。假设一个epoch内L的缓存未命中次数为N，当前分区大小为X路，收益和损失定义如下：<br>gain&#x3D;[MISS(X)-MISS(X+1)]&#x2F;N<br>loss&#x3D;[MISS(X-1)-MISS(X)]&#x2F;N<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/44949cee8975409181d0ee19ef3af562.png"><br>把gain和loss喂到PAA，PAA定义了两个阈值$th_{inc}$和 $th_{dec}$来决定划分的cache路数，如果gain大于阈值$th_{inc}$则增加一路。<br>PAA只考虑L的需求，防止信息从H泄漏到L。L增加，H减少，尽管H性能减少，L性能增加的比更大，整体性能增大。为防止不公平和饥饿，总体设计总是为H保留一路。</p>
+<h3 id="PEM分区执行机制"><a href="#PEM分区执行机制" class="headerlink" title="PEM分区执行机制"></a>PEM分区执行机制</h3><p>PAA分配分区后，PEM执行新的分配，防止信息从H泄漏到L。<br>简单的方法是重新分配时刷新整个cache way，性能开销大。<br>把每一cache line和1bit的ID关联去表示哪个安全类获取cache line。当L的分区大小减少时，PEM检查ID并刷新所有属于L但要重分配给H的cache line。L的分区大小增加时，PEM不刷新从H分配给L的cache line。H’的缓存行可以被L的缓存行驱逐，H可以学习到L的缓存访问。然而信息流是无害的，<br>这一优化方法提高了H的性能，通过允许H在L分区的缓存行中缓存命中直到L驱逐他们。</p>
+<h2 id="效率分析"><a href="#效率分析" class="headerlink" title="效率分析"></a>效率分析</h2><p>SecDCP 通过利用来自公共应用程序的缓存需求信息在运行时动态分区缓存；以前的动态缓存分区方案（例如基于实用程序的分区[12]）使用来自所有应用程序的信息来决定分区大小。以下对两者进行比较分析：</p>
+<p>我们将应用阶段分为缓存敏感阶段和缓存不敏感阶段。假设机密应用程序与公共应用程序同时运行。并发应用阶段的状态（PublicApp、ConfidentialApp）可以分为四种情况（I不敏感，S敏感）：</p>
+<ul>
+<li>（I,I）：对性能影响不大，SecDCP 和“基于实用程序的分区”实现相似的性能</li>
+<li>（I,S）：两种方案都将大部分缓存分配给机密应用，因为公共应用不需要缓存</li>
+<li>（S,I）：“基于实用程序的分区”将大部分缓存分配给公共应用，SecDCP 阈值选择得当，分配将达到相同的结果</li>
+<li>（S,S）：“基于实用程序的分区”找到对两个应用程序都有利的分配； SecDCP 的分配取决于阈值</li>
+</ul>
+<p>当公共应用程序对缓存不敏感时，SecDCP 实现的性能与基于实用程序的分区几乎相同。对于另外两种情况，SecDCP的性能依赖于阈值的准确性。我们的分析和实验结果表明，在许多情况下，使用一侧的信息足以进行动态分区。</p>
+<h2 id="一般情况下的SecDCP"><a href="#一般情况下的SecDCP" class="headerlink" title="一般情况下的SecDCP"></a>一般情况下的SecDCP</h2><p>为通用安全策略扩展 SecDCP 似乎很简单，但事实证明这种扩展并非易事。</p>
+<h3 id="PAA分区分配算法-1"><a href="#PAA分区分配算法-1" class="headerlink" title="PAA分区分配算法"></a>PAA分区分配算法</h3><p>PAA使用UMON跟踪每个安全类的缓存需求。如果一个安全类需要增加分区大小，它从更高级别的安全类获取缓存路，存在安全风险。</p>
+<p><strong>不安全设计</strong><br>不失通用性地考零分三个安全级的不安全设计。<br>case 1：L1想增加分区大小，M1想减小分区大小，M2想保持分区大小不变。算法往往会将M1的缓存路分配给L1，如果M2知道L1是缓存不敏感的，但观察到它没有损失缓存路，能够推测M1可能在减少它的缓存路，因此M2可以学M1的运行时缓存需求。<br>case 2：假设M1想增加分区大小，M1通常从Hi得到缓存路直到Tier 3没有可用的缓存路。现在的安全类M2开始请求更大的缓存大小，Tier 3没有更多的缓存路则M2得不到，如果M2知道Tier的应用是缓存不敏感的，M2可以推测Tier 2存在更高的缓存需求。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/a84789f642ca40319d52b5682ac2ba97.png"><br>分配漏洞总结如下：1.不同安全类型的动态仲裁基于缓存需求；2.先到先得分配原则</p>
+<p><strong>安全分配设计</strong><br>避免先前提到的分配漏洞，假设通用的安全策略包括N层，每一层有Ki个不同的安全类型，为了描述的的简便，使用$c_{i,j}$表示安全层i的第j个安全类。<br>如果安全类$c_{i,j}$想要增加它的分区大小，PAA首先检查第i+1个安全层，有$K_{i+1}$个安全类。假设每个安全类最初有P个缓存路可以分配给其他安全应用，第i+1个安全层一共有$K_{i+1}*P$个缓存路可供分配。<br>为了避免先到先得的分配漏洞，PAA给每个不同安全类保存一定数量的缓存路。因为i层有$K_i$个不同的安全类，每个安全类最多能从第i+1层得到$K_{i+1}*P&#x2F;K_i$个缓存路。PAA为安全类检查保留的缓存路。如果存在一个缓存路目前被一个安全类$c_{i’,j’}$占用，i’&gt;i，则可以将该缓存路重新分配给 $c_{i， j}$，。如果多个缓存路满足条件，PAA 会使用严格的循环策略选择一个缓存路，从而避免基于缓存需求进行动态仲裁的问题。如果没有缓存方式满足条件，则 $PAA$ 将移动到层 $（i+2）$ 并重复相同的过程。该算法遍历从层 $（i+1）$ 到层 $N$ 的安全层；并在找到目标缓存方式或搜索达到第 $N 层时终止。<br>如果安全类 $c_{i， j}$想要减小其分区大小，PAA 将简单地将额外的缓存路重新分配给层 $（i+1）$ 中的一个安全类。如果层 $（i+1）$ 中有多个安全类，则 PAA 使用严格的轮询策略选择一个安全类。</p>
+<h3 id="PEM"><a href="#PEM" class="headerlink" title="PEM"></a>PEM</h3><p>分区大小增加时，PEM不会刷新缓存方式，但是分区大小减少时，PEM需要刷新特定缓存行，避免定时侧信道攻击。假设安全类$c_{i， j}$ 放弃缓存行重新分配给另一个安全类 $c_{i+1， j}$，PEM 会以重新分配的缓存方式检查每个缓存行，如果缓存行的安全等级不等于或低于 $c_{i+1， j}$，则需要刷新该缓存行。</p>
+<h1 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h1><h2 id="实验方法"><a href="#实验方法" class="headerlink" title="实验方法"></a>实验方法</h2><p>使用架构模拟器gem5。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/2632fedc5c474b43bf1b87be33b7c369.png"><br>运行了由 SPEC CPU2006程序组成的多程序工作负载。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/40567b5477d84aa993229faac47ba8d7.png"></p>
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><p>将 SecDCP 与其他三种方案进行了比较。第一种方案是静态分区，它将缓存静态划分为两个大小相等的分区。第二种方案是无分区，其中使用 LRU 替换来管理整个缓存。最后一种方案是基于实用程序的分区，使用两个程序的缓存需求动态地对缓存进行分区。静态分区和 SecDCP 是安全的，而无分区和基于实用程序的分区是不安全的。</p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/7088e69d0bbb4cfeb63d2393ee69669e.png"><br>SS 工作负载的性能。<br>SS 工作负载是两个缓存敏感程序的混合。我们将每个方案的加权加速归一化为静态分区的加权加速。对于这些工作负载，SecDCP 平均比静态分区提高了 12.5%。在某些情况下，改进可以达到 40%。这是因为 SS 工作负载对缓存敏感，需要有效利用有限的缓存空间。静态分区会产生高性能开销，因为它无法调整分区大小以满足每个程序不断变化的缓存需求。当 $L$ 程序能够通过更大的分区大小提高其性能时，SecDCP 会增加 $L$ 的分区大小。另一方面，SecDCP 在不会对 $L$ 程序的性能造成太大影响的情况下减小了 $L$ 的分区大小，从而为 $H$ 程序提供了更多的缓存空间，从而可以机会性地提高其性能。平均而言，SecDCP 实现的性能与无分区和基于实用程序的分区相似。</p>
+<hr>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/a98dc866c6504faea0bb83599eac7124.png"><br>SI 工作负载的性能。SI 工作负载是随机选择的缓存敏感程序和缓存不敏感程序的组合。平均而言，SecDCP 比静态分区提高了 11.4%。对于 SI 工作负载，SecDCP 会逐渐减小缓存不敏感程序的分区大小，大大提高缓存敏感程序的性能。基于实用程序的分区也可以实现相同的目标，这就是为什么我们看到每个工作负载的 SecDCP 和基于实用程序的分区之间都有类似的加速。我们还看到，在某些情况下（例如，bzi_lib），SecDCP 的性能比静态分区差。这是因为我们选择的阈值（即 20%）与 bzip2 的缓存需求不匹配。在此工作负载中，bzip2 不断减小其分区大小，因为损失（在公式 2 中定义）小于 20%。但是，libquantum 是一个流式处理程序，无法利用不断增加的缓存大小。因此，系统性能会降低。</p>
+<hr>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/0b1a2515d5514428b7403446840692ff.png"><br>II 工作负载的性能。两个程序都对缓存不敏感。由于程序的性能与缓存大小的依赖性不大，因此所有方案的性能都类似。我们将 SecDCP 与静态分区进行比较。静态分区方案将缓存划分为四个分区，每个分区为四向缓存。我们选择了 32 个四程序工作负载，包括 SS、SI 和 II 类型（每个类别两个程序）。结果表明，与静态分区相比，SecDCP平均提高了6.4%。对于相当多的基准，改进可以达到 20%。但是，我们确实看到某些工作负载的 SecDCP 性能比静态分区差。这又是由于阈值（20%）的不精确性。</p>
+<h2 id="阈值和安全策略"><a href="#阈值和安全策略" class="headerlink" title="阈值和安全策略"></a>阈值和安全策略</h2><p>尝试了 {2%、5%、10%、15%、20%、25%} 集合中的不同阈值。我们发现阈值会显著影响大多数工作负载的性能，因此选择一个好的阈值很重要。对于大多数工作负载，阈值 20% 的性能良好，平均在最佳阈值的 2.5% 以内。</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>我们提出了 SecDCP，这是一种安全的动态缓存分区方案，可提高静态缓存分区的性能，同时满足分层安全策略指定的安全要求。SecDCP 仅使用公共应用程序的缓存需求来动态确定缓存分区大小。然后，SecDCP 仅在必要时刷新缓存行，从而安全有效地强制执行新的分区大小。SecDCP 还支持对常规安全策略的非平凡扩展。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 zxy
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【架构】GPU虚拟化 | Xinyao</title>
+  <meta name="keywords" content=" GPU , 虚拟化 ">
+  <meta name="description" content="【架构】GPU虚拟化 | Xinyao">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="勇攀高峰">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://zhengxinyao.github.io/tags/index.html">
+<meta property="og:site_name" content="Xinyao">
+<meta property="og:description" content="勇攀高峰">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-07T15:59:52.000Z">
+<meta property="article:modified_time" content="2024-02-07T15:59:52.773Z">
+<meta property="article:author" content="ICT-IPRC">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/favicon.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/myself.png"/>
+</a>
+<div class="author">
+    <span>ICT-IPRC</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/zhengxinyao"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="linkedin"
+               href="https://www.linkedin.com/in/%E6%98%95%E7%91%B6-%E9%83%91-956a732b5/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-linkedin"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/destiny-44-90-76"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qq_43543209?spm=1010.2135.3001.5343"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1601835186@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1601835186&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(25)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文记录">
+            
+            论文记录
+            <small>(12)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识总结">
+            
+            知识总结
+            <small>(13)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="25">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>侧信道</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态缓存划分</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多租户调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分组加密</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>共享内存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>论文</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存保护</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>虚拟化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>云安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI加速器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV- SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV-SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ARM CCA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPU</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel SGX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel TDX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NVM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PENGLAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TEE</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91SoK%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E9%9A%94%E7%A6%BB%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E6%80%A7%E7%9A%84%E7%A0%94%E7%A9%B6%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89-2016/"
+           data-tag="TEE,安全,架构"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】SoK：使用硬件辅助隔离执行环境实现安全性的研究（综述） 2016">【TEE论文】SoK：使用硬件辅助隔离执行环境实现安全性的研究（综述） 2016</span>
+            <span class="post-date" title="2024-02-25 20:30:40">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E5%AE%89%E5%85%A8%E5%85%A8%E9%9D%A2%E8%B0%83%E6%9F%A5%EF%BC%9A%E4%BB%8E%E8%BE%B9%E7%BC%98%E5%88%B0%E4%BA%91%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89/"
+           data-tag="TEE,安全,架构"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】硬件辅助安全全面调查：从边缘到云（综述）">【TEE论文】硬件辅助安全全面调查：从边缘到云（综述）</span>
+            <span class="post-date" title="2024-02-25 20:29:23">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E5%AE%89%E5%85%A8%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E7%BB%BC%E8%BF%B0/"
+           data-tag="LLM,安全"
+           data-author="" >
+            <span class="post-title" title="【安全】大模型安全综述">【安全】大模型安全综述</span>
+            <span class="post-date" title="2024-02-25 20:28:32">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91ProMT-Optimizing-Integrity-Tree-Updates-for-Write-Intensive-Pages-in-Secure-NVMs/"
+           data-tag="NVM,内存安全"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】ProMT: Optimizing Integrity Tree Updates for Write-Intensive Pages in Secure NVMs">【TEE论文】ProMT: Optimizing Integrity Tree Updates for Write-Intensive Pages in Secure NVMs</span>
+            <span class="post-date" title="2024-02-25 20:27:27">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E8%99%9A%E6%8B%9F%E5%8C%96/"
+           data-tag="GPU,虚拟化"
+           data-author="" >
+            <span class="post-title" title="【架构】GPU虚拟化">【架构】GPU虚拟化</span>
+            <span class="post-date" title="2024-02-25 20:26:11">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/"
+           data-tag="云安全"
+           data-author="" >
+            <span class="post-title" title="【云安全】传输层安全性（TLS）大汇总">【云安全】传输层安全性（TLS）大汇总</span>
+            <span class="post-date" title="2024-02-25 20:22:53">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/"
+           data-tag="架构,多租户调度"
+           data-author="" >
+            <span class="post-title" title="【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation">【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation</span>
+            <span class="post-date" title="2024-02-25 20:21:48">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/"
+           data-tag="TEE,架构,侧信道"
+           data-author="" >
+            <span class="post-title" title="【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）">【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）</span>
+            <span class="post-date" title="2024-02-25 20:19:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/"
+           data-tag="论文,动态缓存划分"
+           data-author="" >
+            <span class="post-title" title="【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）">【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）</span>
+            <span class="post-date" title="2024-02-25 20:17:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Reusable-Enclaves-for-Confidential-Serverless-Computing%EF%BC%88usenixsecurity23%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）">【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）</span>
+            <span class="post-date" title="2024-02-25 20:14:26">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Serverless-Made-Efficient-with-Plug-In-Enclaves-%EF%BC%882021-ISCA%EF%BC%89/"
+           data-tag="TEE,论文,共享内存"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）">【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）</span>
+            <span class="post-date" title="2024-02-25 20:12:45">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service">【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service</span>
+            <span class="post-date" title="2024-02-25 20:11:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91-HETEE-Enabling-rack-scale-confidential-computing-using-heterogeneous-TEE-2020-SP/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)">【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)</span>
+            <span class="post-date" title="2024-02-25 20:08:42">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）">【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）</span>
+            <span class="post-date" title="2024-02-25 20:07:36">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/"
+           data-tag="TEE,内存保护,分组加密"
+           data-author="" >
+            <span class="post-title" title="【TEE】片外内存保护：AES分组算法+MAC完整性验证">【TEE】片外内存保护：AES分组算法+MAC完整性验证</span>
+            <span class="post-date" title="2024-02-25 20:05:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"
+           data-tag="TEE,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel SGX的不足和解决方案">【TEE】Intel SGX的不足和解决方案</span>
+            <span class="post-date" title="2024-02-25 19:59:35">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/"
+           data-tag="TEE,Intel TDX,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel可信执行环境的前世今生">【TEE】Intel可信执行环境的前世今生</span>
+            <span class="post-date" title="2024-02-25 19:54:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/"
+           data-tag="TEE,LLM"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境保障大模型安全">【TEE】可信执行环境保障大模型安全</span>
+            <span class="post-date" title="2024-02-25 19:52:39">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91PENGLAI-TEE/"
+           data-tag="TEE,PENGLAI"
+           data-author="" >
+            <span class="post-title" title="【TEE】PENGLAI TEE">【TEE】PENGLAI TEE</span>
+            <span class="post-date" title="2024-02-25 19:51:30">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91AMD-SEV-SNP%E5%92%8CIntel-TDX%E7%9A%84%E6%A6%82%E8%BF%B0/"
+           data-tag="TEE,AMD SEV- SNP,Intel TDX"
+           data-author="" >
+            <span class="post-title" title="【TEE】AMD SEV- SNP和Intel TDX的概述">【TEE】AMD SEV- SNP和Intel TDX的概述</span>
+            <span class="post-date" title="2024-02-25 19:36:13">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/"
+           data-tag="TEE,ARM CCA"
+           data-author="" >
+            <span class="post-title" title="【TEE】ARM CCA 可信计算架构">【TEE】ARM CCA 可信计算架构</span>
+            <span class="post-date" title="2024-02-25 19:24:38">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/"
+           data-tag="TEE,AMD SEV-SNP"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离">【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离</span>
+            <span class="post-date" title="2024-02-25 19:11:12">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/"
+           data-tag="TEE,AMD SEV"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV内存加密】 白皮书">【TEE】【AMD SEV内存加密】 白皮书</span>
+            <span class="post-date" title="2024-02-25 19:05:02">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Computing-within-an-AI-Accelerator/"
+           data-tag="TEE,论文,AI加速器,架构设计"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Computing within an AI Accelerator">【TEE论文】Confidential Computing within an AI Accelerator</span>
+            <span class="post-date" title="2024-02-25 18:53:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/"
+           data-tag="TEE"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境业界资料">【TEE】可信执行环境业界资料</span>
+            <span class="post-date" title="2024-02-25 18:31:25">2024/02/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【架构】GPU虚拟化" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【架构】GPU虚拟化</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="知识总结">知识总结</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">GPU</a>
+            
+            <a class="color4">虚拟化</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 20:27:06'>2024-02-25 20:26</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#GPU%E8%99%9A%E6%8B%9F%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-text">GPU虚拟化方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8API"><span class="toc-text">远程调用API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8A%E8%99%9A%E6%8B%9F%E5%8C%96%E5%92%8C%E5%85%A8%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-text">半虚拟化和全虚拟化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%88%92%E5%88%86"><span class="toc-text">硬件划分</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8C%91%E6%88%98%E5%92%8C%E6%96%B9%E5%90%91"><span class="toc-text">挑战和方向</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%BB%E9%87%8F%E7%BA%A7%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-text">轻量级虚拟化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7"><span class="toc-text">可扩展性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%80%A7"><span class="toc-text">安全性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="GPU虚拟化方法"><a href="#GPU虚拟化方法" class="headerlink" title="GPU虚拟化方法"></a>GPU虚拟化方法</h1><p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E8%99%9A%E6%8B%9F%E5%8C%96/8669bc69223d4c8bb04b729e2241d3bf.png"></p>
+<h2 id="远程调用API"><a href="#远程调用API" class="headerlink" title="远程调用API"></a>远程调用API</h2><p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E8%99%9A%E6%8B%9F%E5%8C%96/d7fce16eee9b401f80521b21062e64c1.png"></p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E8%99%9A%E6%8B%9F%E5%8C%96/7e8c3da1736a4eb2a89cc38524bc08c1.png"></p>
+<h2 id="半虚拟化和全虚拟化"><a href="#半虚拟化和全虚拟化" class="headerlink" title="半虚拟化和全虚拟化"></a>半虚拟化和全虚拟化</h2><p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E8%99%9A%E6%8B%9F%E5%8C%96/270f7340a6804dd1a7ebaab642db982b.png"><br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E8%99%9A%E6%8B%9F%E5%8C%96/97d8b331cfcd458580a0ab9197dfcd89.png"><br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E8%99%9A%E6%8B%9F%E5%8C%96/6efc6a0127bc46928f92a493fe3a5240.png"></p>
+<h2 id="硬件划分"><a href="#硬件划分" class="headerlink" title="硬件划分"></a>硬件划分</h2><p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E8%99%9A%E6%8B%9F%E5%8C%96/08441e106b9843ec8e306c05bb501200.png"><br>局限：授权付费<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E8%99%9A%E6%8B%9F%E5%8C%96/6e21e93923cb42479f7e16522d43e9fd.png"></p>
+<ul>
+<li><ol>
+<li>Hardware Partition：Ampere 架构的 A100 GPU 所支持的 MIG，即是一种 Hardware Partition。它的问题是不灵活: 只有高端 GPU 支持；只支持 CUDA 计算；A100 只支持 7 个 MIG 实例。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>nVidia MPS：它通过将多个进程的 CUDA Context，合并到一个 CUDA Context 中，省去了 Context Switch 的开销，也在 Context 内部实现了算力隔离。导致了额外的故障传播，在工业界和多租户场景不常使用。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>Time Sharing：不管是哪一代的 GPU，其 Engine 都是支持多任务调度的。一个 OS 中同时运行多个 CUDA 任务，这些任务就是在以 Time Sharing 的方式共享 GPU。鉴于 MIG 的高成本和不灵活、MPS 故障隔离方面的致命缺陷，事实上就只剩下一种可能：Time Sharing。唯一的问题是，如何在原厂不支持的情况下，利用 Time Sharing 支持好算力隔离、以保证 QoS。</li>
+</ol>
+</li>
+</ul>
+<h1 id="挑战和方向"><a href="#挑战和方向" class="headerlink" title="挑战和方向"></a>挑战和方向</h1><h2 id="轻量级虚拟化"><a href="#轻量级虚拟化" class="headerlink" title="轻量级虚拟化"></a>轻量级虚拟化</h2><p>容器提供了进程级的轻量级虚拟化，不需要额外的包装库，虚拟化能接近原始性能，需要高效的调度配合使用。</p>
+<h2 id="可扩展性"><a href="#可扩展性" class="headerlink" title="可扩展性"></a>可扩展性</h2><p>虚拟化目的是提高资源利用率和减少使用者的开销，一个物理机器中整合大量VM可以达成目的，但是CPU和GPU大的整合能力不同，需要从GPU设备内存、GPU上下文切换频率和缓存占用等方面研究VGPU数量对性能的影响。</p>
+<h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><p>hypervisor提供安全隔离，防止一个VM映射到其他VM的地址空间；还有拒绝服务攻击，有文章检查可疑VM并kill来解决，这会导致部分正常VM服务暂停；为了避免GPU重置，需要细粒度的访问控制机制，有方法使用远程API调用，vCUDA，VOCL等，但没有实现隔离，存在安全问题。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a target="_blank" rel="noopener" href="https://www.zhihu.com/zvideo/1359813304349667328">https://www.zhihu.com/zvideo/1359813304349667328</a><br>[2] <a target="_blank" rel="noopener" href="https://dl.acm.org/doi/pdf/10.1145/3068281">https://dl.acm.org/doi/pdf/10.1145/3068281</a></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 zxy
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

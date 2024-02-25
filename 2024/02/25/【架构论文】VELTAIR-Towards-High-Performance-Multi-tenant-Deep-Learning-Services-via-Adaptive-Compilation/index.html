@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation | Xinyao</title>
+  <meta name="keywords" content=" 架构 , 多租户调度 ">
+  <meta name="description" content="【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation | Xinyao">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="勇攀高峰">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://zhengxinyao.github.io/tags/index.html">
+<meta property="og:site_name" content="Xinyao">
+<meta property="og:description" content="勇攀高峰">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-07T15:59:52.000Z">
+<meta property="article:modified_time" content="2024-02-07T15:59:52.773Z">
+<meta property="article:author" content="ICT-IPRC">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/favicon.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/myself.png"/>
+</a>
+<div class="author">
+    <span>ICT-IPRC</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/zhengxinyao"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="linkedin"
+               href="https://www.linkedin.com/in/%E6%98%95%E7%91%B6-%E9%83%91-956a732b5/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-linkedin"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/destiny-44-90-76"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qq_43543209?spm=1010.2135.3001.5343"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1601835186@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1601835186&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(25)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文记录">
+            
+            论文记录
+            <small>(12)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识总结">
+            
+            知识总结
+            <small>(13)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="25">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>侧信道</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态缓存划分</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多租户调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分组加密</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>共享内存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>论文</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存保护</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>虚拟化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>云安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI加速器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV- SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV-SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ARM CCA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPU</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel SGX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel TDX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NVM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PENGLAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TEE</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91SoK%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E9%9A%94%E7%A6%BB%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E6%80%A7%E7%9A%84%E7%A0%94%E7%A9%B6%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89-2016/"
+           data-tag="TEE,安全,架构"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】SoK：使用硬件辅助隔离执行环境实现安全性的研究（综述） 2016">【TEE论文】SoK：使用硬件辅助隔离执行环境实现安全性的研究（综述） 2016</span>
+            <span class="post-date" title="2024-02-25 20:30:40">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E5%AE%89%E5%85%A8%E5%85%A8%E9%9D%A2%E8%B0%83%E6%9F%A5%EF%BC%9A%E4%BB%8E%E8%BE%B9%E7%BC%98%E5%88%B0%E4%BA%91%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89/"
+           data-tag="TEE,安全,架构"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】硬件辅助安全全面调查：从边缘到云（综述）">【TEE论文】硬件辅助安全全面调查：从边缘到云（综述）</span>
+            <span class="post-date" title="2024-02-25 20:29:23">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E5%AE%89%E5%85%A8%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E7%BB%BC%E8%BF%B0/"
+           data-tag="LLM,安全"
+           data-author="" >
+            <span class="post-title" title="【安全】大模型安全综述">【安全】大模型安全综述</span>
+            <span class="post-date" title="2024-02-25 20:28:32">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91ProMT-Optimizing-Integrity-Tree-Updates-for-Write-Intensive-Pages-in-Secure-NVMs/"
+           data-tag="NVM,内存安全"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】ProMT: Optimizing Integrity Tree Updates for Write-Intensive Pages in Secure NVMs">【TEE论文】ProMT: Optimizing Integrity Tree Updates for Write-Intensive Pages in Secure NVMs</span>
+            <span class="post-date" title="2024-02-25 20:27:27">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E8%99%9A%E6%8B%9F%E5%8C%96/"
+           data-tag="GPU,虚拟化"
+           data-author="" >
+            <span class="post-title" title="【架构】GPU虚拟化">【架构】GPU虚拟化</span>
+            <span class="post-date" title="2024-02-25 20:26:11">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/"
+           data-tag="云安全"
+           data-author="" >
+            <span class="post-title" title="【云安全】传输层安全性（TLS）大汇总">【云安全】传输层安全性（TLS）大汇总</span>
+            <span class="post-date" title="2024-02-25 20:22:53">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/"
+           data-tag="架构,多租户调度"
+           data-author="" >
+            <span class="post-title" title="【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation">【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation</span>
+            <span class="post-date" title="2024-02-25 20:21:48">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/"
+           data-tag="TEE,架构,侧信道"
+           data-author="" >
+            <span class="post-title" title="【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）">【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）</span>
+            <span class="post-date" title="2024-02-25 20:19:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/"
+           data-tag="论文,动态缓存划分"
+           data-author="" >
+            <span class="post-title" title="【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）">【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）</span>
+            <span class="post-date" title="2024-02-25 20:17:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Reusable-Enclaves-for-Confidential-Serverless-Computing%EF%BC%88usenixsecurity23%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）">【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）</span>
+            <span class="post-date" title="2024-02-25 20:14:26">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Serverless-Made-Efficient-with-Plug-In-Enclaves-%EF%BC%882021-ISCA%EF%BC%89/"
+           data-tag="TEE,论文,共享内存"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）">【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）</span>
+            <span class="post-date" title="2024-02-25 20:12:45">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service">【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service</span>
+            <span class="post-date" title="2024-02-25 20:11:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91-HETEE-Enabling-rack-scale-confidential-computing-using-heterogeneous-TEE-2020-SP/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)">【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)</span>
+            <span class="post-date" title="2024-02-25 20:08:42">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）">【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）</span>
+            <span class="post-date" title="2024-02-25 20:07:36">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/"
+           data-tag="TEE,内存保护,分组加密"
+           data-author="" >
+            <span class="post-title" title="【TEE】片外内存保护：AES分组算法+MAC完整性验证">【TEE】片外内存保护：AES分组算法+MAC完整性验证</span>
+            <span class="post-date" title="2024-02-25 20:05:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"
+           data-tag="TEE,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel SGX的不足和解决方案">【TEE】Intel SGX的不足和解决方案</span>
+            <span class="post-date" title="2024-02-25 19:59:35">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/"
+           data-tag="TEE,Intel TDX,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel可信执行环境的前世今生">【TEE】Intel可信执行环境的前世今生</span>
+            <span class="post-date" title="2024-02-25 19:54:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/"
+           data-tag="TEE,LLM"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境保障大模型安全">【TEE】可信执行环境保障大模型安全</span>
+            <span class="post-date" title="2024-02-25 19:52:39">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91PENGLAI-TEE/"
+           data-tag="TEE,PENGLAI"
+           data-author="" >
+            <span class="post-title" title="【TEE】PENGLAI TEE">【TEE】PENGLAI TEE</span>
+            <span class="post-date" title="2024-02-25 19:51:30">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91AMD-SEV-SNP%E5%92%8CIntel-TDX%E7%9A%84%E6%A6%82%E8%BF%B0/"
+           data-tag="TEE,AMD SEV- SNP,Intel TDX"
+           data-author="" >
+            <span class="post-title" title="【TEE】AMD SEV- SNP和Intel TDX的概述">【TEE】AMD SEV- SNP和Intel TDX的概述</span>
+            <span class="post-date" title="2024-02-25 19:36:13">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/"
+           data-tag="TEE,ARM CCA"
+           data-author="" >
+            <span class="post-title" title="【TEE】ARM CCA 可信计算架构">【TEE】ARM CCA 可信计算架构</span>
+            <span class="post-date" title="2024-02-25 19:24:38">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/"
+           data-tag="TEE,AMD SEV-SNP"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离">【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离</span>
+            <span class="post-date" title="2024-02-25 19:11:12">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/"
+           data-tag="TEE,AMD SEV"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV内存加密】 白皮书">【TEE】【AMD SEV内存加密】 白皮书</span>
+            <span class="post-date" title="2024-02-25 19:05:02">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Computing-within-an-AI-Accelerator/"
+           data-tag="TEE,论文,AI加速器,架构设计"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Computing within an AI Accelerator">【TEE论文】Confidential Computing within an AI Accelerator</span>
+            <span class="post-date" title="2024-02-25 18:53:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/"
+           data-tag="TEE"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境业界资料">【TEE】可信执行环境业界资料</span>
+            <span class="post-date" title="2024-02-25 18:31:25">2024/02/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【架构论文】VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="论文记录">论文记录</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color3">架构</a>
+            
+            <a class="color1">多租户调度</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 20:24:02'>2024-02-25 20:21</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E6%9C%BA%E5%92%8C%E6%8C%91%E6%88%98"><span class="toc-text">动机和挑战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU%E4%B8%8A%E7%9A%84DNN%E6%89%A7%E8%A1%8C%E7%89%B9%E5%BE%81"><span class="toc-text">CPU上的DNN执行特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU%E4%B8%8ADNN%E7%BC%96%E8%AF%91"><span class="toc-text">CPU上DNN编译</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90"><span class="toc-text">优化空间分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E7%A9%BA%E9%97%B4%E5%AE%9A%E4%B9%89"><span class="toc-text">优化空间定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E7%B2%92%E5%BA%A6"><span class="toc-text">调度粒度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90"><span class="toc-text">编译策略分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VELTAIR%E8%AE%BE%E8%AE%A1%E7%BB%86%E8%8A%82"><span class="toc-text">VELTAIR设计细节</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E9%80%9A%E9%81%93%E9%9D%99%E6%80%81%E5%A4%9A%E7%89%88%E6%9C%AC%E7%BC%96%E8%AF%91"><span class="toc-text">单通道静态多版本编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%8A%A8%E6%80%81%E9%98%88%E5%80%BC%E7%9A%84%E5%B1%82%E5%9D%97%E5%BD%A2%E6%88%90"><span class="toc-text">基于动态阈值的层块形成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VELTAIR-%E8%BF%90%E8%A1%8C%E6%97%B6%E8%B0%83%E5%BA%A6%E7%A8%8B%E5%BA%8F"><span class="toc-text">VELTAIR 运行时调度程序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0"><span class="toc-text">评估</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">实验设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QPS%E6%8F%90%E5%8D%87"><span class="toc-text">QPS提升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%89%A7%E8%A1%8C%E5%BB%B6%E8%BF%9F%E7%BB%93%E6%9E%9C"><span class="toc-text">查询执行延迟结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU-%E6%95%88%E7%8E%87%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-text">CPU 效率的结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%81%B5%E6%95%8F%E5%BA%A6%E5%92%8C%E5%BC%80%E9%94%80%E5%88%86%E6%9E%90"><span class="toc-text">灵敏度和开销分析</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E6%9C%BA%E5%92%8C%E6%8C%91%E6%88%98"><span class="toc-text">动机和挑战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU%E4%B8%8A%E7%9A%84DNN%E6%89%A7%E8%A1%8C%E7%89%B9%E5%BE%81"><span class="toc-text">CPU上的DNN执行特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU%E4%B8%8ADNN%E7%BC%96%E8%AF%91"><span class="toc-text">CPU上DNN编译</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90"><span class="toc-text">优化空间分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E7%A9%BA%E9%97%B4%E5%AE%9A%E4%B9%89"><span class="toc-text">优化空间定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E7%B2%92%E5%BA%A6"><span class="toc-text">调度粒度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90"><span class="toc-text">编译策略分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VELTAIR%E8%AE%BE%E8%AE%A1%E7%BB%86%E8%8A%82"><span class="toc-text">VELTAIR设计细节</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E9%80%9A%E9%81%93%E9%9D%99%E6%80%81%E5%A4%9A%E7%89%88%E6%9C%AC%E7%BC%96%E8%AF%91"><span class="toc-text">单通道静态多版本编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%8A%A8%E6%80%81%E9%98%88%E5%80%BC%E7%9A%84%E5%B1%82%E5%9D%97%E5%BD%A2%E6%88%90"><span class="toc-text">基于动态阈值的层块形成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VELTAIR-%E8%BF%90%E8%A1%8C%E6%97%B6%E8%B0%83%E5%BA%A6%E7%A8%8B%E5%BA%8F"><span class="toc-text">VELTAIR 运行时调度程序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0"><span class="toc-text">评估</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">实验设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QPS%E6%8F%90%E5%8D%87"><span class="toc-text">QPS提升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%89%A7%E8%A1%8C%E5%BB%B6%E8%BF%9F%E7%BB%93%E6%9E%9C"><span class="toc-text">查询执行延迟结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU-%E6%95%88%E7%8E%87%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-text">CPU 效率的结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%81%B5%E6%95%8F%E5%BA%A6%E5%92%8C%E5%BC%80%E9%94%80%E5%88%86%E6%9E%90"><span class="toc-text">灵敏度和开销分析</span></a></li></ol></li></ol></div></p>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文从<strong>调度粒度、代码生成</strong>等方面系统分析了在通用CPU架构上提供多租户深度学习服务的机遇和挑战。<br>我们提出了一种<strong>自适应粒度调度方案</strong>，既能保证资源使用效率，又能降低调度冲突率。<br>我们还提出了一种<strong>自适应编译策略</strong>，通过该策略，我们可以动态、智能地选择具有适当独占和共享资源使用的程序，以减少整体干扰引起的性能损失。<br>与现有工作相比，我们的设计可以在各种场景下（例如，轻、中、重工作负载分别为 +71%、+62%、+45%），在相同的 QoS 目标下处理更多的请求，并将平均查询延迟降低 50%。</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>与计算量大的训练过程不同，单个深度学习模型的推理很难充分利用硬件，而硬件通常以较小的批量大小运行，因此，在单个硬件上共享多个 DL 模型十分重要。</p>
+<p>多租户带来了一些挑战，包括资源管理和分配、共享资源竞争、任务调度等。对于传统的多租户工作负载，研究人员提出了基于资源分区、硬件隔离等的各种解决方案。同样，研究人员也提出了对利用时间和空间多任务处理的多租户深度学习服务的各种架构支持。</p>
+<p>然而，多租户深度学习服务有其独特的挑战。</p>
+<ul>
+<li>由于深度学习模型的复杂内部结构，<strong>调度粒度</strong>对多模型服务吞吐量有着深远的影响。</li>
+<li>我们证明了深度学习模型的性能对代码生成策略非常敏感。具体来说，目前的DL编译器主要集中在单租户的假设下，通过<strong>各种代码转换来优化单个模型甚至单个层的性能</strong>。实验结果表明，由于共享资源争用，在多租户场景下，生成的代码性能会迅速下降。</li>
+</ul>
+<p> VELTAIR是一种提供高<strong>吞吐量和低干扰</strong>多租户深度学习服务的<strong>软件解决方案</strong>。系统<strong>分析了CPU平台上的资源分配冲突和层间干扰</strong>，与产业实践密切相关。分析表明，当系统负荷变化时，前人[23,24]所采用的固定调度粒度是次优的。同时，我们对 TVM 的自动调度器 [32] 进行了朴素的扩展，这使我们能够识别不同干扰水平下性能最佳的代码版本。这些见解需要<strong>自适应调度和自适应编译</strong>，以实现高性能的多租户 DL 服务。</p>
+<p>对于<strong>自适应调度</strong>，我们发现固定模型调度方案的次优性能是由<strong>CPU资源利用率低下</strong>引起的，而固定分层调度方案是由<strong>频繁的资源冲突</strong>引起的。减少资源冲突，保证不同位置下CPU资源使用效率。我们<strong>提出了一种分层块粒度调度策略</strong>，该策略比模型调度更精细，但比分层调度更粗糙。通过<strong>设置动态阈值，我们可以实现低冲突概率和高 CPU 资源使用效率</strong>。</p>
+<p>对于<strong>自适应编译</strong>，我们分析了一组深度学习层的易干扰代码版本和容干扰代码版本之间的关系。我们发现，这些不同的版本基本上位于平行性和局部性之间权衡空间的帕累托前沿。鉴于这一见解，我们提出了一种基于现有自动调度器的单次通过编译策略。扩展的自动调度程序能够编译适用于不同系统干扰压力水平的多个版本的实现。</p>
+<p>贡献如下：</p>
+<ul>
+<li>分析并确定了多租户深度学习服务的性能关键优化旋钮，包括自适应调度和自适应编译（第 3 节）</li>
+<li>提出了一种<strong>静态的多版本编译器</strong>，它扩展了现有的TVM的编译框架，可以在不同的干扰水平下识别不同的最优代码版本。我们编译器的主要新颖之处在于单次传递中的多版本搜索算法（第 4.1 节）</li>
+<li>我们提出了一种运行时<strong>调度器设计</strong>，该设计动态地形成一个层块作为调度单元。调度器使用基于动态阈值的层块形成算法来平衡资源使用效率和调度冲突率（第 4.2 节）</li>
+<li>我们<strong>评估和比较</strong> VELTAIR 中提出的想法，其中自适应编译和调度器的组合可以在不同的工作负载组合中将系统改进 45% - 71%。我们还表明，我们设计中的查询执行延迟与隔离执行情况的差距在10%以内，这意味着VELTAIR接近所研究硬件平台上的性能上限（第5节）。</li>
+</ul>
+<h1 id="动机和挑战"><a href="#动机和挑战" class="headerlink" title="动机和挑战"></a>动机和挑战</h1><p>在本节中将解释为什么 CPU 架构适合提供多租户 DL 服务。具体来说，我们表明，<strong>现有的高性能 CPU 足以在其 QoS 目标下为多个深度学习推理任务提供服务</strong>。然后，我们表明，代码生成的高质量关键是充分释放可用硬件资源。</p>
+<h2 id="CPU上的DNN执行特征"><a href="#CPU上的DNN执行特征" class="headerlink" title="CPU上的DNN执行特征"></a>CPU上的DNN执行特征</h2><p>单个计算硬件的性能正在迅速提高，一些公司甚至使用 CPU 作为其深度学习后端。这些硬件主要使用多度并行来提高整体吞吐量。然而，当提供小批量的深度学习推理服务时，这些硬件将遭受严重的利用率不足，因为深度学习推理服务的强度不足以填充硬件资源。</p>
+<p><strong>如图 1a 所示，高性能 CPU （AMD Threadripper 3990X） 足以提供深度学习推理任务。</strong>在MLPerf[37]中提供视觉任务时，只需将所有CPU内核用于一项任务，CPU平台就可以达到每秒300次查询左右。</p>
+<p>因此，为了充分利用硬件并提高能源效率，越来越多的深度学习服务提供商开始引入任务级并行性，多个客户&#x2F;请求可以完全占据硬件的吞吐量，从而提高整体效率。</p>
+<p>另一方面，一些深度学习任务也由多个子任务组成。子任务可以并行启动，以便实时交互，因此可以在单个计算硬件上共享资源。目前，很少有深度学习系统设计用于面向多租户服务场景。因此，在这项工作中，我们建议探索编译时的优化机会以及用于在单个硬件上共同定位和调度多个任务的运行时。</p>
+<p>具体来说，我们专注于在多核架构硬件上共置多个延迟关键型 DL 任务的问题，目标是在<strong>任务延迟约束下（即确保在时间限制内完成）为尽可能多的 DL 任务提供服务（即最大化每秒查询指标</strong>）。但是，我们的设计可以很容易地扩展，以支持深度学习任务和尽力而为任务的共置。</p>
+<p>最重要的挑战是如何管理有限的硬件资源，例如 CPU 架构的物理内核、GPU 架构的流式多处理器 （SM），甚至是脉动架构的子阵列。除了独享资源外，计算后端的各种共享资源对任务的性能至关重要，包括<strong>缓存带宽、缓存容量、内存带宽</strong>等。由于这些资源的竞争，将导致严重的干扰和性能损失。我们进行了一个简单的实验，将多个 ResNet50、GoogLeNet 和 SSD 推理任务放在一个 CPU 上。如<strong>图 1b 所示，在繁重的工作负载压力下，该任务的延迟高达 1.8×。</strong>因此，该推理可能会严重影响 QoS，但当前的 DL 服务系统会考虑该推理。相比之下，我们的工作考虑了编译和调度策略来处理干扰。</p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/b9362be6910b4031bbd8b61146c73b61.png"></p>
+<h2 id="CPU上DNN编译"><a href="#CPU上DNN编译" class="headerlink" title="CPU上DNN编译"></a>CPU上DNN编译</h2><p>研究人员和开发人员已开始使用自动高性能代码生成器来获得更高的性能。在深度学习编译器中，TVM 因其便利性、高质量生成代码和跨平台功能而获得巨大成功。现在，研究人员可以简单地定义他们想要的计算逻辑，运行自动调度过程。使用 DNN 编译器的另一个优点是生成的代码是用户可见的，而供应商提供的库通常是闭源的。鉴于这些原因，我们选择 TVM 编译器来生成用于在这项工作中运行 DNN 模型的代码。我们还在英特尔 MKL-DNN [41] 和 TVM 之间进行了性能比较实验。如图 2 所示，TVM 的性能通常优于供应商提供的库。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/9da968b014fa4939ab5ebabda730dce0.png"><br>为了在 CPU 上编译 DNN 层或模型，我们主要考虑嵌套循环转换和一些特定于 CPU 的注解或编译指示，包括并行化和展开。编译过程实际上是程序的并行性和局部性之间的权衡，我们将在本文后面讨论。</p>
+<h1 id="优化空间分析"><a href="#优化空间分析" class="headerlink" title="优化空间分析"></a>优化空间分析</h1><p>在本节中，我们首先确定对实现高性能多租户深度学习服务至关重要的优化空间。具体来说，我们研究了两个优化旋钮，即调度粒度和编译策略。</p>
+<p>我们通过QoS满意率[45,46,29,28]来描述这两个旋钮对性能的影响，该满意度表示在CPU上多租户深度学习服务的QoS目标内完成了多少请求。</p>
+<p>首先，由于DNN模型的多样性及其独特的内在特征，<strong>固定的调度粒度，如整个模型或子层块，导致性能欠佳</strong>。<br>其次，现有编译策略旨在最大化单运行情况下的代码性能，当多个DNN模型一起运行并相互干扰时，性能会显著下降。这两个发现激发了VELTAIR自适应调度和自适应编译的设计。</p>
+<h2 id="优化空间定义"><a href="#优化空间定义" class="headerlink" title="优化空间定义"></a>优化空间定义</h2><p>我们首先解释并定义了多租户深度学习服务的优化空间。DNN 是基于层的，其调度单元的范围可以从一层到整个模型。同时，DNN 也是计算密集型的，它们的性能对代码质量很敏感。</p>
+<p><strong>调度粒度</strong>是指用于在硬件上分配资源和调度的实体的大小。例如，在常规的在线服务中，前人通常选择整个查询作为调度单元[29,44,27,30]。然而，我们在深度学习服务的调度粒度上有更多选择，因为 DNN 模型具有由层或算子组成的复杂内部组织，例如 conv（即卷积）、relu 和 pooling。因此，我们可以选择整个模型（即粗粒度）或单层（即细粒度）作为调度单元。为了实现更高的资源使用效率，减少资源使用冲突，我们考虑将多层作为一个单元的新调度粒度，我们称之为层块。</p>
+<p><strong>编译策略</strong>是指 DNN 模型或 DNN 层的代码生成选项。最小化执行延迟的最佳代码生成选项取决于共同运行 DNN 模型引起的干扰水平。据我们所知，我们是第一个将编译视为多租户 DNN 服务场景中的优化旋钮。</p>
+<h2 id="调度粒度"><a href="#调度粒度" class="headerlink" title="调度粒度"></a>调度粒度</h2><p>我们首先对比了多租户深度学习服务在不同调度粒度下的性能，包括分层调度、模型调度和分层块调度。然后，我们解释了为什么这些静态调度无法充分利用硬件资源，这导致需要自适应调度粒度。<br>我们比较了这些调度方案在不同查询到达率（即每秒查询数，QPS）下的性能。我们在图 3a 中报告了 QoS 满意度，在图 3b 中报告了平均模型执行延迟作为评估指标。为了公平比较不同的调度策略，我们运行了总共 30000 个具有相同统一到达时间的 ResNet-50 模型，以消除随机性带来的不稳定性。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/473e6e09678c477da17af612ad1a39bf.png"><br>如图 3a 所示，模型调度和层调度的性能下降速度都比块调度快得多。同时，最佳性能的最佳块大小随查询到达率而变化。例如，6 层的块大小在 150 QPS 时表现最佳，而 11 层的块大小在 200 QPS 时表现更好。我们在图 3b 中对平均查询执行有相同的观察结果，这些结果证实了多租户深度学习服务调度粒度的重要性。</p>
+<p><strong>Model-Wise Inefficiency.<strong>我们发现，跨 DNN 层的独特计算资源需求是模型调度次优的根本原因。图4a绘制了不同CPU内核数量下不同ResNet层的加速曲线，表明当分配的内核数量增加时，不同层具有不同的可扩展性趋势。但是，</strong>按模型调度会将固定数量的内核均匀地分配给模型中的所有层，这会导致 CPU 内核资源浪费，因为许多层只需要少量内核</strong>。图 4b 比较了模型调度和分层调度之间的核心编号分配。直观地说，逐层调度方案表示满足模型 QoS 目标的最小内核分配。我们发现模型方案分配（黑线）与最优核心分配（红色阴影区域）相去甚远。因此，如图3a所示，一旦查询到达率超过50 QPS，QoS满意度就会急剧下降。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/cf001706cc754677a0d8db9a62952af9.png"><br><strong>Layer-Wise Inefficiency</strong>。我们发现，<strong>当查询到达率较高时，由于频繁的调度冲突，逐层调度是次优的</strong>。例如，图 4b 中的层需要较大的内核数量（例如，64 个内核中的 48 个以上）。当层请求的内核数多于当前可用内核数时，就会发生调度冲突。图5a比较了不同调度粒度之间的冲突率，其中逐层调度最高（例如，300 QPS时冲突率为23.8%）。</p>
+<p>对于遇到调度冲突的层，我们实现了一种提高资源利用率的技术。具体来说，<strong>我们首先让该层使用所有可用的内核，并在更多内核可用时增加其内核使用率。但是，使用更多内核需要生成更多线程，这些线程的开销不可忽略，并且会恶化模型的整体延迟。</strong>为了说明这一点，我们通过测量有和没有调度冲突的层的延迟来量化 ResNet-50 中每一层的开销。图5b显示了结果，平均值为220 μs，中位数为100 μs。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/16455d90dc804beaaf6b6f3b0c00163a.png"><br>以上结果表明，最优调度方案应在平均资源使用率和调度冲突之间取得较好的平衡。以上结果表明，<strong>最优调度方案应在平均资源使用率和调度冲突之间取得较好的平衡。按模型调度可生成平滑的资源使用模式，从而降低冲突，但会使用不必要的更多资源来满足 QoS 目标。相比之下，逐层调度使用最少的 CPU 资源，但每层的特性会导致大量的调度冲突开销。层块调度结合了模型调度和层调度的优点</strong>。此外，通过简单地设置固定的层块大小无法实现最佳性能，如图 3 所示。换言之，<strong>最优的区块组织取决于模型特征和查询到达率</strong>。因此，我们建议使用自适应层块大小，并将在后面的章节中更详细地解释它。</p>
+<h2 id="编译策略分析"><a href="#编译策略分析" class="headerlink" title="编译策略分析"></a>编译策略分析</h2><p>我们进行一组实验来研究编译策略对多租户深度学习服务的影响。我们实验中的关键见解是，不同干扰水平下的最优编译策略会发生变化。因此，需要自适应编译来实现高性能的多租户深度学习服务。此外，我们建议使用多版本静态编译来避免实时 （JIT） 编译的开销。</p>
+<p>扩展 TVM Auto-Scheduler。当前的 TVM 编译策略使用自动调度器 [34] 来搜索实现最佳或最低延迟的实现。这种编译策略不考虑多个 DNN 模型一起运行时是否存在干扰，这可能导致性能显著下降，如图 1b 所示。为了减轻干扰的影响，我们建议对TVM现有的自动调度器进行扩展。为了在给定的干扰水平下确定目标层的最佳代码实现，<strong>我们启动了一个产生所需干扰水平的背景层，并以足够长的迭代（例如，1024 次迭代）运行 TVM 的自动调度器。因此，返回的时间表可以被视为该干扰水平下的最佳版本</strong>。本实验使用特征图大小为14 × 14、内核大小为3 × 3、输入输出通道大小为256的ResNet卷积层，研究了不同编译策略在不同干扰电平下的性能。</p>
+<p>图6比较了四种不同实现方案在不同干扰下的性能。具体来说，这四种实现分别对应于以零、低、中和高干扰搜索的最佳实现。如图 6a 所示，impl.-1 也是 TVM 自动调度器的默认选择，在不存在干扰的情况下可实现最佳性能。但是，其性能也会迅速下降，在高推理级别上可能高达 7×。相比之下，impl.-4 在不存在推理时性能最低，但在高干扰下性能最高。这些结果表明，对 TVM 自动调度器的简单扩展可以有效地找到这些最佳实现。</p>
+<p>由于<strong>模型可能在一次运行时遇到多租户 DL 服务中的所有干扰范围，因此静态代码版本无法实现最佳性能</strong>。图6b进一步量化了上述四个版本在不同干扰水平下的性能趋势，其中每个版本仅在较窄的干扰间隔内优于其他版本。因此，我们必须将所有干扰水平的所有四个版本组合在一起，以获得最佳性能，如图 6 中的灰色虚线所示。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/4a49dedf1b21412080389d3919ad117b.png"><br>一般情况。我们进一步分析了ResNet-50层在不同干扰水平下的其余部分，以充分了解编译策略的影响。具体来说，我们选择十个干扰级别，并确定每个级别上性能最佳的版本，这导致每层总共有十个实现版本。图 7a 比较了使用不同数量的版本与使用所有 10 个版本的性能损失。如果我们只使用一种实现，性能损失会随着干扰电平的增加而增加。相比之下，使用十个版本中的五个版本可以将性能损失保持在 10% 以内。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/4c2b6be7b47348a2be9653b589f0c66f.png"><br><strong>多版本静态编译</strong>。利用上述见解进行多租户 DL 服务的一种幼稚方法是根据干扰级别执行实时 （JIT） 编译。但是，<strong>JIT 编译开销可能会抵消自适应编译的好处。相反，我们建议使用静态多版本编译来实现与自适应 JIT 编译相同的好处</strong>。图 7b 绘制了与使用所有 10 个版本的情况相比，保持各种性能损失的代码版本计数的比率。尽管上述结果表明，它需要五个代码版本才能保持在 10% 的性能损失范围内，但大多数（即超过 80%）的层只需要三个代码版本。</p>
+<h1 id="VELTAIR设计细节"><a href="#VELTAIR设计细节" class="headerlink" title="VELTAIR设计细节"></a>VELTAIR设计细节</h1><p>基于上述见解，VELTAIR 执行自适应编译和调度。图 8 显示了它有两个主要组件的概述，即离线静态编译器和在线运行时调度器。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/bc548d5935e24be9bfc74b461ad37c8d.png"><br>我们建议使用静态多版本编译器来扩展现有TVM的编译框架，并可以识别在不同干扰水平下的不同最佳代码版本，而不是执行动态编译，其开销可以解释模型服务延迟。我们编译器的主要新颖之处在于<strong>单通道多版本搜索算法</strong>。</p>
+<p>VELTAIR 运行时调度器动态形成层块作为调度单元，平衡核心使用效率和调度冲突率。调度器中的<strong>关键是基于阈值的动态层块形成算法</strong>。</p>
+<p>运行时调度程序利用基于性能计数器。通过<strong>监控系统负载和干扰压力</strong>，它自适应地选择最佳代码版本和调度粒度。</p>
+<h2 id="单通道静态多版本编译"><a href="#单通道静态多版本编译" class="headerlink" title="单通道静态多版本编译"></a>单通道静态多版本编译</h2><p>我们已经描述了自适应编译在处理多租户深度学习服务中的干扰方面的好处。我们为 TVM 自动调度器提出了一个朴素的扩展，以在给定的干扰水平下搜索最佳代码版本。扩展的自动调度程序会启动一个额外的背景层，该背景层可以在搜索过程中生成所需的干扰电平。这种方法对于识别不同干扰水平下的最佳代码版本是有效的，但非常耗时，因为它需要多次通过TVM自动调度器。在我们的高端 CPU 上，一个图层的单次传递通常需要 20 分钟，这意味着搜索五个版本将需要近两个小时。</p>
+<p>为了方便多版本编译过程，我们提出了一种单通道搜索算法，该算法几乎没有增加任何开销，我们可以在单个搜索过程中探索并行性-局部性权衡空间，然后从中选择所需的版本。</p>
+<p><strong>并行性-局部性权衡</strong>。我们首先用实验结果说明，在不同干扰水平下寻找不同的最优版本本质上是程序并行性和局部性的权衡。在本实验中，我们使用第 3.3 节中描述的简单扩展来搜索两个最佳代码版本，一个在轻干扰级别下，另一个在重干扰级别下。然后，我们记录这两个版本的相应复杂功能标志。根据记录的标志，我们通过简单地将循环展开因子和并行化因子相乘来计算并行度指标。我们通过直接使用平铺&#x2F;块大小来计算局部性指标。</p>
+<p>略</p>
+<h2 id="基于动态阈值的层块形成"><a href="#基于动态阈值的层块形成" class="headerlink" title="基于动态阈值的层块形成"></a>基于动态阈值的层块形成</h2><p>基于层块的调度通过平衡最小平均核心使用率和调度冲突率，优于逐层和按模型调度。但是，固定大小的层块效率不高，因为最佳块大小会随系统负载和其他协同执行模型的干扰而变化。因此，我们提出了一种动态大小的层块方法，根据系统负载和干扰水平实现高内核效率和低冲突率。</p>
+<p>为了通过层块调度来降低调度冲突率，我们首先确定最有可能触发冲突的层。为了识别这些容易发生冲突的层，我们<strong>计算了每层在其 QoS 目标内完成所需的 CPU 核心数，从中我们可以计算模型的平均核心数</strong>。我们将逐层核心数与模型平均值进行比较，<strong>并将 CPU 核心数要求远高于平均值的层识别为容易发生冲突的层。对于每个容易发生冲突的层，我们形成一个层块，该层块可以通过增加块中其他层的核心使用量来减少其核心使用量</strong>，同时仍然满足 QoS 目标。</p>
+<p>我们通过图 10a 中的 ResNet 示例来说明我们方法。我们首先在图 10a 中形成逐层（红色阴影区域）和按模型（黑色水平线）调度计划。我们将按模式调度中的平均内核数表示为 Avg_C。然后，我们使用一个运行时决定的阈值，范围从零到最大内核数。我们遍历所有层，并确定核心需求超过 Avg_C + 的容易发生冲突的层，即图 10a 中的蓝线。我们将每个容易发生冲突的层称为拆分枢轴，它本质上是块的起始层。因此，有四个用箭头标记的块。对于每个形成的块，我们通过对其所有层求和来计算其 QoS 目标。然后，我们重新计算每个模块的核心需求（黄线）以满足其 QoS 目标。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/bcf1b9de19e643feadf8e5b0c99b827d.png"></p>
+<p>Agl2正式描述了上述基于动态阈值的层块形成算法。其中<strong>阈值在运行时根据系统负载和共同执行模型的特征确定</strong>。第 4.3 节将提供我们如何调整阈值的详细信息。在不同的系统负载下，我们可以使用不超过 Avg_C + 个 CPU 内核来生成适当的层块。其基本思想是，<strong>当系统负载较低时，由于冲突可能性较低，因此我们使用较高的阈值，这意味着每一层都可以使用尽可能多的内核，以最大限度地提高 CPU 资源使用效率。当系统负载较高时，我们使用较低的阈值，这意味着每层的内核计数应接近平均值，以降低调度冲突率</strong>。</p>
+<p>他的本质是减少容易出错层的高核心使用率，并通过增加其他层的核心使用率来弥补其延迟损失。与最有效的逐层调度相比，这可以增加平均核心使用率。但是，根据我们的评估，最佳 CPU 资源使用率之间的差距小于 10%，这是可以接受的。图 10b 比较了两个 ResNet-50 模型共置时不同调度粒度的平均核心使用率和最大核心使用率<strong>。我们的算法有效地缩小了最佳CPU核心使用率（即实现高资源效率）和最大核心使用率（即降低调度冲突率）之间的差距</strong>。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/fed90dd666b64e81bbf479fedd6c8332.png"></p>
+<h2 id="VELTAIR-运行时调度程序"><a href="#VELTAIR-运行时调度程序" class="headerlink" title="VELTAIR 运行时调度程序"></a>VELTAIR 运行时调度程序</h2><p>在本小节中，我们将介绍 VELTAIR 中运行时调度程序的详细信息。我们的调度器监控当前的 CPU 推理级别。</p>
+<p><strong>干扰代理</strong>。我们首先使用硬件性能计数器构建用于监视系统干扰压力水平的代理。根据先前的研究[44,50,51]，性能计数器与干扰压力水平有很强的关系。我们将系统的干扰压力水平定义为系统上运行的层的平均性能减速率。为了弄清楚哪些性能计数器决定了干扰电平，我们对收集到的性能计数器进行了主成分分析（PCA）[52]，包括L3缓存未命中率、L3访问、每周期指令数（IPC）、浮点运算等。事实证明，与 L3 缓存相关的计数器占数据方差的 99% 以上，如图 11a 所示。因此，我们选择L3未命中率和L3接入来构建一个简单的线性干涉模型。如图11b所示，预测的干扰电平与测得的干扰电平非常匹配。使用这个简单的线性模型，我们可以在运行时以较低的成本推导出干涉压力水平。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/b99312461f89435d905d5bbe27c5e647.png"><br><strong>动态调度阈值</strong>。中层块形成使用的阈值表示每个层块可以使用的额外核心计数，超出模型的平均要求。当模型以独占方式运行时，它可以根据需要使用任意数量的内核。但是，当多个模型同时运行时，每个模型都应尝试减少其核心使用量，以避免调度冲突。因此，我们使用一个简单的启发式方法，通过将总内核数减去所有模型的平均内核数之和，并根据每个模型的平均内核数分配剩余的内核来确定阈值。例如，三个型号 A、B、C 平均分别使用 12、12、24 个 CPU 内核。平均而言，64−（12+12+24） &#x3D; 16 个内核处于空闲状态，我们将 4、4、8 分配为 A、B、C的阈值。在我们的研究中，我们观察到具有高平均内核使用率的模型通常具有较高的峰值内核使用率。因此，将空闲内核除以模型的平均内核使用量可以更好地满足每个模型的计算需求。</p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/4e53d42c7c0e4174a37ef4bf4f94527f.png"></p>
+<h1 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h1><h2 id="实验设置"><a href="#实验设置" class="headerlink" title="实验设置"></a>实验设置</h2><p><strong>多租户深度学习模型</strong>。 模拟深度学习服务的实际情况，我们使用 MLPerf （Server） [37] 的深度学习模型，评估的模型包括图像分类、对象检测和神经机器翻译 （NMT） 任务。我们将模型的工作量从轻、中到重进行分类，并根据 MLPerf 的指导为其设置QoS目标。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/d07eadb170e8443db18567a6feb75248.png"><br><strong>工作负载生成</strong>。我们还遵循 MLPerf 指南，生成具有泊松分布的随机查询，其中分布的 λ 参数代表工作负载的 QPS（每秒查询数）。我们在“轻”、“中”、“重”和“混合”工作负载下评估我们的设计。对于混合工作负载，每个任务的频率设置为与QoS要求成反比[53]。</p>
+<p><strong>硬件和软件</strong>。对于所有实验，我们使用配备高端服务器级CPU Ryzen Threadripper 3990X [38]和256 GB DDR4 RAM（3200 MHz）的机器。CPU 具有 64 个物理内核和 256MB 三级缓存容量，在启用 AVX-2 的情况下工作频率为 2.9 GHz。为了获得稳定的实验结果，我们关闭了某些功能，如同步多线程（SMT）和动态电压和频率调节（DVFS）。SMT 主要增强了 L1 缓存的共享，而我们将 LLC 确定为主要的争议资源。但是，SMT 会导致显着的延迟波动，因为不同任务的两个逻辑线程可能会分配给同一个物理内核。DVFS 还会导致延迟波动，从而增加冲突率。因此关闭这两个功能不会影响实验结果。我们通过扩展 TVM v0.8 [32] 来实现静态多版本编译器。对于运行时调度器实现，我们使用 MPICH 3.3.2 [54]，它通过多处理为多租户 DNN 模型提供服务。</p>
+<p><strong>评估指标</strong></p>
+<p>我们以任务QoS满足率95%、平均时延和CPU使用效率为95%的QPS作为评价指标。</p>
+<ul>
+<li>满足 95% 任务 QoS 的 QPS：此指标表示系统每秒可以处理的请求数，几乎所有查询请求 （95%） 都在 QoS 目标内完成。</li>
+<li>平均延迟：此指标衡量所有查询的平均执行延迟。</li>
+<li>CPU 使用效率：该指标通过将总执行时间除以核心使用率乘以每层的执行时间之和来衡量任务的平均 CPU 使用率。</li>
+</ul>
+<p><strong>基线选择</strong>。由于我们将多个 DNN 模型放在一起，并让它们在空间上共享硬件，因此我们选择 Planaria [23] 作为评估的基线。需要注意的是，Planaria 是基于软硬件协同设计的，而我们将软件调度部分移植到 CPU 平台上。为了证明为什么我们只考虑空间多任务场景，我们还实现了另一种基线调度方法PREMA [24]，这是一种时间多任务算法，可以让高优先级的任务抢占。</p>
+<p><strong>评估选择</strong>。我们通过评估VELTAIR的以下配置来研究不同组件的有效性。</p>
+<ul>
+<li>VELTAIR-AS：仅具有自适应调度功能。</li>
+<li>VELTAIR-AC：仅具有自适应编译功能。</li>
+<li>VELTAIR-FULL：同时启用自适应调度和自适应编译。</li>
+</ul>
+<h2 id="QPS提升"><a href="#QPS提升" class="headerlink" title="QPS提升"></a>QPS提升</h2><p>VELTAIR-FULL在轻、中、重工作负载中分别实现了平均71%、62%和44%的提升，在混合工作负载中平均提升了68%。</p>
+<p>自适应编译（VELTAIRAC）比自适应调度（VELTAIR-AS）取得了更好的改进。然而，这两种技术是协同作用的，并且都是实现完整版设计（VELTAIR-FULL）性能改进的关键组件。如果没有自适应调度，VELTAIRAC 只能实现 50% 的 QPS 提升，而 VELTAIR-FULL 在混合工作负载中提升了 68%。</p>
+<p>我们还观察到基于时间多任务处理的多 DNN 服务方案 （PREMA [24]） 的性能通常比基于空间多任务处理的多 DNN 服务差。这一观察结果证明了我们选择空间多任务处理的工作是合理的。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/abfd398b7222447898efde2c6209c760.png"></p>
+<h2 id="查询执行延迟结果"><a href="#查询执行延迟结果" class="headerlink" title="查询执行延迟结果"></a>查询执行延迟结果</h2><p>如图 13 所示，VELTAIR-AS 的推理延迟是隔离单运行执行的 1.6×，这意味着自适应调度无法降低执行延迟。另一方面，VELTAIR-AC的延迟是隔离执行的1.17×，证实了其降低干扰延迟的能力。通过自适应调度和编译，平均延迟仅为隔离执行的 1.1×，这意味着 VELTAIR-FULL 在所研究平台上足够接近最佳服务结果。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/97a2080e67694d8089ed668029376891.png"></p>
+<h2 id="CPU-效率的结果"><a href="#CPU-效率的结果" class="headerlink" title="CPU 效率的结果"></a>CPU 效率的结果</h2><p>在 VELTAIR 中，基于层块的调度可以更平滑地使用 CPU 内核，降低冲突率，但可能会使用更多内核。我们量化了 VELTAIR 调度和分层调度之间平均核心使用率的差距。细粒度的逐层调度表示最小的核心使用量。图 14 显示，即使在 75% 的系统负载下，VELTAIR 的核心使用率差距也小于 10%，而分层调度的最小核心使用率则小于 10%。相比之下，模型方面的差距要大得多，为 47%。这些结果证实了我们基于层块的调度在降低调度冲突率和保持高资源使用率之间取得了平衡。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/d49675afd736483a921d6c379dabc6bd.png"></p>
+<h2 id="灵敏度和开销分析"><a href="#灵敏度和开销分析" class="headerlink" title="灵敏度和开销分析"></a>灵敏度和开销分析</h2><p>敏感性。在 VELTAIR 中，我们根据经验将最大版本号 V 设置为 5。现在，我们在图 14b 中研究了不同 V 下的性能改进，它显示了四个版本后的改进饱和。图 14c 绘制了不同层的版本计数分布，这表明只有 3% 的层需要五个版本。这些结果证明了选择使用五个版本的合理性。</p>
+<p>计划开销。VELTAIR的调度开销主要由两部分组成。第一部分是运行时层块形成过程，该过程仅扫描一次层，复杂度为 O（N）。第二部分来自基于线性模型的干扰代理。由于调度算法和代理模型的复杂性较低，我们发现它们为每个 DNN 模型提供服务的总开销小于 0.1 毫秒。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 zxy
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

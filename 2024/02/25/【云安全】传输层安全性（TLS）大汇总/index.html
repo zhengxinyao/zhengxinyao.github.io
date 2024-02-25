@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【云安全】传输层安全性（TLS）大汇总 | Xinyao</title>
+  <meta name="keywords" content=" 云安全 ">
+  <meta name="description" content="【云安全】传输层安全性（TLS）大汇总 | Xinyao">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="勇攀高峰">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://zhengxinyao.github.io/tags/index.html">
+<meta property="og:site_name" content="Xinyao">
+<meta property="og:description" content="勇攀高峰">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-07T15:59:52.000Z">
+<meta property="article:modified_time" content="2024-02-07T15:59:52.773Z">
+<meta property="article:author" content="ICT-IPRC">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/favicon.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/myself.png"/>
+</a>
+<div class="author">
+    <span>ICT-IPRC</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/zhengxinyao"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="linkedin"
+               href="https://www.linkedin.com/in/%E6%98%95%E7%91%B6-%E9%83%91-956a732b5/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-linkedin"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/destiny-44-90-76"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qq_43543209?spm=1010.2135.3001.5343"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1601835186@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1601835186&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(25)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文记录">
+            
+            论文记录
+            <small>(12)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识总结">
+            
+            知识总结
+            <small>(13)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="25">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>侧信道</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态缓存划分</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多租户调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分组加密</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>共享内存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>论文</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存保护</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>虚拟化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>云安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI加速器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV- SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV-SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ARM CCA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPU</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel SGX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel TDX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NVM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PENGLAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TEE</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91SoK%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E9%9A%94%E7%A6%BB%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E6%80%A7%E7%9A%84%E7%A0%94%E7%A9%B6%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89-2016/"
+           data-tag="TEE,安全,架构"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】SoK：使用硬件辅助隔离执行环境实现安全性的研究（综述） 2016">【TEE论文】SoK：使用硬件辅助隔离执行环境实现安全性的研究（综述） 2016</span>
+            <span class="post-date" title="2024-02-25 20:30:40">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E5%AE%89%E5%85%A8%E5%85%A8%E9%9D%A2%E8%B0%83%E6%9F%A5%EF%BC%9A%E4%BB%8E%E8%BE%B9%E7%BC%98%E5%88%B0%E4%BA%91%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89/"
+           data-tag="TEE,安全,架构"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】硬件辅助安全全面调查：从边缘到云（综述）">【TEE论文】硬件辅助安全全面调查：从边缘到云（综述）</span>
+            <span class="post-date" title="2024-02-25 20:29:23">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E5%AE%89%E5%85%A8%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E7%BB%BC%E8%BF%B0/"
+           data-tag="LLM,安全"
+           data-author="" >
+            <span class="post-title" title="【安全】大模型安全综述">【安全】大模型安全综述</span>
+            <span class="post-date" title="2024-02-25 20:28:32">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91ProMT-Optimizing-Integrity-Tree-Updates-for-Write-Intensive-Pages-in-Secure-NVMs/"
+           data-tag="NVM,内存安全"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】ProMT: Optimizing Integrity Tree Updates for Write-Intensive Pages in Secure NVMs">【TEE论文】ProMT: Optimizing Integrity Tree Updates for Write-Intensive Pages in Secure NVMs</span>
+            <span class="post-date" title="2024-02-25 20:27:27">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E8%99%9A%E6%8B%9F%E5%8C%96/"
+           data-tag="GPU,虚拟化"
+           data-author="" >
+            <span class="post-title" title="【架构】GPU虚拟化">【架构】GPU虚拟化</span>
+            <span class="post-date" title="2024-02-25 20:26:11">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/"
+           data-tag="云安全"
+           data-author="" >
+            <span class="post-title" title="【云安全】传输层安全性（TLS）大汇总">【云安全】传输层安全性（TLS）大汇总</span>
+            <span class="post-date" title="2024-02-25 20:22:53">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/"
+           data-tag="架构,多租户调度"
+           data-author="" >
+            <span class="post-title" title="【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation">【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation</span>
+            <span class="post-date" title="2024-02-25 20:21:48">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/"
+           data-tag="TEE,架构,侧信道"
+           data-author="" >
+            <span class="post-title" title="【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）">【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）</span>
+            <span class="post-date" title="2024-02-25 20:19:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/"
+           data-tag="论文,动态缓存划分"
+           data-author="" >
+            <span class="post-title" title="【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）">【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）</span>
+            <span class="post-date" title="2024-02-25 20:17:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Reusable-Enclaves-for-Confidential-Serverless-Computing%EF%BC%88usenixsecurity23%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）">【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）</span>
+            <span class="post-date" title="2024-02-25 20:14:26">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Serverless-Made-Efficient-with-Plug-In-Enclaves-%EF%BC%882021-ISCA%EF%BC%89/"
+           data-tag="TEE,论文,共享内存"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）">【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）</span>
+            <span class="post-date" title="2024-02-25 20:12:45">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service">【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service</span>
+            <span class="post-date" title="2024-02-25 20:11:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91-HETEE-Enabling-rack-scale-confidential-computing-using-heterogeneous-TEE-2020-SP/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)">【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)</span>
+            <span class="post-date" title="2024-02-25 20:08:42">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）">【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）</span>
+            <span class="post-date" title="2024-02-25 20:07:36">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/"
+           data-tag="TEE,内存保护,分组加密"
+           data-author="" >
+            <span class="post-title" title="【TEE】片外内存保护：AES分组算法+MAC完整性验证">【TEE】片外内存保护：AES分组算法+MAC完整性验证</span>
+            <span class="post-date" title="2024-02-25 20:05:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"
+           data-tag="TEE,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel SGX的不足和解决方案">【TEE】Intel SGX的不足和解决方案</span>
+            <span class="post-date" title="2024-02-25 19:59:35">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/"
+           data-tag="TEE,Intel TDX,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel可信执行环境的前世今生">【TEE】Intel可信执行环境的前世今生</span>
+            <span class="post-date" title="2024-02-25 19:54:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/"
+           data-tag="TEE,LLM"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境保障大模型安全">【TEE】可信执行环境保障大模型安全</span>
+            <span class="post-date" title="2024-02-25 19:52:39">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91PENGLAI-TEE/"
+           data-tag="TEE,PENGLAI"
+           data-author="" >
+            <span class="post-title" title="【TEE】PENGLAI TEE">【TEE】PENGLAI TEE</span>
+            <span class="post-date" title="2024-02-25 19:51:30">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91AMD-SEV-SNP%E5%92%8CIntel-TDX%E7%9A%84%E6%A6%82%E8%BF%B0/"
+           data-tag="TEE,AMD SEV- SNP,Intel TDX"
+           data-author="" >
+            <span class="post-title" title="【TEE】AMD SEV- SNP和Intel TDX的概述">【TEE】AMD SEV- SNP和Intel TDX的概述</span>
+            <span class="post-date" title="2024-02-25 19:36:13">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/"
+           data-tag="TEE,ARM CCA"
+           data-author="" >
+            <span class="post-title" title="【TEE】ARM CCA 可信计算架构">【TEE】ARM CCA 可信计算架构</span>
+            <span class="post-date" title="2024-02-25 19:24:38">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/"
+           data-tag="TEE,AMD SEV-SNP"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离">【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离</span>
+            <span class="post-date" title="2024-02-25 19:11:12">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/"
+           data-tag="TEE,AMD SEV"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV内存加密】 白皮书">【TEE】【AMD SEV内存加密】 白皮书</span>
+            <span class="post-date" title="2024-02-25 19:05:02">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Computing-within-an-AI-Accelerator/"
+           data-tag="TEE,论文,AI加速器,架构设计"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Computing within an AI Accelerator">【TEE论文】Confidential Computing within an AI Accelerator</span>
+            <span class="post-date" title="2024-02-25 18:53:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/"
+           data-tag="TEE"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境业界资料">【TEE】可信执行环境业界资料</span>
+            <span class="post-date" title="2024-02-25 18:31:25">2024/02/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【云安全】传输层安全性（TLS）大汇总" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【云安全】传输层安全性（TLS）大汇总</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="知识总结">知识总结</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">云安全</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 20:23:47'>2024-02-25 20:22</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFTLS"><span class="toc-text">什么是TLS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS%E5%8D%8F%E8%AE%AE"><span class="toc-text">TLS协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS-SSL"><span class="toc-text">TLS &#x2F; SSL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS-HTTPS"><span class="toc-text">TLS&#x2F;HTTPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS%E4%BD%9C%E7%94%A8"><span class="toc-text">TLS作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS-%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C"><span class="toc-text">TLS 如何工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS-%E5%A6%82%E4%BD%95%E5%BD%B1%E5%93%8D-Web-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD"><span class="toc-text">TLS 如何影响 Web 应用程序性能</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFSSL"><span class="toc-text">什么是SSL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSL%E8%AF%81%E4%B9%A6%E5%92%8CSSL"><span class="toc-text">SSL证书和SSL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSL%E8%AF%81%E4%B9%A6%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C"><span class="toc-text">SSL证书如何工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-SSL-%E8%AF%81%E4%B9%A6%EF%BC%9F"><span class="toc-text">为什么需要 SSL 证书？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-%E4%B8%8E-HTTPS"><span class="toc-text">HTTP 与 HTTPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS-SSL-%E5%A6%82%E4%BD%95%E5%8A%A0%E5%AF%86-HTTP-%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94"><span class="toc-text">TLS&#x2F;SSL 如何加密 HTTP 请求和响应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%8A%A0%E5%AF%86"><span class="toc-text">如何加密</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSL3%E2%80%93TLS1-3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">SSL3–TLS1.3的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSL3"><span class="toc-text">SSL3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS-1-0"><span class="toc-text">TLS 1.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS1-1"><span class="toc-text">TLS1.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS1-2"><span class="toc-text">TLS1.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS1-3"><span class="toc-text">TLS1.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TLS-%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text">TLS 的架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%A1%E6%89%8B%E5%8D%8F%E8%AE%AE%EF%BC%88%E8%A7%A3%E9%87%8A1%EF%BC%89"><span class="toc-text">握手协议（解释1）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%A1%E6%89%8B%E5%8D%8F%E8%AE%AE%EF%BC%88%E8%A7%A3%E9%87%8A2%EF%BC%89"><span class="toc-text">握手协议（解释2）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E5%AF%86%E7%A0%81%E5%92%8C%E9%A2%84%E5%A4%87%E4%B8%BB%E5%AF%86%E7%A0%81"><span class="toc-text">主密码和预备主密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E8%AD%A6%E5%8D%8F%E8%AE%AEAlert-Protocol"><span class="toc-text">报警协议Alert Protocol</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E5%8D%8F%E8%AE%AE"><span class="toc-text">记录协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E5%8D%8F%E8%AE%AE2"><span class="toc-text">记录协议2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E3%80%81%E6%9C%BA%E5%AF%86%E6%80%A7%E5%92%8C%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-text">身份验证、机密性和完整性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9F%BA%E7%A1%80"><span class="toc-text">密码学基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AF%86%E7%A0%81%E5%AD%A6%E5%B8%B8%E7%94%A8%E6%8A%80%E6%9C%AF"><span class="toc-text">1.密码学常用技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E6%8A%80%E6%9C%AF"><span class="toc-text">2.对称加密技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E6%8A%80%E6%9C%AF%E3%80%81%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95"><span class="toc-text">3.非对称加密技术、公钥密码算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%AF%86%E9%92%A5%E9%85%8D%E9%80%81"><span class="toc-text">4.密钥配送</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-DH%E7%AE%97%E6%B3%95"><span class="toc-text">5.DH算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-text">参考文献</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFTLS"><span class="toc-text">什么是TLS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS%E5%8D%8F%E8%AE%AE"><span class="toc-text">TLS协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS-SSL"><span class="toc-text">TLS &#x2F; SSL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS-HTTPS"><span class="toc-text">TLS&#x2F;HTTPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS%E4%BD%9C%E7%94%A8"><span class="toc-text">TLS作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS-%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C"><span class="toc-text">TLS 如何工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS-%E5%A6%82%E4%BD%95%E5%BD%B1%E5%93%8D-Web-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD"><span class="toc-text">TLS 如何影响 Web 应用程序性能</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFSSL"><span class="toc-text">什么是SSL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSL%E8%AF%81%E4%B9%A6%E5%92%8CSSL"><span class="toc-text">SSL证书和SSL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSL%E8%AF%81%E4%B9%A6%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C"><span class="toc-text">SSL证书如何工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-SSL-%E8%AF%81%E4%B9%A6%EF%BC%9F"><span class="toc-text">为什么需要 SSL 证书？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-%E4%B8%8E-HTTPS"><span class="toc-text">HTTP 与 HTTPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS-SSL-%E5%A6%82%E4%BD%95%E5%8A%A0%E5%AF%86-HTTP-%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94"><span class="toc-text">TLS&#x2F;SSL 如何加密 HTTP 请求和响应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%8A%A0%E5%AF%86"><span class="toc-text">如何加密</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSL3%E2%80%93TLS1-3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">SSL3–TLS1.3的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSL3"><span class="toc-text">SSL3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS-1-0"><span class="toc-text">TLS 1.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS1-1"><span class="toc-text">TLS1.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS1-2"><span class="toc-text">TLS1.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS1-3"><span class="toc-text">TLS1.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TLS-%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text">TLS 的架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%A1%E6%89%8B%E5%8D%8F%E8%AE%AE%EF%BC%88%E8%A7%A3%E9%87%8A1%EF%BC%89"><span class="toc-text">握手协议（解释1）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%A1%E6%89%8B%E5%8D%8F%E8%AE%AE%EF%BC%88%E8%A7%A3%E9%87%8A2%EF%BC%89"><span class="toc-text">握手协议（解释2）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E5%AF%86%E7%A0%81%E5%92%8C%E9%A2%84%E5%A4%87%E4%B8%BB%E5%AF%86%E7%A0%81"><span class="toc-text">主密码和预备主密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E8%AD%A6%E5%8D%8F%E8%AE%AEAlert-Protocol"><span class="toc-text">报警协议Alert Protocol</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E5%8D%8F%E8%AE%AE"><span class="toc-text">记录协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E5%8D%8F%E8%AE%AE2"><span class="toc-text">记录协议2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E3%80%81%E6%9C%BA%E5%AF%86%E6%80%A7%E5%92%8C%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-text">身份验证、机密性和完整性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9F%BA%E7%A1%80"><span class="toc-text">密码学基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AF%86%E7%A0%81%E5%AD%A6%E5%B8%B8%E7%94%A8%E6%8A%80%E6%9C%AF"><span class="toc-text">1.密码学常用技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E6%8A%80%E6%9C%AF"><span class="toc-text">2.对称加密技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E6%8A%80%E6%9C%AF%E3%80%81%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95"><span class="toc-text">3.非对称加密技术、公钥密码算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%AF%86%E9%92%A5%E9%85%8D%E9%80%81"><span class="toc-text">4.密钥配送</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-DH%E7%AE%97%E6%B3%95"><span class="toc-text">5.DH算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-text">参考文献</span></a></li></ol></div></p>
+<h1 id="什么是TLS"><a href="#什么是TLS" class="headerlink" title="什么是TLS"></a>什么是TLS</h1><h2 id="TLS协议"><a href="#TLS协议" class="headerlink" title="TLS协议"></a>TLS协议</h2><p>传输层安全性（Transport Layer Security，TLS）是一种广泛采用的安全性协议，旨在促进互联网通信的私密性和数据安全性。TLS 的主要用例是对 web 应用程序和服务器之间的通信（例如，web 浏览器加载网站）进行加密。</p>
+<p>TLS 由互联网工程任务组（Internet Engineering Task Force, IETF）提出，协议的第一个版本于 1999 年发布。最新版本是 TLS 1.3，发布于 2018 年。</p>
+<h2 id="TLS-SSL"><a href="#TLS-SSL" class="headerlink" title="TLS &#x2F; SSL"></a>TLS &#x2F; SSL</h2><p>Netscape 开发了名为安全套接字层（Secure Socket Layer，SSL）的上一代加密协议，TLS 由此演变而来。TLS 1.0 版实际上最初作为 SSL 3.1 版开发，但在发布前更改了名称，以表明它不再与 Netscape 关联。由于这个历史原因，TLS 和 SSL 这两个术语有时会互换使用。</p>
+<p>SSL&#x2F;TLS是一个安全通信框架，上面可以承载HTTP协议或者SMTP&#x2F;POP3协议等。<br><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/8c52a1e15dd64e8d81f9db9c9f075e53.png"></p>
+<p>TLS的主要目标是使SSL更安全，并使协议的规范更精确和完善。TLS在SSL v3.0的基础上，提供了以下增加内容：</p>
+<ul>
+<li>1）更安全的MAC算法</li>
+<li>2）更严密的警报</li>
+<li>3）“灰色区域”规范的更明确的定义</li>
+</ul>
+<p>TLS对于安全性的改进</p>
+<ul>
+<li>1）对于消息认证使用密钥散列法：TLS使用“消息认证代码的密钥散列法”（HMAC），当记录在开放的网络（如因特网）上传送时，该代码确保记录不会被变更。SSLv3.0还提供键控消息认证，但HMAC比SSLv3.0使用（消息认证代码）MAC功能更安全。</li>
+<li>2）增强的伪随机功能（PRF）：PRF生成密钥数据。在TLS中，HMAC定义PRF。PRF使用两种散列算法保证其安全性。如果任一算法暴露了，只要第二种算法未暴露，则数据仍然是安全的。</li>
+<li>3）改进的已完成消息验证：TLS和SSLv3.0都对两个端点提供已完成的消息，该消息认证交换的消息没有被变更。然而，TLS将此已完成消息基于PRF和HMAC值之上，这也比SSLv3.0更安全。</li>
+<li>4）一致证书处理：与SSLv3.0不同，TLS试图指定必须在TLS之间实现交换的证书类型。</li>
+<li>5）特定警报消息：TLS提供更多的特定和附加警报，以指示任一会话端点检测到的问题。TLS还对何时应该发送某些警报进行记录。</li>
+</ul>
+<h2 id="TLS-HTTPS"><a href="#TLS-HTTPS" class="headerlink" title="TLS&#x2F;HTTPS"></a>TLS&#x2F;HTTPS</h2><p>HTTPS 是在 HTTP 协议基础上实施 TLS 加密，所有网站以及其他部分 web 服务都使用该协议。因此，任何使用 HTTPS 的网站都使用 TLS 加密。</p>
+<p><strong>TLS 加密可以帮助保护 Web 应用程序免受数据泄露和其他攻击</strong>。如今，受 TLS 保护的 HTTPS 是网站的标准做法。Google Chrome 浏览器逐渐对非 HTTPS 网站进行打击，其他浏览器也纷纷效仿。</p>
+<h2 id="TLS作用"><a href="#TLS作用" class="headerlink" title="TLS作用"></a>TLS作用</h2><p>实现的功能有三个主要组成部分：加密、认证和完整性。</p>
+<ul>
+<li>加密：隐藏从第三方传输的数据。</li>
+<li>身份验证：确保交换信息的各方是他们所声称的身份。</li>
+<li>完整性：验证数据未被伪造或篡改。</li>
+</ul>
+<h2 id="TLS-如何工作"><a href="#TLS-如何工作" class="headerlink" title="TLS 如何工作"></a>TLS 如何工作</h2><p>TLS 连接是通过一个称为 TLS 握手的流程启动的。当用户导航到一个使用 TLS 的网站时，用户设备（也称为客户端设备）和 web 服务器之间开始 TLS 握手。<br>在 TLS 过程中，用户设备和 web 服务器：</p>
+<ul>
+<li>指定将要使用的 TLS 版本（TLS 1.0、1.2、1.3 等）</li>
+<li>决定将要使用哪些密码套件（见下文）</li>
+<li>使用服务器的 TLS 证书验证服务器的身份</li>
+<li>握手完成后，生成会话密钥用于加密两者之间的消息<br>TLS 握手为每个通信会话建立一个密码套件密码套件是一组算法，其中指定了一些细节，例如哪些共享加密密钥（即会话密钥）将用于该特定会话。TLS 也能在一个未加密的通道上设置匹配的会话密钥，这要归功于一种称为公钥加密的技术。</li>
+</ul>
+<p>握手还处理身份验证，其中通常包括服务器向客户端证明其身份。这是通过使用公钥来完成的。公钥是使用单向加密的加密密钥，即任何拥有公钥的人都可以解读使用服务器私钥加密的数据，以确保其真实性，但只有源发送方才可以使用私钥加密数据。服务器的公钥是其 TLS 证书的一部分。</p>
+<p><strong>数据完成加密和验明身份后，使用消息身份验证码（MAC）进行签名</strong>。接收方然后可以验证 MAC 来确保数据的完整性。这有点像阿司匹林药瓶上的防篡改铝箔；消费者知道没人篡改过他们的药品，因为购买时铝箔完好无损。</p>
+<p><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/8f02bc113bcf4803a6165d5a80622144.png"></p>
+<h2 id="TLS-如何影响-Web-应用程序性能"><a href="#TLS-如何影响-Web-应用程序性能" class="headerlink" title="TLS 如何影响 Web 应用程序性能"></a>TLS 如何影响 Web 应用程序性能</h2><p>建立TLS链接需要加载时间和计算能力；传输数据之前需要来回通信；占用内存和宝贵的加载时间。<br>现有的缓解TLS握手延迟的技术：</p>
+<ul>
+<li>TLS 虚假启动（False Start），让服务器和客户端在 TLS 握手完成前开始传输数据；</li>
+<li>加速 TLS 的技术是 TLS 会话恢复，允许之前通信过的客户端和服务器简化握手过程。</li>
+</ul>
+<p>这些改良加速TLS，可以忽略延迟开销。2018发布的TLS 1.3 中的 TLS 握手仅需要一次往返（即来回通信），而不是以前的两次，将握手过程所需时间缩短了几毫秒。如果用户以前已连接过网站，TLS 握手的往返次数为零，从而进一步加快了速度。</p>
+<h1 id="什么是SSL"><a href="#什么是SSL" class="headerlink" title="什么是SSL"></a>什么是SSL</h1><p>Cloudflare 向所有用户提供免费的 TLS&#x2F;SSL 证书。任何没有使用 Cloudflare 的用户将必须向一家证书机构获取 SSL 证书，而且往往需要付费，然后在其源服务器上安装证书。</p>
+<h2 id="SSL证书和SSL"><a href="#SSL证书和SSL" class="headerlink" title="SSL证书和SSL"></a>SSL证书和SSL</h2><p>SSL（通常称为 TLS）是用于加密互联网流量和验证服务器身份的协议。任何具有 HTTPS 网址的网站都使用 SSL&#x2F;TLS。</p>
+<p>SSL 证书使网站能够使用比 HTTP 更加安全的 HTTPS。SSL 证书是托管在网站源服务器中的数据文件。SSL 证书促成了 SSL&#x2F;TLS 加密，它们含有网站的公钥和网站标识以及相关信息。尝试与源服务器通信的设备将引用此文件，以获取公钥并验证服务器的身份。私钥应保密并妥善保管。</p>
+<h2 id="SSL证书如何工作"><a href="#SSL证书如何工作" class="headerlink" title="SSL证书如何工作"></a>SSL证书如何工作</h2><p>SSL证书在一个数据文件中包括以下信息：</p>
+<ul>
+<li>针对其颁发证书的域名</li>
+<li>证书颁发给哪一个人、组织或设备</li>
+<li>证书由哪一证书颁发机构颁发</li>
+<li>证书颁发机构的数字签名</li>
+<li>关联的子域</li>
+<li>证书的颁发日期</li>
+<li>证书的到期日期</li>
+<li>公钥（私钥为保密状态）<br>用于 SSL 的公钥和私钥本质上是用于加密和签署数据的长字符串。使用公钥加密的数据只能用私钥解密。</li>
+</ul>
+<p>该证书托管在一个网站的源服务器上，并被发送到任何请求加载该网站的设备上。 大多数浏览器都允许用户查看 SSL 证书：在 Chrome 浏览器中，可以通过点击 URL 栏左侧的挂锁图标来实现。</p>
+<h2 id="为什么需要-SSL-证书？"><a href="#为什么需要-SSL-证书？" class="headerlink" title="为什么需要 SSL 证书？"></a>为什么需要 SSL 证书？</h2><p>网站需要 SSL 证书，以确保用户数据的安全，验证网站的所有权，防止攻击者创建站点的虚假版本，并且获得用户信任。</p>
+<p>加密：SSL&#x2F;TLS 加密之所以可行，是因为 SSL 证书促成了公钥私钥配对。客户端（例如 Web 浏览器）从服务器的 SSL 证书获取打开 TLS 连接所需的公钥。</p>
+<p>身份验证：SSL 证书可验证客户端正在与实际拥有该域的正确服务器进行通信。这有助于防止域欺骗和其他类型的攻击。</p>
+<p>HTTPS：对企业而言，HTTPS 网址必须使用 SSL证书，这一点最为重要。HTTPS 是 HTTP 的安全形式，HTTPS 网站是通过 SSL&#x2F;TLS 加密流量的网站。</p>
+<p>除了在传输过程中保护用户数据外，HTTPS 还使站点更值得用户信赖。许多用户不会注意到以 http:&#x2F;&#x2F; 和 https:&#x2F;&#x2F; 开头的网址的区别，但大多数浏览器都使用醒目的方式将 HTTP 站点标记为“不安全”，并且尝试为切换到 HTTPS 和增强安全性提供奖励。</p>
+<p>SSL协议提供的服务主要有：</p>
+<ul>
+<li>1）认证用户和服务器，确保数据发送到正确的客户机和服务器；</li>
+<li>2）加密数据以防止数据中途被窃取；</li>
+<li>3）维护数据的完整性，确保数据在传输过程中不被改变。</li>
+</ul>
+<h2 id="HTTP-与-HTTPS"><a href="#HTTP-与-HTTPS" class="headerlink" title="HTTP 与 HTTPS"></a>HTTP 与 HTTPS</h2><p>HTTPS 是支持加密和验证的 HTTP。两种协议的唯一区别是HTTPS 使用 TLS (SSL) 来加密普通的 HTTP 请求和响应，并对这些请求和响应进行数字签名。因此，HTTPS 比 HTTP 安全得多。HTTP 消息主要有两种：请求和响应。在 OSI 模型中（请参阅什么是 OSI 模型？），HTTP 是第 7 层协议。</p>
+<p>用户与浏览器交互时，用户浏览器会生成 HTTP 请求。这些 HTTP 请求全部传送到源站服务器或代理缓存服务器，并且服务器将生成 HTTP 响应。HTTP 响应是对 HTTP 请求的回答。</p>
+<p>HTTPS 中的 S 代表“安全”。HTTPS 使用 TLS（或 SSL）来加密HTTP 请求和响应，因此在上例中，攻击者看到的不是其文本，而是一堆看似随机的字符。</p>
+<h2 id="TLS-SSL-如何加密-HTTP-请求和响应"><a href="#TLS-SSL-如何加密-HTTP-请求和响应" class="headerlink" title="TLS&#x2F;SSL 如何加密 HTTP 请求和响应"></a>TLS&#x2F;SSL 如何加密 HTTP 请求和响应</h2><p>TLS 使用一种称为公钥加密的技术：密钥有两个，即公钥和私钥，其中<strong>公钥通过服务器的 SSL 证书与客户端设备共享</strong>。当客户端打开与服务器的连接时，这两个设备使用公钥和私钥商定新的密钥（称为会话密钥），以加密它们之间的后续通信。</p>
+<p>然后，所有 HTTP 请求和响应都使用这些会话密钥进行加密），使任何截获通信的人都只能看到随机字符串，而不是明文。</p>
+<p>当客户端打开与源站服务器的连接通道时（例如，当用户导航到网站时），拥有与网站 SSL 证书中公钥匹配的私钥可证明此服务器确实是该网站的合法主机。这可以防止或帮助阻止在没有身份验证时可能发生的多种攻击，例如：</p>
+<ul>
+<li>在途攻击</li>
+<li>DNS 劫持</li>
+<li>BGP 劫持</li>
+<li>域欺骗<br>此外，SSL 证书由签发它的证书颁发机构进行数字签名。这可以确认服务器就是它声称的身份。</li>
+</ul>
+<h2 id="如何加密"><a href="#如何加密" class="headerlink" title="如何加密"></a>如何加密</h2><p>两种主要的加密是对称加密和非对称加密。非对称加密也称为公钥加密。</p>
+<p>在对称加密中，只有一个密钥，所有通信方都使用相同的（秘密）密钥进行加密和解密。在非对称或公钥加密中，有两个密钥：一个用于加密，另一个用于解密。解密密钥是保密的（因此称为“私钥”），而加密密钥是公开的，供任何人使用（因此称为“公钥”）。非对称加密是 TLS（通常称为 SSL）的基础技术。</p>
+<p>常用的对称加密算法包括：</p>
+<ul>
+<li>AES</li>
+<li>3-DES</li>
+<li>SNOW<br>常用的非对称加密算法包括：</li>
+<li>RSA</li>
+<li>椭圆曲线加密</li>
+</ul>
+<p><strong>暴力破解攻击</strong>是指不知道解密密钥的攻击者试图通过数百万次或数十亿次的猜测来确定密钥。使用现代计算机的暴力破解攻击要快得多，这就是为什么加密必须极其强大和复杂的原因。大多数现代的加密方法，加上高质量的密码，都能抵抗暴力破解攻击，尽管随着计算机的功能越来越强大，它们在未来会变得越来越容易遭受此类攻击。弱密码仍然容易受到暴力破解攻击。</p>
+<h1 id="SSL3–TLS1-3的区别"><a href="#SSL3–TLS1-3的区别" class="headerlink" title="SSL3–TLS1.3的区别"></a>SSL3–TLS1.3的区别</h1><p>自SSL3以来，协议核心并没有大幅改变。TLS1.0为了迎合使用另一个名称进行了有限的改变，发布TLS1.1的首要目标是为了解决几个安全性问题。TLS1.2引了已验证加密，清理了散列，另外去掉了协议中的硬编码基元。TLS1.3是目前最新协议，有望成为有史以来最安全版本。<br><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/7af328cd3efe437ea820f9550f601203.png"></p>
+<h2 id="SSL3"><a href="#SSL3" class="headerlink" title="SSL3"></a>SSL3</h2><p>SSL3于1995年末发布，为了弥补先前协议版本的诸多弱点，SSL3从头开始设计了一套协议，并一直沿用到了最新版本的TLS。</p>
+<h2 id="TLS-1-0"><a href="#TLS-1-0" class="headerlink" title="TLS 1.0"></a>TLS 1.0</h2><p>TLS1.0于1999年1月发布，与SSL3相比，它有以下的区别：</p>
+<ul>
+<li>1）这是定义基于标准HMAC的PRF的第一个版本。它<strong>将PRF以HMAC-MD5和HMAC-SHA的结合(XOR)实现</strong>；</li>
+<li>2）生成主密钥使用PRF，而不是定制的构造方法；</li>
+<li>3）verify_data的值基于PRF，而不是定制的构造方法；</li>
+<li>4）使用官方HMAC作为完整性验证(MAC)。SSL3使用的是更早的、已被废弃的HMAC版本；</li>
+<li>5）修改填充格式，使其更为可靠。2014年10月，被称为POODLE的攻击暴露了SSL3的填充机制不安全。</li>
+<li>6）去掉了 FORTEZZA套件。<br>协议清理的结果是TS1.0得到了FPS的批准，允许其用于美国政府机构，这是现实中一个非常重要的事件。</li>
+</ul>
+<h2 id="TLS1-1"><a href="#TLS1-1" class="headerlink" title="TLS1.1"></a>TLS1.1</h2><p>TLS1.1于2006年4月发布。与TLS1.0相比，它有以下的区别：</p>
+<ul>
+<li>1）CBC加密使用包含在每个TLS记录中的显式Ⅳ。这弥补了Ⅳ可预测的弱点，不然这个弱点后面会被BEAST攻击所利用；</li>
+<li>2）为了抵抗填充攻击，要求实现使用bad_record_mac警报作为填充问题的响应。不再赞成使用decryption_failed警报。</li>
+<li>3）这个版本引用包含了TLS扩展(RFC3546)。</li>
+</ul>
+<h2 id="TLS1-2"><a href="#TLS1-2" class="headerlink" title="TLS1.2"></a>TLS1.2</h2><p>TLS1.2于2008年8月发布。与TLS1.1相比，它有以下的区别：</p>
+<ul>
+<li>1）添加已验证加密支持；</li>
+<li>2）添加对HMAC-SHA256密码套件的支持；</li>
+<li>3）删除IDEA和DES密码套件；</li>
+<li>4）虽然大部分扩展的实际文档还是在其他地方，但TLS将扩展和协议的主规格说明书进行了集成；</li>
+<li>5）客户端可以使用一种新的扩展( signature_algorithms)来通报它愿意接受的散列和签名算法。</li>
+<li>6）当使用TLS1.2套件或者以协商协议是TLS1.2为条件使用之前的套件时，在PRF中使用SHA256代替MD5&#x2F;SHA1组合。</li>
+<li>7）允许密码套件定义其自身的PRF；</li>
+<li>8）使用单一散列代替用于数字签名的MD5&#x2F;SHA1组合。默认使用SHA256，并且密码套件可以指定其自身使用的散列。签名散列算法以往是由协议强制指定，现在是散列函数式签名结构中的一部分，而且在实施启用中可以选择最佳算法。</li>
+<li>9）密码套件可以显式指定Finished消息中的verify_data成员的长度。</li>
+</ul>
+<h2 id="TLS1-3"><a href="#TLS1-3" class="headerlink" title="TLS1.3"></a>TLS1.3</h2><p>TLS 1.3 与之前的协议有较大差异，主要在于：</p>
+<ul>
+<li>1）相比过去的的版本，引入了新的密钥协商机制 — PSK；</li>
+<li>2）支持0-RTT数据传输，在建立连接时节省了往返时间；</li>
+<li>3）废弃了3DES、RC4、AES-CBC等加密组件，废弃了SHA1、MD5等哈希算法；</li>
+<li>4）ServerHello之后的所有握手消息采取了加密操作，可见明文大大减少；</li>
+<li>5）不再允许对加密报文进行压缩、不再允许双方发起重协商；</li>
+<li>6）DSA证书不再允许在TLS 1.3中使用。<br>对比旧协议中的不足，TLS1.3确实可以称得上是向前迈了一大步。既避免之前版本出现的缺陷，也减少了TLS握手的时间。<br><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/b06a0c0f96cd43a1a4f2bc86af398d19.png"></li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>来总结下TLS 1.3引入的一些重要改进。</p>
+<ol>
+<li><p>对原有的对称算法列表进行调整，只支持使用带有关联数据的认证加密（AEAD）算法；—增强安全性</p>
+</li>
+<li><p>以牺牲某些安全属性为代价添加了零RTT（0-RTT）模式，节省了特定场景下应用程序数据的连接建立的往返时间；—减少延迟，提升性能</p>
+</li>
+<li><p>静态RSA和Diffie-Hellman密码套件已被删除；所有基于公钥的密钥交换机制现在都提供前向保密性；—增强安全性</p>
+</li>
+<li><p>ServerHello之后的所有握手消息都进行加密；—增强安全性</p>
+</li>
+<li><p>重新设计密钥派生函数，用基于HMAC的密钥提取和密钥扩展函数（HKDF）作原语；—规范密钥生成算法</p>
+</li>
+<li><p>重组握手状态机使其更加前后一致，并移除了多余的消息；—提升性能</p>
+</li>
+<li><p>压缩，自定义DHE组和DSA已被删除。—压缩可能带来安全风险已被删除，增强安全性</p>
+</li>
+</ol>
+<h1 id="TLS-的架构"><a href="#TLS-的架构" class="headerlink" title="TLS 的架构"></a>TLS 的架构</h1><p>TLS主要分为两层，底层的是TLS记录协议，主要负责使用对称密码对消息进行加密。<br>上层的是TLS握手协议，主要分为握手协议，密码规格变更协议和应用数据协议4个部分。<br><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/582b05b22e8f4a769a3bb31238291edc.png"></p>
+<ul>
+<li>握手协议负责在客户端和服务器端商定密码算法和共享密钥，包括证书认证，是4个协议中最最复杂的部分。</li>
+<li>密码规格变更协议负责向通信对象传达变更密码方式的信号</li>
+<li>警告协议负责在发生错误的时候将错误传达给对方</li>
+<li>应用数据协议负责将TLS承载的应用数据传达给通信对象的协议。</li>
+</ul>
+<h2 id="握手协议（解释1）"><a href="#握手协议（解释1）" class="headerlink" title="握手协议（解释1）"></a>握手协议（解释1）</h2><p>握手协议是TLS协议中非常重要的协议，通过客户端和服务器端的交互，和共享一些必要信息，从而生成共享密钥和交互证书。<br><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/6492828eeec64bff8fc9f398ddbe361b.png"><br><strong>1. client hello客户端向服务器端发送一个client hello的消息</strong>，包含下面内容：<br>• 可用版本号<br>• 当前时间<br>• 客户端随机数<br>• 会话ID<br>• 可用的密码套件清单<br>• 可用的压缩方式清单<br>可用版本号，可用的密码套件清单，可用的压缩方式清单就是向服务器询问对方支持哪些服务。</p>
+<p><strong>2. server hello服务器端收到client hello消息后，会向客户端返回一个server hello消息</strong>，包含如下内容：<br>• 使用的版本号<br>• 当前时间<br>• 服务器随机数<br>• 会话ID<br>• 使用的密码套件<br>• 使用的压缩方式<br>使用的版本号，使用的密码套件，使用的压缩方式是对步骤1的回答。<br>服务器随机数是一个由服务器端生成的随机数，用来生成对称密钥。</p>
+<p><strong>3. 可选步骤:certificate</strong><br>服务器端发送自己的证书清单，因为证书可能是层级结构的，所以处理服务器自己的证书之外，还需要发送为服务器签名的证书。客户端将会对服务器端的证书进行验证。如果是以匿名的方式通信则不需要证书。</p>
+<p><strong>4. 可选步骤:ServerKeyExchange。如果第三步的证书信息不足，则可以发送ServerKeyExchange用来构建加密通道</strong>。ServerKeyExchange的内容可能包含两种形式：<br>• 如果选择的是RSA协议，那么传递的就是RSA构建公钥密码的参数（E，N）。我们回想一下RSA中构建公钥的公式：密文&#x3D;明文E mod N密文&#x3D;明文E mod N， 只要知道了E和N，那么就知道了RSA的公钥，这里传递的就是E，N两个数字。具体内容可以参考RSA算法详解<br>• 如果选择的是Diff-Hellman密钥交换协议，那么传递的就是密钥交换的参数，具体内容可以参考更加安全的密钥生成方法Diffie-Hellman</p>
+<p><strong>6. 可选步骤:CertificateRequest</strong>。<br>如果是在一个受限访问的环境，比如fabric中，服务器端也需要向客户端索要证书。<br>如果并不需要客户端认证，则不需要此步骤。</p>
+<p><strong>7. server hello done</strong><br>服务器端发送server hello done的消息告诉客户端自己的消息结束了。</p>
+<p><strong>8. 可选步骤:Certificate<br>对步骤5的回应</strong>，客户端发送客户端证书给服务器</p>
+<p><strong>9. ClientKeyExchange</strong>还是分两种情况：<br>• 如果是公钥或者RSA模式情况下，客户端将根据客户端生成的随机数和服务器端生成的随机数，生成预备主密码，通过该公钥进行加密，返送给服务器端。<br>• 如果使用的是Diff-Hellman密钥交换协议，则客户端会发送自己这一方要生成Diff-Hellman密钥而需要公开的值。具体内容可以参考更加安全的密钥生成方法Diffie-Hellman，这样服务器端可以根据这个公开值计算出预备主密码。</p>
+<p><strong>10. 可选步骤:CertificateVerify</strong>。<br>客户端向服务器端证明自己是客户端证书的持有者。</p>
+<p>**11. ChangeCipherSpec(准备切换密码)**。<br>ChangeCipherSpec是密码规格变更协议的消息，表示后面的消息将会以前面协商过的密钥进行加密。</p>
+<ol start="12">
+<li><p>finished(握手协议结束)<br>客户端告诉服务器端握手协议结束了。</p>
+</li>
+<li><p>ChangeCipherSpec(准备切换密码)<br>服务器端告诉客户端自己要切换密码了。</p>
+</li>
+<li><p>finished(握手协议结束)<br>服务器端告诉客户端，握手协议结束了。</p>
+</li>
+<li><p>切换到应用数据协议<br>这之后服务器和客户端就是以加密的方式进行沟通了。</p>
+</li>
+</ol>
+<h2 id="握手协议（解释2）"><a href="#握手协议（解释2）" class="headerlink" title="握手协议（解释2）"></a>握手协议（解释2）</h2><p>握手协议如字面所言，是在加密通信之前，对于加密使用的算法套件及加密密钥进行协商，这和在两个陌生人开始聊天前，通常都需要礼节性的握手类似。这个握手协议凝聚了整个密码学的精华，其中的每一步都是经过了密码学严格论证，有很多实现上容易出错的“坑”。为了便于理解，按照先前的比喻，我们先模仿两个陌生人对话的逻辑（这里这两个陌生人可能交流一些 “学习.hub”等私密的话题）来梳理下整个交互过程，同时用黑体字注明了对应的握手协议消息类型。<br><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/223922b3e556412b9b9cdef4e7e11292.png"><br>(1) C（Client）：你好呀，怕别人偷听，我准备用只有我俩能听懂的语言来聊天，你看我会这几种类型语言，你愿意用那种呢？</p>
+<p>—ClientHello</p>
+<p>(2) S（Server）：你好呀，我波西米亚语比较6，要不我们就用这种？</p>
+<p>—ServerHello</p>
+<p>(3) S：你谁呀？我就和你讲这么秘密的事情，把你的身份证给我看看？</p>
+<p>—CertificateRequest</p>
+<p>(4) S：对了，这是我的身份证。</p>
+<p>—Certificate<br><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/2a2450c0d79c48b59d79906329be4d46.png"><br>(1) S：为了证明我是我，我把咱两这句话之前的聊天记录签了个名，一并发给你。</p>
+<p>—CertificateVerify</p>
+<p>(2) S：我这边准备好了，我用波西米亚语把咱两这句话之前的聊天又重说了下，你能听懂吧？</p>
+<p>—Finish</p>
+<p>(3) C：这是我的身份证。</p>
+<p>—Certificate</p>
+<p>(4) C：同样为了证明我是我，我也把咱两这句话之前的对话也签了个名，发给你了。</p>
+<p>—CertificateVerify</p>
+<p>(5) C：我也准备好了，我用波西米亚语把咱两这句话之前的所有聊天对话又重说了下，你能听懂吧？</p>
+<p>—Finish</p>
+<p>最后，两个人终于商量好了，可以做一些有趣的事了。</p>
+<p>又有人问了，那你之前说的0-RTT是啥呢？这里面也没提到啊？这里RTT(Round-Trip Time)是通信往返距离，而0-RTT就是指在客户端通过ClientHello通信时就可以附带传送一些数据。这就像你俩已经聊过天了，在上次聊天中，约定好了以后聊天时使用的方式。在下次聊天时就能直接用商量好的方式来直接聊天，不用再麻烦交换身份证之类的繁文缛节了。</p>
+<p>上面的例子可能看起来没啥，大家可能会觉得风轻云淡，但其实这里面暗藏玄机，正所谓静水流深；这个过程中，几乎用全了密码学工具箱的内容，一点微小的错误就可能使安全传输土崩瓦解，我们试着总结梳理如下：</p>
+<p>1、 通过ClientHello及ServerHello完成了随机数、加密算法包及证书格式的协商，重点完成了密钥参数的传输</p>
+<p>2、 通过Certificate及CertificateVerify应用证书体系及数字签名完成身份认证</p>
+<p>3、 通过AEAD对称加密算法，完成握手消息中数据加密</p>
+<p>再把水搅浑点，事实上，握手阶段中的一些消息也都是经过加密的，而且在握手阶段使用的加密密钥同应用数据传输时使用的加密密钥是不同的。俗话说，一图胜千言，话不多说，直接看图：</p>
+<p><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/e69d4117c73e46c8a63abab0e97ee478.png"><br>握手阶段中，在ClientHello及ServerHello后，通信的双方已经就加密算法包及参数达成了一致，在这之后的消息TLS 1.3协议也规定需对其进行加密。这也是TLS 1.3协议加强其安全性的一大举措。TLS 1.3协议中设计有专门的密钥计算算法，针对如何生成不同阶段密钥进行了规定。</p>
+<h2 id="主密码和预备主密码"><a href="#主密码和预备主密码" class="headerlink" title="主密码和预备主密码"></a>主密码和预备主密码</h2><p>步骤8生成了预备主密码，主密码是根据密码套件中定义的单向散列函数实现的伪随机数生成器+预备主密码+客户端随机数+服务器端随机数生成的。<br>主密码主要用来生成称密码的密钥，消息认证码的密钥和对称密码的CBC模式所使用的初始化向量。</p>
+<h2 id="报警协议Alert-Protocol"><a href="#报警协议Alert-Protocol" class="headerlink" title="报警协议Alert Protocol"></a>报警协议Alert Protocol</h2><p>报警协议也如字面含义所示，是用来指示关闭信息和错误信息的，相应的主要包含两大类：关闭警报和错误警报。<br><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/5e4fec97ccd94f109d1a8023c369602e.png"></p>
+<h2 id="记录协议"><a href="#记录协议" class="headerlink" title="记录协议"></a>记录协议</h2><p>TLS记录协议主要负责消息的压缩，加密及数据的认证：<br><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/ea933ff11c2b4e5ebe0defa26f1f8545.png"><br>消息首先将会被分段，然后压缩，再计算其消息验证码，然后使用对称密码进行加密，加密使用的是CBC模式，CBC模式的初始向量是通过主密码来生成的。<br>得到密文之后会附加类型，版本和长度等其他信息，最终组成最后的报文数据。</p>
+<h2 id="记录协议2"><a href="#记录协议2" class="headerlink" title="记录协议2"></a>记录协议2</h2><p>记录层位于TLS内部下层，主要负责验证、分片&#x2F;重组、加密&#x2F;解密的任务。大家可能对其中一些概念不熟悉，让我们来解释下各个作用的含义：</p>
+<p>a) 加密&#x2F;解密：这个就比较显而易见了，不做过多解释；</p>
+<p>b) 分片&#x2F;重组：这里的分片不是由于下层协议的帧长度限制的，而是因为解密方需要收完整个record，才能解密。长度过长会导致解密方需要等待更多的RTT，增大延迟，破坏用户体验，因此TLS协议规定length必须小于 2^14字节；</p>
+<p>c) 验证：这部分内容涉及比较多，包括报文时序是否满足协议规定，AEAD中的消息认证是否正确，填充是否正确等内容。</p>
+<p><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/df311fcc97314805aeb6c3ec8d4d6b29.png"></p>
+<h2 id="身份验证、机密性和完整性"><a href="#身份验证、机密性和完整性" class="headerlink" title="身份验证、机密性和完整性"></a>身份验证、机密性和完整性</h2><p>对于服务器身份验证，客户端使用服务器的公钥来加密用于计算密钥的数据。只有当服务器可以使用正确的私钥解密该数据时，它才能生成密钥。<br>对于客户端身份验证，服务器使用客户端证书中的公钥解密客户端在第5步握手期间发送的数据。使用密钥加密的已完成消息的交换（概述中的步骤7和8 ）确认身份验证已完成。<br>如果任何身份验证步骤失败，则握手失败并且会话终止。<br>SSL 或 TLS 握手期间的SSL证书交换是身份验证过程的一部分。SSL证书需由全球信任的CA机构颁发，受浏览器、操作系统和移动端信任。所需证书如下，其中CAx向客户端颁发证书，CAy向SSL 或 TLS 服务器颁发证书：<br>仅对于服务器身份验证，SSL 或 TLS 服务器需要：<br>• CA颁发给服务器证书Y<br>• 服务器的私钥<br>SSL 或 TLS 客户端需要：<br>• CA 的 CA 证书Y</p>
+<p>如果 SSL 或 TLS 服务器需要客户端身份验证，则服务器通过使用向客户端颁发个人证书的 CA（在本例中为 CA ）的公钥验证客户端的数字证书来验证客户端的身份X。对于服务器和客户端身份验证，服务器需要：<br>• CA颁发给服务器的个人证书Y<br>• 服务器的私钥<br>• CA 的 CA 证书X<br>和客户端需要：<br>• CA颁发给客户的个人证书X<br>• 客户的私钥<br>• CA 的 CA 证书Y<br>SSL 或 TLS 服务器和客户端都可能需要其他 CA 证书来形成根 CA 证书的证书链。详情请参阅如何补全SSL证书链</p>
+<p>SSL 和 TLS 结合使用对称和非对称加密来确保消息隐私。在 SSL 或 TLS 握手期间，SSL 或 TLS 客户端和服务器同意仅用于一个会话的加密算法和共享密钥。SSL 或 TLS 客户端和服务器之间传输的所有消息都使用该算法和密钥进行加密，确保消息即使被截获也保持私密。SSL 支持范围广泛的加密算法。因为 SSL 和 TLS 在传输共享密钥时使用非对称加密，所以不存在密钥分配问题。</p>
+<p>SSL 和 TLS 通过计算消息摘要来提供数据完整性。使用 SSL 或 TLS 确实可以确保数据完整性，前提是您的通道定义中的 CipherSpec 使用指定 CipherSpecs中的表中描述的哈希算法。</p>
+<h1 id="密码学基础"><a href="#密码学基础" class="headerlink" title="密码学基础"></a>密码学基础</h1><h2 id="1-密码学常用技术"><a href="#1-密码学常用技术" class="headerlink" title="1.密码学常用技术"></a>1.密码学常用技术</h2><p><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/46a831344d784c12ba67c55677529d47.png"></p>
+<h2 id="2-对称加密技术"><a href="#2-对称加密技术" class="headerlink" title="2.对称加密技术"></a>2.对称加密技术</h2><p>对称密码算法的特点如下：计算速度快。这是对称密码算法最重要的特点。需要解决密钥配送问题。密钥配送问题，在番外篇2中进行了简单介绍多点通讯时需要维护诸多密钥，维护成本比较高无法抵御中间人攻击实际上无论对称密码系统还是非对称密码系统，都无法解决中间人攻击问题。解决此问题需要使用认证技术。<br><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/b3aad9ac9aad4f00ade63287d8996fbc.png"><br><strong>DES</strong><br>DES算法是1977年美国机构采用的对称加密标准，后被世界各国广泛使用。但是随着计算机计算能力的提供，在1999年DES算法在24小时内便可以被破译，因此目前为了安全起见，DES算法已经不再被用于新的用途。DES算法是一种将64bit的明文加密成64bit密文的对称加密算法。它的密钥长度是64比特，实际上由于每个7比特都设置1位校验比特，因此64比特长的密钥中实际只有56比特。<br><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/7df1dfc4146d4bba94038ab9c967ca47.png"><br><strong>3DES</strong><br>由于DES算法已经可以在极短的时间内被暴力破解，为了替代DES算法，3DES算法被开发出来。3DES是为了增加DES算法的强度，将DES重复3次所得到的一种密码算法。<br><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/c9832f77aaa247f99e2b6410a473e6b8.png"><br>DES算法的实质密钥长度是56比特，因此3DES的密钥长度就是56x3&#x3D;168比特，分组长度保持不变，依然位64比特。3DES的处理流程并不是进行3次DES加密，而是按照：加密-&gt;解密-&gt;加密的过程进行处理的。之所以采用这种方式，是为了将3DES兼容DES算法。因为当3DES的三把密钥完全相同时，经过加密-&gt;解密-&gt;加密流程，实际上相当于经过一次加密，与DES的效果是相同的。也就是说3DES向下兼容DES算法。尽管3DES算法还被银行等机构使用，但是其处理速度比较低，除了特别注重向下兼容性外，已经很少用于新的用途。</p>
+<p> <strong>AES</strong><br> AES算法分组长度和密钥长度可以分别以32比特为单位在128比特至256比特的范围内进行选择。不过经常使用的规格是：分组长度位128比特；密钥长度有128比特、192比特、256比特三种。</p>
+<h2 id="3-非对称加密技术、公钥密码算法"><a href="#3-非对称加密技术、公钥密码算法" class="headerlink" title="3.非对称加密技术、公钥密码算法"></a>3.非对称加密技术、公钥密码算法</h2><p>在对称密码中，由于加密和解密的密钥必须是相同的，因此必须向接收者配送密钥。但是这样会产生密钥配送问题，在密钥配送问题解决方案中，我提到了公钥密钥的方式，那么它又是如何实现的呢？</p>
+<p>下面便来介绍密码学中最伟大的发明：公钥密码。用称之为非对称密码算法</p>
+<ul>
+<li>在对称密码中，加密和解密使用相同的密钥。</li>
+<li>在公钥密码中，加密和解密使用不同的密钥。只要拥有加密密钥，任何人都可以加密，但是只有拥有解密密钥的人才能解密。</li>
+</ul>
+<p>两个人在通讯之前，接收者事先将加密密钥发送给发送者，此加密密钥即使被Eve窃取也无所谓；然后发送者使用接收者的加密密钥对报文进行加密，然后将加密后的密文发送给接收者，此密文即使也被Eve窃取，但是由于此人没有解密密钥，因此仍然无法进行解密。接收者在收到加密报文后，使用解密密钥对报文进行解密。因此我们可以通过公钥密码来解决对称密码中的密钥配送问题。<br><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/53e3fc92714749fe9377394f3ebff981.png"><br>什么是公钥密码？公钥密码中，密钥分为加密密钥和解密密钥两种。发送者使用加密密钥对报文进行加密，接收者使用解密密钥对报文进行解密，这两把密钥时理解公钥密码的关键。加密密钥和解密密钥的区别如下：发送者只需要加密密钥接收者只需要解密密钥解密密钥不可以被窃听者窃取加密密钥可以被窃听者窃取。</p>
+<p>在公钥密码中，加密密钥是可以公开的，因此又被称为公钥(public key)。解密密钥不能公开，只能有自己保管，因此被称为私钥(private key)。一对公钥和私钥是一一对应的，在数学上关系密切，公钥和私钥统称为密钥对。</p>
+<p>公钥通信流程<br><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/79fdad7208764cd1b5a1f4542570dc88.png"></p>
+<h2 id="4-密钥配送"><a href="#4-密钥配送" class="headerlink" title="4.密钥配送"></a>4.密钥配送</h2><p>在加密通讯过程中，为了提高加解密的速度，绝大多数采用对称加密的方式进行。因为对称加密算法主要是加减异或位运算，而非对称密码算法(公钥密码算法)是指数运算，计算量相比对称密码算法大的惊人。因此在正常通讯流程中都采用对称密码算法。</p>
+<p><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/a9806b9e951341479254e36cd2c8c74b.png"><br>在对称密码中，加密和解密使用相同的密钥，因此发送者必须把密钥发送给接收者。但是当前安全连接尚未建立，直接发送密钥又无法保证安全，那该怎么办呢？这就是典型的：“密钥配送问题：密钥必须发送但又不同发送”解决密钥配送问题，经常有如下3种方式：<br>1️⃣ 通过事先共享密钥来确定<br>2️⃣ 通过Diffie-Hellman密钥交换来解决<br>3️⃣ 通过公钥密码来解决</p>
+<h2 id="5-DH算法"><a href="#5-DH算法" class="headerlink" title="5.DH算法"></a>5.DH算法</h2><p>iffie-Hellman密钥交换算法是在1976年由这两个人发明的算法。它可以在不安全的网络中，通过交换一些公开的信息协商出共享密钥，使用此共享密钥建立安全通讯。它实际上并没有直接交换密钥，而是通过数学计算，得出共享密钥。有限域的离散对数问题的复杂度正是支撑DH密钥交换算法的基础。</p>
+<p><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/101babad49b04f11a39e202ded495bb3.png"></p>
+<p><img src="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/8e81939bdb784438a80c09ee00fca0b9.png"></p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1] <a target="_blank" rel="noopener" href="https://www.cloudflare-cn.com/learning/ssl/transport-layer-security-tls/">https://www.cloudflare-cn.com/learning/ssl/transport-layer-security-tls/</a><br>[2] <a target="_blank" rel="noopener" href="https://blog.csdn.net/enweitech/article/details/81781405">https://blog.csdn.net/enweitech/article/details/81781405</a><br>[3] <a target="_blank" rel="noopener" href="https://blog.csdn.net/WoTrusCA/article/details/109839209">https://blog.csdn.net/WoTrusCA/article/details/109839209</a><br>[4] <a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/898020">https://developer.aliyun.com/article/898020</a><br>[5] <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/395907216">https://zhuanlan.zhihu.com/p/395907216</a><br>[6] <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/399317260">https://www.zhihu.com/question/399317260</a></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 zxy
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

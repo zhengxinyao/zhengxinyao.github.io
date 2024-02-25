@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【TEE论文】SoK：使用硬件辅助隔离执行环境实现安全性的研究（综述） 2016 | Xinyao</title>
+  <meta name="keywords" content=" TEE , 安全 , 架构 ">
+  <meta name="description" content="【TEE论文】SoK：使用硬件辅助隔离执行环境实现安全性的研究（综述） 2016 | Xinyao">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="勇攀高峰">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://zhengxinyao.github.io/tags/index.html">
+<meta property="og:site_name" content="Xinyao">
+<meta property="og:description" content="勇攀高峰">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-07T15:59:52.000Z">
+<meta property="article:modified_time" content="2024-02-07T15:59:52.773Z">
+<meta property="article:author" content="ICT-IPRC">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/favicon.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/myself.png"/>
+</a>
+<div class="author">
+    <span>ICT-IPRC</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/zhengxinyao"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="linkedin"
+               href="https://www.linkedin.com/in/%E6%98%95%E7%91%B6-%E9%83%91-956a732b5/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-linkedin"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/destiny-44-90-76"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qq_43543209?spm=1010.2135.3001.5343"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1601835186@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1601835186&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(25)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文记录">
+            
+            论文记录
+            <small>(12)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识总结">
+            
+            知识总结
+            <small>(13)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="25">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>侧信道</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态缓存划分</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多租户调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分组加密</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>共享内存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>论文</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存保护</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>虚拟化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>云安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI加速器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV- SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV-SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ARM CCA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPU</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel SGX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel TDX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NVM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PENGLAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TEE</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91SoK%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E9%9A%94%E7%A6%BB%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E6%80%A7%E7%9A%84%E7%A0%94%E7%A9%B6%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89-2016/"
+           data-tag="TEE,安全,架构"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】SoK：使用硬件辅助隔离执行环境实现安全性的研究（综述） 2016">【TEE论文】SoK：使用硬件辅助隔离执行环境实现安全性的研究（综述） 2016</span>
+            <span class="post-date" title="2024-02-25 20:30:40">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E5%AE%89%E5%85%A8%E5%85%A8%E9%9D%A2%E8%B0%83%E6%9F%A5%EF%BC%9A%E4%BB%8E%E8%BE%B9%E7%BC%98%E5%88%B0%E4%BA%91%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89/"
+           data-tag="TEE,安全,架构"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】硬件辅助安全全面调查：从边缘到云（综述）">【TEE论文】硬件辅助安全全面调查：从边缘到云（综述）</span>
+            <span class="post-date" title="2024-02-25 20:29:23">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E5%AE%89%E5%85%A8%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E7%BB%BC%E8%BF%B0/"
+           data-tag="LLM,安全"
+           data-author="" >
+            <span class="post-title" title="【安全】大模型安全综述">【安全】大模型安全综述</span>
+            <span class="post-date" title="2024-02-25 20:28:32">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91ProMT-Optimizing-Integrity-Tree-Updates-for-Write-Intensive-Pages-in-Secure-NVMs/"
+           data-tag="NVM,内存安全"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】ProMT: Optimizing Integrity Tree Updates for Write-Intensive Pages in Secure NVMs">【TEE论文】ProMT: Optimizing Integrity Tree Updates for Write-Intensive Pages in Secure NVMs</span>
+            <span class="post-date" title="2024-02-25 20:27:27">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E8%99%9A%E6%8B%9F%E5%8C%96/"
+           data-tag="GPU,虚拟化"
+           data-author="" >
+            <span class="post-title" title="【架构】GPU虚拟化">【架构】GPU虚拟化</span>
+            <span class="post-date" title="2024-02-25 20:26:11">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/"
+           data-tag="云安全"
+           data-author="" >
+            <span class="post-title" title="【云安全】传输层安全性（TLS）大汇总">【云安全】传输层安全性（TLS）大汇总</span>
+            <span class="post-date" title="2024-02-25 20:22:53">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/"
+           data-tag="架构,多租户调度"
+           data-author="" >
+            <span class="post-title" title="【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation">【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation</span>
+            <span class="post-date" title="2024-02-25 20:21:48">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/"
+           data-tag="TEE,架构,侧信道"
+           data-author="" >
+            <span class="post-title" title="【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）">【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）</span>
+            <span class="post-date" title="2024-02-25 20:19:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/"
+           data-tag="论文,动态缓存划分"
+           data-author="" >
+            <span class="post-title" title="【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）">【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）</span>
+            <span class="post-date" title="2024-02-25 20:17:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Reusable-Enclaves-for-Confidential-Serverless-Computing%EF%BC%88usenixsecurity23%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）">【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）</span>
+            <span class="post-date" title="2024-02-25 20:14:26">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Serverless-Made-Efficient-with-Plug-In-Enclaves-%EF%BC%882021-ISCA%EF%BC%89/"
+           data-tag="TEE,论文,共享内存"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）">【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）</span>
+            <span class="post-date" title="2024-02-25 20:12:45">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service">【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service</span>
+            <span class="post-date" title="2024-02-25 20:11:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91-HETEE-Enabling-rack-scale-confidential-computing-using-heterogeneous-TEE-2020-SP/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)">【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)</span>
+            <span class="post-date" title="2024-02-25 20:08:42">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）">【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）</span>
+            <span class="post-date" title="2024-02-25 20:07:36">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/"
+           data-tag="TEE,内存保护,分组加密"
+           data-author="" >
+            <span class="post-title" title="【TEE】片外内存保护：AES分组算法+MAC完整性验证">【TEE】片外内存保护：AES分组算法+MAC完整性验证</span>
+            <span class="post-date" title="2024-02-25 20:05:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"
+           data-tag="TEE,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel SGX的不足和解决方案">【TEE】Intel SGX的不足和解决方案</span>
+            <span class="post-date" title="2024-02-25 19:59:35">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/"
+           data-tag="TEE,Intel TDX,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel可信执行环境的前世今生">【TEE】Intel可信执行环境的前世今生</span>
+            <span class="post-date" title="2024-02-25 19:54:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/"
+           data-tag="TEE,LLM"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境保障大模型安全">【TEE】可信执行环境保障大模型安全</span>
+            <span class="post-date" title="2024-02-25 19:52:39">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91PENGLAI-TEE/"
+           data-tag="TEE,PENGLAI"
+           data-author="" >
+            <span class="post-title" title="【TEE】PENGLAI TEE">【TEE】PENGLAI TEE</span>
+            <span class="post-date" title="2024-02-25 19:51:30">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91AMD-SEV-SNP%E5%92%8CIntel-TDX%E7%9A%84%E6%A6%82%E8%BF%B0/"
+           data-tag="TEE,AMD SEV- SNP,Intel TDX"
+           data-author="" >
+            <span class="post-title" title="【TEE】AMD SEV- SNP和Intel TDX的概述">【TEE】AMD SEV- SNP和Intel TDX的概述</span>
+            <span class="post-date" title="2024-02-25 19:36:13">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/"
+           data-tag="TEE,ARM CCA"
+           data-author="" >
+            <span class="post-title" title="【TEE】ARM CCA 可信计算架构">【TEE】ARM CCA 可信计算架构</span>
+            <span class="post-date" title="2024-02-25 19:24:38">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/"
+           data-tag="TEE,AMD SEV-SNP"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离">【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离</span>
+            <span class="post-date" title="2024-02-25 19:11:12">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/"
+           data-tag="TEE,AMD SEV"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV内存加密】 白皮书">【TEE】【AMD SEV内存加密】 白皮书</span>
+            <span class="post-date" title="2024-02-25 19:05:02">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Computing-within-an-AI-Accelerator/"
+           data-tag="TEE,论文,AI加速器,架构设计"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Computing within an AI Accelerator">【TEE论文】Confidential Computing within an AI Accelerator</span>
+            <span class="post-date" title="2024-02-25 18:53:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/"
+           data-tag="TEE"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境业界资料">【TEE】可信执行环境业界资料</span>
+            <span class="post-date" title="2024-02-25 18:31:25">2024/02/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【TEE论文】SoK：使用硬件辅助隔离执行环境实现安全性的研究（综述）-2016" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【TEE论文】SoK：使用硬件辅助隔离执行环境实现安全性的研究（综述） 2016</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="论文记录">论文记录</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">TEE</a>
+            
+            <a class="color3">安全</a>
+            
+            <a class="color3">架构</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 20:31:22'>2024-02-25 20:30</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-INTRODUCTION"><span class="toc-text">1. INTRODUCTION</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-HIEE"><span class="toc-text">2. HIEE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-System-Management-Mode"><span class="toc-text">2.1 System Management Mode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Intel-Management-Engine"><span class="toc-text">2.2 Intel Management Engine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-AMD-Embedded-Processors"><span class="toc-text">2.3 AMD Embedded Processors</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-Dynamic-Root-of-Trust-for-Measurement"><span class="toc-text">2.4 Dynamic Root of Trust for Measurement</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-Intel-Software-Guard-Extensions"><span class="toc-text">2.5 Intel Software Guard Extensions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-ARM-TrustZone"><span class="toc-text">2.6 ARM TrustZone</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary-of-HIEEs"><span class="toc-text">Summary of HIEEs</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-USE-CASES"><span class="toc-text">3. USE CASES</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-System-Introspection"><span class="toc-text">3.1 System Introspection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-Memory-Forensics"><span class="toc-text">3.2 Memory Forensics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Transparent-Malware-Analysis"><span class="toc-text">3.3 Transparent Malware Analysis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-Executing-Sensitive-Workloads"><span class="toc-text">3.4 Executing Sensitive Workloads</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-Rootkits-and-Keyloggers"><span class="toc-text">3.5 Rootkits and Keyloggers</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-DISCUSSION"><span class="toc-text">5. DISCUSSION</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://cse.sustech.edu.cn/faculty/~zhangfw/paper/sok-hasp16.pdf">SoK: A Study of Using Hardware-assisted Isolated Execution Environments for Security</a></p>
+<p>硬件供应商推出了各种 HIEE，包括系统管理模式、Intel 管理引擎、ARM TrustZone 和 Intel 软件防护扩展。这篇 SoK 论文对现有 HIEE 进行了全面研究探讨了 HIEE 的防御性和进攻性使用场景，并讨论了针对基于 HIEE 系统的攻击。</p>
+<h1 id="1-INTRODUCTION"><a href="#1-INTRODUCTION" class="headerlink" title="1. INTRODUCTION"></a>1. INTRODUCTION</h1><p>隔离代码执行是实现安全性的基本方法之一。研究人员<strong>使用虚拟化技术来创建一个隔离的执行环境</strong>，用于运行防御性工具。此外，虚拟机自检[21]已被广泛用于攻击检测和恶意软件分析。然而，现有的基于虚拟化的方法存在局限性，包括：</p>
+<ul>
+<li>1）依赖于可能具有大型可信计算基础（TCB）的虚拟机管理程序。</li>
+<li>2） 无法处理虚拟机管理程序或固件 rootkit。基于虚拟化的方法依赖于虚拟机管理程序，因此它们无法分析相同或更高权限级别的 rootkit。</li>
+<li>3）遭受系统性能开销（例如，从虚拟机切换到虚拟机管理程序）</li>
+</ul>
+<p>隔离执行概念提供了一个可信执行环境 （TEE），使用硬件辅助技术将<strong>虚拟机管理程序排除在 TCB 之外</strong>，实现高级别的权限（即硬件级权限），<strong>并降低性能开销，从而在硬件中更快地执行上下文切换</strong>。</p>
+<p>在这篇 SoK 论文中研究了六种用于构建安全工具的硬件级计算环境（即 HIEE）。</p>
+<ul>
+<li>1） 传统 HIEE：系统管理模式 （SMM） 和动态测量信任根 （DRTM）</li>
+<li>2） 最近的 HIEE：Intel 管理引擎 （ME）、AMD 平台安全处理器 （PSP） 和 ARM TrustZone</li>
+<li>3） 最新的 HIEE：Intel Software Guard Extensions （SGX）。</li>
+</ul>
+<p>从两个方面确定了基于HIEE的系统的攻击和安全问题：1）隔离的计算环境（即HIEE本身）；2）使用HIEE进行安全的方法。<br>请注意，HIEE 的概念需要与 TEE 区分开来。一方面，TEE 可能不是 HIEE，例如基于软件的 TEE（例如，虚拟化技术）;另一方面，HIEE 不一定是 TEE（例如，SMM 是 HIEE，但可能不是 TEE，因为它不是为安全而设计的）。</p>
+<p>这篇 SoK 论文的主要贡献是：</p>
+<ul>
+<li>我们对 SMM、Intel ME、AMD PSP、DRTM、Intel SGX 和 ARM TrustZone 等六种 HIEE 进行了深入研究，并比较了它们用于可信计算的硬件特性(2)</li>
+<li>我们探索了 HIEE 的防御性和进攻性使用场景，并使用最先进的基于 HIEE 的系统对其进行了描述(3)</li>
+<li>我们讨论了针对每个 HIEE 计算环境的所有攻击（例如，绕过隔离）和一些缓解措施(4)</li>
+<li>我们提出了对使用 HIEE 进行安全保护的方法的担忧，包括确保可信的交换路径和验证硬件技术的可信度(5)</li>
+</ul>
+<h1 id="2-HIEE"><a href="#2-HIEE" class="headerlink" title="2. HIEE"></a>2. HIEE</h1><h2 id="2-1-System-Management-Mode"><a href="#2-1-System-Management-Mode" class="headerlink" title="2.1 System Management Mode"></a>2.1 System Management Mode</h2><p>系统管理模式 （SMM） 是一种类似于 x86 平台上可用的 Real 和 Protected 模式的执行模式（英特尔从 90 年代初开始在其奔腾处理器中使用 SMM）。它<strong>提供了一个硬件辅助的隔离执行环境，用于实现特定于平台的系统控制功能</strong>，例如电源管理。它由基本输入&#x2F;输出系统 （BIOS） 初始化。</p>
+<p>SMM 是通过在 CPU 上置位<strong>系统管理中断 （SMI） 引脚来触发的</strong>。<br>此引脚可以通过多种方式断言，包括写入硬件端口或使用 PCI 设备生成消息信号中断。<br>接下来，CPU 将其状态保存到称为系统管理 RAM （SMRAM） 的特殊内存区域。SMRAM 不能通过其他执行模式寻址。<br>SMI 处理程序在引导时由 BIOS 加载到 SMRAM 中。SMI 处理程序可以不受限制地访问物理地址空间，并且可以运行特权指令（因此，<strong>SMM 通常称为Ring -2</strong>）。RSM 指令强制 CPU 退出 SMM 并恢复先前模式的执行。</p>
+<p>通常，有基于软件和硬件的方法来触发 SMI。<br>在软件中，我们可以写入 ACPI 端口以引发 SMI。<br>在基于硬件的方法方面，有许多硬件设备可用于引发 SMI，包括键盘、网卡和硬件定时器。图 1 显示了在保护模式下从操作系统触发 SMI 的过程。请注意，其他 CPU 模式（例如实模式）也可以通过触发 SMI 切换到 SMM。<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91SoK%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E9%9A%94%E7%A6%BB%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E6%80%A7%E7%9A%84%E7%A0%94%E7%A9%B6%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89-2016/71fb00d8408c42478a3441f52101399e.png"></p>
+<h2 id="2-2-Intel-Management-Engine"><a href="#2-2-Intel-Management-Engine" class="headerlink" title="2.2 Intel Management Engine"></a>2.2 Intel Management Engine</h2><p>英特尔管理引擎 （ME） 嵌入在所有最新英特尔处理器中的微型计算机，包括服务器、工作站、台式机、平板电脑和智能手机。<br>英特尔于 2007 年推出 ME 作为嵌入式处理器。当时，它的主要功能是支持英特尔主动管理技术（AMT），而英特尔AMT是第一个运行在ME中的应用程序。最近，英特尔开始使用 ME 作为可信执行环境 （TEE） 来执行安全敏感型应用程序。</p>
+<p>ME的硬件架构如图2所示。从图中我们可以看出，ME就像一台计算机；它包含处理器、加密引擎、直接存储器访问 （DMA） 引擎、主机嵌入式通信接口 （HECI） 引擎、只读存储器 （ROM）、内部静态随机存取存储器 （SRAM）、定时器和其他 I&#x2F;O 设备。</p>
+<p>ME在处理器上执行指令，并具有代码和数据缓存，以减少对内部SRAM的访问次数。<br>内部SRAM用于存储固件代码和运行时数据。<br>ME还使用来自主系统存储器（即主机存储器）的一些动态随机存取存储器（DRAM）。<br>此 DRAM 充当磁盘；ME处理器当前未使用的代码&#x2F;数据的存储器页将从SRAM中逐出，并交换到主机存储器中的DRAM。DRAM 区域在系统启动时由 BIOS 保留。此 DRAM 专用于 ME 使用，操作系统无法访问它。 但是，ME 的设计不信任 BIOS，它假定主机可以访问保留的 DRAM 区域。<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91SoK%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E9%9A%94%E7%A6%BB%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E6%80%A7%E7%9A%84%E7%A0%94%E7%A9%B6%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89-2016/da5adb0012ce4612baf4ab91448b280f.png"><br>由于嵌入式处理器（即ME处理器）无法对主机存储器进行寻址，因此引入了两个引擎（即DAM引擎和HECI引擎）来传输ME存储器和主系统存储器之间的数据传输。DMA 引擎用于在 ME 内存和主机内存之间移动大量数据。加密引擎用于执行昂贵的加密算法，包括 AES、SHA、DRING 和大数算术，ME 固件可以通过调用它们的 API 来使用它们。</p>
+<p>ME固件存储在两种类型的介质上：ROM和SPI闪存。如图 2 所示，ROM 位于 ME 中。ROM中的代码在制造阶段被烧录，无法修改。ROM 存储引导加载程序，并充当ME的信任根。</p>
+<p>大多数ME固件存储在SPI闪存中，它包括一个自定义操作系统和应用程序。根据ME中实现的应用程序，闪存固件在主机主板上的位置不同（例如，BIOS和NIC）。闪存通常由 OEM 锁定，以防止恶意修改。然而，研究人员已经证明绕过这些锁定机制将代码注入ME中。</p>
+<h2 id="2-3-AMD-Embedded-Processors"><a href="#2-3-AMD-Embedded-Processors" class="headerlink" title="2.3 AMD Embedded Processors"></a>2.3 AMD Embedded Processors</h2><p>AMD 安全处理器是嵌入在 AMD 主 CPU 内部的专用处理器。它与 ARM TrustZone 技术和基于软件的可信执行环境 （TEE） 配合使用，支持运行第三方可信应用程序。</p>
+<p>AMD 安全处理器是一种基于硬件的技术，可实现从 BIOS 级别到 TEE 的安全启动。受信任的第三方应用程序能够利用行业标准 API 来利用 TEE 的安全执行环境。另一个例子是系统管理单元（SMU）。SMU 是 Northbridge 的一个子组件，负责在启动和运行时执行各种系统和电源管理任务。SMU包含一个处理器来辅助。由于AMD将北桥集成到CPU中，因此SMU处理器是CPU内部的嵌入式处理器，与Intel ME相同。</p>
+<h2 id="2-4-Dynamic-Root-of-Trust-for-Measurement"><a href="#2-4-Dynamic-Root-of-Trust-for-Measurement" class="headerlink" title="2.4 Dynamic Root of Trust for Measurement"></a>2.4 Dynamic Root of Trust for Measurement</h2><p>Trust Computing Group （TCG） 在 2005 年的 TPM v1.2 规范中引入了动态信任根测量 （DRTM）。它是用于测量的静态信任根 （SRTM） 的替代方法。与在启动时运行的 SRTM 不同，DRTM 允许在任何时候初始化测量的信任根。</p>
+<p>为了实现这项技术，英特尔开发了可信执行技术 （TXT），提供了一种加载和执行系统软件（例如操作系统或 VMM）的可信方式。TXT 使用新的 CPU 指令 SENTER 来控制安全环境。英特尔 TXT 不会对系统状态做出任何假设，它为延迟启动提供了动态信任根。AMD有一种类似的技术，称为安全虚拟机SVM，TXT 和 SVM 都会在后期启动操作中引入大量开销。</p>
+<h2 id="2-5-Intel-Software-Guard-Extensions"><a href="#2-5-Intel-Software-Guard-Extensions" class="headerlink" title="2.5 Intel Software Guard Extensions"></a>2.5 Intel Software Guard Extensions</h2><p>2013 年，英特尔发表了三篇关于软件防护扩展 （SGX） 的介绍性论文；SGX 是一组用于添加到英特尔架构处理器的内存访问的指令和机制。这些扩展允许应用程序实例化受保护的容器，称为 enclave。安全区可以用作 TEE，即使不信任 BIOS、固件、虚拟机管理程序和操作系统，它也能提供机密性和完整性。Jain等开发了OpenSGX，这是一个开源平台，通过修改QEMU在指令级别模拟英特尔SGX硬件组件。</p>
+<h2 id="2-6-ARM-TrustZone"><a href="#2-6-ARM-TrustZone" class="headerlink" title="2.6 ARM TrustZone"></a>2.6 ARM TrustZone</h2><p>ARM TrustZone 技术是一种硬件功能，它提供了两种环境或世界。信任执行环境 （TEE） 称为安全世界，富执行环境 （REE） 称为正常世界。为了确保安全世界与正常世界之间的完全隔离，TrustZone 为硬件组件（包括 CPU、内存和外围设备）提供了安全扩展。启用了 TrustZone 的 ARM 平台上的 CPU 具有两种安全模式：安全世界和正常世界。</p>
+<p>图 3 显示了启用了 TrustZone 的 ARM 平台中的处理器模式。每种处理器模式都有自己的内存访问区域和权限。在正常世界中运行的代码无法访问安全世界中的内存，而在安全世界中执行的程序可以访问正常世界中的内存。安全世界和正常世界可以通过读取安全配置寄存器SCR中的 NS 位来识别。TrustZone 使用仅在安全环境中运行的监控模式作为管理两个世界之间交换机的看门人。正常世界可以调用称为安全监控调用 （smc） 的特殊指令进入监控模式并修改 NS 位以切换到安全世界。</p>
+<p>TrustZone 使用内存管理单元机制来支持安全和正常世界中的虚拟内存地址空间。两个世界中的同一虚拟地址空间映射到不同的物理区域。硬件中断有两种类型：中断请求 （IRQ） 和快速中断请求 （FIQ）。安全世界可以断言 FIQ 或 IRQ，而正常世界只能断言 IRQ。<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91SoK%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E9%9A%94%E7%A6%BB%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E6%80%A7%E7%9A%84%E7%A0%94%E7%A9%B6%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89-2016/a89bab0e7aa5436783e029f38cf20a1c.png"></p>
+<h2 id="Summary-of-HIEEs"><a href="#Summary-of-HIEEs" class="headerlink" title="Summary of HIEEs"></a>Summary of HIEEs</h2><p><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91SoK%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E9%9A%94%E7%A6%BB%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E6%80%A7%E7%9A%84%E7%A0%94%E7%A9%B6%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89-2016/108d1bc87778448eaaad6adb55a4f564.png"></p>
+<h1 id="3-USE-CASES"><a href="#3-USE-CASES" class="headerlink" title="3. USE CASES"></a>3. USE CASES</h1><h2 id="3-1-System-Introspection"><a href="#3-1-System-Introspection" class="headerlink" title="3.1 System Introspection"></a>3.1 System Introspection</h2><p>系统自省已被广泛采用以确保安全性。有一系列工具使用 HIEE 进行系统自检、完整性检查和恶意软件检测。</p>
+<ul>
+<li>HyperGuard  建议使用 SMM 来监控虚拟机管理程序的完整性，</li>
+<li>HyperCheck也有类似的目标，但将快照外包给外部服务器进行操作系统&#x2F;虚拟机管理程序完整性检查，因为它可以减少受保护机器上的计算开销。</li>
+<li>HyperSentry使用带外通道，特别是智能平台管理接口，来触发 SMM 来检查对关键数据运行的基本代码的完整性。</li>
+<li>Spectre 是另一个基于 SMM 的系统，它自检主机内存以检测恶意软件。它会定期检查主机内存是否存在堆溢出、堆喷射和 rootkit 攻击</li>
+<li>SPROBES，它利用ARM TrustZone技术作为HIEE，将正常世界的内核执行限制在批准的内核代码内存中。它使安全世界能够使正常世界捕获任何正常世界的指令，并提供正常世界的处理器状态的不可伪造视图。</li>
+<li>TZ-RKP是一个类似的基于 TrustZone 的系统，旨在在 ARM 平台上强制执行内核代码的完整性。它通过添加防御机制（包括数据完整性保护和性能增强）进一步改进了 SPROBES。</li>
+</ul>
+<h2 id="3-2-Memory-Forensics"><a href="#3-2-Memory-Forensics" class="headerlink" title="3.2 Memory Forensics"></a>3.2 Memory Forensics</h2><ul>
+<li>jiang等提出了一种用于数字取证的固件辅助内存采集和分析工具。它利用 SMM 可靠地采集目标系统的易失性存储器，然后使用网卡将存储器内容传输到远程机器进行分析</li>
+<li>SMMDumper在 QEMU 上实现了论文中提出的系统，它进一步支持转储和传输超过 4 GB 的物理内存</li>
+<li>TrustDump 是一种基于 TrustZone 的内存获取机制，即使操作系统崩溃或遭到破坏，它也能可靠地获取移动操作系统的 RAM 内存和 CPU 寄存器。它使用 TrustZone 的安全域作为 HIEE，并在其中运行内存采集模块以进行内存取证。</li>
+</ul>
+<h2 id="3-3-Transparent-Malware-Analysis"><a href="#3-3-Transparent-Malware-Analysis" class="headerlink" title="3.3 Transparent Malware Analysis"></a>3.3 Transparent Malware Analysis</h2><p>Zhang等提出了MalT，一种用于恶意软件分析的裸机调试工具。其核心思想是使用 SMM 来增加调试的透明度。具体来说，它利用 SMM 作为 HIEE，在调试系统上留下最小的占用空间，并为调试器提供更透明的执行环境。我们相信，包括 ARM TrustZone 和 Intel ME 在内的其他 HIEE 也可用于透明的恶意软件分析，因为它们具有高权限和隐蔽性。此外，英特尔 ME 可以实现更高级别的透明度，因为它在协处理器上执行，并且不会在主 CPU 上引入任何性能开销。</p>
+<h2 id="3-4-Executing-Sensitive-Workloads"><a href="#3-4-Executing-Sensitive-Workloads" class="headerlink" title="3.4 Executing Sensitive Workloads"></a>3.4 Executing Sensitive Workloads</h2><ul>
+<li>Flicker和 TrustVisor使用 DRTM 和小型可信计算库来创建 HIEE。Flicker 使用 DRTM 创建按需安全环境，而 TrustVisor 使用 DRTM 安全地初始化轻量级虚拟机管理程序，该管理程序使用硬件虚拟化 （VT-x&#x2F;SVM） 来保护在安全环境中运行的应用程序。这两个系统使用 TPM 提供远程证明并安全地存储数据以执行敏感工作负载。</li>
+<li>Bumpy 是一个基于闪烁的系统，用于保护敏感的网络输入。它处理特殊代码模块中的输入，该模块使用闪烁在隔离环境中执行。</li>
+<li>Sun等人提出了TrustICE，这是一个基于TrustZone的隔离框架，用于在移动设备上提供隔离计算环境（ICE）。</li>
+</ul>
+<h2 id="3-5-Rootkits-and-Keyloggers"><a href="#3-5-Rootkits-and-Keyloggers" class="headerlink" title="3.5 Rootkits and Keyloggers"></a>3.5 Rootkits and Keyloggers</h2><p>研究人员已经使用硬件辅助的隔离执行环境来实现防御工具，但由于其高特权和隐蔽性，攻击者也可以将其用于恶意目的。</p>
+<p>SMM Rootkit：</p>
+<ul>
+<li>安全研究人员提议使用 SMM 来实施攻击。2004 年，Duflot 演示了第一个绕过 OpenBSD 保护机制的基于 SMM 的攻击。</li>
+<li>Embleton等使用SMM实现了芯片组级键盘记录器和网络后门，该后门能够直接与网卡交互，通过网络数据包将记录的击键发送到远程机器。</li>
+<li>但是，这些攻击需要绕过或解锁 SMRAM 保护。</li>
+</ul>
+<p>ME Rootkits:</p>
+<ul>
+<li>服务器攻击已经使用 ME 进行了演示，以实现高级隐身 rootkit。</li>
+<li>Tereshkin 和 Wojtczuk 将恶意代码注入英特尔主动管理技术 （AMT） 中，以实现 ME ring -3 rootkit。</li>
+<li>DAGGER 是在 ME 中实现的基于 DMA 的键盘记录器，它在平台启动过程的早期捕获击键，这使得 DAGGER 能够捕获硬盘加密密码</li>
+</ul>
+<p><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91SoK%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E9%9A%94%E7%A6%BB%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E6%80%A7%E7%9A%84%E7%A0%94%E7%A9%B6%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89-2016/e7bbf4c039d942d5853a80f9da544aa9.png"><br>一方面，硬件辅助的隔离执行环境是强大的可信计算环境，用于执行安全功能（例如，如上所述的恶意软件&#x2F;攻击防御的系统自检）;另一方面，它创造了一个理想的环境或基础设施，吸引攻击者实施超级强大的 Rootkit。</p>
+<h1 id="5-DISCUSSION"><a href="#5-DISCUSSION" class="headerlink" title="5. DISCUSSION"></a>5. DISCUSSION</h1><p>使用 HIEE 实现安全性的一个挑战是确保可信的交换路径。<br>基于 HIEE 的系统假定攻击者具有环 0 权限;攻击者可以截获从正常环境到TEE的切换，并提供虚假的切换过程来欺骗用户（即欺骗攻击）。<br>此外，攻击者可以通过简单地禁用由于其环 0 权限而禁用交换来对系统执行拒绝服务 （DoS） 攻击。<br>幸运的是，Intel ME 和 AMD PSP 没有这个问题，因为它们独立于主 CPU 运行，因此没有切换过程。<br>但是，其他 HIEE（如 SMM、DRTM、SGX 和 TrustZone）由于以时间切片方式共享主 CPU，因此存在此问题。</p>
+<p>使用 HIEE 实现安全性的方法在很大程度上取决于硬件供应商。它假设硬件供应商是值得信赖的，并且提供的硬件功能没有错误（例如，保证隔离）。不幸的是，没有明确的方法来验证这些假设。<br>此外，由于各种原因（例如，商业保密），硬件供应商往往不会发布其实现的细节。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 zxy
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

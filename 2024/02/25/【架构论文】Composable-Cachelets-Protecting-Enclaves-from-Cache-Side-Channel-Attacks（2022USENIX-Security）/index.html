@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security） | Xinyao</title>
+  <meta name="keywords" content=" TEE , 架构 , 侧信道 ">
+  <meta name="description" content="【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security） | Xinyao">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="勇攀高峰">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://zhengxinyao.github.io/tags/index.html">
+<meta property="og:site_name" content="Xinyao">
+<meta property="og:description" content="勇攀高峰">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-07T15:59:52.000Z">
+<meta property="article:modified_time" content="2024-02-07T15:59:52.773Z">
+<meta property="article:author" content="ICT-IPRC">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/favicon.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/myself.png"/>
+</a>
+<div class="author">
+    <span>ICT-IPRC</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/zhengxinyao"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="linkedin"
+               href="https://www.linkedin.com/in/%E6%98%95%E7%91%B6-%E9%83%91-956a732b5/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-linkedin"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/destiny-44-90-76"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qq_43543209?spm=1010.2135.3001.5343"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1601835186@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1601835186&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(25)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文记录">
+            
+            论文记录
+            <small>(12)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识总结">
+            
+            知识总结
+            <small>(13)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="25">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>侧信道</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态缓存划分</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多租户调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分组加密</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>共享内存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>论文</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存保护</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>虚拟化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>云安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI加速器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV- SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV-SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ARM CCA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPU</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel SGX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel TDX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NVM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PENGLAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TEE</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91SoK%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E9%9A%94%E7%A6%BB%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E6%80%A7%E7%9A%84%E7%A0%94%E7%A9%B6%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89-2016/"
+           data-tag="TEE,安全,架构"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】SoK：使用硬件辅助隔离执行环境实现安全性的研究（综述） 2016">【TEE论文】SoK：使用硬件辅助隔离执行环境实现安全性的研究（综述） 2016</span>
+            <span class="post-date" title="2024-02-25 20:30:40">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E5%AE%89%E5%85%A8%E5%85%A8%E9%9D%A2%E8%B0%83%E6%9F%A5%EF%BC%9A%E4%BB%8E%E8%BE%B9%E7%BC%98%E5%88%B0%E4%BA%91%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89/"
+           data-tag="TEE,安全,架构"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】硬件辅助安全全面调查：从边缘到云（综述）">【TEE论文】硬件辅助安全全面调查：从边缘到云（综述）</span>
+            <span class="post-date" title="2024-02-25 20:29:23">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E5%AE%89%E5%85%A8%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E7%BB%BC%E8%BF%B0/"
+           data-tag="LLM,安全"
+           data-author="" >
+            <span class="post-title" title="【安全】大模型安全综述">【安全】大模型安全综述</span>
+            <span class="post-date" title="2024-02-25 20:28:32">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91ProMT-Optimizing-Integrity-Tree-Updates-for-Write-Intensive-Pages-in-Secure-NVMs/"
+           data-tag="NVM,内存安全"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】ProMT: Optimizing Integrity Tree Updates for Write-Intensive Pages in Secure NVMs">【TEE论文】ProMT: Optimizing Integrity Tree Updates for Write-Intensive Pages in Secure NVMs</span>
+            <span class="post-date" title="2024-02-25 20:27:27">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E8%99%9A%E6%8B%9F%E5%8C%96/"
+           data-tag="GPU,虚拟化"
+           data-author="" >
+            <span class="post-title" title="【架构】GPU虚拟化">【架构】GPU虚拟化</span>
+            <span class="post-date" title="2024-02-25 20:26:11">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/"
+           data-tag="云安全"
+           data-author="" >
+            <span class="post-title" title="【云安全】传输层安全性（TLS）大汇总">【云安全】传输层安全性（TLS）大汇总</span>
+            <span class="post-date" title="2024-02-25 20:22:53">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/"
+           data-tag="架构,多租户调度"
+           data-author="" >
+            <span class="post-title" title="【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation">【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation</span>
+            <span class="post-date" title="2024-02-25 20:21:48">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/"
+           data-tag="TEE,架构,侧信道"
+           data-author="" >
+            <span class="post-title" title="【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）">【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）</span>
+            <span class="post-date" title="2024-02-25 20:19:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/"
+           data-tag="论文,动态缓存划分"
+           data-author="" >
+            <span class="post-title" title="【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）">【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）</span>
+            <span class="post-date" title="2024-02-25 20:17:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Reusable-Enclaves-for-Confidential-Serverless-Computing%EF%BC%88usenixsecurity23%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）">【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）</span>
+            <span class="post-date" title="2024-02-25 20:14:26">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Serverless-Made-Efficient-with-Plug-In-Enclaves-%EF%BC%882021-ISCA%EF%BC%89/"
+           data-tag="TEE,论文,共享内存"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）">【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）</span>
+            <span class="post-date" title="2024-02-25 20:12:45">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service">【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service</span>
+            <span class="post-date" title="2024-02-25 20:11:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91-HETEE-Enabling-rack-scale-confidential-computing-using-heterogeneous-TEE-2020-SP/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)">【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)</span>
+            <span class="post-date" title="2024-02-25 20:08:42">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）">【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）</span>
+            <span class="post-date" title="2024-02-25 20:07:36">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/"
+           data-tag="TEE,内存保护,分组加密"
+           data-author="" >
+            <span class="post-title" title="【TEE】片外内存保护：AES分组算法+MAC完整性验证">【TEE】片外内存保护：AES分组算法+MAC完整性验证</span>
+            <span class="post-date" title="2024-02-25 20:05:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"
+           data-tag="TEE,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel SGX的不足和解决方案">【TEE】Intel SGX的不足和解决方案</span>
+            <span class="post-date" title="2024-02-25 19:59:35">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/"
+           data-tag="TEE,Intel TDX,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel可信执行环境的前世今生">【TEE】Intel可信执行环境的前世今生</span>
+            <span class="post-date" title="2024-02-25 19:54:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/"
+           data-tag="TEE,LLM"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境保障大模型安全">【TEE】可信执行环境保障大模型安全</span>
+            <span class="post-date" title="2024-02-25 19:52:39">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91PENGLAI-TEE/"
+           data-tag="TEE,PENGLAI"
+           data-author="" >
+            <span class="post-title" title="【TEE】PENGLAI TEE">【TEE】PENGLAI TEE</span>
+            <span class="post-date" title="2024-02-25 19:51:30">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91AMD-SEV-SNP%E5%92%8CIntel-TDX%E7%9A%84%E6%A6%82%E8%BF%B0/"
+           data-tag="TEE,AMD SEV- SNP,Intel TDX"
+           data-author="" >
+            <span class="post-title" title="【TEE】AMD SEV- SNP和Intel TDX的概述">【TEE】AMD SEV- SNP和Intel TDX的概述</span>
+            <span class="post-date" title="2024-02-25 19:36:13">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/"
+           data-tag="TEE,ARM CCA"
+           data-author="" >
+            <span class="post-title" title="【TEE】ARM CCA 可信计算架构">【TEE】ARM CCA 可信计算架构</span>
+            <span class="post-date" title="2024-02-25 19:24:38">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/"
+           data-tag="TEE,AMD SEV-SNP"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离">【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离</span>
+            <span class="post-date" title="2024-02-25 19:11:12">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/"
+           data-tag="TEE,AMD SEV"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV内存加密】 白皮书">【TEE】【AMD SEV内存加密】 白皮书</span>
+            <span class="post-date" title="2024-02-25 19:05:02">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Computing-within-an-AI-Accelerator/"
+           data-tag="TEE,论文,AI加速器,架构设计"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Computing within an AI Accelerator">【TEE论文】Confidential Computing within an AI Accelerator</span>
+            <span class="post-date" title="2024-02-25 18:53:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/"
+           data-tag="TEE"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境业界资料">【TEE】可信执行环境业界资料</span>
+            <span class="post-date" title="2024-02-25 18:31:25">2024/02/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【架构论文】Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks（2022USENIX-Security）" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="论文记录">论文记录</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">TEE</a>
+            
+            <a class="color3">架构</a>
+            
+            <a class="color4">侧信道</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 20:24:38'>2024-02-25 20:19</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A8%81%E8%83%81%E6%A8%A1%E5%9E%8B"><span class="toc-text">威胁模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Composable-Cachelets"><span class="toc-text">Composable Cachelets</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cachelet-%E5%9C%B0%E5%9D%80%E5%92%8C%E5%88%86%E9%85%8D"><span class="toc-text">cachelet 地址和分配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#enclave%E5%9C%B0%E5%9D%80%E9%87%8D%E6%98%A0%E5%B0%84"><span class="toc-text">enclave地址重映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cachelet-%E5%88%86%E9%85%8D"><span class="toc-text">cachelet 分配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%80%89%E7%9A%84%E5%88%86%E5%8C%BA%E5%A4%A7%E5%B0%8F"><span class="toc-text">可选的分区大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%9B%B4%E6%8D%A2%E7%AD%96%E7%95%A5"><span class="toc-text">安全更换策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CC%E6%93%8D%E4%BD%9C%E7%A4%BA%E4%BE%8B"><span class="toc-text">CC操作示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E9%A3%9E%E5%9C%B0%E8%AE%BF%E9%97%AE%E7%9A%84%E6%9B%BF%E6%8D%A2"><span class="toc-text">非飞地访问的替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8cachelet-%E9%80%90%E5%87%BA"><span class="toc-text">安全cachelet 逐出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CC%E4%B8%8E%E7%BC%93%E5%AD%98%E5%88%87%E7%89%87%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-text">CC与缓存切片的兼容性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E5%8C%96%E8%AF%81%E6%98%8E"><span class="toc-text">形式化证明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0"><span class="toc-text">评估</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%AF%84%E4%BC%B0"><span class="toc-text">性能评估</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E5%87%86%E5%92%8C%E6%96%B9%E6%B3%95"><span class="toc-text">基准和方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%80%A7%E8%83%BD"><span class="toc-text">加密程序的性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SPEC-2017-Benchmarks"><span class="toc-text">SPEC 2017 Benchmarks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PARSEC%E6%80%A7%E8%83%BD"><span class="toc-text">PARSEC性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E9%A3%9E%E5%9C%B0%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-text">非飞地程序的影响</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%B6%E8%BF%9F%E5%88%86%E6%9E%90"><span class="toc-text">延迟分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E7%A7%AF%E5%8A%9F%E8%80%97%E5%88%86%E6%9E%90"><span class="toc-text">面积功耗分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.usenix.org/system/files/sec22-townley.pdf">Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks</a></p>
+<p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A8%81%E8%83%81%E6%A8%A1%E5%9E%8B"><span class="toc-text">威胁模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Composable-Cachelets"><span class="toc-text">Composable Cachelets</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cachelet-%E5%9C%B0%E5%9D%80%E5%92%8C%E5%88%86%E9%85%8D"><span class="toc-text">cachelet 地址和分配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#enclave%E5%9C%B0%E5%9D%80%E9%87%8D%E6%98%A0%E5%B0%84"><span class="toc-text">enclave地址重映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cachelet-%E5%88%86%E9%85%8D"><span class="toc-text">cachelet 分配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%80%89%E7%9A%84%E5%88%86%E5%8C%BA%E5%A4%A7%E5%B0%8F"><span class="toc-text">可选的分区大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%9B%B4%E6%8D%A2%E7%AD%96%E7%95%A5"><span class="toc-text">安全更换策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CC%E6%93%8D%E4%BD%9C%E7%A4%BA%E4%BE%8B"><span class="toc-text">CC操作示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E9%A3%9E%E5%9C%B0%E8%AE%BF%E9%97%AE%E7%9A%84%E6%9B%BF%E6%8D%A2"><span class="toc-text">非飞地访问的替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8cachelet-%E9%80%90%E5%87%BA"><span class="toc-text">安全cachelet 逐出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CC%E4%B8%8E%E7%BC%93%E5%AD%98%E5%88%87%E7%89%87%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-text">CC与缓存切片的兼容性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E5%8C%96%E8%AF%81%E6%98%8E"><span class="toc-text">形式化证明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0"><span class="toc-text">评估</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%AF%84%E4%BC%B0"><span class="toc-text">性能评估</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E5%87%86%E5%92%8C%E6%96%B9%E6%B3%95"><span class="toc-text">基准和方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%80%A7%E8%83%BD"><span class="toc-text">加密程序的性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SPEC-2017-Benchmarks"><span class="toc-text">SPEC 2017 Benchmarks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PARSEC%E6%80%A7%E8%83%BD"><span class="toc-text">PARSEC性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E9%A3%9E%E5%9C%B0%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-text">非飞地程序的影响</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%B6%E8%BF%9F%E5%88%86%E6%9E%90"><span class="toc-text">延迟分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E7%A7%AF%E5%8A%9F%E8%80%97%E5%88%86%E6%9E%90"><span class="toc-text">面积功耗分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></div></p>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>缓存侧信道攻击允许对手泄露隔离飞地中存储的的机密而不用直接访问飞地内存。本文提出一种<strong>可扩展的LLC动态划分策略（CC），用于完全隔离飞地</strong>。CC支持飞地隔离，可以在飞地创建或者销毁时动态调整飞地容量。我们提出一种<strong>飞地感知和缓存感知</strong>的操作语义去帮助奖励CC的安全策略，实验表明CC能够以较好的性能和复杂性抵御缓存侧信道攻击。</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>TEE依赖硬件强制执行飞抵边界，确保机密数据的一致性和机密性，最近研究表明共享的缓存行存在潜在攻击者，可以观察他们访存时间的不同来了解其他程序的允许模式。攻击者可以利用受破坏的OS对侧信道测量有更好的控制。</p>
+<p>现有的缓存划分机制，可以抵御这些攻击，但存在局限性，使得不能和SGX或类似TEE兼容。划分缓存给每个安全与分配不相邻的缓存行来避免缓存行碰撞。</p>
+<ul>
+<li>一些划分机制<strong>依赖于系统软件去</strong>执行关键保护，不符合TEE安全模型。</li>
+<li>一些设计硬件实现划分，<strong>需要分配一个或更多缓存路给每个划分</strong>，然而飞地通常保护关键数据和指令，<strong>不能充分利用这些粗粒度划分</strong>，降低了非飞地应用的性能。</li>
+<li><strong>飞地数量快速操超过LLC可用缓存路的数量</strong>，特别是在多租户云设置中。</li>
+</ul>
+<p>这些限制表明，部署新的高效可扩展的划分机制去保护飞地是必要的。</p>
+<p>应用程序数据保护的需求是细粒度动态发展的，安全性是跨层关注的问题，最好的解决方案是简化软件堆栈，赋予缓存应用所需的<strong>细粒度和动态性</strong>。</p>
+<p>CC提供细粒度灵活性的缓存分区 ，无需信任系统软件来强制隔离。如图1所示，为了支持不同内存需求的分区，可以把单个缓存分配给一个飞地，或缓存链接在一起形成更大的虚拟分区。CC可以把任意的、非顺序的缓存组成虚拟分区。</p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/c5fd9f88f52c4e3b96ceca067f62b632.png"><br>除了架构设计，还提出了一个研究缓存侧信道的程序行为，并用CC作为防御机制。通过新颖的缓存感知和飞地感知操作语义，解释了飞地程序在实际应用中的行为，飞地和缓存可能是动态管理的，攻击者会观察到不同的缓存事件（命中，未命中，调整大小）。这些作为CC的安全证明。</p>
+<p>本文贡献总结如下：</p>
+<ul>
+<li>提出CC，<strong>新颖、细粒度、可扩展</strong>的缓存设计，针对侧信道攻击有效保护应用程序；</li>
+<li>提出<strong>缓存感知和飞地感知</strong>的操作语义，严格定义飞地程序的行为，建立CC的安全属性</li>
+<li>在不同应用上评估CC的性能影响，包括小的密码学程序、大的SPEC和PARSEC基准。还评估了设计的延时、面积、功耗影响。结果表明安全性好开销小。</li>
+</ul>
+<h1 id="威胁模型"><a href="#威胁模型" class="headerlink" title="威胁模型"></a>威胁模型</h1><p>使用SGX的威胁模型，假假设有一个强大的对手可以利用受损的OS或hypervisor的资源对飞地发起攻击。<br>假定已建立的SGX保护在CC中完全实现。这些保护防止攻击者直接访问enclave内存，并通过对DRAM和互连的物理攻击提取信息。<br>攻击者可以尝试Prime+Probe攻击与受害者共享的缓存，我们保守地假设所有飞地之间互不信任，包括属于同一进程的飞地。<br>虽然操作系统在enclave的生命周期中协调，例如enclave的创建和销毁、进入和退出enclave代码以及enclave页面错误，但SGX硬件确保执行这些操作时不会暴露或更改enclave的内部数据。</p>
+<p>虽然不直接解决恶意飞地的拒绝服务攻击，但我们限制了可以分配给飞地的LLC空间。<br>恶意的enclave还可能试图接管整个小缓存空间，从而导致其他enclave的性能损失。为了防止这种攻击，甚至可以在enclave分区内设置额外的服务质量机制。</p>
+<h1 id="Composable-Cachelets"><a href="#Composable-Cachelets" class="headerlink" title="Composable Cachelets"></a>Composable Cachelets</h1><p>图2描述了CC的高层设计和操作，为了跟踪缓存分配到不同的enclave, <strong>CC为每个物理Cachelets分配一个唯一的缓存标识符，该标识符由缓存内的set idx和way offset组成</strong>。CC将每个未分配的小缓存的标识符存储为**全局Cachelets空闲列表(CFL)**中的一个条目，CFL是一种类似于fifo的结构，类似于寄存器重命名方案中的空闲列表。</p>
+<p>当创建一个enclave时，CC从CFL弹出一个或多个条目，并将它们添加到**硬件虚拟分区表(VPT)**中，该表为分配给正在运行的enclave的每个缓存保存一个缓存标识符条目(a)。CC拦截来自enclave的内存访问并将其重新映射到enclave的VPT定义的缓存中。重新映射逻辑掩盖了地址，以便它索引到一个小缓存集(b)，并提供替换逻辑与路索引，以确保只有Cachelets的路在未命中时被驱逐( c )。</p>
+<p>当飞地被摧毁时，CC将使飞地的Cachelets失效，并将VPT条目返回给CFL。CC还扩展了由隔离执行保护的enclave元数据，以便在上下文切换期间存储每个enclave的VPT数据。</p>
+<p>CC允许非enclave程序自由访问cachelet 中未分配的任何缓存行。修改后的替换逻辑防止非enclave访问驱逐任何分配的cachelet 中的行(d)。CC为非enclave访问保留了几种方法，确保每个缓存集中的非enclave程序都可以使用缓存行。</p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/0a65ad29c3c9418185e760fd11b9dd7c.png"></p>
+<h2 id="cachelet-地址和分配"><a href="#cachelet-地址和分配" class="headerlink" title="cachelet 地址和分配"></a>cachelet 地址和分配</h2><h3 id="enclave地址重映射"><a href="#enclave地址重映射" class="headerlink" title="enclave地址重映射"></a>enclave地址重映射</h3><p>图3显示了CC如何跨多个非连续的缓存透明地重新映射enclave内存访问。在常规缓存中，使用从地址中提取的set index bit将地址映射到缓存集(图3)。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/fa87195313ad4f81aa593af42ee31a5c.png"><br>为了重新映射cachelet 的内存访问，CC用cachelet set offset重写部分原始地址的 set index，如图4。原始set index可能映射到任意cache set（a），固定高阶将映射范围限制在cachelet （b）。例如，为了强制所有的地址访问1000-1011，CC将高位set index bit设置为10。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/b5059c1a938549cd9779e0c67cc746f8.png"><br>如果分配给所有enclave的cachelet set数量少于cache set总数，CC重新映射地址，让不同set index到一个飞地的相同set。为了消除引用的歧义，<strong>CC将覆盖的索引位添加到用于区分映射到同一缓存行的地址的标记位</strong>。只有指定供cachelet 使用的高速缓存路才需要这些附加位。</p>
+<p>为了将飞地地址映射到cachelet 路，CC采用粗粒度分区建议的机制，使用轻量级硬件屏蔽缓存替换逻辑用的位向量，将驱逐限制在指定的路范围。为了生成给定cachelet 的屏蔽位，CC扩展了寻址总线以包括从VPT检索的路偏移位。如果发送缓存未命中，类似解码器的硬件会将这些位转换为用于飞地访问的路掩码。这一逻辑还可以防止cachelet 访问边界外的更新替换位，消除潜在的替换逻辑侧信道。</p>
+<h3 id="cachelet-分配"><a href="#cachelet-分配" class="headerlink" title="cachelet 分配"></a>cachelet 分配</h3><p>VPT中的条目数量决定了CC中每个enclave的虚拟分区大小。通过改变索引VPT的set bits，CC定义了虚拟分区大小范围。索引的粒度由图5所示的VPT索引掩码寄存器确定，该寄存器左移以扩大索引范围，cachelet 是从CFL以2的幂添加的。当存在一个分区时，寄存器将所有的VPT访问索引为00，强制对所有enclave地址使用单个cachelet 。当分配两个额外的cachelet ，掩码再次移动，允许索引到所有的VPT条目。</p>
+<p>为了在cachelet 之间强制执行隔离，CC必须保证每个enclave的内容不相交，不同enclave之间没有重复的单个cachelet 标识符条目。CC使CFL相对于所服务的缓存的全局性和一致性来实现这一点。与LLC类似，CFL是所有内核共享的统一结构，来自不同内核的对CFL的POP请求会按顺序执行，任何enclave无法使用特定条目直到它从CFL中移出。这避免不同enclave同时保存相同的条目，从而消除重叠虚拟分区导致信息泄露的可能。全局CFL的使用为CFL POP操作提供了类似于LLC缓存访问的延迟。然而，CFL访问很少见，仅在enclave创建、销毁、调整大小时发生。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/65c16336a9f64b75a954bcd16ae00f1f.png"></p>
+<h3 id="可选的分区大小"><a href="#可选的分区大小" class="headerlink" title="可选的分区大小"></a>可选的分区大小</h3><p>CC支持重新调整虚拟分区大小，以适应有不同内存需求的enclave。一种方式是添加新的CCREQ指令，允许飞地直接请求额外的缓存，CCREQ将控制权转移到OS，OS可以使用新的CCGRANT指令设置一个标志，触发CFL弹出到飞地。类似于SGX的页面错误处理，该接口允许OS管理cachelet 分配去平衡内存资源，而不会暴露enclave的内容。</p>
+<p>新创建的enclave可以调用CCREQ来请求在其执行期间进行静态enclave分配，CC也支持动态调整大小，在内存密集型阶段请求额外缓存并在不需要时释放。动态调整大小进一步限制分区对缓存性能的影响，只要调整大小的行为不依赖于敏感数据，调整大小操作就是安全的。</p>
+<h3 id="安全更换策略"><a href="#安全更换策略" class="headerlink" title="安全更换策略"></a>安全更换策略</h3><p>简单的分区方案可能成为缓存替换逻辑攻击目标，CC设计遵循DAWG，它描述了防止这些攻击的轻量级逻辑，主要思想是在一个分区内坐替换策略独立于对其他分区的缓存访问，从而提供元数据隔离。DAWG考虑了LRU、SRRIP、NRU替换策略，该逻辑与CC兼容。</p>
+<h3 id="CC操作示例"><a href="#CC操作示例" class="headerlink" title="CC操作示例"></a>CC操作示例</h3><p>图6 体现了CC在不同飞地的创建、调整大小、销毁操作。一开始分配给enclave e1的只有单个cachelet 。<br>a：e1并不运行在核心，它的VPT状态存储为enclave元数据的一部分，当新的飞地e2创建，VPT初始化，在CFL头部有一个cachelet 标识符项。为e2在路1定义了新的4-set cachelet 。<br>b：CC通过从CFL pop 了3个额外的表项扩展属于e2的虚拟划分<br>c：e1结束执行，CC重定义它的VPT表项，从VPT pop e1使用的表项并返回到CFL。<br>d：e3被调度，扩展到最大的虚拟分区大小，分配给e3剩余的表项。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/fb8d332cd4954033a45021adf75e9e9b.png"></p>
+<h2 id="非飞地访问的替换"><a href="#非飞地访问的替换" class="headerlink" title="非飞地访问的替换"></a>非飞地访问的替换</h2><p>为了防止非飞地进程的访问和飞地的cachelet 冲突，CC用表示每个cachelet 位置是否被占用的小表扩展了缓存替换逻辑。使用高位set位作为索引，检查来自非飞地程序的地址，确定访问集的哪些路包含飞地。在缓存未命中时，使用额外的屏蔽逻辑来增强缓存替换硬件，防止飞地路被替换出。</p>
+<p>在PLRU替换中，选择位定义了一个二叉树，其叶节点对应于缓存路。当缓存未命中时，PLRU沿着树内部节点处的选择位指示的路径下降树来选择逐出目标。如图7，0表示左子树下降，1表示右子树。<br>一个缓存行替换后，沿着选择路径的节点将反转为原理最后访问的路径，类似LRU替换算法。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/2c737d8714a24af7947bb72eafa3f5bd.png"><br>除了防止树的最终分支的缓存路被逐出，CC还确保选择路径不包括没有非飞地作为子集的分支。图7中，替换路径不得不沿着根节点的左边缘，因为该方向的子树仅通向不应受影响的飞地路径。</p>
+<p>CC必须包含将访问从根节点转移到右边缘的逻辑，在那里找到可以替换的路。</p>
+<p>图8-a的算法在PLRU替换树遍历的每个级别强制执行此策略，对于沿选择位b的遍历路径上的每个节点，策略根据l和r哪个为真选择一个新的位b’，当且仅当cachelet 占据节点左侧或者右侧的所有路径子树。如果两个子树都包含非cachelet 的路，则使用现有的替换位b；否则选择b’以将替换策略从全是cachelet 的子树转移。算法的最后一种情况是无效状态，如果集合中至少有一路可用于非飞地访问，则从选择树的根无法到达该状态。</p>
+<p>图8-b给出了选择算法对应的真值表，可以使用8-c的门结构实现。对于给定节点，左子树l的可行性通过对该子树通向的所有cachelet 分配位进行逻辑与来确认。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/87274dbb78af4e1d9da659c245dc3806.png"><br>图9表示8路PLRU的替换逻辑的门级实现，这个硬件可以轻松扩展以支持不同缓存关联性。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/b219c624d6864d8d85505ae4478bdda5.png"></p>
+<h2 id="安全cachelet-逐出"><a href="#安全cachelet-逐出" class="headerlink" title="安全cachelet 逐出"></a>安全cachelet 逐出</h2><p>CC中的cachelet 是有限资源，如果大量enclave同时运行，这些资源可能被耗尽。为了防止cachelet 资源匮乏，CC提供安全驱逐和重新分配给上下文切换飞地的逻辑。该机制与SGX现有的页面逐出逻辑相关，允许不可信的OS通过受限的ISA接口发起逐出，并执行硬件检查以强制执行飞地隔离。</p>
+<p>为了支持高速缓存驱逐，CC硬件维护一个表，该表将每个当前已分配的cachelet 映射到当前拥有该cachelet 的enclave的ID。为了响应空的CFL异常而强制释放cachelet ，CC引入CSD（缓存关闭）指令。CSD将cachelet ID作为其参数，从映射表中查找关联的飞地ID，并使用飞地ID来访问飞地元数据。CC使用每个VPT条目的有效位扩展元数据，并且与所提供的cachelet ID关联的位无关，CC然后将无效的cachelet 添加到CFL。每次调度enclave时，CC硬件检查是否有无效的VPT条目，如果有则在enclave恢复执行前刷新所有无效的VPT条目，并用CFL的新条目替换他们，从而防止Enclave访问重新分配的缓存的cachelet 。此外，是废帝保留的有效cachelet 内容无效。</p>
+<p>通过立即替换重新分配的CFL条目使整个虚拟分区的内容无效，CC可以防止利用cachelet 驱逐的受控信道攻击（恶意OS故意使属于飞地的页面无效，使用由此产生的页面错误来检测哪些页面被访问）。如果对页面的访问取决于敏感数据的值，则攻击者可以使用页面错误序列来提取该数据。CC考虑这类攻击，因为cachelet 驱逐是由不受信的OS控制的。通过在重新调度飞地时强制从CFL替换无效的cachelet ，CC使cachelet 重新分配独立于飞地的内存访问，从而防止数据泄露。此外，通过清除整个虚拟分区的内容，CC可以防止攻击者基于时间延迟对最近逐出的cachelet 进行本地访问。</p>
+<p>这种失效策略很激进，但考虑三个因素可以减轻对性能的影响。</p>
+<ul>
+<li>具有性能感知能力的良性OS可以优先驱逐小型或者单个cachelet 的飞地，从而重新调度时快速重新填充其虚拟分区；</li>
+<li>飞地可能用于多租户集群，负载均衡器可以有策略地分配飞地负载以限制驱逐的发生。</li>
+<li>可以引入额外的逻辑来检测对CC的受控信道攻击，并在不存在威胁时放宽缓存替换规则。这可以通过添加简单的硬件计数器来检测发动受控信道攻击所需的cachelet 驱逐的异常速率实现。仅当计数器超过有效攻击阈值，CC才会启用上述的严格的无效策略，否则将保留cachelet 的内容并推迟重新分配。</li>
+</ul>
+<p>cachelet 逐出机制假设逐出发生时，受害者飞地是上下文切换的。否则，正在运行的受害者飞地可能在cachelet 失效前访问重新分配的cachelet 行。OS不受信，CC必须保证目标enclave在CSD指令更新CFL之前进行上下文切换，为了强制执行此要求，CC提供新的CTRACK指令，该指令必须在CFL更新生效前发出。CTRACK使硬件跟踪运行拥有指定cachelet 的enclave的所有处理器并组织CSD完成，直到OS发出中断以驱逐该enclave的所有线程。</p>
+<h2 id="CC与缓存切片的兼容性"><a href="#CC与缓存切片的兼容性" class="headerlink" title="CC与缓存切片的兼容性"></a>CC与缓存切片的兼容性</h2><p>一些现代架构将缓存划分为两个或多个可以并行访问的片，并使用哈希函数将内存映射到交替的片。CC可以在每个缓存片上强制执行共享缓存布局，在选择偏后重新映射应用地址。因为cachelet 布局在每个片上复制，所以每个飞地接受与简单寻址方案下相同数量的高速缓存行，这些行分布在多个片上以并行访问。</p>
+<h1 id="形式化证明"><a href="#形式化证明" class="headerlink" title="形式化证明"></a>形式化证明</h1><p>略</p>
+<h1 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h1><p>从PPA、latency和设计复杂性的角度评估CC。</p>
+<h2 id="性能评估"><a href="#性能评估" class="headerlink" title="性能评估"></a>性能评估</h2><h3 id="基准和方法"><a href="#基准和方法" class="headerlink" title="基准和方法"></a>基准和方法</h3><p>gem5，配置三级缓存。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/352c1b3b11a940e58efa10492bc86809.png"><br><strong>工作负载</strong></p>
+<ul>
+<li>cryptographic programs： including three traditional applications (AES, Blowfish and SHA) taken from MiBench suite and five Post-Quantum Cryptography (PQC) applications, namely BIG-QUAKE，CRYSTAL-KYBER , CFPKM , Compact LWE , and DAGS</li>
+<li>the impact of isolating larger applications：evaluated programs from SPEC 2017 suite</li>
+<li>the impact on securing paral- lel applications： evaluated CC with PARSEC bench- marks</li>
+</ul>
+<h3 id="加密程序的性能"><a href="#加密程序的性能" class="headerlink" title="加密程序的性能"></a>加密程序的性能</h3><p>加密应用小，一个enclave包括最小的分区大小就可以利用局部性提高性能。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/474d495a49fc44cd9b9fb3bfce0f05ba.png"></p>
+<h3 id="SPEC-2017-Benchmarks"><a href="#SPEC-2017-Benchmarks" class="headerlink" title="SPEC 2017 Benchmarks"></a>SPEC 2017 Benchmarks</h3><p>设想CC主要保护小型飞地免受缓存的信息泄露，还评估了较大应用程序的性能影响。总的分区大小从512KB到4MB，cachelet 大小32KB。即使分区大小合适，也存在性能下降，所有配置下性能下降均低于5%。实验结果表明在具有隔离缓存分区的enclave内存支持较大程序的完整执行时，对大多数程序来说性能损失有限。分配LLC对不同程序的敏感度不同，因此研究针对应用程序动态配置LLC空间的技术非常终于。<br><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/7a1b24d759ff485285281b717beb9394.png"></p>
+<h3 id="PARSEC性能"><a href="#PARSEC性能" class="headerlink" title="PARSEC性能"></a>PARSEC性能</h3><p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/1091d882f8294f64bb27145d4cd23658.png"></p>
+<h3 id="非飞地程序的影响"><a href="#非飞地程序的影响" class="headerlink" title="非飞地程序的影响"></a>非飞地程序的影响</h3><p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/c7f8744475b5479c852b07b4de5f4521.png"></p>
+<h2 id="延迟分析"><a href="#延迟分析" class="headerlink" title="延迟分析"></a>延迟分析</h2><p>略</p>
+<h2 id="面积功耗分析"><a href="#面积功耗分析" class="headerlink" title="面积功耗分析"></a>面积功耗分析</h2><p>略</p>
+<h1 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h1><p>cache划分机制防止信息泄露，但现有机制使用way粒度的方法，不能有效扩展奥大量小飞地或者需要可信OS来执行隔离，使得他们和现有隔离的安全执行模型不兼容。<br>DAWG和CATalyst信任OS去控制划分，如果OS受损，安全保证不再有效。DAWG对支持的保护域的数量有严格限制，这影响其灵活性。<br>NoMo cache的划分不需要软件，但是不可扩展，因此不适合LLC，特别是在同时运行大量飞地的基于云的系统中。此外，一些cache way在NoMo中共享，如果受害者的访问划分到共享的缓存，泄露可能发生。<br>其他划分方法，例如Intel CAT被设计用于提高服务质量，不保证占用不同分区的进程之间的隔离。<br>一些方法通过页着色提出了set-partition，在分配cache set时，数据可能需要在内存中频繁移动，因为缓存的set allocation与物理地址绑定，页着色也不能很好的和大页结合。<br>HybCache 为需要隔离执行的代码提供了软件缓存分区，它需要子缓存路中完全相关的搜索，这是昂贵并且很难扩展到大LLC的。此外，HybCache 不执行严格的隔离，普通程序也可以访问整个缓存。<br>CURE提出定制化架构去确保飞地免受侧信道攻击，然而缓存分区以way粒度进行，不像CC的细粒度划分。<br>在并发工作中，Saileshwar 提出Bespoke Cache Enclaves ，一种基于set的缓存划分机制，cache空间被划分为包含大量连续set的不重叠的cluster。这一提议的灵活索引机制限制特定安全域智能访问属于它的缓存分区。类似的理念用在Chunked-Cache，针对TEE的设计，允许每个程序有自己特定的缓存集，相反，CC设计使用way-based和set-bssed的划分为现有分区提供动态重新配置。这两个工作中，分区机制都和飞地操作相关。<br>在随机化的设计中，CEASER提议低延迟加密动态加密缓存索引。原来的CEASER提议被证明容易受到高速密钥恢复攻击[48]，而在[48]中提出的用于解决这一漏洞的修订版本的CEASER最近被[7]中提出的Brutus攻击所破坏。虽然更强的地址加密可以加强CEASER，但这将对访问延迟产生影响。类似于[48]的攻击可以用来破坏[65]中提出的另一种称为SCATTER-CACHE的随机化机制。另一项最近的工作[46]也证明了基于随机的缓存的安全问题，如CEASER-S。一般来说，分区从根本上提供了更强的安全保证。<br>在其他最近的工作中， SHARP[71]对LLC的缓存替换策略进行了修改，RIC[33]避免了对私有缓存中的只读数据的反向失效，从而避免了对LLC的连续访问。这两种技术都通过OS支持关键操作，在RIC中，只读页面需要被标记，而SHARP则向操作系统报告可疑行为(操作系统可以选择忽略警告)，并依赖于修改后的clflush指令。</p>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/da2570b26ea14a8db71fe98f1e274844.png"></p>
+<p>为侧信道攻击设计正式框架是一个新兴但积极追求的方向。几个正式的框架已经说明了由于推测而导致的漏洞[14,16,26,41]，而我们的重点是基于缓存的通道，更重要的是，对此类攻击的防御。还提出了在飞地上运行的程序的正式基础(例如，[24,25,55])，但没有关注侧信道攻击或其防御。更广泛地说，已经提出了用于解决侧信道攻击的编程语言技术，包括抽象解释[60,67]，符号执行[12,27,61]，程序分析和转换[22,59,66]。这类相关工作与我们的工作距离更远，因为他们提出的是软件防御，而我们的工作是以硬件为中心的。最后，硬件描述语言也被设计用来减少时序通道[72-74]</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>保护缓存不受侧信道攻击是很重要的，特别是在隔离执行的环境中。在这些设置中，即使是高权限软件也屏蔽了应用程序秘密，使其无法直接访问，但仍然可以通过侧通道泄露。可组合缓存(Composable Cachelets, CC)是一种新的、可扩展的动态分区的最后一级缓存设计，它将安全enclave与其他应用程序以及彼此隔离开来。</p>
+<p>CC分区可以在enclave进入和离开系统时进行动态管理，从而根据系统需求调整缓存配置。我们证明了CC通过基于缓存感知和包感知操作语义的严格安全模型提供了可证明的缓存侧通道攻击保护。我们证明了CC可以以最小的面积和功耗开销实现，并且许多应用可以以适度的性能成本从CC保护中受益。这些特性使CC成为sgx风格的隔离执行系统的一个有吸引力的设计选择。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 zxy
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
