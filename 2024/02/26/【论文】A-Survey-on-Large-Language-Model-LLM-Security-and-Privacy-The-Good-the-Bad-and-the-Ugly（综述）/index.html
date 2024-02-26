@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【论文】A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly（综述）
+【论文】A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly（综述） | Xinyao</title>
+  <meta name="keywords" content=" LLM , 安全 ">
+  <meta name="description" content="【论文】A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly（综述）
+【论文】A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly（综述） | Xinyao">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="勇攀高峰">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://zhengxinyao.github.io/tags/index.html">
+<meta property="og:site_name" content="Xinyao">
+<meta property="og:description" content="勇攀高峰">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-07T15:59:52.000Z">
+<meta property="article:modified_time" content="2024-02-07T15:59:52.773Z">
+<meta property="article:author" content="zxy">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/favicon.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/myself.png"/>
+</a>
+<div class="author">
+    <span>zxy</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/zhengxinyao"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="linkedin"
+               href="https://www.linkedin.com/in/%E6%98%95%E7%91%B6-%E9%83%91-956a732b5/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-linkedin"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/destiny-44-90-76"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qq_43543209?spm=1010.2135.3001.5343"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1601835186@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1601835186&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(27)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文记录">
+            
+            论文记录
+            <small>(11)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识总结">
+            
+            知识总结
+            <small>(16)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="27">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>侧信道</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态缓存划分</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多租户调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分组加密</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>共享内存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>加速器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>论文</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存保护</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>虚拟化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>云安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI加速器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV- SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV-SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ARM CCA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPU</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel SGX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel TDX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NVM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PENGLAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TEE</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/26/%E3%80%90%E8%AE%BA%E6%96%87%E3%80%91A-Survey-on-Large-Language-Model-LLM-Security-and-Privacy-The-Good-the-Bad-and-the-Ugly%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89/"
+           data-tag="LLM,安全"
+           data-author="" >
+            <span class="post-title" title="【论文】A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly（综述）
+【论文】A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly（综述）">【论文】A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly（综述）
+【论文】A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly（综述）</span>
+            <span class="post-date" title="2024-02-26 20:29:06">2024/02/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91SRAM%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/"
+           data-tag="安全,架构"
+           data-author="" >
+            <span class="post-title" title="【架构】SRAM的安全性">【架构】SRAM的安全性</span>
+            <span class="post-date" title="2024-02-25 22:55:54">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91%E9%9D%A2%E5%90%91%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%EF%BC%88AI%EF%BC%89-%E7%9A%84%E7%A1%AC%E4%BB%B6%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7/"
+           data-tag="安全,架构,AI,加速器"
+           data-author="" >
+            <span class="post-title" title="【架构】面向人工智能 （AI） 的硬件的可靠性">【架构】面向人工智能 （AI） 的硬件的可靠性</span>
+            <span class="post-date" title="2024-02-25 22:33:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/"
+           data-tag="GPU,架构"
+           data-author="" >
+            <span class="post-title" title="【架构】GPU架构总结">【架构】GPU架构总结</span>
+            <span class="post-date" title="2024-02-25 20:52:00">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E5%AE%89%E5%85%A8%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E7%BB%BC%E8%BF%B0/"
+           data-tag="LLM,安全"
+           data-author="" >
+            <span class="post-title" title="【安全】大模型安全综述">【安全】大模型安全综述</span>
+            <span class="post-date" title="2024-02-25 20:28:32">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91ProMT-Optimizing-Integrity-Tree-Updates-for-Write-Intensive-Pages-in-Secure-NVMs/"
+           data-tag="NVM,内存安全"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】ProMT: Optimizing Integrity Tree Updates for Write-Intensive Pages in Secure NVMs">【TEE论文】ProMT: Optimizing Integrity Tree Updates for Write-Intensive Pages in Secure NVMs</span>
+            <span class="post-date" title="2024-02-25 20:27:27">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E8%99%9A%E6%8B%9F%E5%8C%96/"
+           data-tag="GPU,虚拟化"
+           data-author="" >
+            <span class="post-title" title="【架构】GPU虚拟化">【架构】GPU虚拟化</span>
+            <span class="post-date" title="2024-02-25 20:26:11">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/"
+           data-tag="云安全"
+           data-author="" >
+            <span class="post-title" title="【云安全】传输层安全性（TLS）大汇总">【云安全】传输层安全性（TLS）大汇总</span>
+            <span class="post-date" title="2024-02-25 20:22:53">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/"
+           data-tag="架构,多租户调度"
+           data-author="" >
+            <span class="post-title" title="【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation">【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation</span>
+            <span class="post-date" title="2024-02-25 20:21:48">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/"
+           data-tag="TEE,架构,侧信道"
+           data-author="" >
+            <span class="post-title" title="【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）">【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）</span>
+            <span class="post-date" title="2024-02-25 20:19:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/"
+           data-tag="论文,动态缓存划分"
+           data-author="" >
+            <span class="post-title" title="【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）">【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）</span>
+            <span class="post-date" title="2024-02-25 20:17:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Reusable-Enclaves-for-Confidential-Serverless-Computing%EF%BC%88usenixsecurity23%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）">【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）</span>
+            <span class="post-date" title="2024-02-25 20:14:26">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Serverless-Made-Efficient-with-Plug-In-Enclaves-%EF%BC%882021-ISCA%EF%BC%89/"
+           data-tag="TEE,论文,共享内存"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）">【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）</span>
+            <span class="post-date" title="2024-02-25 20:12:45">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service">【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service</span>
+            <span class="post-date" title="2024-02-25 20:11:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91-HETEE-Enabling-rack-scale-confidential-computing-using-heterogeneous-TEE-2020-SP/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)">【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)</span>
+            <span class="post-date" title="2024-02-25 20:08:42">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）">【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）</span>
+            <span class="post-date" title="2024-02-25 20:07:36">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/"
+           data-tag="TEE,内存保护,分组加密"
+           data-author="" >
+            <span class="post-title" title="【TEE】片外内存保护：AES分组算法+MAC完整性验证">【TEE】片外内存保护：AES分组算法+MAC完整性验证</span>
+            <span class="post-date" title="2024-02-25 20:05:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"
+           data-tag="TEE,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel SGX的不足和解决方案">【TEE】Intel SGX的不足和解决方案</span>
+            <span class="post-date" title="2024-02-25 19:59:35">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/"
+           data-tag="TEE,Intel TDX,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel可信执行环境的前世今生">【TEE】Intel可信执行环境的前世今生</span>
+            <span class="post-date" title="2024-02-25 19:54:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/"
+           data-tag="TEE,LLM"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境保障大模型安全">【TEE】可信执行环境保障大模型安全</span>
+            <span class="post-date" title="2024-02-25 19:52:39">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91PENGLAI-TEE/"
+           data-tag="TEE,PENGLAI"
+           data-author="" >
+            <span class="post-title" title="【TEE】PENGLAI TEE">【TEE】PENGLAI TEE</span>
+            <span class="post-date" title="2024-02-25 19:51:30">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91AMD-SEV-SNP%E5%92%8CIntel-TDX%E7%9A%84%E6%A6%82%E8%BF%B0/"
+           data-tag="TEE,AMD SEV- SNP,Intel TDX"
+           data-author="" >
+            <span class="post-title" title="【TEE】AMD SEV- SNP和Intel TDX的概述">【TEE】AMD SEV- SNP和Intel TDX的概述</span>
+            <span class="post-date" title="2024-02-25 19:36:13">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/"
+           data-tag="TEE,ARM CCA"
+           data-author="" >
+            <span class="post-title" title="【TEE】ARM CCA 可信计算架构">【TEE】ARM CCA 可信计算架构</span>
+            <span class="post-date" title="2024-02-25 19:24:38">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/"
+           data-tag="TEE,AMD SEV-SNP"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离">【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离</span>
+            <span class="post-date" title="2024-02-25 19:11:12">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/"
+           data-tag="TEE,AMD SEV"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV内存加密】 白皮书">【TEE】【AMD SEV内存加密】 白皮书</span>
+            <span class="post-date" title="2024-02-25 19:05:02">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Computing-within-an-AI-Accelerator/"
+           data-tag="TEE,论文,AI加速器,架构设计"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Computing within an AI Accelerator">【TEE论文】Confidential Computing within an AI Accelerator</span>
+            <span class="post-date" title="2024-02-25 18:53:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/"
+           data-tag="TEE"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境业界资料">【TEE】可信执行环境业界资料</span>
+            <span class="post-date" title="2024-02-25 18:31:25">2024/02/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【论文】A-Survey-on-Large-Language-Model-LLM-Security-and-Privacy-The-Good-the-Bad-and-the-Ugly（综述）" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【论文】A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly（综述）
+【论文】A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly（综述）</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="论文记录">论文记录</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">LLM</a>
+            
+            <a class="color3">安全</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-02-26 20:32:51'>2024-02-26 20:29</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Introduction"><span class="toc-text">1. Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Positive-Impacts-on-Security-and-Privacy"><span class="toc-text">4. Positive Impacts on Security and Privacy</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-LLMs-for-Code-Security"><span class="toc-text">4.1. LLMs for Code Security</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Secure-Coding-C"><span class="toc-text">Secure Coding ( C ).</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Test-Case-Generating-TCG"><span class="toc-text">Test Case Generating (TCG).</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vulnerable-Code-Detecting-RE"><span class="toc-text">Vulnerable Code Detecting (RE).</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Malicious-Code-Detecting-RE"><span class="toc-text">Malicious Code Detecting (RE).</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vulnerable-Buggy-Code-Fixing-RE"><span class="toc-text">Vulnerable&#x2F;Buggy Code Fixing (RE).</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-LLMs-for-Data-Security-and-Privacy"><span class="toc-text">4.2. LLMs for Data Security and Privacy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Integrity-I"><span class="toc-text">Data Integrity (I).</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Confidentiality-C"><span class="toc-text">Data Confidentiality (C).</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Reliability-R"><span class="toc-text">Data Reliability (R).</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Traceability-T"><span class="toc-text">Data Traceability (T).</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-Negative-Impacts-on-Security-and-Privacy"><span class="toc-text">5. Negative Impacts on Security and Privacy</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hardware-Level-Attacks"><span class="toc-text">Hardware-Level Attacks.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OS-Level-Attacks"><span class="toc-text">OS-Level Attacks.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Software-Level-Attacks"><span class="toc-text">Software-Level Attacks.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Network-Level-Attacks"><span class="toc-text">Network-Level Attacks.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Level-Attacks"><span class="toc-text">User-Level Attacks.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-Vulnerabilities-and-Defenses-in-LLMs"><span class="toc-text">6. Vulnerabilities and Defenses in LLMs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-Vulnerabilities-and-Threats-in-LLMs"><span class="toc-text">6.1. Vulnerabilities and Threats in LLMs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A1-Adversarial-Attacks"><span class="toc-text">(A1) Adversarial Attacks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A2-Inference-Attacks"><span class="toc-text">(A2) Inference Attacks.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A3-Extraction-Attacks"><span class="toc-text">(A3) Extraction Attacks.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A4-Bias-and-Unfairness-Exploitation"><span class="toc-text">(A4) Bias and Unfairness Exploitation.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A5-Instruction-Tuning-Attacks"><span class="toc-text">(A5) Instruction Tuning Attacks.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A6-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C-Rce"><span class="toc-text">( A6 )远程代码执行( Rce )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A7-Side-Channel"><span class="toc-text">(A7) Side Channel.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A8-Supply-Chain-Vulnerabilities"><span class="toc-text">(A8) Supply Chain Vulnerabilities.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-Defenses-for-LLMs"><span class="toc-text">6.2. Defenses for LLMs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-1-Defense-in-Model-Architecture"><span class="toc-text">6.2.1. Defense in Model Architecture</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-2-Defenses-in-LLM-Training-and-Inference"><span class="toc-text">6.2.2. Defenses in LLM Training and Inference</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LLM%E8%AE%AD%E7%BB%83%E4%B8%AD%E7%9A%84%E9%98%B2%E5%BE%A1%E7%AD%96%E7%95%A5"><span class="toc-text">LLM训练中的防御策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LLM%E6%8E%A8%E7%90%86%E4%B8%AD%E7%9A%84%E9%98%B2%E5%BE%A1%E7%AD%96%E7%95%A5"><span class="toc-text">LLM推理中的防御策略</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-Discussion"><span class="toc-text">7. Discussion</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-Future-Directions"><span class="toc-text">7.2 Future Directions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Llms%E8%BF%9B%E8%A1%8CMl-%E7%89%B9%E5%AE%9A%E4%BB%BB%E5%8A%A1%E3%80%82"><span class="toc-text">使用Llms进行Ml -特定任务。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%96%E4%BB%A3%E4%BA%86%E4%BA%BA%E7%B1%BB%E7%9A%84%E5%8A%AA%E5%8A%9B"><span class="toc-text">取代了人类的努力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%92%88%E5%AF%B9LLMs%E7%9A%84%E4%BC%A0%E7%BB%9FML%E6%94%BB%E5%87%BB"><span class="toc-text">修改针对LLMs的传统ML攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9Llms%E9%87%87%E7%94%A8%E4%BC%A0%E7%BB%9F%E7%9A%84ml%E9%98%B2%E5%BE%A1"><span class="toc-text">对Llms采用传统的ml防御</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3Llm-specific%E6%94%BB%E5%87%BB%E4%B8%AD%E7%9A%84%E6%8C%91%E6%88%98"><span class="toc-text">解决Llm - specific攻击中的挑战</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p><strong>The Good</strong>：LLMs在代码安全和数据安全与隐私方面都做出了贡献。在代码安全的背景下，LLMs已经被用于代码(例如,安全编码、测试用例生成、脆弱代码检测、恶意代码检测、代码修复等)的整个生命周期。在数据安全和隐私方面，LLMs已被应用于确保数据完整性、数据机密性、数据可靠性和数据可追溯性。大多数研究人员发现基于LLM的方法优于传统最先进的方法。</p>
+<p><strong>The Bad</strong>：我们将攻击分为五类：硬件级攻击(例如,侧信道攻击)，操作系统级攻击(例如,从操作系统中分析信息)，软件级攻击(例如,制造恶意软件)，网络级攻击(例如,网络钓鱼)，用户级攻击(例如,不实信息、社会工程、科学不端行为等)。由于LLMs具有类人的推理能力，用户级攻击最为普遍，有32篇。这些攻击同时威胁安全(例如,恶意软件攻击)和隐私(例如,社会工程)。目前，LLM缺乏对操作系统和硬件级功能的直接访问。</p>
+<p><strong>The Ugly</strong>：将漏洞分为两大类：人工智能模型固有漏洞(例如,数据投毒、后门攻击、训练数据提取等)和非人工智能模型固有漏洞(例如,远程代码执行、提示注入、侧信道等)。这些攻击具有双重威胁，既包括安全问题(例如,远程代码执行攻击)，也包括隐私问题(例如,数据提取)。训练阶段的防御包括语料清洗和优化方法，推理阶段的防御包括指令预处理、恶意检测和生成后处理。<strong>模型提取，参数提取和类似的攻击很少有实际的探索。大规模的LLM参数使得传统的方法变得不那么有效，而强大的LLM的保密性进一步保护了它们免受常规攻击</strong>。对LLM输出的严格审查甚至对黑盒ML攻击提出了挑战。同时，模型架构对LLM安全性影响的研究较少，部分原因是计算成本较高。</p>
+<blockquote>
+<p><strong>Finding I:尽管现阶段LLMs中存在一些漏洞，但大多数研究者倾向于使用LLMs来增强安全社区，例如在漏洞检测和安全测试生成方面。使用LLMs作为攻击工具的研究人员相对较少。</strong></p>
+</blockquote>
+<h1 id="4-Positive-Impacts-on-Security-and-Privacy"><a href="#4-Positive-Impacts-on-Security-and-Privacy" class="headerlink" title="4. Positive Impacts on Security and Privacy"></a>4. Positive Impacts on Security and Privacy</h1><p><img src="/2024/02/26/%E3%80%90%E8%AE%BA%E6%96%87%E3%80%91A-Survey-on-Large-Language-Model-LLM-Security-and-Privacy-The-Good-the-Bad-and-the-Ugly%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89/image-20240226203012936.png" alt="LLMs for Code Security and Privacy"></p>
+<h2 id="4-1-LLMs-for-Code-Security"><a href="#4-1-LLMs-for-Code-Security" class="headerlink" title="4.1. LLMs for Code Security"></a>4.1. LLMs for Code Security</h2><p>LLM可以在整个代码安全生命周期中发挥关键作用，包括编码( C )、测试用例生成( TCG )、执行和监控( RE )。</p>
+<h3 id="Secure-Coding-C"><a href="#Secure-Coding-C" class="headerlink" title="Secure Coding ( C )."></a><strong>Secure Coding ( C ).</strong></h3><p>讨论LLMs在安全代码编程[ 74 ] (或生成[ 62 , 276 , 190 , 89 ])中的使用。</p>
+<ul>
+<li>[ 225 ]进行了一项用户研究( 58个用户)，以评估LLM的安全影响。他们评估了学生程序员在LLMs辅助下编写的代码，发现<strong>由LLMs辅助的参与者不会引入新的安全风险</strong>：AI辅助组产生关键安全缺陷的比率比对照组(非辅助)高不超过10 %。</li>
+<li>[ 97 ]致力于增强LLM生成代码的安全性。他们提出了一种名为SVEN的新方法，该方法<strong>利用连续提示来控制LLM生成安全代码</strong>。使用该方法成功率从59.1 %提高到92.3 %。</li>
+<li>SALLM [ 245 ]，一个由新的安全数据集、评估环境和新的度量标准组成的框架，用于<strong>系统地评估LLMs生成安全代码的能力</strong>。</li>
+<li><font color='red'> [ 188 ]评估了ChatGPT平台上代码生成过程的安全性，特别是在硬件领域。他们探索了<strong>设计者可以采用的策略，使ChatGPT能够提供安全的硬件代码生成</strong>。</font></li>
+</ul>
+<h3 id="Test-Case-Generating-TCG"><a href="#Test-Case-Generating-TCG" class="headerlink" title="Test Case Generating (TCG)."></a><strong>Test Case Generating (TCG).</strong></h3><p>讨论LLMs在生成测试用例中的使用，特别强调解决安全问题的LLMs</p>
+<ul>
+<li>[ 332 ]演示了使用ChatGPT - 4.0生成安全测试，以评估脆弱的库依赖对软件应用的影响。，LLMs可以<strong>成功地生成各种供应链攻击的测试，其性能优于现有的安全测试生成器</strong>。该方法在55个应用程序中导致了24个成功的攻击。</li>
+<li>文献[ 131 ]提出了一种使用LLMs<strong>自动生成测试用例来重现软件安全漏洞</strong>的框架。</li>
+<li>TitanFuzz [ 55 ]是一种利用LLM生成模糊深度学习( Deep Learning，DL )库输入程序的方法。TitanFuzz表现出令人印象深刻的代码覆盖率( 30.38 % &#x2F; 50.84 % )，并在DL库中检测到先前未知的bug ( 41&#x2F;65)。</li>
+<li>[ 57、56 ]精化了基于LLM的毛刺(命名为FuzzGPT )，旨在为DL libraryfuzzing 生成不寻常的程序。TitanFuzz利用LLMs生成普通代码的能力，FuzzGPT通过使用历史Bug触发程序来启动LLMs来解决边缘测试的需求。</li>
+<li>Fuzz4All [ 302 ]利用LLMs作为输入生成器和变异引擎，为各种语言(例如, C、C + +等)<strong>创建了多样化和逼真的输入</strong>，将之前最先进的覆盖率平均提高了36.8 %。</li>
+<li>White Fox [ 310 ]是一种<strong>利用LLM测试编译器优化的新型白盒编译器模糊器</strong>，性能优于现有的模糊测试(它为复杂的优化产生了高质量的测试,超过了最先进的模糊测试多达80个优化)。</li>
+<li>文献[ 326 ]探讨了<strong>利用LLMs生成库API模糊驱动的方法</strong>。结果表明，基于LLM的生成方法是可行的，64 %的问题完全自动解决，91 %的问题需要人工验证</li>
+<li>文献[ 181 ]是一种<strong>LLM引导的协议模糊器</strong>，它为消息类型构造语法，并基于LLM交互对消息进行变异或预测下一个消息，与现有的模糊测试相比，实现了更好的状态和代码覆盖率</li>
+</ul>
+<h3 id="Vulnerable-Code-Detecting-RE"><a href="#Vulnerable-Code-Detecting-RE" class="headerlink" title="Vulnerable Code Detecting (RE)."></a><strong>Vulnerable Code Detecting (RE).</strong></h3><ul>
+<li>Noever [ 192 ]探讨了LLMs，特别是OpenAI的GPT - 4检测软件漏洞的能力。本文研究表明，与传统的静态代码分析器( Snyk and Fortify)相比，GPT - 4识别出的漏洞数量大约是其4倍。</li>
+<li>[ 41 ]指出ChatGPT模型<strong>在代码漏洞的二进制检测和多标签分类任务中的表现并不优于一个虚拟分类器</strong>。</li>
+<li>DefectHunter [ 287 ]是一个新的模型，它<strong>使用LLM驱动的技术来进行代码漏洞检测</strong>。它们展示了将LLMs与高级机制相结合以更有效地识别软件漏洞的潜力。与Pongo - 70B相比，该组合的有效性提高了约14.64 % ~ 20.62 %</li>
+<li>LATTE [ 165 ]是一种<strong>由LLMs驱动的新型静态二进制污点分析方法</strong>。LATTE超越了现有的最先进的技术，以较低的成本在漏洞检测(在真实世界的固件中发现了37个新的错误)中显示出显著的有效性。</li>
+<li>Chen等[ 37 ]和Hu等[ 106 ]重点研究了LLMs在<strong>识别区块链智能合约中的漏洞</strong>方面的应用。</li>
+<li>KARTAL [ 224 ]是一种<strong>利用LLMs进行Web应用漏洞检测</strong>的开创性方法。该方法达到了87.19%的准确性，能够每秒进行539次预测。</li>
+<li><font color='red'>[ 3 ]将关注点转移到硬件安全上。他们研究了LLMs，特别是OpenAI的Codex，<strong>在自动识别和修复硬件设计中与安全相关的bug方面的使用</strong>。</font></li>
+<li>[ 54 ]一个<strong>自动化的渗透测试工具</strong>，利用LLMs中固有的领域知识来解决渗透测试的各个子任务，显著地提高了任务的完成率。</li>
+</ul>
+<h3 id="Malicious-Code-Detecting-RE"><a href="#Malicious-Code-Detecting-RE" class="headerlink" title="Malicious Code Detecting (RE)."></a><strong>Malicious Code Detecting (RE).</strong></h3><p>使用LLM来检测恶意软件是一个很有前途的应用。该方法利用LLM的自然语言处理能力和上下文理解来识别恶意软件。</p>
+<ul>
+<li>[ 101 ]研究发现，<strong>基于LLM的恶意软件检测可以补充人类评论</strong>，但不能替代人类评论。在进行的1800个二分类中，既有误报警，也有假阴性。使用简单的技巧也可能欺骗LLM的评估。</li>
+<li>文献[ 73 ]是一种<strong>使用LLMs的恶意代码分析工具</strong>。Apiiro的策略涉及创建LLM码模式( LCPs )，以矢量格式表示代码，从而更容易识别相似性和有效地聚类包。其<strong>LCP检测器包括LLMs、专有代码分析、概率采样、LCP索引和降维</strong>，以识别潜在的恶意代码。</li>
+</ul>
+<h3 id="Vulnerable-Buggy-Code-Fixing-RE"><a href="#Vulnerable-Buggy-Code-Fixing-RE" class="headerlink" title="Vulnerable&#x2F;Buggy Code Fixing (RE)."></a><strong>Vulnerable&#x2F;Buggy Code Fixing (RE).</strong></h3><p>有几篇文献[ 118、202、303]重点评估了基于代码训练的LLMs在程序修复任务中的性能。</p>
+<ul>
+<li>[ 120 ]提出了InferFix，一种<strong>基于转换器的程序修复框架</strong>，它与前沿的静态分析器和基于转换器的模型相结合，以解决和修复关键的安全和性能问题，准确率在65 %到75 %之间。</li>
+<li>[202]观察到LLMs可以在一系列<strong>上下文中修复不安全的代码</strong>，即使没有明确地在漏洞修复任务上进行训练。</li>
+<li>[ 82 ]评估了ChatGPT在漏洞相关的任务，如<strong>预测和分类漏洞</strong>，严重程度估计和分析超过19万个C &#x2F; C + +函数。他们发现ChatGPT的性能落后于其他专门用于漏洞检测的LLM。</li>
+<li>[ 248 ]发现ChatGPT的<strong>缺陷修复性能与标准的程序修复方法相媲美，</strong>它能够修复40个缺陷中的31个</li>
+<li>文献[ 304 ]提出了ChatRepair，<strong>利用预训练的语言模型( PLMs )生成不依赖于缺陷修正数据集的补丁</strong>，旨在提高生成不依赖于缺陷修正数据集的补丁的性能，旨在通过混合成功和失败测试来提高ChatGPT的代码修复能力。结果，他们以每只0.42美元的价格修复了337个bug中的162个。</li>
+</ul>
+<blockquote>
+<p><strong>Finding II.( 25个中有17个)已经得出结论，基于LLM的方法优于传统方法(具有代码覆盖率高、检测精度高、成本低等优点)。基于LLM的方法最常被讨论的问题是它们在检测漏洞或bug时倾向于同时产生高的假阴性和假阳性。</strong></p>
+</blockquote>
+<h2 id="4-2-LLMs-for-Data-Security-and-Privacy"><a href="#4-2-LLMs-for-Data-Security-and-Privacy" class="headerlink" title="4.2. LLMs for Data Security and Privacy"></a>4.2. LLMs for Data Security and Privacy</h2><p><img src="/2024/02/26/%E3%80%90%E8%AE%BA%E6%96%87%E3%80%91A-Survey-on-Large-Language-Model-LLM-Security-and-Privacy-The-Good-the-Bad-and-the-Ugly%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89/image-20240226203133097.png" alt="LLMs for Data Security and Privacy"><br>LLMs为数据安全领域做出了宝贵的贡献，为保护敏感信息提供了多方面的方法。这些方面包括关键的方面，如数据完整性( I )，以确保数据在整个生命周期中保持未损坏；数据可靠性( R )，保证了数据的准确性；数据机密性( C )，其重点在于防范未经授权的访问和敏感信息的泄露；以及数据的可追溯性( T )，这涉及到跟踪和监控数据的访问和使用。</p>
+<h3 id="Data-Integrity-I"><a href="#Data-Integrity-I" class="headerlink" title="Data Integrity (I)."></a>Data Integrity (I).</h3><p>数据完整性保证了数据在其整个生命周期中保持不变和不被破坏。截至目前，已有少量工作讨论了如何使用LLM来保护数据完整性。例如，勒索软件通常会对受害者的数据进行加密，使得数据在没有攻击者持有的解密密钥的情况下无法访问，从而破坏了数据完整性。</p>
+<ul>
+<li>[ 285 ]研究了<strong>使用LLMs的勒索软件网络安全策略</strong>，主要从理论上提出了实时分析，自动策略生成，预测分析和知识转移。然而，这些策略缺乏实证验证。</li>
+<li>[ 178 ]探索了LLMs创建网络安全策略的潜力，旨在<strong>通过数据外渗来减轻勒索软件攻击</strong>。他们将GPT产生的治理、风险和合规( GRC )政策与已建立的安全供应商和政府网络安全机构的政策进行了比较。他们建议公司应将GPT纳入其GRC政策制定中。</li>
+</ul>
+<p>异常检测是一种识别异常行为的关键防御机制。虽然它并不直接保护数据完整性，但它识别出可能危及数据完整性(以及数据的保密性和数据的可靠性)的异常或可疑行为。</p>
+<ul>
+<li>[ 72 ]提出了一种基于LLM的监控框架，用于<strong>检测基于视觉的策略中的语义异常</strong>，并将其应用于用于自动驾驶的有限状态机策略和用于对象操作的学习策略。实验结果表明，该方法能够有效地识别语义异常，与人类推理一致</li>
+<li>HuntGPT [ 8 ]是一个<strong>基于LLM的入侵检测系统，用于网络异常检测</strong>。结果证明了其在提高用户理解和交互方面的有效性。</li>
+<li>Kim等[ 70 ]和Log GPT [ 212 ]探索了<strong>Chat GPT在并行文件系统中基于日志的异常检测方面的潜力</strong>。结果表明，它解决了传统手工标注和可解释性方面的问题。</li>
+<li>AnomalyGPT [ 90 ]使用<strong>大型视觉语言模型( Large Vision-Language Models，LVLMs )来检测工业异常</strong>。它消除了手动阈值设置，并支持多轮对话，达到了最先进的性能。</li>
+</ul>
+<h3 id="Data-Confidentiality-C"><a href="#Data-Confidentiality-C" class="headerlink" title="Data Confidentiality (C)."></a>Data Confidentiality (C).</h3><p>数据机密性是指保护敏感信息免受非授权访问或泄露的实践，是LLM隐私讨论[ 205、233、277、1]中广泛讨论的主题。<font color='red'>这些研究大多集中在<strong>通过最先进的隐私增强技术(例如,零知识证明 ,差分隐私[ 233,175,159 ]和联邦学习[ 140,117,77 ] )来增强LLM</strong>。只有少数尝试利用LLMs来增强用户隐私。</font></p>
+<ul>
+<li>[ 277 ]使用LLMs来保护隐私，将文本数据中的识别信息替换成通用标记。LLMs不存储敏感的用户信息，如姓名、地址或信用卡号码，而是建议用掩码来代替。这种混淆技术有助于保护用户数据不被暴露给对手。通过使用LLMs生成掩码的替代品，可以在<strong>不损害原始信息的隐私和安全的情况下，在模糊数据上训练模型</strong>。类似的想法在其他研究[ 1 , 253]中也得到了探索。</li>
+<li><font color='red'>[ 142 ]探索<strong>使用ChatGPT实现密码学，最终保护数据机密性</strong>。尽管缺乏广泛的编码技巧或编程知识，但作者能够通过ChatGPT成功地实现密码算法。这凸显了个体利用ChatGPT进行密码学任务的潜力。</font></li>
+</ul>
+<h3 id="Data-Reliability-R"><a href="#Data-Reliability-R" class="headerlink" title="Data Reliability (R)."></a>Data Reliability (R).</h3><p>数据可靠性指的是数据的准确性。它是衡量数据是否准确、不受误差或偏差影响的标准。</p>
+<ul>
+<li>[137 ]提出<strong>使用ChatGPT对含有钓鱼内容的站点进行检测</strong>。使用GPT - 4的实验结果显示了良好的性能，具有较高的准确率和召回率。</li>
+<li>[ 98 ]评估了<strong>四个大型语言模型( GPT、Claude、PaLM、LLaMA)在钓鱼邮件中检测恶意意图的能力</strong>，发现它们总体上是有效的，甚至超过了人类检测，尽管偶尔会略低于人类检测</li>
+<li>[ 114 ]是一个从BERT家族中微调的模型，<strong>可以有效地识别钓鱼邮件和垃圾邮件</strong>。IPSDM在不平衡数据集和平衡数据集中对电子邮件的分类都表现出了优越的性能。</li>
+</ul>
+<h3 id="Data-Traceability-T"><a href="#Data-Traceability-T" class="headerlink" title="Data Traceability (T)."></a>Data Traceability (T).</h3><p>数据可追溯性是指能够跟踪和记录单个系统或跨多个系统中数据的来源、运动和历史的能力。这一概念在诸如事件管理和法医调查等领域特别重要，在这些领域中，需要了解事件的转变以解决问题并进行深入分析。LLMs已经在法庭调查中获得了牵引，为分析数字证据提供了新的方法。</p>
+<ul>
+<li>文献[ 228 ]探讨了ChatGPT如何帮助分析日志、文件、云交互、可执行二进制文件等操作系统工件，以及<strong>检查内存转储以检测可疑活动或攻击模式</strong></li>
+<li>Zhang等[ 246 ]提出可以使用ChatGPT等生成式模型创建逼真的蜜罐来欺骗人类攻击者。</li>
+</ul>
+<p>水印是指在一个模型的输出中嵌入一个独特的、通常是不可察觉的或难以识别的信号。</p>
+<ul>
+<li>文献[ 288 ]讨论了<strong>LLMs训练数据的知识产权问题</strong>，并提出了WASA框架来学习不同数据提供者文本之间的映射。</li>
+<li>[ 329 ]开发了REMARK - LLM，它<strong>专注于监视其内容的使用情况，并验证其水印检索</strong>。这有助于防止恶意使用，如垃圾邮件和抄袭。此外，识别LLMs产生的代码对于解决有关代码许可、抄袭和恶意软件创建的法律和道德问题至关重要。</li>
+<li>[ 147 ]开发了SWEET，它是一种在编程语言中专门在令牌上实现水印的工具。</li>
+</ul>
+<blockquote>
+<p><strong>Finding III.LLMs在数据保护方面表现优异，超越了当前的解决方案，并且需要更少的人工干预。ChatGPT是广泛应用于各种安全应用中的主流LLM。它的多功能性和有效性使其成为各种安全相关任务的优先选择，进一步巩固了其在人工智能和网络安全领域作为解决方案的地位。</strong></p>
+</blockquote>
+<h1 id="5-Negative-Impacts-on-Security-and-Privacy"><a href="#5-Negative-Impacts-on-Security-and-Privacy" class="headerlink" title="5. Negative Impacts on Security and Privacy"></a>5. Negative Impacts on Security and Privacy</h1><p>根据攻击在系统基础架构中的位置将其分为五组。这些类别包括硬件级别的攻击，操作系统级别的攻击，软件级别的攻击，网络级别的攻击和用户级别的攻击。<br><img src="/2024/02/26/%E3%80%90%E8%AE%BA%E6%96%87%E3%80%91A-Survey-on-Large-Language-Model-LLM-Security-and-Privacy-The-Good-the-Bad-and-the-Ugly%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89/image-20240226203202644.png" alt="Taxonomy of Cyberattacks. The colored boxes represent attacks that have been demonstrated to be executable using LLMs, whereas the gray boxes indicate attacks that cannot be executed with LLMs"></p>
+<h2 id="Hardware-Level-Attacks"><a href="#Hardware-Level-Attacks" class="headerlink" title="Hardware-Level Attacks."></a>Hardware-Level Attacks.</h2><p>硬件攻击通常涉及对设备的物理访问。然而，LLMs无法直接接入物理设备。相反，他们只能访问与硬件相关的信息。侧信道攻击[ 251、103、180 ]是一种可以由LLM进行的攻击。侧信道攻击通常需要分析来自物理系统或实现(如密码设备或软件)的无意信息泄漏，其目的是推断秘密信息(例如,钥匙)。</p>
+<ul>
+<li><font color='red'>[ 308 ]已经探索了应用LLM技术来开发侧信道分析方法。该研究包括3种不同的方法：<strong>提示工程、微调LLM和基于人类反馈强化学习的微调LLM</strong>。</font>提示工程涉及创建特定的提示，旨在指导模型对侧信道信息的理解。微调LLM使用预训练的模型，这些模型使用真实世界的侧信道分析数据进一步精化。基于人类反馈强化学习的微调LLM将人类反馈融入到模型的训练过程中，以提高模型的准确性。本研究评估了这些方法<strong>在AES侧信道分析和深度学习加速器侧信道分析</strong>两种硬件相关场景中正确分析侧信道信息的有效性。为了确定这些方法在两种情况下的成功率，进行了实验.</li>
+</ul>
+<h2 id="OS-Level-Attacks"><a href="#OS-Level-Attacks" class="headerlink" title="OS-Level Attacks."></a>OS-Level Attacks.</h2><p>LLMs在较高的抽象层次上运行，主要处理基于文本的输入和输出。它们缺乏执行OS级攻击[ 109、279、123]所必需的低级系统访问。尽管如此，它们可以用于分析从操作系统中收集的信息，从而潜在地帮助执行这种攻击。</p>
+<ul>
+<li>文献[ 93 ]通过SSH建立一个反馈回路，将LLM连接到一个易受攻击的虚拟机，<strong>允许LLM分析机器的状态，识别漏洞</strong>，并提出具体的攻击策略，然后在虚拟机内部自动执行</li>
+<li>[ 94 ]介绍了一个使用本地虚拟机的自动化Linux特权升级基准程序和一个<strong>LLM指导的特权升级工具</strong>，以评估各种LLM和针对基准程序的及时策略。</li>
+</ul>
+<h2 id="Software-Level-Attacks"><a href="#Software-Level-Attacks" class="headerlink" title="Software-Level Attacks."></a>Software-Level Attacks.</h2><p>也有利用LLM攻击软件( e.g . , [ 332,200,203,32 ])的例子。</p>
+<ul>
+<li>[ 17 ]提出了一个概念证明，其中<strong>ChatGPT用于分发恶意软件</strong>，同时避免检测。</li>
+<li>Zhang等[ 198 ]通过<strong>创建多个恶意程序</strong>(例如勒索软件、蠕虫、键盘记录器、暴力恶意软件、无文件恶意软件等)来研究LLM的潜在误用。</li>
+<li>[ 185 ]演示了如何<strong>利用ChatGPT快速生成勒索软件</strong>。</li>
+<li>文献[ 22 ]探讨了不同的编码策略(例如,生成整个恶意软件,创建恶意软件功能)，并研究了<strong>LLM重写恶意代码的能力</strong>。研究结果表明，LLM在构建恶意软件方面表现优异。LLM可以生成相同语义内容的多个版本(恶意软件变体)，通过Virustotal AV (从4 %到55 %不等)具有不同的检测率。</li>
+</ul>
+<h2 id="Network-Level-Attacks"><a href="#Network-Level-Attacks" class="headerlink" title="Network-Level Attacks."></a>Network-Level Attacks.</h2><p>LLMs还可以用于发起网络攻击。利用LLM进行网络级攻击的一个普遍例子是网络钓鱼攻击[ 18、43]。</p>
+<ul>
+<li>[ 98 ]比较了使用GPT - 4的AI生成的钓鱼邮件和使用V - Triad创建的手工设计的钓鱼邮件，以及暴露于一般钓鱼邮件的对照组。结果表明，与通用邮件相比，<strong>无论是由AI生成的还是人工设计的个性化钓鱼邮件都具有更高的点击率</strong>。</li>
+<li>[ 144 ]研究了如何<strong>修改ChatGPT的输入可以影响生成邮件的内容</strong>，使其更具有说服力。</li>
+<li>Zhang等[ 96 ]通过<strong>使用ChatGPT为超过600名英国议会议员生成现实且具有成本效益的网络钓鱼消息</strong></li>
+<li>[ 286 ]讨论了<strong>传统的防御方法在LLMs时代如何失效</strong>。验证码挑战，包括扭曲的字母和数字，努力检测依赖文本和语音的聊天机器人。然而，LLMs可能会打破这些挑战，因为它们可以产生高质量的类人文本，并有效地模拟人类行为。</li>
+<li>文献[ 227 ]使用基于密度的聚类对HTTP横幅进行聚类，并<strong>创建基于文本的指纹</strong>，用于对扫描数据进行注释。当这些指纹与现有的数据库进行比较时，就可以识别新的物联网设备和服务器产品。</li>
+</ul>
+<h2 id="User-Level-Attacks"><a href="#User-Level-Attacks" class="headerlink" title="User-Level Attacks."></a>User-Level Attacks.</h2><p>LLM展示了它能够创造出令人信服但欺骗性的内容，以及在看似不相关的信息之间建立连接的能力。这就为恶意行为者提供了从事一系列有害活动的机会。</p>
+<p><strong>Misinformation.</strong></p>
+<ul>
+<li>过度依赖没有监督的LLM产生的内容引起了人们对在线内容安全性的严重担忧[ 197 ]。大量的研究集中于检测LLMs产生的误导信息。</li>
+<li>一些研究[ 35、297、313]揭示了LLMs生成的内容更难检测，并且可能使用更多的欺骗风格，可能造成更大的危害。</li>
+<li>[ 35 ]针对LLM产生的错误信息提出了一种分类方法并进行了验证。针对这些新出现的问题，也开发了应对措施和检测方法[ 297、271、40、258、36、330、19、148、254]。</li>
+</ul>
+<p><strong>Social Engineering.</strong></p>
+<p>LLMs不仅具有从训练数据中生成内容的潜力，而且还可以为社会工程学的攻击者提供了一个新的视角</p>
+<ul>
+<li>Zhang等[ 252 ]强调<strong>训练有素的LLM从文本中推断个人属性的能力</strong>，如地点、收入和性别等。它们还揭示了这些模型如何从看似良性的查询中提取个人信息。</li>
+<li>Tong等人[ 266 ]研究了<strong>LLMs生成的内容中可能包含用户信息</strong></li>
+<li>Polra Victor Falade [ 75 ]指出，LLM驱动的社会工程涉及心理操纵、定向钓鱼和真实性危机等策略。</li>
+</ul>
+<p><strong>Scientific Misconduct.</strong></p>
+<p>不负责任地使用LLMs可能会导致与科学不端行为有关的问题，这源于它们能够生成原始的、连贯的文本。</p>
+<p>学术共同体[ 45、256、206、46、170、71、191、214、86、134、217]囊括了来自不同国家的不同学科，引起了人们对LLMs时代科学不端行为检测难度增加的担忧。这些担忧源于LLMs具有产生连贯和原创性内容的先进能力，例如LLMs使用不可靠来源所产生的完整论文，这可能会在学术环境中被误用，从而使传统的学术不诚信识别方法[ 274、278、223]复杂化.</p>
+<p><strong>Fraud</strong></p>
+<p>网络犯罪分子设计了一个名为”欺诈GPT [ 75、10 ] “的新工具，它像ChatGPT一样运作，但却为网络攻击提供了便利。它缺乏ChatGPT的安全控制，在暗网和电报上以每月200美元或每年1700美元的价格出售。</p>
+<p>欺诈GPT可以创建与银行相关的欺诈电子邮件，暗示内容中存在恶意链接。它还可以列出经常被攻击的网站或服务，帮助黑客规划未来的攻击。</p>
+<p>网络犯罪工具WormGPT [ 52 ]提供了无限字符支持和聊天记忆保持等功能。该工具在机密数据集上进行了训练，重点关注与恶意软件相关和欺诈相关的数据。它可以指导网络犯罪分子实施商业邮件妥协( Business Email Compromise，BEC )攻击。</p>
+<blockquote>
+<p><strong>Finding IV.用户级别的攻击是最普遍的，有33篇论文。这种优势可以归因于LLMs具有越来越类似人类的推理能力，使其能够生成类似人类的对话和内容(例如,科学不端行为、社会工程等)。</strong></p>
+</blockquote>
+<h1 id="6-Vulnerabilities-and-Defenses-in-LLMs"><a href="#6-Vulnerabilities-and-Defenses-in-LLMs" class="headerlink" title="6. Vulnerabilities and Defenses in LLMs"></a>6. Vulnerabilities and Defenses in LLMs</h1><p>在深入探究可能针对LLMs的潜在漏洞和攻击。我们的研究试图将这些威胁分为两个不同的组：人工智能模型固有漏洞和非人工智能模型固有漏洞。</p>
+<h2 id="6-1-Vulnerabilities-and-Threats-in-LLMs"><a href="#6-1-Vulnerabilities-and-Threats-in-LLMs" class="headerlink" title="6.1. Vulnerabilities and Threats in LLMs"></a>6.1. Vulnerabilities and Threats in LLMs</h2><p><img src="/2024/02/26/%E3%80%90%E8%AE%BA%E6%96%87%E3%80%91A-Survey-on-Large-Language-Model-LLM-Security-and-Privacy-The-Good-the-Bad-and-the-Ugly%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89/image-20240226203238243.png" alt="Taxonomy of Threats and the Defenses. The line represents a defense technique that can defend against either a specific attack or a group of attacks."></p>
+<h3 id="A1-Adversarial-Attacks"><a href="#A1-Adversarial-Attacks" class="headerlink" title="(A1) Adversarial Attacks"></a>(A1) Adversarial Attacks</h3><p>机器学习中的对抗攻击是指一系列用于<strong>有意操纵或欺骗机器学习模型的技术和策略</strong>。这些攻击通常是以恶意意图进行的，目的是利用模型行为中的漏洞。我们只关注讨论最广泛的攻击，即数据投毒和后门攻击。</p>
+<p><strong>数据中毒</strong></p>
+<p>数据投毒是指攻击者通过向训练数据集中注入恶意数据来影响训练过程。这可能会引入漏洞或偏见，损害所产生模型的安全性、有效性或道德行为[ 197 ]。</p>
+<p><font color='red'>各种研究[ 141 , 281 , 280 , 2 , 282 , 230]已经证明，预训练的模型很容易通过使用不可信的权重或内容等方法妥协，包括将中毒的例子插入到他们的数据集中。**由于LLM固有的预训练模型性质，容易受到数据中毒攻击[ 218、242、236]**。</font></p>
+<ul>
+<li>例如，Alexander等人[ 281 ]的研究表明，即使只有100个中毒的例子，LLMs也可以在不同的任务中产生一致的负面结果或有缺陷的输出。<strong>较大的语言模型更容易中毒，而现有的防御措施，如数据过滤或模型容量减少，在损害测试准确性的同时，只能提供适度的保护</strong>。</li>
+</ul>
+<p><strong>后门攻击</strong></p>
+<p>后门攻击涉及对训练数据和模型处理的恶意操纵，创建了一个漏洞，攻击者可以将隐藏的后门嵌入到模型中[ 311 ]。后门攻击和数据投毒攻击涉及操纵机器学习模型，其中可以包括对输入的操纵。然而，关键的区别在于，后门攻击特别注重在模型中引入隐藏的触发器，以在遇到触发器时操纵特定的行为或响应。</p>
+<ul>
+<li><font color='red'>LLMs受到后门攻击[ 154、320 ]。例如，Yao等人[ 318 ]提出了一种双向后门，它将触发机制与及时调整相结合。</font></li>
+</ul>
+<h3 id="A2-Inference-Attacks"><a href="#A2-Inference-Attacks" class="headerlink" title="(A2) Inference Attacks."></a>(A2) Inference Attacks.</h3><p>机器学习背景下的推理攻击是指攻击者试图通过<strong>对机器学习模型进行特定的查询或观测来获得关于机器学习模型或其训练数据的敏感信息或洞察力的一类攻击</strong>。攻击往往利用来自响应的非预期信息泄漏。</p>
+<p><strong>属性推断攻击</strong></p>
+<p>属性推断攻击[ 199、172、128、249、174、153]是攻击者试图通过分析机器学习模型的行为或响应来推断个人或实体的敏感或个人信息的一类威胁。它对LLMs同样有效。</p>
+<ul>
+<li><font color='red'>Robin等人[ 252 ]首次全面考察了预训练的LLMs从文本中推断个人信息的能力。使用真实的Reddit个人资料数据集，研究表明，当前的LLMs可以准确地推断多种个人信息(例如,地点,收入,性别)，并且具有较高的准确性。</font></li>
+</ul>
+<p><strong>成员关系推断</strong></p>
+<p>成员推断攻击是数据安全与隐私领域的一种特定类型的推断攻击，在给定模型的白&#x2F;黑盒访问和特定数据记录[ 241、67、138、84、83、182]的情况下，判断数据记录是否为模型训练数据集的一部分。</p>
+<p>这些研究通过分析标签[ 42 ]、确定阈值[ 115、28、95 ]、制定通用公式[ 269 ]等方法探索了各种成员推断攻击。</p>
+<ul>
+<li>Mireshghallah等人[ 183 ]发现，与微调较小的适配器相比，微调模型的头部对攻击表现出更大的敏感性。</li>
+</ul>
+<h3 id="A3-Extraction-Attacks"><a href="#A3-Extraction-Attacks" class="headerlink" title="(A3) Extraction Attacks."></a>(A3) Extraction Attacks.</h3><p>提取攻击通常是指攻击者试图从机器学习模型或其关联数据中提取敏感信息或洞察力。提取攻击旨在直接获取特定资源(例如,模型梯度、训练数据等)或机密信息。推理攻击通常通过观察模型的响应或行为来获得关于模型或数据特征的知识或见解。</p>
+<p>存在多种类型的数据提取攻击，包括模型窃取攻击[ 125、132 ]、梯度泄露[ 151 ]和训练数据提取攻击[ 29 ]。观察到<strong>训练数据提取攻击可能对LLMs有效</strong>。训练数据抽取[ 29 ]是指攻击者试图通过策略性地查询机器学习模型，从模型的训练数据中检索特定的个体样本的方法。</p>
+<p><font color='red'>大量研究[ 333、201、315]的研究表明，从LLMs中提取训练数据是可能的，这些数据可能包括个人和私人信息[ 108、328 ]。值得注意的是，Truong等人[ 270 ]的工作突出了其在不访问原始模型数据的情况下复制模型的能力。</font></p>
+<h3 id="A4-Bias-and-Unfairness-Exploitation"><a href="#A4-Bias-and-Unfairness-Exploitation" class="headerlink" title="(A4) Bias and Unfairness Exploitation."></a>(A4) Bias and Unfairness Exploitation.</h3><p>LLMs中的偏见和不公平现象是指这些模型表现出偏见结果或歧视行为的现象。虽然偏见和公平问题并不是LLMs独有的，但由于伦理和社会问题，它们受到了更多的关注。</p>
+<p>多项研究[ 260、272 ]揭示了查询LLMs时使用的语言存在偏倚。Urman等人[ 273 ]发现，偏差可能来自对政府审查准则的遵守。涉及LLM的专业写作[ 283、254、78 ]的偏见也是社会关注的问题，因为它会显著损害可信度。LLMs的偏见也可能导致基于文本应用以外的领域产生消极的副作用。Dai等[ 47 ]注意到LLMs生成的内容可能会在神经检索系统中引入偏差，Huang等[ 107 ]发现LLM生成的代码也可能存在偏差。</p>
+<h3 id="A5-Instruction-Tuning-Attacks"><a href="#A5-Instruction-Tuning-Attacks" class="headerlink" title="(A5) Instruction Tuning Attacks."></a>(A5) Instruction Tuning Attacks.</h3><p>指令微调，也称为基于指令的微调，是一种机器学习技术，用于在微调过程中通过提供显式指令或示例来训练和适应特定任务的语言模型。在LLMs中，指令微调攻击是指针对指令微调LLMs的一类攻击或操作。</p>
+<p><strong>越狱</strong></p>
+<p>在LLMs中，越狱涉及绕过安全特性，解锁能力通常受安全协议的限制。大量的研究已经证明了各种方法可以成功地攻破LLMs [ 152、262、239 ]。</p>
+<ul>
+<li>Wei等人[ 292 ]强调LLMs的对齐能力可以通过语境演示来影响或操纵。</li>
+<li>[ 291、127]的几项研究也展示了使用各种方法进行类似的操作，突出了可以越狱LLMs的方法的多功能性。</li>
+<li>在越狱LLMs的过程中，还采用了多种方法，如进行模糊测试[ 317 ]、实施优化的搜索策略[ 341 ]，甚至专门训练LLMs来越狱其他LLMs [ 53、341 ]。</li>
+<li>Cao等人[ 27 ]提出了RA - LLM，该方法可以在不需要重新训练或获取模型参数的情况下，降低对抗和越狱提示的成功率。</li>
+</ul>
+<p><strong>提示注入</strong></p>
+<p>提示注入攻击描述了一种操纵LLMs行为的方法。这项技术涉及以绕过模型的保障措施或触发非期望产出的方式来制定输入提示。</p>
+<ul>
+<li>大量的研究[ 168、321、130、290、164、119]已经实现了对不同焦点提示注入中语义保持有效负载识别过程的自动化。</li>
+<li>在微调能力的促进下，后门可以通过及时攻击[ 12、128、335、234 ]引入</li>
+<li>[ 88 ]对LLM调用外部资源产生新漏洞的可能性表示担忧</li>
+<li>其他研究也证明了利用提示注入攻击的能力，例如揭开引导提示[ 331 ]，虚拟提示注入[ 309 ]和集成应用程序[ 169 ]</li>
+</ul>
+<p><strong>拒绝服务</strong></p>
+<p>拒绝服务( Denial of Service，DoS )攻击是一种旨在耗尽计算资源，导致延迟或渲染资源不可用的网络攻击。</p>
+<ul>
+<li>由于LLMs的性质需要大量的资源，攻击者故意使用构造提示来降低模型的可用性[ 58 ]</li>
+<li>[ 243 ]证明了在LLMs领域进行海绵攻击的可能性，特别是为了最大化能耗和延迟( 10 ~ 200倍)。该策略旨在提请社区关注其对自动驾驶汽车的潜在影响，以及需要及时做出决策的场景。</li>
+</ul>
+<blockquote>
+<p><strong>Finding V.目前，针对模型提取攻击[ 67 ]、参数提取攻击或其他中间结果提取攻击[ 270 ]的研究有限。LLMs中参数的庞大规模使这些传统方法变得更加复杂，从而降低了它们的有效性，甚至是不可行的。此外，最强大的LLMs是私有的，它们的权重、参数和其他细节都是保密的，这进一步屏蔽了它们的常规攻击策略。即使是黑盒的传统ML攻击也会受到挑战，因为它限制了攻击者的执行能力</strong></p>
+</blockquote>
+<h3 id="A6-远程代码执行-Rce"><a href="#A6-远程代码执行-Rce" class="headerlink" title="( A6 )远程代码执行( Rce )"></a>( A6 )远程代码执行( Rce )</h3><p>RCE攻击通常针对软件应用、Web服务或服务器中的漏洞，以远程执行任意代码。虽然RCE攻击通常不能直接应用于LLM，但如果一个LLM被集成到一个Web服务( e.g . , https : &#x2F; &#x2F; Chat.openai.com &#x2F;)中，并且该服务的底层基础设施或代码中存在RCE漏洞，则可能会导致LLM的环境受到损害。Tong等人[ 166 ]在6个框架中识别出13个漏洞，包括12个RCE漏洞和1个任意文件读写方法漏洞。此外，在51个测试应用中发现17个存在漏洞，其中16个易受RCE攻击，1个易受SQL注入攻击。</p>
+<h3 id="A7-Side-Channel"><a href="#A7-Side-Channel" class="headerlink" title="(A7) Side Channel."></a>(A7) Side Channel.</h3><p>虽然LLMs本身通常不会通过功耗或电磁辐射等传统侧信道泄漏信息，但在实际部署场景中，它们可能容易受到某些侧信道攻击。</p>
+<ul>
+<li><font color='red'>[ 51 ]引入了隐私侧信道攻击，这是一种利用系统级组件(例如,数据过滤、输出监控等)以远高于单机模型所能实现的速度提取隐私信息的攻击。提出了覆盖整个ML生命周期的4类侧信道，<strong>实现了增强型成员推断攻击和新型威胁(例如,提取用户的测试查询)</strong></font>例如，该研究展示了在应用差分隐私训练之前，如何去重训练数据，从而创建一个损害隐私保证的侧通道。</li>
+</ul>
+<h3 id="A8-Supply-Chain-Vulnerabilities"><a href="#A8-Supply-Chain-Vulnerabilities" class="headerlink" title="(A8) Supply Chain Vulnerabilities."></a>(A8) Supply Chain Vulnerabilities.</h3><p>供应链脆弱性是指<strong>LLM应用在生命周期中由于使用易受攻击的组件或服务而可能产生的风险</strong>。其中包括第三方数据集、预训练模型和插件，其中任何一个都可能损害应用程序的完整性[ 197 ]。</p>
+<p>LLM插件是增强LLM功能的扩展或附加模块。开发了第三方插件来扩展其功能，使用户能够执行各种任务，包括网页搜索、文本分析和代码执行。然而，安全专家[ 197、25 ]提出的一些担忧包括插件被用于窃取聊天记录、访问个人信息或在用户机器上执行代码的可能性。这些漏洞与插件中OAuth的使用有关，OAuth是一个跨在线帐户数据共享的Web标准。Umar等人[ 110 ]试图通过设计一个框架来解决这个问题。该框架制定了针对LLM平台的攻击的广泛分类，同时考虑了插件、用户和LLM平台本身的能力。通过考虑这些利益相关者之间的关系，该框架有助于识别潜在的安全、隐私和安全风险。</p>
+<h2 id="6-2-Defenses-for-LLMs"><a href="#6-2-Defenses-for-LLMs" class="headerlink" title="6.2. Defenses for LLMs"></a>6.2. Defenses for LLMs</h2><h3 id="6-2-1-Defense-in-Model-Architecture"><a href="#6-2-1-Defense-in-Model-Architecture" class="headerlink" title="6.2.1. Defense in Model Architecture"></a>6.2.1. Defense in Model Architecture</h3><p>模型架构决定了知识和概念是如何存储、组织和上下文交互的，这对于大型语言模型的安全性至关重要。关于模型容量如何影响LLMs的隐私保护和鲁棒性，已经有大量的工作[ 158、339、160、322]进行了深入研究。</p>
+<ul>
+<li>Li等人[ 158 ]揭示了使用适当的非标准超参数，与较小的模型相比，具有<strong>较大参数规模的语言模型可以更有效地以差分隐私的方式进行训练</strong>。</li>
+<li>Zhu et al [ 339 ]和Li et al [ 160 ]发现具有较大容量的LLMs，例如具有<strong>更广泛的参数规模的LLMs，通常表现出对对抗攻击更高的鲁棒性</strong>。Yuan等人在Out - of - distribution ( OOD )鲁棒性场景中也验证了这一点[ 322 ]。</li>
+</ul>
+<p>除了LLMs本身的架构，研究集中在通过将它们与外部模块相结合来提高LLM的安全性，包括知识图谱[ 39 ]和认知架构( CAs ) [ 143、11 ]。</p>
+<ul>
+<li>Romero等[ 222 ]提出通过将多种认知架构融入LLM来提高人工智能的鲁棒性。</li>
+<li>Zafar等人[ 325 ]旨在通过知识图谱增强LLMs的推理能力来建立AI中的信任。</li>
+</ul>
+<h3 id="6-2-2-Defenses-in-LLM-Training-and-Inference"><a href="#6-2-2-Defenses-in-LLM-Training-and-Inference" class="headerlink" title="6.2.2. Defenses in LLM Training and Inference"></a>6.2.2. Defenses in LLM Training and Inference</h3><h4 id="LLM训练中的防御策略"><a href="#LLM训练中的防御策略" class="headerlink" title="LLM训练中的防御策略"></a>LLM训练中的防御策略</h4><p>LLM训练的核心部件包括模型架构、训练数据和优化方法。在模型架构方面，我们研究了可信赖的设计，这些设计表现出对恶意使用的鲁棒性增强。对于训练语料，我们的研究主要集中在训练数据的生成、收集和清洗过程中减少不期望属性的方法上。在优化方法方面，我们回顾了开发安全和有保障的优化框架的现有工作。</p>
+<p><strong>Corpora Cleaning</strong></p>
+<p>LLMs是由它们的训练语料形成的，它们从训练语料中学习行为、概念和数据分布[ 293 ]。训练语料[ 85、195 ]的质量对LLMs的安全性有着至关重要的影响。然而，人们普遍认为从网络上收集的原始语料充满了公平性[ 14 ]、毒性[ 87 ]、隐私性[ 199 ]、真实性[ 162 ]等问题。</p>
+<p> [ 124、295、145、296、204、268]<strong>为LLMs清洗原始语料并创建高质量的训练语料做出了大量的努力</strong>。一般来说，这些流水线由以下几个步骤组成：语种识别[ 124、9 ]、脱毒[ 87、48、171、186]、除偏[ 179、21、16 ]、.去识别(个人身份信息( PII )) ) [ 255、275 ]，去重[ 146、129、102、150]。除偏和脱毒旨在从训练语料中去除不理想的内容。</p>
+<p><strong>Optimization Methods.</strong></p>
+<p>优化目标对于指导LLM如何从训练数据中学习，影响哪些行为受到鼓励或惩罚至关重要。这些目标影响了语料库中知识和概念的优先排序，最终影响了LLMs的整体安全性和伦理一致性。</p>
+<ul>
+<li>在此背景下，对抗训练[ 167、284、338、319、156]和鲁棒微调[ 65、116 ]等鲁棒训练方法已显示出对基于扰动的文本攻击的弹性。</li>
+<li>受图像领域传统对抗训练的启发[ 173 ]，[ 111 ]和[ 319 ]将<strong>对抗训练应用到LLMs中，通过生成关于离散令牌的扰动</strong>。</li>
+<li>[ 284 ]将该方法推广到连续嵌入空间，使其更具有实际收敛性，随后的研究[ 167、338、156 ]也是如此</li>
+<li>安全对齐[ 196 ]，一种新兴的学习范式，使用良好对齐的附加模型或人类注释来指导LLM行为，证明了伦理对齐的有效性。</li>
+<li>在人工标注方面，Zhou et al . [ 337 ]和Shi et al . [ 240 ]强调了<strong>高质量的训练语料和精心策划的指令和输出对于增强LLMs的指令跟随能力的重要性</strong>。</li>
+<li>[ 20 ]强调，通过在微调过程中<strong>引入有限比例的(例如, 3 %)安全样本</strong>，可以显著提高LLMs的安全性。</li>
+</ul>
+<h4 id="LLM推理中的防御策略"><a href="#LLM推理中的防御策略" class="headerlink" title="LLM推理中的防御策略"></a>LLM推理中的防御策略</h4><p>推理防御包括一系列策略，包括对提示和指令进行预处理以过滤或修改输入，检测可能信号误用或问题查询的异常事件，以及对生成的响应进行后处理以确保它们符合安全和道德准则。对于维护实时应用中LLM的完整性和可信性至关重要。</p>
+<p><strong>Instruction Processing (Pre-Processing).</strong></p>
+<p>指令预处理是对用户发送的指令进行变换，以破坏潜在的对抗上下文或恶意意图。它起着至关重要的作用，因为它阻止了大多数恶意使用和防止LLM收到可疑指令。</p>
+<p>指令预处理方法可以分为指令操作[ 237、221、135、112、307]、净化[ 157 ]和防御性演示[ 163、184、292]。</p>
+<ul>
+<li>Jain等人[ 112 ]和Kirchenbauer等人[ 135 ]评估了多种针对越狱攻击的基线预处理方法，包括重令牌化和复述。</li>
+<li>Li等人[ 157 ]提出通过先对输入令牌进行掩码，然后与其他LLMs一起预测被掩码的令牌来净化指令。预测的令牌将作为纯化的指令。</li>
+<li>Wei等人[ 292 ]和Mo等人[ 184 ]证明了在指令中插入预定义的防御性证明可以有效地防御LLMs的越狱攻击。</li>
+</ul>
+<p><strong>Malicious Detection (In-Processing).</strong></p>
+<p>恶意检测提供了对LLM中间结果的深度检查，如神经元激活，与给定的指令有关，这些结果对恶意使用更敏感、更准确、更有针对性。</p>
+<ul>
+<li>Sun等人[ 257 ]提出用后向概率检测后门指令。</li>
+<li>Xi等人[ 301 ]从掩蔽敏感性的角度区分了正常指令和中毒指令。</li>
+<li>Shao等人[ 237 ]根据可疑词的文本相关性来识别可疑词。</li>
+<li>Wang等人[ 289 ]根据多代之间的语义一致性来检测对抗样本</li>
+<li>Duan等人[ 66 ]在LLMs的不确定性量化中对此进行了探索</li>
+<li>除了LLMs的内在特性外，还有一些工作利用了语言统计特性，例如检测孤立词[ 211 ]。</li>
+</ul>
+<p><strong>Generation Processing (Post-Processing).</strong></p>
+<p>生成后处理是指检查生成答案的属性(例如,危害性)，并在必要时进行修改，这是向用户交付答案之前的最后一步。</p>
+<ul>
+<li>Chen等[ 34 ]提出通过与多个模型候选物比较来减轻生成的毒性。</li>
+<li>[ 99 ]采用了个体LLMs来识别生成答案的危害性，他们揭示了LLMs可以被提示来回答关于生成答案的信心。</li>
+</ul>
+<blockquote>
+<p><strong>Finding VI.对于LLM训练中的防御，研究模型架构对LLM安全性影响的研究非常少，这可能是由于与训练或微调大型语言模型相关的高计算成本。我们观察到，安全指令微调是一个相对较新的发展，值得进一步研究和关注。</strong></p>
+</blockquote>
+<h1 id="7-Discussion"><a href="#7-Discussion" class="headerlink" title="7. Discussion"></a>7. Discussion</h1><h2 id="7-2-Future-Directions"><a href="#7-2-Future-Directions" class="headerlink" title="7.2 Future Directions"></a>7.2 Future Directions</h2><h3 id="使用Llms进行Ml-特定任务。"><a href="#使用Llms进行Ml-特定任务。" class="headerlink" title="使用Llms进行Ml -特定任务。"></a><strong>使用Llms进行Ml -特定任务</strong>。</h3><p>我们注意到，LLMs可以有效地替代传统的机器学习方法，在这种背景下，如果传统的机器学习方法可以应用于特定的安全应用(无论在本质上是进攻还是防守)，那么LLMs也很有可能应用于解决特定的挑战。例如，传统的机器学习方法已经在恶意软件检测中发现了效用，LLMs也可以用于此目的。</p>
+<p>因此，一个有前途的途径是利用LLMs在安全应用中的潜力，其中机器学习是一个基础或广泛采用的技术。<strong>作为安全研究人员，我们有能力设计基于LLM的方法来解决安全问题</strong>。随后，我们可以将这些方法与最先进的方法进行比较，以推动边界。</p>
+<h3 id="取代了人类的努力"><a href="#取代了人类的努力" class="headerlink" title="取代了人类的努力"></a><strong>取代了人类的努力</strong></h3><p>显而易见，LLMs在进攻和防守安全应用中都具有替代人类努力的潜力。例如，涉及社会工程的任务，传统上依赖于人工干预，现在可以使用LLM技术有效地执行。因此，安全研究人员的一个有前途的途径是<strong>确定传统安全任务中人类参与的关键领域，并探索用LLM能力替代这些人类努力的机会</strong>。</p>
+<h3 id="修改针对LLMs的传统ML攻击"><a href="#修改针对LLMs的传统ML攻击" class="headerlink" title="修改针对LLMs的传统ML攻击"></a>修改针对LLMs的传统ML攻击</h3><p>我们观察到LLMs中的许多安全漏洞是在传统机器学习场景中发现的漏洞的扩展。也就是说，<strong>LLMs仍然是深度神经网络的一个特殊实例，继承了对抗攻击和指令调整攻击等常见漏洞</strong>。在正确调整(例如,威胁模型)的情况下，<strong>传统的ML攻击仍然可以有效地对抗LLM</strong>。例如，越狱攻击是一种特定形式的指令调优攻击，旨在产生受限文本。</p>
+<h3 id="对Llms采用传统的ml防御"><a href="#对Llms采用传统的ml防御" class="headerlink" title="对Llms采用传统的ml防御"></a>对Llms采用传统的ml防御</h3><p>传统上用于缓解脆弱性的对策也可以用来解决这些安全问题。例如，现有的努力是<strong>利用传统的隐私增强技术(例如,零知识证明、差分隐私和联邦学习)来解决LLMs带来的隐私挑战</strong>。探索额外的PETs技术，不论是建立的方法还是创新的方法，以应对这些挑战代表了另一个有前途的研究方向。</p>
+<h3 id="解决Llm-specific攻击中的挑战"><a href="#解决Llm-specific攻击中的挑战" class="headerlink" title="解决Llm - specific攻击中的挑战"></a>解决Llm - specific攻击中的挑战</h3><p>如前所述，<strong>实现模型提取或参数提取攻击(例如,大规模的LLM参数、强大的LLM的私有性和保密性等)存在若干挑战</strong>。LLMs引入的这些新特性代表了这一格局的重大转变，可能导致新的挑战，需要<strong>对传统的ML攻击方法进行进化</strong>。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 zxy
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
