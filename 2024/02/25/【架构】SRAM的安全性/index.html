@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022） | Xinyao</title>
-  <meta name="keywords" content=" TEE , 论文 ">
-  <meta name="description" content="【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022） | Xinyao">
+  <title>【架构】SRAM的安全性 | Xinyao</title>
+  <meta name="keywords" content=" 安全 , 架构 ">
+  <meta name="description" content="【架构】SRAM的安全性 | Xinyao">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="勇攀高峰">
 <meta property="og:type" content="website">
@@ -612,9 +612,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-【TEE论文】HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment（USENIX-ATC-2022）" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-【架构】SRAM的安全性" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）</h1>
+        <h1 class="article-title">【架构】SRAM的安全性</h1>
     
     <div class="article-meta">
         
@@ -624,7 +624,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="论文记录">论文记录</a>
+            <a  data-rel="知识总结">知识总结</a>
             
         </span>
         
@@ -632,16 +632,16 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">TEE</a>
+            <a class="color3">安全</a>
             
-            <a class="color3">论文</a>
+            <a class="color3">架构</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-02-25 20:08:29'>2024-02-25 20:07</time>
+            发布时间 : <time class="date" title='最后更新: 2024-02-25 23:23:21'>2024-02-25 22:55</time>
         
     </div>
     <div class="article-meta">
@@ -663,7 +663,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E6%9C%BA"><span class="toc-text">动机</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E7%9B%AE%E6%A0%87"><span class="toc-text">设计目标</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A8%81%E8%83%81%E6%A8%A1%E5%9E%8B"><span class="toc-text">威胁模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E7%9B%AE%E6%A0%87-1"><span class="toc-text">设计目标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%92%8C%E4%BF%9D%E6%8A%A4"><span class="toc-text">内存管理和保护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%81%B5%E6%B4%BB%E7%9A%84%E9%A3%9E%E5%9C%B0%E6%93%8D%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="toc-text">灵活的飞地操作模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E4%BF%A1%E5%90%AF%E5%8A%A8"><span class="toc-text">可信启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A3%9E%E5%9C%B0SDK"><span class="toc-text">飞地SDK</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-text">实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0"><span class="toc-text">评估</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%96%E7%95%8C%E5%88%87%E6%8D%A2%E6%80%A7%E8%83%BD"><span class="toc-text">世界切换性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#P-Enclave-use-cases-exception-handling"><span class="toc-text">P-Enclave use cases: exception handling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9C%9F%E5%AE%9E%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD"><span class="toc-text">真实工作负载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Side-Channel-Attack-Resilient-Design-of-a-10T-SRAM-Cell-in-7nm-FinFET-Technology"><span class="toc-text">Side-Channel Attack Resilient Design of a 10T SRAM Cell in 7nm FinFET Technology</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Location-Location-Location-Revisiting-Modeling-and-Exploitation-for-Location-Based-Side-Channel-Leakages"><span class="toc-text">Location, Location, Location: Revisiting Modeling and Exploitation for Location-Based Side Channel Leakages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Leakage-Power-Attack-Resilient-Symmetrical-8T-SRAM-Cell"><span class="toc-text">Leakage Power Attack-Resilient Symmetrical 8T SRAM Cell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Evaluation-of-fault-attack-detection-on-SRAM-based-FPGAs"><span class="toc-text">Evaluation of fault attack detection on SRAM-based FPGAs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SRAM-Security-and-Vulnerability-To-Hardware-Trojan-Design-Considerations"><span class="toc-text">SRAM Security and Vulnerability To Hardware Trojan: Design Considerations</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -679,155 +679,76 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E6%9C%BA"><span class="toc-text">动机</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E7%9B%AE%E6%A0%87"><span class="toc-text">设计目标</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A8%81%E8%83%81%E6%A8%A1%E5%9E%8B"><span class="toc-text">威胁模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E7%9B%AE%E6%A0%87-1"><span class="toc-text">设计目标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%92%8C%E4%BF%9D%E6%8A%A4"><span class="toc-text">内存管理和保护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%81%B5%E6%B4%BB%E7%9A%84%E9%A3%9E%E5%9C%B0%E6%93%8D%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="toc-text">灵活的飞地操作模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E4%BF%A1%E5%90%AF%E5%8A%A8"><span class="toc-text">可信启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A3%9E%E5%9C%B0SDK"><span class="toc-text">飞地SDK</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-text">实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0"><span class="toc-text">评估</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%96%E7%95%8C%E5%88%87%E6%8D%A2%E6%80%A7%E8%83%BD"><span class="toc-text">世界切换性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#P-Enclave-use-cases-exception-handling"><span class="toc-text">P-Enclave use cases: exception handling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9C%9F%E5%AE%9E%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD"><span class="toc-text">真实工作负载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></div></p>
-<h1 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h1><p>现有的TEE存在问题：</p>
-<ul>
-<li>需要硬件更改</li>
-<li>闭源，难以审查</li>
-<li>飞地以固定模式运行，难以灵活适应不同工作负载</li>
-</ul>
-<h1 id="设计目标"><a href="#设计目标" class="headerlink" title="设计目标"></a>设计目标</h1><ul>
-<li>G1：最小化硬件修改<ul>
-<li>硬件虚拟化+TPM</li>
-<li>跨平台</li>
-</ul>
-</li>
-<li>G2：容易开发<ul>
-<li>SGX兼容</li>
-<li>移植现有的SGX程序只需要很少或不需要代码更改</li>
-</ul>
-</li>
-<li>G3：灵活的飞地模式<ul>
-<li>更好地满足特定飞地工作负载的需求</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/079655aceaaf459698044500f1afb19c.png"></p>
-<h1 id="威胁模型"><a href="#威胁模型" class="headerlink" title="威胁模型"></a>威胁模型</h1><ul>
-<li>系统最初正常：启动后可能是被损害</li>
-<li>恶意软件：应用，OS内核，飞地恶意软件</li>
-<li>特定物理攻击：冷启动，总线窥探攻击</li>
-<li>特定侧信道攻击：基于页表的攻击</li>
-<li>不考虑：拒绝服务攻击，其他侧信道（cache timing,speculative execution）</li>
-</ul>
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
-<li>RustMonitor：VMX root,ring-0</li>
-<li>Normal VM：VMX non-root，ring-0&amp;ring-3</li>
-<li>Enclave：灵活性<ul>
-<li>VMX non-root, ring-3 (GU-Enclave)</li>
-<li>VMX non-root, ring-0 (P-Enclave)</li>
-<li>VMX root, ring-3 (HU-Enclave)</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/fc8189bacb214d64b6179140fae34ca7.png"></p>
-<h1 id="设计目标-1"><a href="#设计目标-1" class="headerlink" title="设计目标"></a>设计目标</h1><h2 id="内存管理和保护"><a href="#内存管理和保护" class="headerlink" title="内存管理和保护"></a>内存管理和保护</h2><ul>
-<li><p>现有设计，飞地的页表由不可信OS管理，存在内存映射攻击（操纵地址映射）<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/9e977d2b5b5542ff953a60955a2daf04.png"></p>
-</li>
-<li><p><strong>SGX扩展</strong>Page Missing Handler (PMH)并引入新的元数据EPCM用于TLBmiss时的额外安全检查；然而飞地页表错误由OS处理，这种设计容易收到基于页表的攻击，比如受控信道攻击；<strong>SGX2</strong>支持动态飞地内存管理，通过OCALL发送EDMM请求给SGX driver，driver不可信，因此需要大量检查，涉及到Enclave模式切换，开销大<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/863d87844d4f4c47a3a165a786f43a58.png"></p>
-</li>
-<li><p>上述问题的根源在于，飞地的页表和页故障由OS管理，在HyperEncalave中，实现飞地页表的隔离，RustMonitor代替OS来管理飞地的页表和页故障，正常VM的页表仍然由OS管理。<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/6db2bda098b4469fa0a21e8ea6c13891.png"></p>
-</li>
-<li><p>上述方法存在新的挑战：enclave可以访问普通应用程序的整个地址空间。因此，普通应用程序的页表映射发生改变的时候，更新的映射需要同步到enlave的页表<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/25420595ec274389b9673531c77902de.png"></p>
-</li>
-<li><p>为了消除同步开销，在应用空间预分配和enclave共享的marshalling buffer，enclave和application之间的数据交换通过marshalling buffer进行，这样application的内存映射就不需要包含在enclave的页表中，这种设计还减轻了enclave的恶意软件攻击，因为enclave无法访问application的地址空间</p>
-</li>
-</ul>
-<p><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/a57dd9f260dd41c7be4b96aaa957ab60.png"></p>
-<ul>
-<li><p>内存隔离机制，normal VM的application内存通过Nested paging管理，enclave内存通过Nested paging或正常额1级地址转换管理。满足以下安全需求：<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/3a2d344f0a3640ed9ffc9cd5e3bfe8ea.png"></p>
-<ul>
-<li>R1：不允许主OS和application访问属于 RustMonitor 和 enclave 的物理内存。</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/fdc6ccb2407548b3b28e743388d38572.png"><br>    - R2：不允许安全区访问属于 RustMonitor 和其他安全区的物理内存。它被设计为只能访问与不受信任的应用程序共享的特定内存区域，以便进行参数传递。<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/a5e15bbb77f347feb4d5dbfd40562775.png"></p>
-<ul>
-<li>R3：从恶意外围设备到属于 RustMonitor 和Enclave的物理内存的DMA访问不被允许。为防止此类攻击，HyperEnclave 在IOMMU的支持下限制了外围设备使用的物理内存。<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/24f4a651faf84538afa96dc646359b76.png"></li>
-</ul>
-<h2 id="灵活的飞地操作模式"><a href="#灵活的飞地操作模式" class="headerlink" title="灵活的飞地操作模式"></a>灵活的飞地操作模式</h2><ul>
-<li>大量不同的应用需求不同，TEE需要更好的满足不同飞地工作负载的需求<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/49a7037750c04b34b0ed01c5e8d0da1f.png"><br>大多数现有的TEE运行在固定模式（Intel SGX,TrustVisor,Secage)，不能使用于不同应用；用户模式的飞地不能访问特权资源，需要切换到不可信代码，从而访问特权资源或处理异常，上下文切换昂贵。<br>HyperEnclave支持三种飞地操作模式：</li>
-<li>①GU-Enclaves 客户机用户模式；VMX non-root, ring-3;</li>
-<li>② P-Enclaves客户机特权模式或可选客户机用户模式; VMX non-root, ring-0</li>
-<li>③HU-Enclaves主机用户模式；VMX root, ring-3<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/3723ad3990394aa48332f36a862ed8e5.png"></li>
-</ul>
-<p><strong>P-Encalve</strong></p>
-<ul>
-<li>访问特权资源<ul>
-<li>IDT</li>
-<li>页表</li>
-</ul>
-</li>
-<li>处理特权事件<ul>
-<li>中断</li>
-<li>异常</li>
-</ul>
-</li>
-</ul>
-<p><strong>HU-Enclave</strong></p>
-<ul>
-<li>快速世界切换：hypercall (<del>880 cycles)–&gt;syscall (</del>120 cycles)</li>
-<li>无虚拟化开销</li>
-<li>适合IO密集和内存密集</li>
-</ul>
-<p><strong>世界切换</strong><br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/88e361826bc34839869b9b4da2a74161.png"></p>
-<h2 id="可信启动"><a href="#可信启动" class="headerlink" title="可信启动"></a>可信启动</h2><ul>
-<li>由静态不可修改代码CRTM执行测量链的启动，测量存储在TPM PCRs，任何修改都会被反映出来。</li>
-<li>为了减少PrimaryOS的攻击面，把RustMonitor镜像放在Initramfs，kernel module测量其镜像在early userspace并启动RustMonitor，同时确保RustMonitor加载的软件状态是可信的。</li>
-<li>RustMonitor加载后，RustMonitor设置其运行上下文并准备每个CPU的vCPU，启动的那个normal VM并将primary OS降级为Normal mode，然后返回kernel module，继续Normal mode的启动过程，意识不到RustMonitor的存在<br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/49df285bc0884f8397605c2d21c0f873.png"></li>
-</ul>
-<h2 id="飞地SDK"><a href="#飞地SDK" class="headerlink" title="飞地SDK"></a>飞地SDK</h2><p><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/7598f223e2944a7696f948ad953ed8bb.png"></p>
-<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/2a85a97b1162467bbdf009ff2985ccd4.png"></p>
-<h1 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h1><p><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/ac78294a82f0453386905f017841b2c1.png"></p>
-<h2 id="世界切换性能"><a href="#世界切换性能" class="headerlink" title="世界切换性能"></a>世界切换性能</h2><p><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/a3d79f18ef32446d8a65a058f10a2397.png"></p>
-<h2 id="P-Enclave-use-cases-exception-handling"><a href="#P-Enclave-use-cases-exception-handling" class="headerlink" title="P-Enclave use cases: exception handling"></a>P-Enclave use cases: exception handling</h2><p><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/f695f38a84bd49aa8a4e27a796dfb9d4.png"><br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/d78fdb0a4d964e198f9d5461767fdd36.png"></p>
-<h2 id="真实工作负载"><a href="#真实工作负载" class="headerlink" title="真实工作负载"></a>真实工作负载</h2><p><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/96f18d7a5e67494998e0f012a75114b3.png"><br><img src="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/de12d4e28af84adb883aca0d39d60ac3.png"></p>
-<h1 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h1><ul>
-<li>CURE也能支持不同飞地；修改系统总线区支持内存和外设的访问控制；cache划分防止侧信道<ul>
-<li>CURE需要改变CPU核以支持eid</li>
-<li>本文：不需要硬件或固件修改</li>
-</ul>
-</li>
-<li>很多工作用虚拟化扩展去支持隔离的执行环境<ul>
-<li>TrustVisor<ul>
-<li>只读的PAL页表页去防止内存映射攻击</li>
-<li>PAL注册和状态切换的开销大</li>
-<li>由于更新OAL页表的访问位和脏位，内存压力大时存在大量NPT违例，导致巨大开销</li>
-</ul>
-</li>
-<li>Inktag<ul>
-<li>hypervisor管理HAP页表，允许不可信OS向hypervisor发送请求以更新HAP页表</li>
-<li>Inktag和TrustVisor容易受到基于页表的攻击</li>
-<li>本文保护基于页表的攻击</li>
-</ul>
-</li>
-<li>AWS Nitro Enclaves<ul>
-<li>由主机KVM和Linux组成，主机Linux kernel总是可信的</li>
-<li>TCB大（包括device driver，guest IO，网络和块设备虚拟化）</li>
-<li>本文：最小化RustMonitor的TCB，执行基本的虚拟化和飞地管理，primary OS只需要在启动过程被信任，RustMonitor启动后primary OS被降级</li>
-</ul>
-</li>
-<li>Komodo和Keystone<ul>
-<li>Komodo（secure user mode）在TrustZone上实现类似SGX的飞地保护模型</li>
-<li>Keystone在RISC-V上实现定制化TEE（U-mode and S-mode）</li>
-<li>本文：支持灵活的飞地模式(guest ring-3, guest ring-0&#x2F;ring-3, and host ring-3)</li>
-</ul>
-</li>
-<li>ARMv9-A architecture的Realm Management Extension (RME)<ul>
-<li>monitor（EL3）强制secure、non-secure、Realm的物理内存隔离</li>
-<li>Realm Management Monitor (RMM)执行在EL2 in Realm security state (R-EL2)，通过2级页表隔离Realms</li>
-<li>与 HyperEnclave 类似，RMM 比典型的hypervisor简单得多，并且依赖于non-secure hypervisor进行设备仿真</li>
-<li>RME需要架构扩展，HyperEnclave不需要；HyperEnclave把信任链和CPU解耦</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/HyperEnclave">开源、兼容SGX的process-based TEE</a>：supports the process-based TEE model, and SGX programs can run on HyperEnclave with little or no code changes.</li>
-<li>灵活的飞地模式：supports the flexible enclave operation modes to fulfill various enclave workloads</li>
-</ul>
-<p>参考文献<br>[1] <a target="_blank" rel="noopener" href="https://www.usenix.org/sites/default/files/conference/protected-files/atc22_slides_jia_yuekai.pdf">https://www.usenix.org/sites/default/files/conference/protected-files/atc22_slides_jia_yuekai.pdf</a></p>
+        <p><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9453841">https://ieeexplore.ieee.org/abstract/document/9453841</a></p>
+<blockquote>
+<p>侧信道分析（SCA）攻击是对加密设备的强大威胁，因为它们利用了与其物理行为相关的内部敏感信息[1]，[2]。</p>
+</blockquote>
+<blockquote>
+<p>低级缓存（例如嵌入式存储器）在许多VLSI片上系统（SoC）[13]的面积和功耗中占主导地位，并且是许多加密系统的关键组件，例如智能卡[14]和采用加密算法的无线网络[15]，用于存储指令代码和数据。因此，安全嵌入式存储器的分析和设计至关重要。大多数系统的主流嵌入式存储器解决方案基于 6 晶体管 （6T） SRAM 宏单元。然而，传统的6T SRAM单元容易受到电源&#x2F;电磁分析攻击，因为它们会泄漏敏感信息，这是由于<strong>从存储器电源汲取的电流与其存储的数据之间的相关性</strong>[8]，[9]，[16]，[17]。</p>
+</blockquote>
+<blockquote>
+<p>安全静态随机存取存储器 （SRAM） 有助于实现安全目的：它们可以实例化为信任根的一部分，用于存储或引导加载系统、中间计算（L0、L1 缓存、寄存器文件、FIFO 等），或用于存储长期机密（片上 SRAM 宏）。它们还被用作构建基元来构建安全基元，例如 P&#x2F;T-RNG、存储或加载种子和 SRAM-PUF。</p>
+</blockquote>
+<blockquote>
+<p>在本文中，我们首先演示了如何使用PA攻击算法成功提取存储在传统6T SRAM宏中的数据，该算法利用了存储器内容与其电源电压[10]电流之间的相关性。这驳斥了常见的误解，即算法噪声或大型内存活动可以击退此类攻击。</p>
+</blockquote>
+<blockquote>
+<p>我们提出了一种安全的SRAM实现方案，该方案具有一种新型阻抗随机化单元，与传统的SRAM阵列相比，该单元可显著减少信息泄漏[10]。</p>
+</blockquote>
+<p><img src="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91SRAM%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/image-20240225225632115.png" alt="测量的相关系数随时间推移对每个数据进行猜测，说明秘密数据提取成功。"></p>
+<hr>
+<h2 id="Side-Channel-Attack-Resilient-Design-of-a-10T-SRAM-Cell-in-7nm-FinFET-Technology"><a href="#Side-Channel-Attack-Resilient-Design-of-a-10T-SRAM-Cell-in-7nm-FinFET-Technology" class="headerlink" title="Side-Channel Attack Resilient Design of a 10T SRAM Cell in 7nm FinFET Technology"></a><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/8884824">Side-Channel Attack Resilient Design of a 10T SRAM Cell in 7nm FinFET Technology</a></h2><blockquote>
+<p>集成电路的非侵入性侧信道攻击 （SCA） 多年来一直是一个令人担忧的问题，而漏电功率分析 （LPA） 是 IC 安全的主要威胁之一。对于SRAM模块，LPA将利用存储单元中的数据与其相应的泄漏功率之间的相关性，并可能解密加密系统内存中的密钥。包含敏感消息的SRAM存储器将受到LPA攻击的严重影响。已经提出了几种内存架构来缓解这个问题。</p>
+</blockquote>
+<blockquote>
+<p>本文基于最近的低功耗单端9T单元设计，提出了一种新的针对LPA的SRAM设计。讨论了9T电池的泄漏平衡问题，并提出了一种新的电池设计。仿真结果证实，所提出的SRAM单元保留了9T设计的优势，并具有均衡的泄漏行为，可防止SCA。</p>
+</blockquote>
+<hr>
+<h2 id="Location-Location-Location-Revisiting-Modeling-and-Exploitation-for-Location-Based-Side-Channel-Leakages"><a href="#Location-Location-Location-Revisiting-Modeling-and-Exploitation-for-Location-Based-Side-Channel-Leakages" class="headerlink" title="Location, Location, Location: Revisiting Modeling and Exploitation for Location-Based Side Channel Leakages"></a><a target="_blank" rel="noopener" href="https://link.springer.com/chapter/10.1007/978-3-030-34618-8_10">Location, Location, Location: Revisiting Modeling and Exploitation for Location-Based Side Channel Leakages</a></h2><blockquote>
+<p>Sugawara等[48]的工作证明了ASIC中存在基于位置的泄漏。特别是，它们表明芯片SRAM的功耗传达了有关正在访问的存储器地址的信息。他们将这种效应称为“几何”泄漏，因为它与内存布局有关。</p>
+</blockquote>
+<blockquote>
+<p>Andrikos等[2]使用ARM Cortex-M4的SRAM上显示的基于EM的位置泄漏进行了初步分析。</p>
+</blockquote>
+<blockquote>
+<p>Schlösser等[40]使用光子侧信道来恢复在激活AES Sbox查找表期间访问的确切SRAM位置。这种位置信息可以帮助密钥恢复，因此即使是光子发射分析的情况也可以归类为基于位置的泄漏。</p>
+</blockquote>
+<blockquote>
+<p>在我们的工作中，地址泄漏意味着寻址机制的泄漏，例如存储单元控制逻辑的泄漏。这种泄漏甚至可以在远离存储单元本身的地方观察到，例如在内存总线或 CPU 上。位置泄漏是指由这种地址泄漏和单元本身的泄漏引起的泄漏，这通常在它附近观察到。我们将后者称为“空间泄漏”，即位置泄漏同时包含了与地址相关的效应和空间效应。例如，访问内存中的表需要在 CPU 中进行索引和内存寻址（地址泄漏）。此外，访问会导致内存本身被激活（空间泄漏）。对手通常能够观察到这两种类型的泄漏，并且通常很难区分它们。</p>
+</blockquote>
+<blockquote>
+<p>1.我们提供了一个简单的模型来捕捉空间泄漏的影响。该模型的动机是在 ARM Cortex-M4 的 SRAM 中观察到的实验数据。<br>2.利用新建立的模型，我们模拟了增强或减少空间泄漏的不同理论场景。我们使用感知信息 （PI） 指标调查每个场景的安全性。<br>3.我们使用均值差分、多变量模板攻击和神经网络对现代 ARM Cortex-M4 的 SRAM 进行了首次基于位置的实际攻击。<br>4.我们展示了可以区分每个 128 字节的连续 SRAM 区域（成功率为 100%）和区分 256 个连续 SRAM 字节（成功率为 32%）的攻击。我们得出的结论是，基于EM位置的泄漏足以危及使用SRAM查找表的AES实现的安全性。</p>
+</blockquote>
+<hr>
+<h2 id="Leakage-Power-Attack-Resilient-Symmetrical-8T-SRAM-Cell"><a href="#Leakage-Power-Attack-Resilient-Symmetrical-8T-SRAM-Cell" class="headerlink" title="Leakage Power Attack-Resilient Symmetrical 8T SRAM Cell"></a><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/8374988">Leakage Power Attack-Resilient Symmetrical 8T SRAM Cell</a></h2><blockquote>
+<p>传统的SRAM单元容易受到侧沟道漏电功率攻击。为了提供对这些类型攻击的弹性，我们提出了一种对称的8T SRAM单元，它比传统的6T单元多包含两个晶体管，以显着降低存储数据与泄漏电流之间的相关性。</p>
+</blockquote>
+<blockquote>
+<p>对传统6T SRAM单元进行LPA攻击的主要机制是单元在保持模式下的不对称泄漏电流，具体取决于存储的数据和BL&#x2F;BLB电压。为了避免这种不对称性，并为两个数据电平产生类似的待机电流模式，我们提出了一种8T SRAM单元实现，以前用于提高读取速度[16]。</p>
+</blockquote>
+<blockquote>
+<p>在6T SRAM阵列上展示了泄漏电源攻击，并通过泄漏电流测量成功提取了数据，证明了其对安全应用的不可靠性。</p>
+</blockquote>
+<hr>
+<h2 id="Evaluation-of-fault-attack-detection-on-SRAM-based-FPGAs"><a href="#Evaluation-of-fault-attack-detection-on-SRAM-based-FPGAs" class="headerlink" title="Evaluation of fault attack detection on SRAM-based FPGAs"></a><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/7906747">Evaluation of fault attack detection on SRAM-based FPGAs</a></h2><blockquote>
+<p>本文介绍的工作是双重的。首先，我们提出了基于SRAM的FPGA故障检测机制的概念，该机制基于功能模块的冗余，这些模块将均匀地放置在FPGA平面图上，并组成故障检测网格。在下文中，我们介绍了基于SRAM的FPGA的配置存储器中的故障注入结果，该FPGA用于评估该检测模块的不同配置的检测能力。为此，故障注入是在本地按顺序翻转许多位，模拟激光攻击。为了演示这一概念，我们在 Xilinx 7 系列器件中实现了这一概念。</p>
+</blockquote>
+<blockquote>
+<p>在基于SRAM的FPGA中，存储在SRAM存储器中的配置容易受到单个或多个事件扰动的影响，这些事件可能会改变器件用户编程的电路，例如改变设计组合逻辑或信号路由。这些干扰既可以来自自然来源，如宇宙辐射，也可能来自攻击源，如电磁扰动或激光故障攻击。</p>
+</blockquote>
+<blockquote>
+<p>在基于SRAM的FPGA中，实现了不同的故障检测机制，旨在检测对安全敏感设计的激光故障攻击。据推测，经典的容错技术，如错误检测代码、模块化复制和三重复制，即使不应用于实现安全敏感功能的功能单元，也具有潜在的故障攻击检测机制，足以将任何异常情况作为警报传播到安全监督逻辑，以便可以激活进一步的缓解机制。</p>
+</blockquote>
+<hr>
+<h2 id="SRAM-Security-and-Vulnerability-To-Hardware-Trojan-Design-Considerations"><a href="#SRAM-Security-and-Vulnerability-To-Hardware-Trojan-Design-Considerations" class="headerlink" title="SRAM Security and Vulnerability To Hardware Trojan: Design Considerations"></a><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9184545">SRAM Security and Vulnerability To Hardware Trojan: Design Considerations</a></h2><blockquote>
+<p>探讨了静态随机存取存储器（SRAM）中发现的不同模块的漏洞，包括核心单元、检测放大器、复制逻辑和硬件木马的时序单元。我们详细讨论了SRAM的设计和布局，以探讨如何利用自由死区进行硬件木马插入。SRAM块包含一些可能的稀有信号，可用于触发故意插入的特洛伊木马。数据模式和地址序列与常规测试不可能的数据背景相结合，可以产生罕见的触发条件。</p>
+</blockquote>
+<blockquote>
+<p>攻击者可以发现并尝试利用这些漏洞引入硬件特洛伊木马并篡改嵌入式存储器中的数据完整性。由于SRAM在当今SoC中占据了最大的空间，因此其可靠性对SoC的整体性能起着关键作用。此外，SRAM使用最小几何形状的器件来增加密度，这使它们成为对缺陷最敏感的部件[2]。</p>
+</blockquote>
+<blockquote>
+<p>我们展示了在SRAM电路的设计过程中，对手有几次机会进行恶意修改或插入。研究了BIST架构以探索可用于绕过工业测试时方法的漏洞。我们探索了几个自由的死区来安装特洛伊木马电路，并讨论了特洛伊木马插入（功能和参数硬件特洛伊木马）的可行性。我们还实现了一个硬件原型，展示了如何通过操纵SRAM模块的比较器信号来篡改SRAM模块的时序。然而，精心设计的运行时方法，包括侧信道分析和功能测试，可以检测到这些特洛伊木马。</p>
+</blockquote>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
