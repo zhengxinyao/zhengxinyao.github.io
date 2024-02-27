@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>【TEE】片外内存保护：AES分组算法+MAC完整性验证 | Xinyao</title>
-  <meta name="keywords" content=" TEE , 内存保护 , 分组加密 ">
-  <meta name="description" content="【TEE】片外内存保护：AES分组算法+MAC完整性验证 | Xinyao">
+  <title>【LLM安全】PERSONAL LLM AGENTS的隐私和安全 | Xinyao</title>
+  <meta name="keywords" content=" LLM , 安全 ">
+  <meta name="description" content="【LLM安全】PERSONAL LLM AGENTS的隐私和安全 | Xinyao">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="勇攀高峰">
 <meta property="og:type" content="website">
@@ -680,9 +680,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-【TEE】片外内存保护：AES分组算法-MAC完整性验证" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-【LLM安全】LLM的隐私和安全" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">【TEE】片外内存保护：AES分组算法+MAC完整性验证</h1>
+        <h1 class="article-title">【LLM安全】PERSONAL LLM AGENTS的隐私和安全</h1>
     
     <div class="article-meta">
         
@@ -700,18 +700,16 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">TEE</a>
+            <a class="color4">LLM</a>
             
-            <a class="color5">内存保护</a>
-            
-            <a class="color5">分组加密</a>
+            <a class="color3">安全</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-02-25 20:06:02'>2024-02-25 20:05</time>
+            发布时间 : <time class="date" title='最后更新: 2024-02-27 12:29:45'>2024-02-27 11:03</time>
         
     </div>
     <div class="article-meta">
@@ -733,7 +731,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E6%94%BB%E5%87%BB%E9%9D%A2"><span class="toc-text">片外内存攻击面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%AF%86%E6%80%A7"><span class="toc-text">AES分组算法保护机密性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ECB%E6%A8%A1%E5%BC%8F%EF%BC%88%E7%94%B5%E5%AD%90%E5%AF%86%E7%A0%81%E6%9C%AC%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">1.ECB模式（电子密码本模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-CBC%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%AF%86%E7%A0%81%E5%88%86%E7%BB%84%E9%93%BE%E6%8E%A5%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">2.CBC模式（密码分组链接模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-CTR%E6%A8%A1%E5%BC%8F%EF%BC%88%E8%AE%A1%E6%95%B0%E5%99%A8%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">3.CTR模式（计数器模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-CFB%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%AF%86%E7%A0%81%E5%8F%8D%E9%A6%88%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">4.CFB模式（密码反馈模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-OFB%E6%A8%A1%E5%BC%8F%EF%BC%88%E8%BE%93%E5%87%BA%E5%8F%8D%E9%A6%88%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">5.OFB模式（输出反馈模式）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%9D%E6%8A%A4%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-text">保护完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Xom"><span class="toc-text">Xom</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E9%B2%9C%E6%80%A7%EF%BC%8CMerkel-Tree-%E9%98%B2%E9%87%8D%E6%94%BE"><span class="toc-text">新鲜性，Merkel Tree 防重放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%EF%BC%9ACounter%E7%9A%84%E5%8E%8B%E7%BC%A9%E6%A8%A1%E5%BC%8F"><span class="toc-text">优化：Counter的压缩模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%EF%BC%9AAISE"><span class="toc-text">优化：AISE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">其他优化方向</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%B0%E6%9C%89TEE%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4"><span class="toc-text">现有TEE完整性保护</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel-SGX"><span class="toc-text">Intel SGX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SGX-V2-Scalable-SGX"><span class="toc-text">SGX V2&#x2F;Scalable SGX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel-TDX-MLTME-AMD-SEV"><span class="toc-text">Intel TDX&#x2F;MLTME&#x2F;AMD SEV</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Confidentiality"><span class="toc-text">Confidentiality</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Local-Processing"><span class="toc-text">Local Processing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Secure-Remote-Processing"><span class="toc-text">Secure Remote Processing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Data-Masking"><span class="toc-text">Data Masking</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Information-Flow-Control"><span class="toc-text">Information Flow Control</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Integrity"><span class="toc-text">Integrity</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Adversarial-Attacks"><span class="toc-text">Adversarial Attacks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Backdoor-Attacks"><span class="toc-text">Backdoor Attacks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prompt-Injection-Attacks"><span class="toc-text">Prompt Injection Attacks</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reliability"><span class="toc-text">Reliability</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Problems"><span class="toc-text">Problems</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Improvement"><span class="toc-text">Improvement</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Inspection"><span class="toc-text">Inspection</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -749,274 +747,146 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>@<div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E6%94%BB%E5%87%BB%E9%9D%A2"><span class="toc-text">片外内存攻击面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%AF%86%E6%80%A7"><span class="toc-text">AES分组算法保护机密性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ECB%E6%A8%A1%E5%BC%8F%EF%BC%88%E7%94%B5%E5%AD%90%E5%AF%86%E7%A0%81%E6%9C%AC%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">1.ECB模式（电子密码本模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-CBC%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%AF%86%E7%A0%81%E5%88%86%E7%BB%84%E9%93%BE%E6%8E%A5%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">2.CBC模式（密码分组链接模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-CTR%E6%A8%A1%E5%BC%8F%EF%BC%88%E8%AE%A1%E6%95%B0%E5%99%A8%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">3.CTR模式（计数器模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-CFB%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%AF%86%E7%A0%81%E5%8F%8D%E9%A6%88%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">4.CFB模式（密码反馈模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-OFB%E6%A8%A1%E5%BC%8F%EF%BC%88%E8%BE%93%E5%87%BA%E5%8F%8D%E9%A6%88%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">5.OFB模式（输出反馈模式）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%9D%E6%8A%A4%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-text">保护完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Xom"><span class="toc-text">Xom</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E9%B2%9C%E6%80%A7%EF%BC%8CMerkel-Tree-%E9%98%B2%E9%87%8D%E6%94%BE"><span class="toc-text">新鲜性，Merkel Tree 防重放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%EF%BC%9ACounter%E7%9A%84%E5%8E%8B%E7%BC%A9%E6%A8%A1%E5%BC%8F"><span class="toc-text">优化：Counter的压缩模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%EF%BC%9AAISE"><span class="toc-text">优化：AISE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">其他优化方向</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%B0%E6%9C%89TEE%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4"><span class="toc-text">现有TEE完整性保护</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel-SGX"><span class="toc-text">Intel SGX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SGX-V2-Scalable-SGX"><span class="toc-text">SGX V2&#x2F;Scalable SGX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel-TDX-MLTME-AMD-SEV"><span class="toc-text">Intel TDX&#x2F;MLTME&#x2F;AMD SEV</span></a></li></ol></li></ol></div></p>
-<h1 id="片外内存攻击面"><a href="#片外内存攻击面" class="headerlink" title="片外内存攻击面"></a>片外内存攻击面</h1><ul>
-<li>攻击者通过操纵片外的未保护的内存<ul>
-<li>直接观察</li>
-<li>解决方案：内存加密</li>
-</ul>
-</li>
-<li>篡改数据<ul>
-<li>任意修改（spoofing），拼接（splicing），重放（replay）</li>
-<li>解决方案：完整性保护和防重放</li>
-</ul>
-</li>
-<li>观察地址总线的访问模式<ul>
-<li>侧信道</li>
-<li>解决方案：ORAM</li>
-</ul>
-</li>
-</ul>
-<h1 id="AES分组算法保护机密性"><a href="#AES分组算法保护机密性" class="headerlink" title="AES分组算法保护机密性"></a>AES分组算法保护机密性</h1><ul>
-<li>内存加密模式<ul>
-<li>AES+ECB&#x2F;CBC&#x2F;CTR&#x2F;XTS&#x2F;GCM</li>
-<li>可调分组密码：QARMA</li>
-</ul>
-</li>
-</ul>
-<h2 id="1-ECB模式（电子密码本模式）"><a href="#1-ECB模式（电子密码本模式）" class="headerlink" title="1.ECB模式（电子密码本模式）"></a>1.ECB模式（电子密码本模式）</h2><p>用相同的密钥分别对明文组加密；各个分组独立加密和解密。</p>
-<p>优点：<br>算法简单，加解密速度快。<br>易于并行计算，因此在硬件中实现时非常高效。</p>
-<p>缺点：<br>不支持并行加解密，因此安全性较差。<br>明文块内部存在重复，容易受到攻击。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/e4604571a53d4b33930efc69c6f8af36.png"></p>
-<h2 id="2-CBC模式（密码分组链接模式）"><a href="#2-CBC模式（密码分组链接模式）" class="headerlink" title="2.CBC模式（密码分组链接模式）"></a>2.CBC模式（密码分组链接模式）</h2><p>当前明文分组先和前一个密文异或，再加密；初始向量IV，不必保密，但需要保存并占据空间</p>
-<p>优点：<br>相邻的明文块加密后的密文块是不同的，增加了加密的安全性。<br>可以处理变长的明文，适用性更广。</p>
-<p>缺点：<br>加密过程是串行的，无法并行，不适合硬件加速。<br>初始向量IV必须是随机的，否则容易受到攻击。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/7316c87837a1483f9fb9df725f83b2ae.png"></p>
-<h2 id="3-CTR模式（计数器模式）"><a href="#3-CTR模式（计数器模式）" class="headerlink" title="3.CTR模式（计数器模式）"></a>3.CTR模式（计数器模式）</h2><p>CTR模式是一种通过将逐次累加的计数器进行加密来生成密钥流的流密码。最终的密文分组是通过将计数器加密的到的比特序列，与明文分组进行XOR而得到的。</p>
-<p>优点：不泄露明文；仅需实现加密函数；无需填充；可并行计算。</p>
-<p>缺点：需要瞬时值IV，难以保证IV的唯一性。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/383c40165acd4e2ea131e30f7cb460bb.png"></p>
-<h2 id="4-CFB模式（密码反馈模式）"><a href="#4-CFB模式（密码反馈模式）" class="headerlink" title="4.CFB模式（密码反馈模式）"></a>4.CFB模式（密码反馈模式）</h2><p>在CFB模式中，前一个密文分组会被送回到密码算法的输入端。所谓反馈，这里指的就是返回输入端的意思。类似于CBC，可以将块密码变为自同步的流密码；工作过程亦非常相似，CFB的解密过程几乎就是颠倒的CBC的加密过程：</p>
-<p>优点：<br>支持加密和解密的输出反馈模式，因此可以进行流加密。<br>可以处理变长的明文，适用性更广。</p>
-<p>缺点：<br>加密过程是串行的，不适合硬件加速。<br>密钥流的产生需要时间，因此加解密的时延较大。</p>
-<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/f00023179c4e4ab1be449a899670678d.png"></p>
-<h2 id="5-OFB模式（输出反馈模式）"><a href="#5-OFB模式（输出反馈模式）" class="headerlink" title="5.OFB模式（输出反馈模式）"></a>5.OFB模式（输出反馈模式）</h2><p>可以将块密码变成同步的流密码。它产生密钥流的块，然后将其与明文块进行异或，得到密文。与其它流密码一样，密文中一个位的翻转会使明文中同样位置的位也产生翻转。这种特性使得许多错误校正码，例如奇偶校验位，即使在加密前计算，而在加密后进行校验也可以得出正确结果。<br>密码反馈模式也需要一个初始量，无须保密，但对每条消息必须有一个不同的初始量。</p>
-<p>优点：<br>支持加密和解密的输出反馈模式，因此可以进行流加密。<br>可以处理变长的明文，适用性更广。</p>
-<p>缺点：<br>加密过程是串行的，不适合硬件加速。<br>密钥流的产生需要时间，因此加解密的时延较大。<br>需要注意的是，以上模式中，ECB模式安全性最差，CBC、CFB和OFB模式相对安全性更高，因此在选择加密模式时需要根据实际情况和安全需求进行选择。</p>
-<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/975b47f1a8614bc1904f4480d5b6c35f.png"></p>
-<p><strong>6.XTS</strong></p>
+        <p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2401.05459.pdf">PERSONAL LLM AGENTS: INSIGHTS AND SURVEY ABOUT THE CAPABILITY, EFFICIENCY AND SECURITY</a></p>
+<p><img src="/2024/02/27/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM%E7%9A%84%E9%9A%90%E7%A7%81%E5%92%8C%E5%AE%89%E5%85%A8/image-20240227110354493.png" alt="The summary of techniques to address security and privacy issues of Personal LLM Agents."></p>
+<p>确保Personal LLM Agents中用户数据隐私和服务安全的保护成为一个至关重要的问题。</p>
 <ul>
-<li>明文和密钥之外，算法包括一个tweak作为输入</li>
-<li>相比CBC、CTR等模式，不需要额外的存储IV和counter</li>
-<li>整体与ECB类似，例如可以并行<ul>
-<li>但规避了ECB的缺点：频率分析攻击，密文替换攻击<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/9dadc752d15c46d08b03cb4d1999c05a.png"></li>
+<li>机密性代表了对用户数据隐私的保护，确保在用户与代理的交互过程中不会发生不必要的和未经授权的敏感信息泄露。</li>
+<li>完整性代表了代理决策的弹性，确保代理执行的行为与预期行为保持一致，没有被恶意方故意修改或影响。</li>
+<li>可靠性侧重于使代理的行为更加可靠和真实，可靠性处理的是代理的内部错误。</li>
 </ul>
-</li>
-</ul>
-<h1 id="保护完整性"><a href="#保护完整性" class="headerlink" title="保护完整性"></a>保护完整性</h1><ul>
-<li>MAC<ul>
-<li>SHA1&#x2F;SHA3……</li>
-</ul>
-</li>
-<li>认证加密模式<ul>
-<li>CTR+GMAC</li>
-<li>Counter需要保存、不能重复</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/9368edf27d0d40b090315c88e3903742.png"></p>
-<h2 id="Xom"><a href="#Xom" class="headerlink" title="Xom"></a>Xom</h2><p>Architectural Support for Copy and Tamper Resistant Software  ASPLOS 2000</p>
+<h1 id="Confidentiality"><a href="#Confidentiality" class="headerlink" title="Confidentiality"></a>Confidentiality</h1><p>Personal LLM Agent具有在没有用户意识的地方自发发起查询的潜力，这些地方可能包含关于用户的敏感信息。同时，代理也可能将用户信息暴露给其他代理或服务。因此，对用户隐私的保护变得更加关键。</p>
+<p>增强机密性的方法有很多种，包括本地数据处理、同态加密、数据掩码、访问权限控制等。</p>
+<h2 id="Local-Processing"><a href="#Local-Processing" class="headerlink" title="Local Processing"></a>Local Processing</h2><p>在本地处理所有数据被认为是一种比将数据发送到云端更安全的与LLM交互的方法。然而，由于个人设备上的资源限制，在本地部署LLMs对高效处理用户请求提出了挑战。这会导致推理速度慢，甚至由于可用内存的限制而无法进行推理。</p>
+<p>由于Personal LLM Agents中的数据主要由LLM处理，因此实现本地计算的关键是在用户自己的设备上运行LLM。现有的各种轻量级模型[ 308、250 ]和部署框架[ 309、274]可用于在边缘设备上部署模型。此外，还提出了各种模型压缩技术[ 310、220、216]，以减小模型规模，进一步实现本地部署。</p>
+<p>但使用局部部署的模型不可避免地面临着模型精度有限的挑战[ 42 ]。专家建议采用云边协同部署的方式，以实现更好的性能折中。同时，Personal LLM Agent还需要与云端进行通信，以提供在线服务。私有数据完全保存在本地设备上通常困难，甚至是不可能的。</p>
+<h2 id="Secure-Remote-Processing"><a href="#Secure-Remote-Processing" class="headerlink" title="Secure Remote Processing"></a>Secure Remote Processing</h2><p>为了在保护隐私的同时调用基于云的模型推理服务，一个理想的解决方案是同态加密( HE ) [ 311、312 ]。已经有一些研究[ 313 ]证明了将HE应用于深度神经网络的可行性，显示了将HE集成到模型中的潜力。</p>
+<p>当HE应用于Personal LLM Agents时，有两个挑战：</p>
 <ul>
-<li>机密性</li>
-<li>CTR模式<ul>
-<li>cipher &#x3D; plain ⊕ encryptedkey(address || seq)</li>
-<li>plain &#x3D; cipher ⊕ encryptedkey(address || seq) <ul>
-<li>key &#x3D; XOM ID</li>
-<li>address &#x3D; virtual address of data&#x2F;instruction</li>
-<li>seq &#x3D; mutating sequence number</li>
-</ul>
+<li><p>LLMs中并非所有操作都可以使用HE执行的限制。在LLMs中的某些操作，如max，min和softmax，不能准确地使用HE执行</p>
+</li>
+<li><p>LLMs的计算复杂度较大，HE推理速度较慢。</p>
 </li>
 </ul>
-</li>
-<li>encryptedkey(address + seq)的计算可以与内存访问并行，最终的计算只需要1个cycle进行异或</li>
-</ul>
-<p><strong>为什么需要address作为counter的一部分？</strong><br>防止从一个内存地址复制合法的密文，替换到另外一个内存地址<br>    - cipher &#x3D; plain ⊕ encryptedkey(address || seq)<br>    - plain &#x3D; cipher ⊕ encryptedkey(address || seq)<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/6a31355457544e0a937da38c4dd4d589.png"><br><strong>Xom的问题</strong>：无法提供新鲜性保证<br>使用同一地址的旧的数据替换该地址的新的数据–&gt;需要防重放攻击</p>
-<h2 id="新鲜性，Merkel-Tree-防重放"><a href="#新鲜性，Merkel-Tree-防重放" class="headerlink" title="新鲜性，Merkel Tree 防重放"></a>新鲜性，Merkel Tree 防重放</h2><p>Caches and Merkle Trees for Efficient Memory Integrity Verification. HPCA 2003<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/a0a0d2aa62b54578b331ac17fdd644c7.png"><strong>优化</strong></p>
+<p>针对这两个问题，有几种解决方案。</p>
 <ul>
-<li>若每次都计算到根节点<ul>
-<li>4GB内存，128-bit hash，性能损失可以达到10倍</li>
+<li>The-x [ 314 ]提出了一个工作流程，在HE不能执行某些操作的情况下，如Max操作，密文将被发回本地设备。然后本地设备将执行操作，并将重新加密的文本发回云端。</li>
+<li>Cheetah[ 315 ]包含在服务器端为HE推理设计的算法和硬件优化。Cheetah的主要目标是提高HE的计算效率，从而加快HE运算的速度。</li>
 </ul>
-</li>
-<li>专门的cache结构，缓存了最近使用的内部hash块<ul>
-<li>不需要计算到根节点，只需要计算到查找到的中间节点</li>
-<li>若中间节点被换出，则将其父节点放入cache，并更新父节点</li>
-<li>平均22%，最坏52%</li>
-</ul>
-</li>
-</ul>
-<h2 id="优化：Counter的压缩模式"><a href="#优化：Counter的压缩模式" class="headerlink" title="优化：Counter的压缩模式"></a>优化：Counter的压缩模式</h2><p>Improving Cost, Performance, and Security of Memory Encryption and Authentication. ISCA 2006</p>
+<p>尽管在加速基于HE的DNN推理方面做出了许多努力，但同态加密的现状仍然远远不能满足代理的延迟需求[ 316 ]。另一种方法是使用可信执行环境( TEE ) [ 317 ]进行模型推理。然而，TEE可能会受到各种攻击[ 318 ]，也可能导致有限的性能。</p>
+<h2 id="Data-Masking"><a href="#Data-Masking" class="headerlink" title="Data Masking"></a>Data Masking</h2><p>在发送到云端之前使用数据掩码对信息进行预处理。其基本思想是将原始输入转化为非隐私敏感的形式，同时保留对推断结果有至关重要影响的信息。</p>
+<p>数据掩盖的一个直接方法是通过隐藏或替换敏感内容(如账号、地址、个人名等)来转换明文输入。这些类型的信息通常被称为个人可识别信息( PII )。另一方面，研究人员提出了基于嵌入的数据匿名化方法，其中客户端将原始用户请求编码为隐藏向量，并将这些向量发送到基于云的模型中进行后续推理。</p>
+<p>面临的挑战是如何保证隐私、保证推断精度不会下降、保证推断速度不会下降太多。解决方法有以下几种：</p>
 <ul>
-<li>CTR的问题<ul>
-<li>每次cache write back需要增加一次counte<ul>
-<li>每个chuck一个counter+addr</li>
+<li>Coavoux等人[ 320 ]提出了一种度量来评估神经表示中隐私泄露的程度，并通过改变训练目标来开发一种防御方法，以实现隐私和准确性之间的权衡。</li>
+<li>Zhou等人[ 321 ]通过在中间表示中加入动态融合来保护用户隐私。</li>
+<li>TextObfuscator [ 322 ]通过文本混淆技术保护用户隐私。在编码过程中，可以采用”对抗表示学习”，通过引入额外的约束来最小化编码向量中包含的隐私敏感信息[ 323 ]</li>
 </ul>
-</li>
-<li>当counter溢出时，需要换一个AES key <ul>
-<li>但整个内存加密只有一个key，因此需要重新加密整个物理内存 – freeze the system</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/ab23f2cd92f44d6399a051b43ac37173.png"></p>
+<p>虽然该方法在推理性能方面优于同态加密，但不能严格地保护数据隐私，因为编码向量本身仍然携带着泄露敏感信息的风险。此外，这类方法需要明确的隐私特征定义，以便编码器学习如何在对抗表示学习过程中移除隐私信息。</p>
+<h2 id="Information-Flow-Control"><a href="#Information-Flow-Control" class="headerlink" title="Information Flow Control"></a>Information Flow Control</h2><p>上述技术主要涉及模型输入数据的隐私性，同时模型输出也可能存在隐私泄露的风险。当商家旨在向用户推荐产品时，他们可能依赖于从某些个人代理商的输出中检索到的用户偏好信息。</p>
+<p>这种从LLMs的输出中获取隐私信息的方法类似于传统操作系统中的个人数据访问接口，其中至关重要的是通过<strong>权限管理系统</strong>来确保隐私数据访问的可控性和透明性[ 324 ]。透明性要求告知用户关于隐私数据的访问信息，包括访问实体( who )、内容( what )、时间( when )、意图( why )、访问权限(how)。·</p>
+<p>在处理数据机密性时，不应将LLMs视为可信计算基础( TCB )的一部分。可能需要基于规则的权限控制来约束LLMs可以做什么以及LLMs可以访问什么。权限机制允许用户配置是否允许不同的实体访问不同类型的信息。在传统系统中，研究人员提出了许多细粒度隐私内容细分和权限控制的方法，以及基于信息流传播的隐私数据溯源技术[ 325 ]。然而，为LLM代理产生的输出建立隐私数据可追踪性仍然是一个公开的问题。</p>
+<blockquote>
+<p>确保用户数据的机密性对于Personal LLM Agents建立用户信任至关重要。然而，现有的隐私保护技术仍然不足以支持具有更高智能水平的代理。存在以下开放性问题：</p>
+<p>1 .现有方法面临着平衡效率和有效性的共同挑战。例如，如何实现强大和高效的本地LLM，如何将同态加密( HE )或可信执行环境( TEE )扩展到大型模型，以及如何通过数据掩码&#x2F;混淆技术实现严格的机密性? </p>
+<p>2 .作为一种新的软件范式，Personal LLM Agents的系统隐私保护机制是什么，目前尚不清楚。我们是否还需要符号化的规则或权限来进行访问控制?它们如何能与LLMs的不可解释性无缝融合?</p>
+</blockquote>
+<h1 id="Integrity"><a href="#Integrity" class="headerlink" title="Integrity"></a>Integrity</h1><p>完整性是指Personal LLM Agents在面对各种类型的攻击时，仍能保证其正确输出预定内容的能力。传统的攻击方式，如修改模型参数、窃取和篡改本地数据等，都可以通过加密、权限、硬件隔离等措施进行防御。然而，在防御传统攻击方法的同时，还应注意<strong>LLM代理可能遇到的新类型攻击：对抗性攻击、后门攻击和提示注入攻击</strong>。</p>
+<h2 id="Adversarial-Attacks"><a href="#Adversarial-Attacks" class="headerlink" title="Adversarial Attacks"></a>Adversarial Attacks</h2><p>一类重要的攻击，称为”对抗性攻击”，通过定制或篡改模型的输入数据导致模型推断错误，最初在图像分类模型中被发现[ 326 ]。这类攻击通过给图像添加不可觉察的噪声，会导致严重的分类错误。随后，研究人员将这种攻击方法扩展到文本数据、图数据等[ 327 ]。</p>
+<p>这种攻击也持续存在于大型语言模型中[ 328 ]，这些模型也可以接受来自第三方的图像[ 329 ]，文本[ 330 ]和其他模态的数据[ 331 ]的输入。例如，在协助用户完成自动化任务时，攻击者可能会误导代理删除日历事件和泄露私密会话数据[ 332 ]，因为LLMs往往需要输入应用程序内部信息的内容来生成下一步的交互决策。在这种情况下，如果第三方应用程序向LLM提供恶意定制的内容，它可能会驱动智能代理进行不安全的交互。</p>
+<p>传统的针对深度学习模型中此类攻击的防御方法通常包括对抗防御、异常输入检测、输入预处理、输出安全验证等。此外，一些防御方法可能需要在LLM的背景下进行调整。例如，训练LLM可能会产生大量的成本，使得通过对抗训练来增强安全性变得不切实际。因此，探索如何通过参数高效的微调来达到良好的对抗防御效果是一个值得研究的问题。</p>
+<h2 id="Backdoor-Attacks"><a href="#Backdoor-Attacks" class="headerlink" title="Backdoor Attacks"></a>Backdoor Attacks</h2><p>传统的模型后门攻击往往是通过数据投毒来实现的[ 333 ]，即在模型的训练数据中插入恶意修改的样本，使模型学习到刻意隐藏的决策逻辑。</p>
+<p>对于LLMs而言，由于训练数据量巨大且需要严格的统一管理，数据投毒可能更具挑战性，但另一类后门攻击方法[ 334 ]仍然有效，通过在测试期间修改模型输入，将不安全的逻辑植入模型。</p>
 <ul>
-<li>Counter &#x3D; Major Counter || Minor Counter<ul>
-<li>Major Counter<ul>
-<li>每个加密的页面内所有的数据块共享一个major counter </li>
-<li>在系统的生命周期内都不会溢出（64 bit）</li>
+<li>当语言模型被提示执行特定的目标任务时，Kandpal等人[ 335 ]提出了有针对性的错误分类。</li>
+<li>ProAttack [ 336 ]直接利用提示作为触发器向LLM注入后门，这是首次尝试探索基于提示的干净标签文本后门攻击。</li>
+<li>Poison Prompt [ 337 ]是对基于软、硬提示的LLM进行的基于双层优化的提示后门攻击。由于LLMs在某些场景下往往使用多个固定的提示，这种通过修改提示实现的攻击形式实质上是对模型参数的微调，从而改变其决策逻辑。</li>
+<li>Sun等人[ 338 ]提出，在给定目标的情况下，测试生成源的后向概率可以对不同类型的攻击产生有效的防御性能。事实上，当攻击者模仿正常行为时，这种防御方法可能会变得无效。因此，代理系统中的后门防御目前还没有一个健壮的解决方案[ 339 ]。这凸显了对模仿合法行为的复杂攻击进行有效防御的要求。</li>
 </ul>
-</li>
-<li>Minor Counter<ul>
-<li>页面内每个数据块具有的独立的counter</li>
-<li>长度较短，容易溢出，但溢出时只需要更换一个major counter，并重新加密该页面，而不是全部的物理内存</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Stored together in a counter cache line<ul>
-<li>存储开销为1&#x2F;64&#x3D;1.6%<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/87dd9a2058cb417bb3e419ae43ef504c.png"></li>
-</ul>
-</li>
-<li>使用GMAC优化完整性保护<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/0dfa3aa01c4e411c96c29621fd99942b.png"></li>
-</ul>
-<h2 id="优化：AISE"><a href="#优化：AISE" class="headerlink" title="优化：AISE"></a>优化：AISE</h2><p>Using address Independent Seed Encryption and Bonsai Merkle Trees to Make Secure Processors OS- and Performance-Friendly. MICRO 2007</p>
-<p><strong>motivation</strong></p>
+<h2 id="Prompt-Injection-Attacks"><a href="#Prompt-Injection-Attacks" class="headerlink" title="Prompt Injection Attacks"></a>Prompt Injection Attacks</h2><p>在LLM时代，出现了一种新的、特别重要的安全风险，即时注入[ 340、341、342、343]。在这种攻击形式下，模型本身通过对齐和提示的方式纳入了一定的安全保障措施。尽管如此，第三方模型用户可以通过在提示语中使用微妙或特殊的措辞来绕过这些预设的安全保障措施。例如，智能个人助理可以预先设定不执行某些敏感操作，例如修改用户的账号密码[ 344 ]，但通过提示注入，它可能会诱导模型违反法规并执行这些敏感操作。</p>
+<p>对于这种基于提示的攻击方法，目前还没有完善的防御机制。</p>
 <ul>
-<li>内存加密<ul>
-<li>CTR模式可以隐藏内存访问关键路径的延迟，但是该模式下要求counter是唯一的<ul>
-<li>之前的工作，采用了地址（spatial uniqueness，va或pa）作为counter的一部分</li>
-<li>每次write操作，counter+1，用于保证temporal uniqueness</li>
+<li>Smooth LLM [ 345 ]是第一个通用的提示注入防御方法，它随机扰动给定输入提示的多个副本，然后聚合相应的预测来检测对抗性输入。然而，它的防御效果高度依赖于模型的鲁棒性，因为一些模型的攻击成功率只降低了1 %左右。</li>
 </ul>
-</li>
-</ul>
-</li>
-<li>问题<ul>
-<li>使用物理地址，则每次page swapping都需要重新加密和解密<ul>
-<li>且需要增加额外的完整性保护机制</li>
-</ul>
-</li>
-<li>使用虚拟地址，但不同的进程可以使用同样的虚拟地址<ul>
-<li>若把每个进程的ID也作为counter的一部分<ul>
-<li>无法支持shared memory based IPC和shared library – process fork的copy on write的优化不可用，原因是parent&#x2F;child的counter是不一样的</li>
-<li>进程ID是由不信任的OS指定的</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><strong>主要优化</strong></p>
+<p>对来自第三方应用程序(总结、翻译、重述)或提示封装的输入内容进行后处理，可以帮助模型清晰地区分它们与系统固有的提示。</p>
+<blockquote>
+<p>确保决策过程的完整性对于Personal LLM Agents至关重要。对完整性的威胁是非常多样且不断发展的，而防御技术的发展则相对滞后。在这里，我们强调了两个重要的公开问题，适用于所有类型的攻击。</p>
+<p>1 .代理如何知道自己的输入或决策过程是否被第三方篡改?这就要求智能体对什么是正常的输入和行为有感觉，并具有识别异常的能力。</p>
+<p>2 .由于直接避免攻击可能具有挑战性，因此考虑用户验证机制，即在代理不确定的情况下，要求用户进行验证更具有实际意义。如何设计一个安全且用户友好的验证机制是一个具有挑战性的问题。</p>
+</blockquote>
+<h1 id="Reliability"><a href="#Reliability" class="headerlink" title="Reliability"></a>Reliability</h1><p>在Personal LLM Agents中，大量的关键动作由LLM决定，包括修改和删除用户信息、购买服务、发送消息等敏感操作。因此，保证代理决策过程的可靠性至关重要。</p>
+<h2 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h2><p><strong>幻觉</strong></p>
+<p>LLMs可能会产生错误的答案，从而导致严重的后果。研究人员发现了LLM生成连贯流畅但最终错误的文本的情况。这种现象在自然语言处理任务中被称为幻觉，也对个人智能体提出了挑战。</p>
 <ul>
-<li>Address Independent Seed Encryption （AISE）<ul>
-<li>为每个页分配一个逻辑识别码（logical identifiers）；与虚拟地址或物理地址无关，在整个系 统的生命周期确保对所有的内存页都是不同的<ul>
-<li>可以避免page swapping等的性能问题</li>
-<li>可以支持shared memory&#x2F;shared library等机制</li>
+<li>Ji等人[ 346 ]深入探究了幻觉在自然语言处理任务中的各种表现形式。</li>
+<li>Rawte等人[ 347 ]进一步讨论了多模态基础模型中的幻觉现象，提供了有价值的参考</li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/fbb27934464745d48b7a0e55506502e0.png"></p>
+<p><strong>未识别操作</strong></p>
+<p>与聚焦于LLMs产生的”错误答案”的幻觉问题不同，在许多情况下，这些模型的响应是”甚至没有错误”的。语言模型的本质是语言建模，语言模型的输出通常以语言的形式出现。与其他直接与人交互的LLM相比，Personal LLM Agents需要执行操作，因此，它们对输出的格式和可执行性有更高的要求[ 348 ]。</p>
+<p><strong>顺序可靠性</strong></p>
+<p>LLMs最初在序列数据和训练目标(上进行预训练。然而，现实世界中的问题可能并不能按顺序得到完全解决。实现顺序可靠性带来了一些挑战，包括上下文保持、连贯性维护等。为了更好地与用户和个人LLM Agent保持连贯和有意义的对话，需要激发LLM从全局角度思考的能力，而不仅仅依赖于先前生成的标记或上下文。</p>
 <ul>
-<li>LPID<ul>
-<li>在页分配时分配的唯一值（unique value）</li>
-<li>在生命周期（系统启动到关闭）内与页绑定，包括物理页和交换空间页</li>
-<li>Global Page Counter：64比特<ul>
-<li>无法篡改，几乎不会溢出</li>
+<li>为了增强LLMs的思维和推理能力，Yao等人[ 83 ]提出了思想树( Tree-of- Thought )来生成和总结多条不同的推理路径</li>
+<li>Zhang等人[ 349 ]提出累积迭代推理来解决复杂任务。</li>
+<li>也有可能设计解决任务的总体方案[ 87 ]，或从先前的工作[ 350、351 ]中汲取见解。</li>
 </ul>
-</li>
-</ul>
-</li>
-<li>LPID的存储：与压缩counter结合<br><img src="/../%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/9b56a0a15a4b4d1dab711bf5a199bb6c.png" alt="-"></li>
-<li>以1个4KB的页为例，每个block为64字节，每个block的LPID长度为64比特，每个 block分配一个7比特的counter<ul>
-<li>若block counter溢出，则为该页分配一个新的LPID，并重新加密该页</li>
-<li>存储开销为1&#x2F;64&#x3D;1.6%</li>
-</ul>
-</li>
-</ul>
-<h2 id="其他优化方向"><a href="#其他优化方向" class="headerlink" title="其他优化方向"></a>其他优化方向</h2><ul>
-<li><p>1.Merkle Tree的目的是防止replay attack，而CTR模式为每个block提供了一个 counter</p>
+<h2 id="Improvement"><a href="#Improvement" class="headerlink" title="Improvement"></a>Improvement</h2><p><strong>对齐</strong></p>
+<p>随着LLMs的规模和复杂性的增加，人们对其可能产生偏见、有害或不适当的内容产生了担忧。对齐方法试图减轻这些风险，并确保LLMs的行为与伦理和社会规范保持一致。</p>
 <ul>
-<li>如果我们能够保证counter的新鲜性（freshness），则可以保证数据的新鲜性</li>
-<li>因此，只需要使用Merkle Tree保护counter的新鲜性<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/804cabb8cc7b465589f7722302aed2e1.png"></li>
+<li>一种常用的对齐方法是使用预训练和微调[ 352、353、354]。LLMs在海量的文本数据上进行预训练，以学习语言模式和表示。在微调阶段，模型将在更具体和仔细审查的数据集上进一步训练，包括人工生成的例子和演示。这一过程通过将人类的价值观和意图纳入到模型的训练中，帮助模型与期望的行为保持一致。</li>
+<li>另一种对齐方法是奖励建模，它涉及定义和优化一个反映期望结果或行为的奖励函数。通过为特定的动作提供明确的奖励或惩罚，LLMs可以被训练生成与这些预定义的目标相一致的输出。基于这些奖励信号，可以使用强化学习技术(例如, RLHF  , RLAIF  , C-RLFT  )来优化模型的行为。监督和干预是关键的对齐方法。人类评论者或调节者在审查和过滤潜在偏见、有害内容或不适当行为的LLMs的输出方面发挥着至关重要的作用。它们的反馈和干预被用于迭代地改进模型的性能，并使其与期望的标准保持一致。</li>
 </ul>
-</li>
-<li><p>2.counter要比data小的多（64B v.s. 4KB），因此一个Tree node可以容纳更多的 counter</p>
+<p><strong>自我反思</strong></p>
+<p>已有研究表明，语言模型可以提供提供正确答案的概率[ 357 ]。受LLMs自主运行的启发，研究者提出利用模型的自我反思来缓解内容生成不正确的问题。</p>
 <ul>
-<li>cache压力更小，查询更快<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/eca1b604f23e42ba9f3f4f35cfea6fd5.png"></li>
+<li>Huang等[ 211 ]和Madaan等[ 358 ]的研究表明LLMs具有利用未标记数据进行自我完善的能力</li>
+<li>Shinn等[ 359 ]提出Reflex，通过语言反馈让LLMs进行更新</li>
+<li>Chen等人[ 360 ]提出了自调试( Self-Debug )来迭代地提高代码生成任务的响应</li>
+<li>SelfCheckGPT [ 361 ]允许大型模型多次多次提供同一输入问题的答案，并检查这些答案之间的一致性。如果答案之间存在矛盾，则有较高的概率说明模型产生了不可靠的内容</li>
+<li>Du等[ 362 ]试图通过让多个大型模型代理进行相互讨论和验证来提高模型输出的可靠性。模型的组合方式多种多样，类似于人类世界中多样化的协作方式。然而，正如更多的雇员需要增加开支一样，拥有更多的模型需要更大的计算能力要求。</li>
 </ul>
-</li>
-<li><p>3.VAULT. ASPLOS 2018：增加可以支持的受保护内存大小</p>
+<p>上述工作展示了LLMs从单纯的文本生成器向智能代理演化，从原始的内化推理向迭代更新的反思性推理过渡的趋势。</p>
+<p><strong>检索增强</strong></p>
+<p>LLMs在各种任务中表现出强大的性能，然而，存储在模型中的参数知识仍然可能是不完整的，并且难以有效地更新。或者，检索增强方法[ 199、200、363]提供了一种半参数的方式来提供互补的非参数信息，使得LLMs在生成内容时可以利用检索到的真实世界知识，如维基百科、文档或知识图谱[ 364 ]。该方法具有不需要修改模型的优点，便于信息的实时更新，并允许生成结果对原始数据的可追溯性，从而增强了生成信息的可解释性。</p>
+<p>检索增强已经被证明对传统的预训练模型有效，例如BERT [ 365 ]。然而，对于已经具有较强推理能力的LLMs，由于不相关或噪声信息的存在，增加上下文也可能会产生负面影响[ 366 ]。</p>
 <ul>
-<li><pre><code>EPC hit: 200 cycles；EPC miss 40K cycles
-</code></pre>
-</li>
-<li>SGX中树的每一层8个节点，VAULT使用了16到64个可变节点</li>
-<li>压缩MAC的存储</li>
-<li>16 GB受保护内存<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/c1c700653dea4ebe857031b0a63f9caa.png"></li>
+<li>为了解决这些问题，Guo等人[ 192 ]提出了一种针对非知识密集型任务的提示引导检索方法，增强了检索段落对于更一般查询的相关性。</li>
+<li>Yu等人[ 367 ]提出了注意链( Chain-of-Note )来提高在处理噪声和不相关文档时的鲁棒性。</li>
+<li>Asai等人[ 368 ]提出了Self - RAG，通过自我反思来增强真实性。</li>
+<li>Wang等人[ 369 ]提出了一种自知识引导的检索方法SKR，以平衡外部知识和内部知识。</li>
+<li>Wang等人[ 370 ]提出FLICO来提前过滤上下文，提高检索片段的细粒度相关性。</li>
+<li>CRITIC [ 371 ]框架利用LLMs通过与外部工具(如计算器、Python解释器和维基百科)的交互来验证和迭代地自我修正他们的输出。然而，这种方法对于无法在外部知识库中找到匹配内容的用户请求的帮助有限。</li>
 </ul>
-</li>
-<li><p>4.Morphable Counters. MICRO 2018</p>
+<h2 id="Inspection"><a href="#Inspection" class="headerlink" title="Inspection"></a>Inspection</h2><p>基于检验的方法不干扰LLM的生成过程。相反，它专注于如何根据已经产生的结果来增强或理解代理的可靠性。</p>
+<p><strong>验证</strong></p>
+<p>考虑到在部署此类系统用于实际使用时，无法完全避免LLMs生成不可靠内容的问题，仍有必要建立基于规则的安全验证机制。对于上述未被识别的操作，”约束生成”是指生成格式化的、有约束的输出的过程，可以用来解决这个问题。</p>
 <ul>
-<li>根据应用程序的特点，每个cache line中的counter数量是动态可变的（counter的大小可变，之 前的方案都是固定的64个）</li>
-<li>通过对counter做压缩，降低Merkle tree的大小以及占用的cache大小，减少counter溢出后的 重加密代价</li>
-<li>16GB受保护内存<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/3c0aecc5f46e446ab23dcd104d053d3e.png"></li>
+<li>Kumar等人[ 372 ]使用Langevin Dynamics模拟非自回归文本生成来解决这个问题。</li>
+<li>Miao等人[ 373 ]介绍了一种方法，该方法在每次迭代时建议一个候选修改，并验证修改后的句子是否满足给定的约束来生成约束句子</li>
+<li>Li等人[ 374 ]和Weng等人[ 375 ]提出了自我验证来帮助大型语言模型的推理过程。</li>
+<li>负责任任务自动化[ 96 ]是一种可以预测命令的可行性，确认执行者的完整性，增强大型语言模型安全性的系统。然而，需要进一步的研究来提高识别敏感操作的准确率和召回率，并减轻用户的决策负担。</li>
 </ul>
-</li>
-<li><p>5.Synergy. HPCA 2018</p>
+<p><strong>解释</strong></p>
+<p>虽然前文提到智能个人助理应尽量减少用户中断，但纳入用户意见或人类协助可能是有价值的，特别是在做出重大决策时。在智能个人助理出错的情况下，具有可解释性的逻辑也可以在后续的调试过程中提供帮助。</p>
 <ul>
-<li>将MAC放在ECC区域，对MAC的存取不需要额外的一次memory transaction</li>
+<li>关于可解释语言模型的讨论，[ 376、377、378]有几项调查。</li>
+<li>传统上，基于理论基础的方法[ 379、380 ]可以通过在人工标注的数据上进行显式训练来解释模型输出。</li>
+<li>对于LLMs，思维链推理[ 82 ]方法也可以帮助模型生成文本解释。</li>
+<li>为了使推理过程更加鲁棒和可靠，最近的研究进一步加强了基于多数投票[ 381 ]和迭代自举[ 382 ]机制的思维链推理。显然，研究人员非常重视可解释性，因为它不仅有助于可靠性，而且代表了一个有趣的研究方向。</li>
 </ul>
-</li>
-<li><p>6.Compact Leakage-Free Support for Integrity and Reliability. ISCA 2020</p>
+<p><strong>中间特征分析</strong></p>
+<p>在最后一层表示之外，还有一些工作涉及分析模型推断过程中的中间状态来判断虚假信息的产生。</p>
 <ul>
-<li>对integrity tree中的metadata布局的优化，降低metadata miss的概率</li>
+<li>Halawi等人[ 383 ]发现模型的行为可能在某些层上显著发散，这突出了分析模型中间计算的重要性。</li>
+<li>Li等人[ 384 ]发现中间层的模型激活可以揭示”真实性”的一些方向，表明LLMs可能已经捕获了知识，尽管不是生成的，他们进一步提出在推理过程中改变模型激活，并改善LLMs的响应。</li>
+<li>Van der Poel等人[ 385 ]提出了一种利用互信息并通过评估下一个标记的置信水平来缓解幻觉的方法，其根本原因是幻觉内容产生过程中LLMs中的神经激活模式不同于正常输出。这些研究强调了仅仅依赖最终层表示进行语言建模的弊端，揭示了利用模型不同层之间的分层信息的潜在好处。</li>
 </ul>
-</li>
-</ul>
-<h1 id="现有TEE完整性保护"><a href="#现有TEE完整性保护" class="headerlink" title="现有TEE完整性保护"></a>现有TEE完整性保护</h1><h2 id="Intel-SGX"><a href="#Intel-SGX" class="headerlink" title="Intel SGX"></a>Intel SGX</h2><p>A Memory Encryption Engine Suitable for General Purpose Processors</p>
-<ul>
-<li>只对counter进行完整性保护</li>
-<li>counter：包括时间和空间counter，没有做压缩<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/631a4ac104244ddfbc5c2ce246032d40.png"></li>
-</ul>
-<h2 id="SGX-V2-Scalable-SGX"><a href="#SGX-V2-Scalable-SGX" class="headerlink" title="SGX V2&#x2F;Scalable SGX"></a>SGX V2&#x2F;Scalable SGX</h2><ul>
-<li>移除了基于Merkle Tree的完整性检查</li>
-<li>利用ECC比特表明每个cache line是否属于某个enclave</li>
-<li>降低了对片外存储的完整性保护<ul>
-<li>无法防御memory bus replay attacks</li>
-</ul>
-</li>
-</ul>
-<h2 id="Intel-TDX-MLTME-AMD-SEV"><a href="#Intel-TDX-MLTME-AMD-SEV" class="headerlink" title="Intel TDX&#x2F;MLTME&#x2F;AMD SEV"></a>Intel TDX&#x2F;MLTME&#x2F;AMD SEV</h2><ul>
-<li>使用XTS加密模式<ul>
-<li>使用物理地址作为tweak</li>
-<li>同样的明文，在不同的物理地址，其密文是 不同的</li>
-</ul>
-</li>
-<li>SEV<ul>
-<li>除加密外，不包含任何可以保护完整性的metadata</li>
-<li>不知道密钥的情况下的任何修改，会使得其变为随机值<ul>
-<li>仍然可以被利用（*）</li>
-<li>仅适用于AMD SEV-SNP之前的版本</li>
-</ul>
-</li>
-<li>逆向tweak后，可以使用已知的明文覆盖目标的物理地址<ul>
-<li>仅适用于AMD SEV-SNP之前的版本</li>
-</ul>
-</li>
-<li>SEV-SNP防止了基于软件的完整性破坏<ul>
-<li>但是无法防御基于物理的内存完整性攻击（包括bus replay attack）</li>
-</ul>
-</li>
-<li>允许对加密数据进行读取，通过观察数据是否改变同样泄露信息</li>
-</ul>
-</li>
-<li>TDX<ul>
-<li>为每个64B自动生成28-bit的截断的sha-3输出作为MAC</li>
-<li>MAC存储在DRAM ECC-bit之内，提供完整性保护</li>
-<li>1个额外比特用于表明cache line是否属于某个TD</li>
-</ul>
-</li>
-</ul>
-<p>参考文献：<br>[1] <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F#">https://zh.wikipedia.org/wiki/分组密码工作模式#</a><br>[2] <a target="_blank" rel="noopener" href="https://heartever.github.io/files/understanding_tee_design.pdf">https://heartever.github.io/files/understanding_tee_design.pdf</a></p>
+<blockquote>
+<p>LLM生成的可靠性受到了相当多的关注，尤其是围绕幻觉问题。然而，避免不可靠的行为仍然是困难的，如果不是不可能的话。开放性问题包括：</p>
+<p>1 .如何评价LLM和LLM代理的可靠性?现有的方法要么依赖于黑盒LLMs，如GPT - 4，要么依赖于昂贵的人工标注。需要权威的基准和方法来评估和提高可靠性。</p>
+<p>2 .与机密性问题类似，在Personal LLM Agents的决策过程中融入严格的符号规则将是解决可靠性问题的一个切实可行的方案。然而，在遵守规则的同时保留LLM代理人的强大能力是具有挑战性的。</p>
+<p>3 . DNNs缺乏透明性和可解释性是一个长期存在的问题，这对于个人LLM Agents的所有安全和隐私方面更加关键。如何解释和解释LLMs的内在机制是一个值得持续研究的方向。</p>
+</blockquote>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
