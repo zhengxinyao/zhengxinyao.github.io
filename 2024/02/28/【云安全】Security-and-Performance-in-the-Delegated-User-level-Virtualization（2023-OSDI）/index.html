@@ -2,9 +2,11 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>【TEE】片外内存保护：AES分组算法+MAC完整性验证 | Xinyao</title>
-  <meta name="keywords" content=" TEE , 内存保护 , 分组加密 ">
-  <meta name="description" content="【TEE】片外内存保护：AES分组算法+MAC完整性验证 | Xinyao">
+  <title>【云安全】Security and Performance in the Delegated User-level Virtualization（2023 OSDI）
+【云安全】Security and Performance in the Delegated User-level Virtualization（2023 OSDI） | Xinyao</title>
+  <meta name="keywords" content=" 云安全 , 虚拟化 ">
+  <meta name="description" content="【云安全】Security and Performance in the Delegated User-level Virtualization（2023 OSDI）
+【云安全】Security and Performance in the Delegated User-level Virtualization（2023 OSDI） | Xinyao">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="勇攀高峰">
 <meta property="og:type" content="website">
@@ -685,9 +687,10 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-【TEE】片外内存保护：AES分组算法-MAC完整性验证" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-【云安全】Security-and-Performance-in-the-Delegated-User-level-Virtualization（2023-OSDI）" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">【TEE】片外内存保护：AES分组算法+MAC完整性验证</h1>
+        <h1 class="article-title">【云安全】Security and Performance in the Delegated User-level Virtualization（2023 OSDI）
+【云安全】Security and Performance in the Delegated User-level Virtualization（2023 OSDI）</h1>
     
     <div class="article-meta">
         
@@ -697,7 +700,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="知识总结">知识总结</a>
+            <a  data-rel="论文记录">论文记录</a>
             
         </span>
         
@@ -705,18 +708,16 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">TEE</a>
+            <a class="color4">云安全</a>
             
-            <a class="color5">内存保护</a>
-            
-            <a class="color5">分组加密</a>
+            <a class="color4">虚拟化</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-02-25 20:06:02'>2024-02-25 20:05</time>
+            发布时间 : <time class="date" title='最后更新: 2024-02-28 20:12:24'>2024-02-28 19:07</time>
         
     </div>
     <div class="article-meta">
@@ -738,7 +739,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E6%94%BB%E5%87%BB%E9%9D%A2"><span class="toc-text">片外内存攻击面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%AF%86%E6%80%A7"><span class="toc-text">AES分组算法保护机密性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ECB%E6%A8%A1%E5%BC%8F%EF%BC%88%E7%94%B5%E5%AD%90%E5%AF%86%E7%A0%81%E6%9C%AC%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">1.ECB模式（电子密码本模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-CBC%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%AF%86%E7%A0%81%E5%88%86%E7%BB%84%E9%93%BE%E6%8E%A5%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">2.CBC模式（密码分组链接模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-CTR%E6%A8%A1%E5%BC%8F%EF%BC%88%E8%AE%A1%E6%95%B0%E5%99%A8%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">3.CTR模式（计数器模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-CFB%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%AF%86%E7%A0%81%E5%8F%8D%E9%A6%88%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">4.CFB模式（密码反馈模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-OFB%E6%A8%A1%E5%BC%8F%EF%BC%88%E8%BE%93%E5%87%BA%E5%8F%8D%E9%A6%88%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">5.OFB模式（输出反馈模式）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%9D%E6%8A%A4%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-text">保护完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Xom"><span class="toc-text">Xom</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E9%B2%9C%E6%80%A7%EF%BC%8CMerkel-Tree-%E9%98%B2%E9%87%8D%E6%94%BE"><span class="toc-text">新鲜性，Merkel Tree 防重放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%EF%BC%9ACounter%E7%9A%84%E5%8E%8B%E7%BC%A9%E6%A8%A1%E5%BC%8F"><span class="toc-text">优化：Counter的压缩模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%EF%BC%9AAISE"><span class="toc-text">优化：AISE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">其他优化方向</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%B0%E6%9C%89TEE%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4"><span class="toc-text">现有TEE完整性保护</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel-SGX"><span class="toc-text">Intel SGX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SGX-V2-Scalable-SGX"><span class="toc-text">SGX V2&#x2F;Scalable SGX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel-TDX-MLTME-AMD-SEV"><span class="toc-text">Intel TDX&#x2F;MLTME&#x2F;AMD SEV</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E4%BB%8B%E7%BB%8D%E3%80%81%E8%83%8C%E6%99%AF%E3%80%81%E5%8A%A8%E6%9C%BA"><span class="toc-text">1 介绍、背景、动机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF%E8%BF%9B%E5%B1%95"><span class="toc-text">虚拟化技术进展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-text">安全问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%B0%E6%9C%89%E6%96%B9%E6%B3%95%E5%B1%80%E9%99%90"><span class="toc-text">现有方法局限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%91%E6%88%98%E5%92%8C%E5%8F%AF%E8%83%BD"><span class="toc-text">挑战和可能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E6%96%87%E6%80%9D%E8%B7%AF"><span class="toc-text">本文思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%A1%E7%8C%AE"><span class="toc-text">贡献</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E8%AE%BE%E8%AE%A1%E5%92%8C%E9%83%A8%E4%BB%B6%E6%89%A9%E5%B1%95"><span class="toc-text">2 设计和部件扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E8%AE%BE%E8%AE%A1"><span class="toc-text">整体设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A8%81%E8%83%81%E6%A8%A1%E5%9E%8B"><span class="toc-text">威胁模型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%AE%9E%E9%AA%8C"><span class="toc-text">3 实验</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">4 相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E5%86%85%E6%A0%B8%E5%8A%9F%E8%83%BD%E5%88%B0%E7%94%A8%E6%88%B7%E6%80%81"><span class="toc-text">移动内核功能到用户态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E7%9A%84VM"><span class="toc-text">安全的VM</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -754,274 +755,115 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>@<div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E6%94%BB%E5%87%BB%E9%9D%A2"><span class="toc-text">片外内存攻击面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%AF%86%E6%80%A7"><span class="toc-text">AES分组算法保护机密性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ECB%E6%A8%A1%E5%BC%8F%EF%BC%88%E7%94%B5%E5%AD%90%E5%AF%86%E7%A0%81%E6%9C%AC%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">1.ECB模式（电子密码本模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-CBC%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%AF%86%E7%A0%81%E5%88%86%E7%BB%84%E9%93%BE%E6%8E%A5%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">2.CBC模式（密码分组链接模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-CTR%E6%A8%A1%E5%BC%8F%EF%BC%88%E8%AE%A1%E6%95%B0%E5%99%A8%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">3.CTR模式（计数器模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-CFB%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%AF%86%E7%A0%81%E5%8F%8D%E9%A6%88%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">4.CFB模式（密码反馈模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-OFB%E6%A8%A1%E5%BC%8F%EF%BC%88%E8%BE%93%E5%87%BA%E5%8F%8D%E9%A6%88%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">5.OFB模式（输出反馈模式）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%9D%E6%8A%A4%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-text">保护完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Xom"><span class="toc-text">Xom</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E9%B2%9C%E6%80%A7%EF%BC%8CMerkel-Tree-%E9%98%B2%E9%87%8D%E6%94%BE"><span class="toc-text">新鲜性，Merkel Tree 防重放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%EF%BC%9ACounter%E7%9A%84%E5%8E%8B%E7%BC%A9%E6%A8%A1%E5%BC%8F"><span class="toc-text">优化：Counter的压缩模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%EF%BC%9AAISE"><span class="toc-text">优化：AISE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">其他优化方向</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%B0%E6%9C%89TEE%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4"><span class="toc-text">现有TEE完整性保护</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel-SGX"><span class="toc-text">Intel SGX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SGX-V2-Scalable-SGX"><span class="toc-text">SGX V2&#x2F;Scalable SGX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel-TDX-MLTME-AMD-SEV"><span class="toc-text">Intel TDX&#x2F;MLTME&#x2F;AMD SEV</span></a></li></ol></li></ol></div></p>
-<h1 id="片外内存攻击面"><a href="#片外内存攻击面" class="headerlink" title="片外内存攻击面"></a>片外内存攻击面</h1><ul>
-<li>攻击者通过操纵片外的未保护的内存<ul>
-<li>直接观察</li>
-<li>解决方案：内存加密</li>
-</ul>
-</li>
-<li>篡改数据<ul>
-<li>任意修改（spoofing），拼接（splicing），重放（replay）</li>
-<li>解决方案：完整性保护和防重放</li>
-</ul>
-</li>
-<li>观察地址总线的访问模式<ul>
-<li>侧信道</li>
-<li>解决方案：ORAM</li>
-</ul>
-</li>
-</ul>
-<h1 id="AES分组算法保护机密性"><a href="#AES分组算法保护机密性" class="headerlink" title="AES分组算法保护机密性"></a>AES分组算法保护机密性</h1><ul>
-<li>内存加密模式<ul>
-<li>AES+ECB&#x2F;CBC&#x2F;CTR&#x2F;XTS&#x2F;GCM</li>
-<li>可调分组密码：QARMA</li>
-</ul>
-</li>
-</ul>
-<h2 id="1-ECB模式（电子密码本模式）"><a href="#1-ECB模式（电子密码本模式）" class="headerlink" title="1.ECB模式（电子密码本模式）"></a>1.ECB模式（电子密码本模式）</h2><p>用相同的密钥分别对明文组加密；各个分组独立加密和解密。</p>
-<p>优点：<br>算法简单，加解密速度快。<br>易于并行计算，因此在硬件中实现时非常高效。</p>
-<p>缺点：<br>不支持并行加解密，因此安全性较差。<br>明文块内部存在重复，容易受到攻击。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/e4604571a53d4b33930efc69c6f8af36.png"></p>
-<h2 id="2-CBC模式（密码分组链接模式）"><a href="#2-CBC模式（密码分组链接模式）" class="headerlink" title="2.CBC模式（密码分组链接模式）"></a>2.CBC模式（密码分组链接模式）</h2><p>当前明文分组先和前一个密文异或，再加密；初始向量IV，不必保密，但需要保存并占据空间</p>
-<p>优点：<br>相邻的明文块加密后的密文块是不同的，增加了加密的安全性。<br>可以处理变长的明文，适用性更广。</p>
-<p>缺点：<br>加密过程是串行的，无法并行，不适合硬件加速。<br>初始向量IV必须是随机的，否则容易受到攻击。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/7316c87837a1483f9fb9df725f83b2ae.png"></p>
-<h2 id="3-CTR模式（计数器模式）"><a href="#3-CTR模式（计数器模式）" class="headerlink" title="3.CTR模式（计数器模式）"></a>3.CTR模式（计数器模式）</h2><p>CTR模式是一种通过将逐次累加的计数器进行加密来生成密钥流的流密码。最终的密文分组是通过将计数器加密的到的比特序列，与明文分组进行XOR而得到的。</p>
-<p>优点：不泄露明文；仅需实现加密函数；无需填充；可并行计算。</p>
-<p>缺点：需要瞬时值IV，难以保证IV的唯一性。<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/383c40165acd4e2ea131e30f7cb460bb.png"></p>
-<h2 id="4-CFB模式（密码反馈模式）"><a href="#4-CFB模式（密码反馈模式）" class="headerlink" title="4.CFB模式（密码反馈模式）"></a>4.CFB模式（密码反馈模式）</h2><p>在CFB模式中，前一个密文分组会被送回到密码算法的输入端。所谓反馈，这里指的就是返回输入端的意思。类似于CBC，可以将块密码变为自同步的流密码；工作过程亦非常相似，CFB的解密过程几乎就是颠倒的CBC的加密过程：</p>
-<p>优点：<br>支持加密和解密的输出反馈模式，因此可以进行流加密。<br>可以处理变长的明文，适用性更广。</p>
-<p>缺点：<br>加密过程是串行的，不适合硬件加速。<br>密钥流的产生需要时间，因此加解密的时延较大。</p>
-<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/f00023179c4e4ab1be449a899670678d.png"></p>
-<h2 id="5-OFB模式（输出反馈模式）"><a href="#5-OFB模式（输出反馈模式）" class="headerlink" title="5.OFB模式（输出反馈模式）"></a>5.OFB模式（输出反馈模式）</h2><p>可以将块密码变成同步的流密码。它产生密钥流的块，然后将其与明文块进行异或，得到密文。与其它流密码一样，密文中一个位的翻转会使明文中同样位置的位也产生翻转。这种特性使得许多错误校正码，例如奇偶校验位，即使在加密前计算，而在加密后进行校验也可以得出正确结果。<br>密码反馈模式也需要一个初始量，无须保密，但对每条消息必须有一个不同的初始量。</p>
-<p>优点：<br>支持加密和解密的输出反馈模式，因此可以进行流加密。<br>可以处理变长的明文，适用性更广。</p>
-<p>缺点：<br>加密过程是串行的，不适合硬件加速。<br>密钥流的产生需要时间，因此加解密的时延较大。<br>需要注意的是，以上模式中，ECB模式安全性最差，CBC、CFB和OFB模式相对安全性更高，因此在选择加密模式时需要根据实际情况和安全需求进行选择。</p>
-<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/975b47f1a8614bc1904f4480d5b6c35f.png"></p>
-<p><strong>6.XTS</strong></p>
+        <h1 id="1-介绍、背景、动机"><a href="#1-介绍、背景、动机" class="headerlink" title="1 介绍、背景、动机"></a>1 介绍、背景、动机</h1><h2 id="虚拟化技术进展"><a href="#虚拟化技术进展" class="headerlink" title="虚拟化技术进展"></a>虚拟化技术进展</h2><p>阶段1：单片管理程序将所有函数置于内核模式；</p>
+<p>阶段2：将部分功能卸载到用户态辅助进程(例如 IO后端驱动)中，可以复用管理硬件资源的宿主机OS；</p>
+<p>阶段3：将部分虚拟化功能卸载到硬件(例如,shadow paging→nested paging)中；</p>
+<p>d：本文提出的DuVisor方法，将所有的VM plane功能(例如, VM退出处理)委托给用户空间，并在运行时最小化主机内核和VM之间的直接交互。</p>
+<p><img src="/2024/02/28/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91Security-and-Performance-in-the-Delegated-User-level-Virtualization%EF%BC%882023-OSDI%EF%BC%89/image-20240228190912428.png" alt="虚拟化发展"></p>
 <ul>
-<li>明文和密钥之外，算法包括一个tweak作为输入</li>
-<li>相比CBC、CTR等模式，不需要额外的存储IV和counter</li>
-<li>整体与ECB类似，例如可以并行<ul>
-<li>但规避了ECB的缺点：频率分析攻击，密文替换攻击<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/9dadc752d15c46d08b03cb4d1999c05a.png"></li>
-</ul>
+<li><p>VM plane，运行时处理VM出口和虚拟化资源的所有VM - service函数。在运行时通过处理VM exits频繁地与VM进行交互，通过指令模拟、嵌套分页、设备虚拟化等方式启用各种虚拟资源。</p>
+</li>
+<li><p>hypervisor plane，初始化VM plane、管理物理资源和处理紧急事件的所有管理程序- service函数的集合。为VM plane提供物理资源控制和致命错误处理。</p>
 </li>
 </ul>
-<h1 id="保护完整性"><a href="#保护完整性" class="headerlink" title="保护完整性"></a>保护完整性</h1><ul>
-<li>MAC<ul>
-<li>SHA1&#x2F;SHA3……</li>
-</ul>
-</li>
-<li>认证加密模式<ul>
-<li>CTR+GMAC</li>
-<li>Counter需要保存、不能重复</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/9368edf27d0d40b090315c88e3903742.png"></p>
-<h2 id="Xom"><a href="#Xom" class="headerlink" title="Xom"></a>Xom</h2><p>Architectural Support for Copy and Tamper Resistant Software  ASPLOS 2000</p>
+<h2 id="安全问题"><a href="#安全问题" class="headerlink" title="安全问题"></a>安全问题</h2><p>hypervisor内核内组件拥有最高等级的权限，在运行时与VM直接和最频繁地交互，从而将更多的攻击面暴露给VM。</p>
+<p><img src="/2024/02/28/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91Security-and-Performance-in-the-Delegated-User-level-Virtualization%EF%BC%882023-OSDI%EF%BC%89/image-20240228194032672.png" alt="CVE classification based on subsystems of KVM"></p>
+<p>所有已知的威胁主机内核的管理程序漏洞都存在于VM plane。</p>
 <ul>
-<li>机密性</li>
-<li>CTR模式<ul>
-<li>cipher &#x3D; plain ⊕ encryptedkey(address || seq)</li>
-<li>plain &#x3D; cipher ⊕ encryptedkey(address || seq) <ul>
-<li>key &#x3D; XOM ID</li>
-<li>address &#x3D; virtual address of data&#x2F;instruction</li>
-<li>seq &#x3D; mutating sequence number</li>
+<li>Large vulnerability quantity<ul>
+<li>About 500 CVEs for KVM and Xen </li>
+<li>Most of them are host-attacking</li>
 </ul>
 </li>
+<li>Severe security threats<ul>
+<li>Over 90% of the Host-attacking CVEs cause DoS attacks </li>
+<li>26% and 34% cause privilege escalation</li>
 </ul>
 </li>
-<li>encryptedkey(address + seq)的计算可以与内存访问并行，最终的计算只需要1个cycle进行异或</li>
+<li>Low exploit cost</li>
 </ul>
-<p><strong>为什么需要address作为counter的一部分？</strong><br>防止从一个内存地址复制合法的密文，替换到另外一个内存地址<br>    - cipher &#x3D; plain ⊕ encryptedkey(address || seq)<br>    - plain &#x3D; cipher ⊕ encryptedkey(address || seq)<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/6a31355457544e0a937da38c4dd4d589.png"><br><strong>Xom的问题</strong>：无法提供新鲜性保证<br>使用同一地址的旧的数据替换该地址的新的数据–&gt;需要防重放攻击</p>
-<h2 id="新鲜性，Merkel-Tree-防重放"><a href="#新鲜性，Merkel-Tree-防重放" class="headerlink" title="新鲜性，Merkel Tree 防重放"></a>新鲜性，Merkel Tree 防重放</h2><p>Caches and Merkle Trees for Efficient Memory Integrity Verification. HPCA 2003<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/a0a0d2aa62b54578b331ac17fdd644c7.png"><strong>优化</strong></p>
+<h2 id="现有方法局限"><a href="#现有方法局限" class="headerlink" title="现有方法局限"></a>现有方法局限</h2><p>大量工作试图剥夺虚拟机管理程序的内核功能：</p>
 <ul>
-<li>若每次都计算到根节点<ul>
-<li>4GB内存，128-bit hash，性能损失可以达到10倍</li>
+<li>NOVA基于微内核架构构建了一个微Hypervisor</li>
+<li>DeHype试图将KVM的大部分部件降级到用户态，而在内核态留下一个HypLet，因为敏感的硬件虚拟化指令只能在这种模式下执行。</li>
 </ul>
-</li>
-<li>专门的cache结构，缓存了最近使用的内部hash块<ul>
-<li>不需要计算到根节点，只需要计算到查找到的中间节点</li>
-<li>若中间节点被换出，则将其父节点放入cache，并更新父节点</li>
-<li>平均22%，最坏52%</li>
-</ul>
-</li>
-</ul>
-<h2 id="优化：Counter的压缩模式"><a href="#优化：Counter的压缩模式" class="headerlink" title="优化：Counter的压缩模式"></a>优化：Counter的压缩模式</h2><p>Improving Cost, Performance, and Security of Memory Encryption and Authentication. ISCA 2006</p>
+<p>然而，这种剥夺性的执行方式存在两个方面的局限性：</p>
 <ul>
-<li>CTR的问题<ul>
-<li>每次cache write back需要增加一次counte<ul>
-<li>每个chuck一个counter+addr</li>
+<li>不可消除的in-kernel漏洞：先前的工作试图将尽可能多的VM平面组件卸载到用户空间。遗憾的是，绝大多数( 58.75 % )的CVEs无法被淘汰，因为它们所在的VM - plane子系统由于硬件特权限制必须以HK模式运行。例如，中断虚拟化子系统访问特权寄存器，因此必须保持在HK模式下。同样，一些内存虚拟化功能，特别是那些为虚拟机配置敏感的stage - 2页表的功能，也必须保持在HK模式下。</li>
+<li>冗余且代价高昂的mode switching：由于虚拟机管理程序必须使用内核组件来驱动硬件虚拟化扩展，将大部分内核组件移动到用户空间会导致虚拟机与用户级虚拟机管理程序之间由于内核的参与而产生更频繁、更昂贵的交互，从而导致更高的性能开销，因为在每次VM出口处理上都会产生昂贵的VM - VMM通信开销。</li>
 </ul>
-</li>
-<li>当counter溢出时，需要换一个AES key <ul>
-<li>但整个内存加密只有一个key，因此需要重新加密整个物理内存 – freeze the system</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/ab23f2cd92f44d6399a051b43ac37173.png"></p>
+<h2 id="挑战和可能"><a href="#挑战和可能" class="headerlink" title="挑战和可能"></a>挑战和可能</h2><p>本文的核心思想是将所有在运行时<strong>直接与虚拟机交互的hypervisor组件移动到用户空间</strong>，以最小化用户模式hypervisor中发现的任何安全缺陷和可靠性问题的影响。</p>
+<p>三个挑战：</p>
 <ul>
-<li>Counter &#x3D; Major Counter || Minor Counter<ul>
-<li>Major Counter<ul>
-<li>每个加密的页面内所有的数据块共享一个major counter </li>
-<li>在系统的生命周期内都不会溢出（64 bit）</li>
+<li>1 )权限限制：现代硬件虚拟化扩展仅在user mode下可配置，需要在host kernel中存在一个hypervisor组件来使用这些扩展</li>
+<li>2 )安全风险：简单地将VM硬件资源的管理转移到user modde，违背了最小特权原则，扩大了攻击面</li>
+<li>3 )性能开销：大多数VM的出口都是由内核转发给用户态函数来处理的。然后，控制流必须再次返回内核以恢复VM的执行，导致过多的运行时ring穿越</li>
 </ul>
-</li>
-<li>Minor Counter<ul>
-<li>页面内每个数据块具有的独立的counter</li>
-<li>长度较短，容易溢出，但溢出时只需要更换一个major counter，并重新加密该页面，而不是全部的物理内存</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Stored together in a counter cache line<ul>
-<li>存储开销为1&#x2F;64&#x3D;1.6%<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/87dd9a2058cb417bb3e419ae43ef504c.png"></li>
-</ul>
-</li>
-<li>使用GMAC优化完整性保护<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/0dfa3aa01c4e411c96c29621fd99942b.png"></li>
-</ul>
-<h2 id="优化：AISE"><a href="#优化：AISE" class="headerlink" title="优化：AISE"></a>优化：AISE</h2><p>Using address Independent Seed Encryption and Bonsai Merkle Trees to Make Secure Processors OS- and Performance-Friendly. MICRO 2007</p>
-<p><strong>motivation</strong></p>
+<p>我们发现<strong>硬件虚拟化扩展和内核模式之间的紧耦合</strong>是上述挑战的根本原因。</p>
+<p>幸运的是，硬件进步使许多以前只能由内核访问的硬件资源暴露给用户模式成为可能。一个突出的例子是英特尔发布了用户级中断，允许用户级进程处理物理中断。另一个例子是物理内存检查，如RISC - V物理内存保护( Physical Memory Protection，PMP ) ，它限制了程序可以访问的物理内存范围。</p>
+<p>结合这些最新的硬件趋势，我们认为现在是时候对现有的硬件虚拟化扩展进行改造，并将虚拟化接口安全有效地暴露给用户模式。</p>
+<h2 id="本文思路"><a href="#本文思路" class="headerlink" title="本文思路"></a>本文思路</h2><p>本文提出了一种将VM plane与hypervisor plane解耦的管理程序设计原则。</p>
+<p>遵循解耦原则提出了委托虚拟化扩展( Delegated Virtualization Extension，DV-Ext )，该架构消除了kernel mode提供VM抽象的概念，将硬件虚拟化接口安全暴露给user mode。</p>
 <ul>
-<li>内存加密<ul>
-<li>CTR模式可以隐藏内存访问关键路径的延迟，但是该模式下要求counter是唯一的<ul>
-<li>之前的工作，采用了地址（spatial uniqueness，va或pa）作为counter的一部分</li>
-<li>每次write操作，counter+1，用于保证temporal uniqueness</li>
+<li>将与虚拟机直接交互的VM plane卸载为以用户模式运行的每个虚拟机管理程序(称为DuVisor)，DuVisor可以直接利用DV - Ext的寄存器和指令来服务运行时的VM exits，而不必陷于host kernel</li>
+<li>留下kernel mode的一个很小的DV - driver负责hypervisor plane，DV - driver只是偶尔醒来，为DuVisor进程分配物理资源或处理致命错误</li>
 </ul>
-</li>
-</ul>
-</li>
-<li>问题<ul>
-<li>使用物理地址，则每次page swapping都需要重新加密和解密<ul>
-<li>且需要增加额外的完整性保护机制</li>
-</ul>
-</li>
-<li>使用虚拟地址，但不同的进程可以使用同样的虚拟地址<ul>
-<li>若把每个进程的ID也作为counter的一部分<ul>
-<li>无法支持shared memory based IPC和shared library – process fork的copy on write的优化不可用，原因是parent&#x2F;child的counter是不一样的</li>
-<li>进程ID是由不信任的OS指定的</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><strong>主要优化</strong></p>
+<p>DuVisor在用户态高效地提供了不同的虚拟化功能，具有很强的安全性保证。</p>
 <ul>
-<li>Address Independent Seed Encryption （AISE）<ul>
-<li>为每个页分配一个逻辑识别码（logical identifiers）；与虚拟地址或物理地址无关，在整个系 统的生命周期确保对所有的内存页都是不同的<ul>
-<li>可以避免page swapping等的性能问题</li>
-<li>可以支持shared memory&#x2F;shared library等机制</li>
+<li>对于CPU虚拟化，DuVisor进程为每个虚拟CPU ( vCPU )创建一个专用线程( vthread )，vthread使用DV - Ext处理该vCPU在用户模式下的VM出口。</li>
+<li>对于内存虚拟化，DuVisor为其VM配置了一个stage - 2页表，并在用户模式下通过预先分配的物理内存范围来处理stage - 2页故障。</li>
+<li>对于设备虚拟化，DuVisor中的半虚拟化( PV )后端驱动直接与VM的前端通信。DuVisor进一步使用用户级发布中断，在向其VM发送通知时完全绕过主机内核。</li>
 </ul>
-</li>
+<h2 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h2><ul>
+<li>delegated virtualization，卸载部分VM plane功能到user-level的DuVisor，只留少量tiny DV-driver在host kernel，最小化暴露给guest VM的供给面</li>
+<li>轻量级硬件扩展Dv-Ext，使得DuVisor完全在user mode服务VM</li>
+<li>构建了Rust-based的DuVisor原型，在RISC-V上实现硬件扩展</li>
+<li>使用周期精确的FireSim在AWS F1 FPGA上评估性能</li>
 </ul>
-</li>
+<h1 id="2-设计和部件扩展"><a href="#2-设计和部件扩展" class="headerlink" title="2 设计和部件扩展"></a>2 设计和部件扩展</h1><h2 id="整体设计"><a href="#整体设计" class="headerlink" title="整体设计"></a>整体设计</h2><p><img src="/2024/02/28/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91Security-and-Performance-in-the-Delegated-User-level-Virtualization%EF%BC%882023-OSDI%EF%BC%89/image-20240228195159729.png" alt="整体架构"></p>
+<p>硬件扩展DV-Ext：它授权host kernel来决定是否将hardware virtualization functions委托给HU模式。如果启用委托模式，硬件虚拟化接口可以被非特权软件访问，而不会陷于host kernel。如果不启用，DV - Ext的功能与传统的硬件虚拟化类似，以实现兼容性</p>
+<p>DuVisor：HU模式的DuVisor进程利用DV - Ext暴露的硬件接口来控制未修改的VM 。为了支持虚拟机的正常执行，DuVisor通过动态虚拟化物理资源来处理运行时虚拟机的退出。在本文中，该工作流被定义为VM plane，并在HU模式下由DuVisor进程处理。为了支持HU模式下的内存虚拟化，DuVisor进程为其虚拟机构建了一个stage - 2页表。如果页面错误是由于缺少或非法的页面映射导致的，DuVisor会动态地在stage - 2页面表中添加或更新映射条目。与传统的hypervisor一样，DuVisor为每个vCPU生成不同的用户级线程，称为vthreads。还支持该虚拟机的PV I&#x2F;O设备和虚拟中断(包括定时器)。</p>
+<p>DV-Driver：在主机内核中插入一个微小的DV - driver作为hypervisor plane，它偶尔参与管理每个DuVisor的物理资源，而不干扰运行时VM出口的处理。具体来说，DV - driver使用DV - Ext使能&#x2F;禁用委托模式，并为DuVisor进程分配资源(如物理内存)。为了减轻安全风险，它还限制了DuVisor的物理内存视图，并处理紧急情况。DuVisor仍然依赖于host kernel来调度所有的线程和虚拟机。</p>
+<h2 id="威胁模型"><a href="#威胁模型" class="headerlink" title="威胁模型"></a>威胁模型</h2><ul>
+<li>敌对的租户危害管理程序，进一步攻击主机内核和其他VM；</li>
+<li>DuVisor CAN be comprised</li>
+<li>硬件实现正确；</li>
+<li>信任带有DV - driver的主机内核</li>
 </ul>
-<p><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/fbb27934464745d48b7a0e55506502e0.png"></p>
+<p><img src="/2024/02/28/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91Security-and-Performance-in-the-Delegated-User-level-Virtualization%EF%BC%882023-OSDI%EF%BC%89/image-20240228200032989.png"></p>
+<hr>
+<h1 id="3-实验"><a href="#3-实验" class="headerlink" title="3 实验"></a>3 实验</h1><p>实现细节和实验评估略</p>
+<hr>
+<h1 id="4-相关工作"><a href="#4-相关工作" class="headerlink" title="4 相关工作"></a>4 相关工作</h1><h2 id="移动内核功能到用户态"><a href="#移动内核功能到用户态" class="headerlink" title="移动内核功能到用户态"></a>移动内核功能到用户态</h2><p><strong>将内核特性剥夺到用户空间</strong>是增强安全性、易于开发和提高性能的经典方法。</p>
+<p>微内核是一种典型的[ 52、62、70、78 ]设计，其中文件系统和驱动程序等系统服务运行在用户态。</p>
+<p>对于单体内核，也有类似的方法，在用户空间实现文件系统[ 50、79 ]、调度器[ 57 ]、网络服务[ 75 ]和沙箱[ 53 ]。</p>
+<p>在管理程序功能方面，研究重点是通过将管理程序的部分功能移动到用户空间来减少管理程序的TCB，如DeHype [ 91 ]和NOVA [ 87 ]等设计。</p>
+<p>与DuVisor不同的是，它们仍然<strong>需要内核中的可信模块通过硬件虚拟化接口来执行VM平面的功能</strong>。DuVisor是第一个将运行时VM - plane功能完全迁移到用户空间的系统，使单核[ 40、61 ]和微内核的虚拟化架构都受益[ 55 ]。</p>
+<h2 id="安全的VM"><a href="#安全的VM" class="headerlink" title="安全的VM"></a>安全的VM</h2><p>许多其他研究都探讨了如何在不可靠的管理程序上<strong>实现更好的虚拟机隔离</strong>。许多努力都集中在减少管理程序TCB [ 66、81、85、92 ]。</p>
 <ul>
-<li>LPID<ul>
-<li>在页分配时分配的唯一值（unique value）</li>
-<li>在生命周期（系统启动到关闭）内与页绑定，包括物理页和交换空间页</li>
-<li>Global Page Counter：64比特<ul>
-<li>无法篡改，几乎不会溢出</li>
-</ul>
+<li><p>CloudVisor [ 92 ]使用嵌套虚拟化技术来剥夺Xen [ 40 ]管理程序。</p>
+</li>
+<li><p>HypSec [ 66 ]从KVM管理程序中分离出一个微小的Corevisor作为TCB。</p>
+</li>
+<li><p>其他方法已经致力于加固管理程序的TCB，例如SeKVM [ 67、68 ]，它们使用形式化验证来确保管理程序的安全保证。</p>
+</li>
+<li><p>与DuVisor不同的是，这些解决方案仍然<strong>依赖于内核内的硬件虚拟化接口</strong>，与未改进的传统管理程序相比，性能开销较小。</p>
 </li>
 </ul>
-</li>
-<li>LPID的存储：与压缩counter结合<br><img src="/../%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/9b56a0a15a4b4d1dab711bf5a199bb6c.png" alt="-"></li>
-<li>以1个4KB的页为例，每个block为64字节，每个block的LPID长度为64比特，每个 block分配一个7比特的counter<ul>
-<li>若block counter溢出，则为该页分配一个新的LPID，并重新加密该页</li>
-<li>存储开销为1&#x2F;64&#x3D;1.6%</li>
-</ul>
-</li>
-</ul>
-<h2 id="其他优化方向"><a href="#其他优化方向" class="headerlink" title="其他优化方向"></a>其他优化方向</h2><ul>
-<li><p>1.Merkle Tree的目的是防止replay attack，而CTR模式为每个block提供了一个 counter</p>
+<p>一些解决方案通过提供<strong>相互隔离的per-VM hypervisor实例</strong>来提高管理程序的可靠性。</p>
 <ul>
-<li>如果我们能够保证counter的新鲜性（freshness），则可以保证数据的新鲜性</li>
-<li>因此，只需要使用Merkle Tree保护counter的新鲜性<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/804cabb8cc7b465589f7722302aed2e1.png"></li>
+<li>Nexen [ 84 ]将虚拟机管理程序解构为每个虚拟机的非特权服务片。</li>
+<li>HyperLock [ 90 ]将虚拟机管理程序分解为每个虚拟机的孤立影子副本。</li>
+<li>与DuVisor相比，它们仍然依赖于传统的硬件虚拟化接口，并遭受软件隔离机制的性能惩罚。</li>
 </ul>
-</li>
-<li><p>2.counter要比data小的多（64B v.s. 4KB），因此一个Tree node可以容纳更多的 counter</p>
+<p>另一些人提出了硬件扩展，以从TCB的[ 39、58、60、66、89]中移除脆弱的管理程序。</p>
 <ul>
-<li>cache压力更小，查询更快<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/eca1b604f23e42ba9f3f4f35cfea6fd5.png"></li>
+<li>NoHype [ 60 ]通过对物理资源进行静态划分和硬件修改来消除管理程序及其攻击面。但是，它不允许资源过度订阅，因此在生产场景中部署是不切实际的。</li>
 </ul>
-</li>
-<li><p>3.VAULT. ASPLOS 2018：增加可以支持的受保护内存大小</p>
-<ul>
-<li><pre><code>EPC hit: 200 cycles；EPC miss 40K cycles
-</code></pre>
-</li>
-<li>SGX中树的每一层8个节点，VAULT使用了16到64个可变节点</li>
-<li>压缩MAC的存储</li>
-<li>16 GB受保护内存<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/c1c700653dea4ebe857031b0a63f9caa.png"></li>
-</ul>
-</li>
-<li><p>4.Morphable Counters. MICRO 2018</p>
-<ul>
-<li>根据应用程序的特点，每个cache line中的counter数量是动态可变的（counter的大小可变，之 前的方案都是固定的64个）</li>
-<li>通过对counter做压缩，降低Merkle tree的大小以及占用的cache大小，减少counter溢出后的 重加密代价</li>
-<li>16GB受保护内存<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/3c0aecc5f46e446ab23dcd104d053d3e.png"></li>
-</ul>
-</li>
-<li><p>5.Synergy. HPCA 2018</p>
-<ul>
-<li>将MAC放在ECC区域，对MAC的存取不需要额外的一次memory transaction</li>
-</ul>
-</li>
-<li><p>6.Compact Leakage-Free Support for Integrity and Reliability. ISCA 2020</p>
-<ul>
-<li>对integrity tree中的metadata布局的优化，降低metadata miss的概率</li>
-</ul>
-</li>
-</ul>
-<h1 id="现有TEE完整性保护"><a href="#现有TEE完整性保护" class="headerlink" title="现有TEE完整性保护"></a>现有TEE完整性保护</h1><h2 id="Intel-SGX"><a href="#Intel-SGX" class="headerlink" title="Intel SGX"></a>Intel SGX</h2><p>A Memory Encryption Engine Suitable for General Purpose Processors</p>
-<ul>
-<li>只对counter进行完整性保护</li>
-<li>counter：包括时间和空间counter，没有做压缩<br><img src="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/631a4ac104244ddfbc5c2ce246032d40.png"></li>
-</ul>
-<h2 id="SGX-V2-Scalable-SGX"><a href="#SGX-V2-Scalable-SGX" class="headerlink" title="SGX V2&#x2F;Scalable SGX"></a>SGX V2&#x2F;Scalable SGX</h2><ul>
-<li>移除了基于Merkle Tree的完整性检查</li>
-<li>利用ECC比特表明每个cache line是否属于某个enclave</li>
-<li>降低了对片外存储的完整性保护<ul>
-<li>无法防御memory bus replay attacks</li>
-</ul>
-</li>
-</ul>
-<h2 id="Intel-TDX-MLTME-AMD-SEV"><a href="#Intel-TDX-MLTME-AMD-SEV" class="headerlink" title="Intel TDX&#x2F;MLTME&#x2F;AMD SEV"></a>Intel TDX&#x2F;MLTME&#x2F;AMD SEV</h2><ul>
-<li>使用XTS加密模式<ul>
-<li>使用物理地址作为tweak</li>
-<li>同样的明文，在不同的物理地址，其密文是 不同的</li>
-</ul>
-</li>
-<li>SEV<ul>
-<li>除加密外，不包含任何可以保护完整性的metadata</li>
-<li>不知道密钥的情况下的任何修改，会使得其变为随机值<ul>
-<li>仍然可以被利用（*）</li>
-<li>仅适用于AMD SEV-SNP之前的版本</li>
-</ul>
-</li>
-<li>逆向tweak后，可以使用已知的明文覆盖目标的物理地址<ul>
-<li>仅适用于AMD SEV-SNP之前的版本</li>
-</ul>
-</li>
-<li>SEV-SNP防止了基于软件的完整性破坏<ul>
-<li>但是无法防御基于物理的内存完整性攻击（包括bus replay attack）</li>
-</ul>
-</li>
-<li>允许对加密数据进行读取，通过观察数据是否改变同样泄露信息</li>
-</ul>
-</li>
-<li>TDX<ul>
-<li>为每个64B自动生成28-bit的截断的sha-3输出作为MAC</li>
-<li>MAC存储在DRAM ECC-bit之内，提供完整性保护</li>
-<li>1个额外比特用于表明cache line是否属于某个TD</li>
-</ul>
-</li>
-</ul>
-<p>参考文献：<br>[1] <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F#">https://zh.wikipedia.org/wiki/分组密码工作模式#</a><br>[2] <a target="_blank" rel="noopener" href="https://heartever.github.io/files/understanding_tee_design.pdf">https://heartever.github.io/files/understanding_tee_design.pdf</a></p>
+<p>工业机密虚拟机( CVM )解决方案，例如AMD SEV-SNP [ 1 ]和ARM CCA [ 5、69 ]，利用专门的<strong>硬件安全扩展来保护虚拟机的数据免受恶意管理程序的攻击</strong>，而恶意管理程序不能访问或污染虚拟机的内存和寄存器。由于CVM和DuVisor都依赖于宿主内核，因此它们都<strong>容易受到非管理程序的DoS攻击</strong>。</p>
+<p>然而，与CVM不同，<strong>DuVisor通过将所有VM平面函数剥夺到用户空间，以最小化暴露在VM上的宿主内核运行时攻击面</strong>，从而避免了由于内核管理程序漏洞引起的DoS攻击。另一方面，CVM需要修改客户OS设备驱动程序，而DuVisor支持未修改的VM。</p>
+<p>CVM和DuVisor是正交技术，可以组合使用以获得更大的效益。<strong>DuVisor的设计可以应用于防御CVM内核中管理程序漏洞引起的DoS攻击</strong>，我们计划在未来的工作中进行探索。</p>
+<p>现有的CVM都是由内核中的管理程序通过安全固件接口(如ARM CCA的RMM和TF - A , Intel TDX模块等)来控制的，而(如ARM CCA的RMM和TF - A , Intel TDX模块等)只能在宿主内核中被调用。通过将这些接口暴露给用户空间，DuVisor可以与CVM一起使用，从而<strong>消除内核中共享的管理程序漏洞</strong>。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
