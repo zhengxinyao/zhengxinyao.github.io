@@ -373,7 +373,7 @@
         
         
         <a  class="全部文章 论文记录 "
-           href="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation%20(2)/"
+           href="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/"
            data-tag="安全,LLM"
            data-author="" >
             <span class="post-title" title="【LLM安全】LLM on secure hardware code generation">【LLM安全】LLM on secure hardware code generation</span>
@@ -688,7 +688,7 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-【LLM安全】LLM-on-hardware-code-generation (2)" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-【LLM安全】LLM-on-hardware-code-generation" class="article article-type-post" itemscope itemprop="blogPost">
     
         <h1 class="article-title">【LLM安全】LLM on secure hardware code generation</h1>
     
@@ -759,73 +759,73 @@
 <p><a target="_blank" rel="noopener" href="https://cwe.mitre.org/">Common Weakness Enumeration</a></p>
 <p>考虑Verilog、python、java代码的安全性</p>
 <h1 id="Generating-secure-hardware-using-chatgpt-resistant-to-cwes"><a href="#Generating-secure-hardware-using-chatgpt-resistant-to-cwes" class="headerlink" title="Generating secure hardware using chatgpt resistant to cwes"></a>Generating secure hardware using chatgpt resistant to cwes</h1><p><a target="_blank" rel="noopener" href="https://eprint.iacr.org/2023/212">https://eprint.iacr.org/2023/212</a>   10个特例，展示prompt引导ChatGPT提供安全的硬件代码生成</p>
-<p><img src="/image-20240228222810832.png"></p>
-<h2 id="MITRE网站：硬件设计CWE"><a href="#MITRE网站：硬件设计CWE" class="headerlink" title="MITRE网站：硬件设计CWE"></a>MITRE网站：硬件设计CWE</h2><p><img src="/image-20240228223624260.png"></p>
-<h2 id="演示ChatGPT在提示多样性的情况下生成不安全的代码"><a href="#演示ChatGPT在提示多样性的情况下生成不安全的代码" class="headerlink" title="演示ChatGPT在提示多样性的情况下生成不安全的代码"></a>演示ChatGPT在提示多样性的情况下生成不安全的代码</h2><p><img src="/image-20240228225754031.png"></p>
-<p><img src="/image-20240228224556613.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240228222810832.png"></p>
+<h2 id="MITRE网站：硬件设计CWE"><a href="#MITRE网站：硬件设计CWE" class="headerlink" title="MITRE网站：硬件设计CWE"></a>MITRE网站：硬件设计CWE</h2><p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240228223624260.png"></p>
+<h2 id="演示ChatGPT在提示多样性的情况下生成不安全的代码"><a href="#演示ChatGPT在提示多样性的情况下生成不安全的代码" class="headerlink" title="演示ChatGPT在提示多样性的情况下生成不安全的代码"></a>演示ChatGPT在提示多样性的情况下生成不安全的代码</h2><p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240228225754031.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240228224556613.png"></p>
 <p>生成的代码由输出OR门处的反馈环组成，该反馈环在功能上是不正确的，因为输出( Y )会振荡，输出不可预测，<strong>CWE-1298: Hardware Logic Contains Race Conditions</strong></p>
-<p><img src="/image-20240228224844841.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240228224844841.png"></p>
 <p>从A→Y和S→Y这两条路径的长度不同，导致输出端出现定时错误或毛刺，在安全系统的访问控制逻辑或有限状态机中的时序错误可以被敌手利用。</p>
 <p><strong>CWE-1298: Hardware Logic Contains Race Conditions</strong></p>
-<p><img src="/image-20240228225133648.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240228225133648.png"></p>
 <p>输出异或门的功耗将取决于输出端产生的比特，敌手将实时监控模块输出时消耗的功率，以检索密钥比特。</p>
 <p><strong>CWE-1255: Comparison Logic is Vulnerable to Power Side-Channel Attacks</strong></p>
 <h2 id="针对10个特定CWE，设计提示策略，以生成安全的硬件"><a href="#针对10个特定CWE，设计提示策略，以生成安全的硬件" class="headerlink" title="针对10个特定CWE，设计提示策略，以生成安全的硬件"></a>针对10个特定CWE，设计提示策略，以生成安全的硬件</h2><ul>
 <li>CWE-1255: Comparison Logic is Vulnerable to Power Side-Channel Attacks</li>
 </ul>
-<p><img src="/image-20240228230853025.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240228230853025.png"></p>
 <p>通过直接比较两个32位密钥，操作不会被展开成逐位比较</p>
 <ul>
 <li>CWE-1271: Uninitialized Value on Reset for Registers Holding Security Settings</li>
 </ul>
-<p><img src="/image-20240228230925916.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240228230925916.png"></p>
 <p>只要提示需要复位信号，代码中就没有未初始化的寄存器</p>
 <ul>
 <li>CWE-1234: Hardware Internal or Debug Modes Allow Override of Locks</li>
 </ul>
 <p>指的是硬件设备具有内部或调试模式，存在覆盖锁的漏洞，如果一个锁可以在内部模式下被重写，攻击者可以利用这个漏洞造成逻辑错误，从而导致敏感信息的泄露。建议移除调试和内部模式覆盖。</p>
-<p><img src="/image-20240228231423480.png"></p>
-<p><img src="/image-20240228231643303.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240228231423480.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240228231643303.png"></p>
 <ul>
 <li>CWE-1245: Improper Finite State Machines (FSMs) in Hardware Logic</li>
 </ul>
 <p>如果有限状态机有不正确的转换，攻击者可以操纵FSM的输入，使系统进入不稳定的状态，如果不进行重置，系统将无法恢复，从而导致错误的结果或DoS攻击。为了缓解这一漏洞，建议对FSM的所有输入进行验证。</p>
-<p><img src="/image-20240228231807334.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240228231807334.png"></p>
 <p>敌手可以使用这些默认状态将系统驱动到不稳定的状态</p>
-<p><img src="/image-20240228231854707.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240228231854707.png"></p>
 <p>研究了10个CWEs，设计ChatGPT提示，生成安全的硬件。可以扩展该工作范围，将安全验证纳入软件领域。</p>
 <h1 id="Fixing-hardware-security-bugs-with-large-language-models"><a href="#Fixing-hardware-security-bugs-with-large-language-models" class="headerlink" title="Fixing hardware security bugs with large language models"></a>Fixing hardware security bugs with large language models</h1><p><a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2302.01215">https://doi.org/10.48550/arXiv.2302.01215</a> LLM自动修复硬件设计的安全相关bug 2023</p>
-<p><img src="/image-20240228232839608.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240228232839608.png"></p>
 <p>关注Verilog编写的代码中的缺陷修复。建立一个具有领域代表性的硬件安全缺陷语料库。实现了一个框架来定量评估LLM修复指定bug性能。并进行prompt的DSE。</p>
 <p>适用框架：人发现bug+LLM进行修复；静态分析检测+LLM修复。</p>
 <p>相关工作：软件代码修复技术很多；安全漏洞比功能漏洞更难检测和修复，也有一些neural transfer learning 和examplebased approaches；在硬件设计方面，CirFix尝试定位并修复bug。</p>
-<p><img src="/image-20240228234048578.png"></p>
-<h2 id="基准设计"><a href="#基准设计" class="headerlink" title="基准设计"></a>基准设计</h2><p><img src="/image-20240228234415812.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240228234048578.png"></p>
+<h2 id="基准设计"><a href="#基准设计" class="headerlink" title="基准设计"></a>基准设计</h2><p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240228234415812.png"></p>
 <p>使用基准测试的10个bug进行实验。自动化地执行缺陷的识别、修复和修复评估</p>
 <h2 id="方法框架"><a href="#方法框架" class="headerlink" title="方法框架"></a>方法框架</h2><p>These are comments before and after the buggy code that assist the LLMs in generating an appropriate repair for that bug. The Prompt generator combines the code before the bug, buggy code in comments, and instructions to form the Prompt to LLM.</p>
-<p><img src="/image-20240229143119405.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229143119405.png"></p>
 <h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>指令描述：The instructions are broken down into Bug Instruction and Fix Instruction. The former describes the nature of the bug and lets the LLM know that the bug follows. The latter follows the bug in comments and instructs the LLM on how to fix the bug.</p>
-<p><img src="/image-20240228235101981.png"></p>
-<p><img src="/image-20240229143738855.png" alt="image-20240229143738855"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240228235101981.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229143738855.png" alt="image-20240229143738855"></p>
 <hr>
-<p><img src="/image-20240229144327337.png"></p>
-<p><img src="/image-20240229144416291.png"></p>
-<p><img src="/image-20240229145405050.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229144327337.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229144416291.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229145405050.png"></p>
 <h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p>实验参数：Instruction Variation、Temperature (t)、Models、Stop keywords</p>
-<p><img src="/image-20240229150354955.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229150354955.png"></p>
 <p>不同的参数设置，10个例子每个跑20次，最大值200</p>
-<p><img src="/image-20240229150100186.png"></p>
-<p><img src="/image-20240229150157863.png"></p>
-<p><img src="/image-20240229150510053.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229150100186.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229150157863.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229150510053.png"></p>
 <p>思路：可以和HDL上微调的LLM（Benchmarking Large Language Models for Automated Verilog RTL Code Generation）一起，结合安全相关的数据库（Trust-Hub.org），提高生成代码的安全性；</p>
 <h1 id="Generate-and-Pray-Using-SALLMS-to-Evaluate-the-Security-of-LLM-Generated-Code"><a href="#Generate-and-Pray-Using-SALLMS-to-Evaluate-the-Security-of-LLM-Generated-Code" class="headerlink" title="Generate and Pray: Using SALLMS to Evaluate the Security of LLM Generated Code"></a>Generate and Pray: Using SALLMS to Evaluate the Security of LLM Generated Code</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2311.00889">https://arxiv.org/abs/2311.00889</a> 提出了一个框架，评估LLM生成python代码的安全性</p>
 <h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><p>三个主要组件：安全为中心的 Python prompt数据集、测试生成代码的评估环境，从安全角度评估模型性能的新指标。</p>
-<p><img src="/image-20240229152816502.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229152816502.png"></p>
 <ul>
 <li><p>Dataset of Prompts</p>
 <p>Code Snippets Collection：StackOverflow、Common Weakness Enumeration (CWE)、CodeQL、Sonar Rules</p>
 <p>Prompts Creation：Each prompt is a function&#x2F;method signature that describes a security-relevant coding task, i.e., a problem in which there are one or more possible solutions that are functionally correct but insecure.</p>
-<p><img src="/image-20240229153406542.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229153406542.png"></p>
 </li>
 <li><p>Code Generation：框架包括一个静态过滤阶段，自动修复语法错误并移除生成的不可执行代码片段</p>
 </li>
@@ -834,39 +834,39 @@
 </ul>
 <p>生成n个代码，c个功能正确，s个安全，v个有漏洞</p>
 <p>pass@k：This metric aims to evaluate the probability that at least one out of k generated samples are <strong>functionally</strong> correct. </p>
-<p><img src="/image-20240229154502716.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229154502716.png"></p>
 <p>secure@k：measures the probability that all code snippets out of k samples are secure</p>
-<p><img src="/image-20240229154811202.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229154811202.png"></p>
 <p>vulnerable@k ：measures the probability that at least one code snippets out of k samples are vulnerable</p>
-<p><img src="/image-20240229161934801.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229161934801.png"></p>
 <h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><ul>
 <li>和现有数据集的比较</li>
 </ul>
 <p>SecurityEval dataset [63]: It is a prompt-based dataset covering 69 CWEs, including the MITRE’s Top 25 CWEs with 121 Python prompts from a diverse source</p>
 <p>LLMSecEval dataset [67]：covers MITRE’s top 25 CWEs and contains 150 NL prompts to benchmark the code generation model.</p>
-<p><img src="/image-20240229155824118.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229155824118.png"></p>
 <ul>
 <li>与原始研究中使用的评估设置相比，LLMs如何在以安全为中心的提示下执行?</li>
 </ul>
-<p><img src="/image-20240229160228726.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229160228726.png"></p>
 <ul>
 <li>如何利用SALLM的评估技术，防止生成的脆弱代码被集成到代码库中?</li>
 </ul>
 <p>We collected 423 compilable Python samples from the ChatGPT-generated code using Developers’ conversationstyle prompts. We run CodeQL to check vulnerable APIs and taint analysis on the generated code.</p>
 <p>CodeQL found 10 types of CWEs across 12 Python samples. Out of 10 types of CWEs, four CWEs are in the top 25 CWE ranks in 2023 of these 10 CWEs</p>
-<p><img src="/image-20240229160511546.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229160511546.png"></p>
 <h1 id="Novel-approach-to-cryptography-implementation-using-chatgpt"><a href="#Novel-approach-to-cryptography-implementation-using-chatgpt" class="headerlink" title="Novel approach to cryptography implementation using chatgpt"></a>Novel approach to cryptography implementation using chatgpt</h1><p><a target="_blank" rel="noopener" href="https://eprint.iacr.org/2023/606">https://eprint.iacr.org/2023/606</a> 尝试用ChatGPT生成密码学代码 2023</p>
-<p><img src="/image-20240229161457936.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229161457936.png"></p>
 <p>实现已知算法AES (Advanced Encryption Standard) Block Cipher和CHAM Block Cipher效果较好</p>
-<p><img src="/image-20240229162840189.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229162840189.png"></p>
 <h2 id="AES实现"><a href="#AES实现" class="headerlink" title="AES实现"></a>AES实现</h2><ul>
 <li>step1：是否熟悉算法</li>
 </ul>
-<p><img src="/image-20240229163922833.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229163922833.png"></p>
 <p>step2：要求实现</p>
-<p><img src="/image-20240229163947286.png"></p>
-<p><img src="/image-20240229164018728.png"></p>
-<p><img src="/image-20240229164110014.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229163947286.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229164018728.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229164110014.png"></p>
 <p>。。。</p>
 <p>在此基础上，要求创建运行AES - 192和AES - 256的源代码。经测试，ChatGPT实现的AES算法与测试向量完全匹配，表明实现是成功的。</p>
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>实现众所周知的算法非常简单。在实现过程中无需对算法结构进行说明，ChatGPT根据需求精确生成源代码。</p>
@@ -891,7 +891,7 @@
 <p><strong>数据</strong>：Vul4J 数据集35 个单块错误，VJBench 的 15 个单块漏洞外，总共有 50 个 Java 漏洞。</p>
 <p><strong>评估 LLM的输入</strong>：（1） buggy 行作为输入的一部分进行注释，（2） 没有 buggy 行。</p>
 <p>当输入包含错误行注释时，InCoder 修复了更多漏洞，而其他 LLM 在没有错误行的情况下表现更好。</p>
-<p><img src="/image-20240229173326102.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229173326102.png"></p>
 <h2 id="实验结果-1"><a href="#实验结果-1" class="headerlink" title="实验结果"></a>实验结果</h2><ul>
 <li>RQ1: Vulnerability Fixing Capabilities</li>
 </ul>
@@ -899,17 +899,17 @@
 <p>使用通用APR数据进行微调可提高所有四个LLM的漏洞修复能力</p>
 <p>Codex的汇编率最高，为79.7%，其余的在 24.5% 到 65.2% 之间，表明缺乏语法领域知识。</p>
 <p><strong>plausible patches</strong> are patches that pass all test cases, while <strong>correct patches</strong> are semantically equivalent to developer patches, and over-fitted <strong>patches are patches</strong> that pass all test cases but are incorrect</p>
-<p><img src="/image-20240229175402596.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229175402596.png"></p>
 <ul>
 <li>RQ2: What kinds of vulnerabilities do LLMs and learning-based APR techniques fix</li>
 </ul>
 <p>除Codex 外，LLM和 APR 技术仅修复需要简单更改的漏洞，例如删除语句或替换变量&#x2F;方法名称</p>
-<p><img src="/image-20240229175917635.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229175917635.png"></p>
 <ul>
 <li>RQ3: Fixing Capabilities on Transformed Vulnerabilities</li>
 </ul>
 <p>代码转换使大型语言模型和 APR 技术修复的漏洞数量更少。某些模型（如 Codex 和微调的 CodeT5）对代码转换更鲁棒</p>
-<p><img src="/image-20240229180139870.png"></p>
+<p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229180139870.png"></p>
 <p>结论：研究人员使用LLM来改进许多软件工程任务，例如自动程序修复[40,50,63]，自动完成建议[25]。我们的工作探索了LLMs的在漏洞修复领域的潜力（众所周知，漏洞很难修复[52]），这些挑战尚未得到很好的探索。</p>
 
       
