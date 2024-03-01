@@ -376,7 +376,7 @@
            href="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation%20(2)/"
            data-tag="安全,LLM"
            data-author="" >
-            <span class="post-title" title="【LLM安全】LLM on hardware code generation">【LLM安全】LLM on hardware code generation</span>
+            <span class="post-title" title="【LLM安全】LLM on secure hardware code generation">【LLM安全】LLM on secure hardware code generation</span>
             <span class="post-date" title="2024-02-29 20:29:23">2024/02/29</span>
         </a>
         
@@ -717,7 +717,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-03-01 13:38:29'>2024-02-28 14:17</time>
+            发布时间 : <time class="date" title='最后更新: 2024-03-01 13:46:28'>2024-02-28 14:17</time>
         
     </div>
     <div class="article-meta">
@@ -783,7 +783,7 @@
 <h3 id="I-O-event-notification"><a href="#I-O-event-notification" class="headerlink" title="I&#x2F;O event notification"></a>I&#x2F;O event notification</h3></li>
 <li><p>Hypervisor通过vIRQ通知虚拟机，从而触发虚拟机退出</p>
 </li>
-<li><p>与传统VM相比，CVM推出具有更高的延迟</p>
+<li><p>与传统VM相比，CVM退出具有更高的延迟</p>
 </li>
 </ul>
 <p><img src="/2024/02/28/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91Bifrost-Analysis-and-Optimization-of-Network-I-O-Tax-in-Confidential-Virtual-Machines-2023OSDI/image-20240228142441367.png" alt="CVMs’ exits have higher latency"></p>
@@ -796,7 +796,7 @@
 <li>端到端的加密，如传输层安全( TLS )</li>
 <li>内核中的TLS支持增强的性能和扩展的功能</li>
 </ul>
-<p><img src="/2024/02/28/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91Bifrost-Analysis-and-Optimization-of-Network-I-O-Tax-in-Confidential-Virtual-Machines-2023OSDI/image-20240228142728640.png" alt="image-20240228142728640"></p>
+<p><img src="/2024/02/28/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91Bifrost-Analysis-and-Optimization-of-Network-I-O-Tax-in-Confidential-Virtual-Machines-2023OSDI/image-20240228142728640.png" alt="TLS保护数据"></p>
 <h2 id="CVM的网络性能差"><a href="#CVM的网络性能差" class="headerlink" title="CVM的网络性能差"></a>CVM的网络性能差</h2><p>Testbed configuration </p>
 <ul>
 <li>CVM: AMD SEV-ES&#x2F;SNP, w&#x2F;o posted IRQ</li>
@@ -831,7 +831,7 @@
 </ul>
 <p><img src="/2024/02/28/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91Bifrost-Analysis-and-Optimization-of-Network-I-O-Tax-in-Confidential-Virtual-Machines-2023OSDI/image-20240228143703797.png" alt="CVM consumes 5,833 cycles more than its baseline"></p>
 <ul>
-<li>如果没有posted IRQ，vIRQ导致频繁的VM推出</li>
+<li>如果没有posted IRQ，vIRQ导致频繁的VM退出</li>
 </ul>
 <p><img src="/2024/02/28/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91Bifrost-Analysis-and-Optimization-of-Network-I-O-Tax-in-Confidential-Virtual-Machines-2023OSDI/image-20240228143837563.png" alt="CVM triggers ~20x more VM exits/s than CVM+PI"></p>
 <blockquote>
@@ -839,7 +839,7 @@
 <li>VM exits占据CVM的大量CPU时间</li>
 <li>高达20%-&gt;严重的性能影响</li>
 <li>增加的延时和高频率-&gt;开销大</li>
-<li>posted IRQ最小化了VM推出的性能影响</li>
+<li>posted IRQ最小化了VM退出的性能影响</li>
 <li>CVM+PI有最多1%的CPU周期数</li>
 <li>可以在下一代的CVM硬件平台中迅速支持</li>
 </ul>
@@ -912,11 +912,11 @@
 <ul>
 <li>O2：端到端加密存在有效载荷位置移动的副作用</li>
 </ul>
-<p><img src="/2024/02/28/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91Bifrost-Analysis-and-Optimization-of-Network-I-O-Tax-in-Confidential-Virtual-Machines-2023OSDI/image-20240228150041840.png" alt="异地揭揭密减少冗余保护或者bouncing"></p>
+<p><img src="/2024/02/28/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91Bifrost-Analysis-and-Optimization-of-Network-I-O-Tax-in-Confidential-Virtual-Machines-2023OSDI/image-20240228150041840.png" alt="异地加解密减少冗余保护或者bouncing"></p>
 <ul>
 <li>O3：I &#x2F; O后端通常有大量的剩余CPU资源可用</li>
 </ul>
-<p><img src="/2024/02/28/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91Bifrost-Analysis-and-Optimization-of-Network-I-O-Tax-in-Confidential-Virtual-Machines-2023OSDI/image-20240228150200488.png" alt="CPU没有重复利用，vCPU重复利用"></p>
+<p><img src="/2024/02/28/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91Bifrost-Analysis-and-Optimization-of-Network-I-O-Tax-in-Confidential-Virtual-Machines-2023OSDI/image-20240228150200488.png" alt="CPU没有充分利用，vCPU充分利用"></p>
 <h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><ul>
 <li><p>D1：Zero-copy encryption deduplication (ZCED)</p>
 <ul>
