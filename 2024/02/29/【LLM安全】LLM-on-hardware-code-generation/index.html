@@ -151,7 +151,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(33)</small>
+                <small>(34)</small>
             
         </div>
     </li>
@@ -178,7 +178,7 @@
         <div data-rel="知识总结">
             
             知识总结
-            <small>(17)</small>
+            <small>(18)</small>
         </div>
         
     </li>
@@ -214,7 +214,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="33">
+<input type="hidden" id="yelog_site_posts_number" value="34">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -372,6 +372,15 @@
     <nav id="title-list-nav">
         
         
+        <a  class="全部文章 知识总结 "
+           href="/2024/03/05/%E3%80%90TEE%E3%80%91%E5%86%85%E5%AD%98%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4/"
+           data-tag="安全,TEE,内存保护,架构"
+           data-author="" >
+            <span class="post-title" title="【TEE】内存完整性保护">【TEE】内存完整性保护</span>
+            <span class="post-date" title="2024-03-05 23:01:15">2024/03/05</span>
+        </a>
+        
+        
         <a  class="全部文章 论文记录 "
            href="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/"
            data-tag="安全,LLM"
@@ -383,7 +392,7 @@
         
         <a  class="全部文章 论文记录 "
            href="/2024/02/28/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91Security-and-Performance-in-the-Delegated-User-level-Virtualization%EF%BC%882023-OSDI%EF%BC%89/"
-           data-tag="云安全,虚拟化"
+           data-tag="虚拟化,云安全"
            data-author="" >
             <span class="post-title" title="【云安全】Security and Performance in the Delegated User-level Virtualization（2023 OSDI）">【云安全】Security and Performance in the Delegated User-level Virtualization（2023 OSDI）</span>
             <span class="post-date" title="2024-02-28 19:07:28">2024/02/28</span>
@@ -457,7 +466,7 @@
         
         <a  class="全部文章 知识总结 "
            href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/"
-           data-tag="GPU,架构"
+           data-tag="架构,GPU"
            data-author="" >
             <span class="post-title" title="【架构】GPU架构总结">【架构】GPU架构总结</span>
             <span class="post-date" title="2024-02-25 20:52:00">2024/02/25</span>
@@ -717,7 +726,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-03-01 13:51:03'>2024-02-29 20:29</time>
+            发布时间 : <time class="date" title='最后更新: 2024-03-01 15:56:51'>2024-02-29 20:29</time>
         
     </div>
     <div class="article-meta">
@@ -911,6 +920,10 @@
 <p>代码转换使大型语言模型和 APR 技术修复的漏洞数量更少。某些模型（如 Codex 和微调的 CodeT5）对代码转换更鲁棒</p>
 <p><img src="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/image-20240229180139870.png"></p>
 <p>结论：研究人员使用LLM来改进许多软件工程任务，例如自动程序修复[40,50,63]，自动完成建议[25]。我们的工作探索了LLMs的在漏洞修复领域的潜力（众所周知，漏洞很难修复[52]），这些挑战尚未得到很好的探索。</p>
+<p>宣传下我们最近的工作：我们提出了ShieldLM模型，一个支持中英双语的全面安全检测器，能够很好地检测大模型生成文本的安全性（支持对话级别检测）。ShieldLM和通用的人类标准对齐，支持细粒度的可定制的检测规则，同时为安全的判断提供具体的自然语言解释。ShieldLM在4个ID和OOD数据上的安全检测性能都击败了强大的baseline（比如GPT-4，Llama Guard，Perspective API等），同时在对齐性、可定制性、可解释性上都展现出了良好的性能。我们也实际验证了将ShieldLM用于Safety-Prompts benchmark上进行大模型安全性评估，可以取得显著优于其他baseline的性能。我们开源了ShieldLM的4个不同参数量的版本，包括6B，7B，13B，14B，欢迎大家关注和使用！</p>
+<p>论文arxiv链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2402.16444">https://arxiv.org/abs/2402.16444</a></p>
+<p>Github代码链接：<a target="_blank" rel="noopener" href="https://github.com/thu-coai/ShieldLM">https://github.com/thu-coai/ShieldLM</a></p>
+<p>模型checkpoints链接：<a target="_blank" rel="noopener" href="https://huggingface.co/thu-coai/ShieldLM-6B-chatglm3">https://huggingface.co/thu-coai/ShieldLM-6B-chatglm3</a>, <a target="_blank" rel="noopener" href="https://huggingface.co/thu-coai/ShieldLM-7B-internlm2">https://huggingface.co/thu-coai/ShieldLM-7B-internlm2</a>, <a target="_blank" rel="noopener" href="https://huggingface.co/thu-coai/ShieldLM-13B-baichuan2">https://huggingface.co/thu-coai/ShieldLM-13B-baichuan2</a>, <a target="_blank" rel="noopener" href="https://huggingface.co/thu-coai/ShieldLM-14B-qwen">https://huggingface.co/thu-coai/ShieldLM-14B-qwen</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
