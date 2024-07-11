@@ -139,7 +139,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(38)</small>
+                <small>(36)</small>
             
         </div>
     </li>
@@ -178,21 +178,6 @@
             
                 
     <li>
-        <div data-rel="论文阅读">
-            
-            论文阅读
-            <small>(1)</small>
-        </div>
-        
-    </li>
-
-            
-        
-    
-        
-            
-                
-    <li>
         <div data-rel="阅读分享">
             
             阅读分享
@@ -217,7 +202,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="38">
+<input type="hidden" id="yelog_site_posts_number" value="36">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -375,21 +360,12 @@
     <nav id="title-list-nav">
         
         
-        <a  class="全部文章 "
-           href="/2024/04/27/%E6%A8%A1%E5%9E%8B%E6%8F%90%E5%8F%96/"
-           data-tag=""
+        <a  class="全部文章 知识总结 "
+           href="/2024/07/11/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/"
+           data-tag="LLM,架构"
            data-author="" >
-            <span class="post-title" title=""></span>
-            <span class="post-date" title="2024-04-27 12:29:39">2024/04/27</span>
-        </a>
-        
-        
-        <a  class="全部文章 论文阅读 "
-           href="/2024/04/15/TEE-IceClave-A-Trusted-Execution-Environment-for-In-Storage-Computing/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="[TEE]IceClave: A Trusted Execution Environment for In-Storage Computing">[TEE]IceClave: A Trusted Execution Environment for In-Storage Computing</span>
-            <span class="post-date" title="2024-04-15 19:05:53">2024/04/15</span>
+            <span class="post-title" title="【LLM】相关技术总结">【LLM】相关技术总结</span>
+            <span class="post-date" title="2024-07-11 20:52:00">2024/07/11</span>
         </a>
         
         
@@ -491,15 +467,6 @@
            data-author="" >
             <span class="post-title" title="【架构】面向人工智能 （AI） 的硬件的可靠性">【架构】面向人工智能 （AI） 的硬件的可靠性</span>
             <span class="post-date" title="2024-02-25 22:33:18">2024/02/25</span>
-        </a>
-        
-        
-        <a  class="全部文章 知识总结 "
-           href="/2024/02/25/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/"
-           data-tag="LLM,架构"
-           data-author="" >
-            <span class="post-title" title="【LLM】相关技术总结">【LLM】相关技术总结</span>
-            <span class="post-date" title="2024-02-25 20:52:00">2024/02/25</span>
         </a>
         
         
@@ -765,7 +732,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-07-11 17:28:44'>2024-02-25 20:52</time>
+            发布时间 : <time class="date" title='最后更新: 2024-07-11 17:45:43'>2024-07-11 20:52</time>
         
     </div>
     <div class="article-meta">
@@ -813,44 +780,44 @@
 <li>在<code>1024</code>长度下，一种简单的方式为增大位置编码的特征维度，<code>dim=4096</code>时呈现较好的衰减性，<code>dim=512</code>时过早出现震荡</li>
 </ol>
 <h2 id="绝对位置编码"><a href="#绝对位置编码" class="headerlink" title="绝对位置编码"></a>绝对位置编码</h2><h3 id="训练式位置编码"><a href="#训练式位置编码" class="headerlink" title="训练式位置编码"></a>训练式位置编码</h3><p>训练式位置编码，顾名思义就是每个位置的位置向量会随着模型一起训练。训练式位置编码广泛应用于早期的transformer类型的模型，如BERT、GPT、ALBERT等。</p>
-<p><img src="/image-20240711113229124.png" alt="image-20240711113229124"></p>
+<p><img src="/2024/07/11/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/image-20240711113229124.png" alt="image-20240711113229124"></p>
 <p>但其缺点是模型&#x3D;&#x3D;不具有长度外推性&#x3D;&#x3D;，因为位置编码矩阵的大小是预设的，若对其进行扩展，将会破坏模型在预训练阶段学习到的位置信息。例如将512*768扩展为1024*768，新拓展的512个位置向量缺乏训练，无法正确表示512~1023的位置信息。</p>
-<h3 id="Sinusoidal位置编码"><a href="#Sinusoidal位置编码" class="headerlink" title="Sinusoidal位置编码"></a>Sinusoidal位置编码</h3><p><img src="/image-20240711112656718.png" alt="image-20240711112656718"></p>
+<h3 id="Sinusoidal位置编码"><a href="#Sinusoidal位置编码" class="headerlink" title="Sinusoidal位置编码"></a>Sinusoidal位置编码</h3><p><img src="/2024/07/11/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/image-20240711112656718.png" alt="image-20240711112656718"></p>
 <p>Sinusoidal位置编码的每个分量都是正弦或余弦函数，所有每个分量的数值都具有周期性。每个分量都具有周期性，并且&#x3D;&#x3D;越靠后的分量，波长越长，频率越低&#x3D;&#x3D;。</p>
 <p>Sinusoidal位置编码具有远程衰减的性质，具体表现为：对于两个相同的词向量，如果它们之间的&#x3D;&#x3D;距离越近，则他们的内积分数越高，反之则越低&#x3D;&#x3D;。</p>
 <p>因为Sinusoidal位置编码中的正弦余弦函数具备周期性，并且具备远程衰减的特性，所以理论上也具备一定长度外推的能力。</p>
 <h2 id="RoPE位置编码"><a href="#RoPE位置编码" class="headerlink" title="RoPE位置编码"></a>RoPE位置编码</h2><p>&#x3D;&#x3D;RoPE位置编码通过将一个向量旋转某个角度，为其赋予位置信息。&#x3D;&#x3D;</p>
 <h3 id="RoPE的出发点"><a href="#RoPE的出发点" class="headerlink" title="RoPE的出发点"></a>RoPE的出发点</h3><p>RoPE而言，作者的出发点为：&#x3D;&#x3D;通过绝对位置编码的方式实现相对位置编码&#x3D;&#x3D;。</p>
-<p><img src="/image-20240711113425628.png" alt="image-20240711113425628"></p>
+<p><img src="/2024/07/11/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/image-20240711113425628.png" alt="image-20240711113425628"></p>
 <h3 id="二维位置编码"><a href="#二维位置编码" class="headerlink" title="二维位置编码"></a>二维位置编码</h3><p>作者给出了如下位置编码函数：$m$为位置下表，$\theta$为一个常数，左侧的$R_m$是一个旋转矩阵， $f(q,m)$表示在保持向量$q$的模长的同时，将其逆时针旋转$m\theta$ 。这意味着只需要&#x3D;&#x3D;将向量旋转某个角度，即可实现对该向量添加绝对位置信息&#x3D;&#x3D;。并且&#x3D;&#x3D;向量旋转具有周期性&#x3D;&#x3D;。</p>
-<p><img src="/image-20240711113602284.png" alt="image-20240711113602284"></p>
+<p><img src="/2024/07/11/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/image-20240711113602284.png" alt="image-20240711113602284"></p>
 <p>求两个向量之间的点积会发现，它们的点积是一个关于$q$、$k$ 、$m-n$ 的函数$g(q,k,m-n)$，所以函数$f(q,m)$实现了以绝对位置编码的方式实现相对位置编码。</p>
-<p><img src="/640" alt="图片"></p>
+<p><img src="/2024/07/11/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/640" alt="图片"></p>
 <h3 id="推广到多维"><a href="#推广到多维" class="headerlink" title="推广到多维"></a>推广到多维</h3><p>我们把高维向量，两两一组，分别旋转。最终高维向量的旋转可表示成如下公式，可以认为左侧便是高维向量的旋转矩阵： </p>
-<p><img src="/image-20240711114341218.png" alt="image-20240711114341218"></p>
+<p><img src="/2024/07/11/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/image-20240711114341218.png" alt="image-20240711114341218"></p>
 <h3 id="远程衰减性"><a href="#远程衰减性" class="headerlink" title="远程衰减性"></a>远程衰减性</h3><p>鉴Sinusoidal位置编码，可以将每个分组的$\theta$设为不同的常量，从而引入远程衰减的性质。这里作者直接沿用了Sinusoidal位置编码的设置， $\theta&#x3D;10000^{-\frac{2i}{d}}$。</p>
 <p>将高维向量的旋转矩阵更新为如下：</p>
-<p><img src="/image-20240711114834289.png" alt="image-20240711114834289"></p>
+<p><img src="/2024/07/11/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/image-20240711114834289.png" alt="image-20240711114834289"></p>
 <p>上式中的旋转矩阵十分稀疏，为了节省算力，可以以下面的方式等效实现：</p>
-<p><img src="/image-20240711114849390.png" alt="image-20240711114849390"></p>
+<p><img src="/2024/07/11/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/image-20240711114849390.png" alt="image-20240711114849390"></p>
 <p>发现随着q和k的相对距离的增加，它们之间的内积分数呈现出远程衰减的性质，这正是我们希望的。</p>
-<p><img src="/image-20240711114917830.png" alt="image-20240711114917830"></p>
+<p><img src="/2024/07/11/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/image-20240711114917830.png" alt="image-20240711114917830"></p>
 <p>继续深入探讨一下$\theta_i&#x3D;base^{-\frac{2i}{d}}$中base的取值的影响。可以总结得到一些规律，base的不同取值会影响注意力远程衰减的程度。随着base的提升，远程衰减的程度会逐渐削弱，改变模型的注意力分布，导致模型的输出质量下降。但太小的base也会破坏注意力远程衰减的性质。</p>
-<p><img src="/image-20240711115511583.png" alt="image-20240711115511583"></p>
+<p><img src="/2024/07/11/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/image-20240711115511583.png" alt="image-20240711115511583"></p>
 <h3 id="周期性"><a href="#周期性" class="headerlink" title="周期性"></a>周期性</h3><p>每组分量的旋转都具有周期性，因为旋转一圈的弧度是$2\pi$，所以RoPE中的向量旋转就像时钟一样，具有周期性。</p>
 <p>我们可以更直观地看到，越靠后的分组，它的旋转速度越慢，正弦函数的周期越大、频率越低。</p>
-<p><img src="/image-20240711120719835.png" alt="image-20240711120719835"></p>
+<p><img src="/2024/07/11/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/image-20240711120719835.png" alt="image-20240711120719835"></p>
 <h2 id="RoPE长度外推方法"><a href="#RoPE长度外推方法" class="headerlink" title="RoPE长度外推方法"></a>RoPE长度外推方法</h2><p>RoPE却有着较弱的长度外推性，也就是在推理时，当模型的输入长度超出训练长度时，模型的性能会急剧下降，具体表现为困惑度的急剧上升。涌现出了一系列基于RoPE的大模型长度扩展的工作，包括线性插值、NTK-Aware插值、NTK-by-parts、Dynamic NTK、YaRN等。上述方法均通过&#x3D;&#x3D;减小RoPE的旋转弧度来进行长度扩展&#x3D;&#x3D;。</p>
-<p><img src="/image-20240711115841840.png" alt="image-20240711115841840"></p>
+<p><img src="/2024/07/11/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/image-20240711115841840.png" alt="image-20240711115841840"></p>
 <h3 id="Position-Interpolation"><a href="#Position-Interpolation" class="headerlink" title="Position Interpolation"></a>Position Interpolation</h3><p>我们可以合理地猜想：模型在训练时，只见过$[0,(L-1)\theta]$范围内的旋转弧度，未见过大于$(L-1)\theta$的旋转弧度，所以当推理长度大于$L$时，模型难以理解新的旋转弧度，无法正确注入位置信息，导致模型性能下降。</p>
 <p>Position Interpolation的做法简单且直观：&#x3D;&#x3D;缩小每个位置的旋转弧度，让向量旋转得慢一些，每个位置的旋转弧度变为原来的$\frac{L}{L’}$，长度扩大几倍，则旋转弧度缩小几倍&#x3D;&#x3D;。这相当于在原来的弧度范围内，插入更多的位置，由于旋转弧度是线性变化的，所以也称为线性位置插值。</p>
 <p>最终，经过调整后，位置$m$的旋转弧度如下公式所示： </p>
-<p><img src="/image-20240711120015148.png" alt="image-20240711120015148"></p>
+<p><img src="/2024/07/11/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/image-20240711120015148.png" alt="image-20240711120015148"></p>
 <p>进行位置插值后+，&#x3D;&#x3D;向量旋转速度变慢，周期变大，频率变慢&#x3D;&#x3D;。</p>
 <h3 id="NTK-Aware-Interpolation"><a href="#NTK-Aware-Interpolation" class="headerlink" title="NTK-Aware Interpolation"></a>NTK-Aware Interpolation</h3><p>作者认为高频信息对于神经网络非常重要，而Position Interpolation对于向量的所有分组不加区分地缩小旋转弧度，降低旋转速度（进一步体现为对其正弦函数进行拉伸），会&#x3D;&#x3D;导致模型的高频信息缺失，从而影响模型的性能&#x3D;&#x3D;。</p>
 <p>&#x3D;&#x3D;位置越靠前的向量分组，旋转速度越快，频率越高；越靠后的分组的旋转速度越慢，频率越低，周期越长&#x3D;&#x3D;。作者希望保留靠前分组的高频信息。</p>
 <p>在NTK-Aware插值中，经过调整后，位置$m$的旋转弧度如下公式所示：</p>
-<p><img src="/image-20240711120926315.png" alt="image-20240711120926315"></p>
+<p><img src="/2024/07/11/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/image-20240711120926315.png" alt="image-20240711120926315"></p>
 <p>调整后的旋转弧度与原始旋转弧度的倍数关系为$100^{-\frac{2i}{d}}$，越靠后的分组，旋转弧度缩小的倍数越大。</p>
 <p>可以将NTK-Aware Interpolation的思想总结为：&#x3D;&#x3D;保留高频信息；高频分量旋转速度降幅低，低频分量旋转速度降幅高；在高频部分进行外推，低频部分进行内插&#x3D;&#x3D;。</p>
 <p>我们可以将NTK-Aware Interpolation奏效的原因按照如下方式进行解释：</p>
@@ -859,7 +826,7 @@
 <li>靠后的分组，在训练中无法见到完整的旋转周期，或者见到的旋转周期非常少，训练不够充分，外推性能弱，需要进行位置插值。</li>
 </ol>
 <h3 id="NTK-by-parts-Interpolation"><a href="#NTK-by-parts-Interpolation" class="headerlink" title="NTK-by-parts Interpolation"></a>NTK-by-parts Interpolation</h3><p>其核心思想是：&#x3D;&#x3D;不改变高频部分，仅缩小低频部分的旋转弧度&#x3D;&#x3D;。也就是不改变靠前分组的旋转弧度，仅减小靠后分组的旋转弧度，这就是by-patrs的含义。</p>
-<p><img src="/image-20240711121919342.png" alt="image-20240711121919342"></p>
+<p><img src="/2024/07/11/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/image-20240711121919342.png" alt="image-20240711121919342"></p>
 <h3 id="Dynamic-NTK-Interpolation"><a href="#Dynamic-NTK-Interpolation" class="headerlink" title="Dynamic NTK Interpolation"></a>Dynamic NTK Interpolation</h3><p>当超出训练长度时，上述插值方法都比原模型直接外推的效果更好，但是它们都有一个共同的缺点，在训练长度内，推理表现都比原模型差。</p>
 <p>Dynamic NTK Interpolation是一种动态插值的方法，思路也很简单：&#x3D;&#x3D;推理长度小于等于训练长度时，不进行插值；推理长度大于训练长度时，每一步都通过NTK-Aware Interpolation动态放大base&#x3D;&#x3D;。</p>
 <h3 id="YaRN"><a href="#YaRN" class="headerlink" title="YaRN"></a>YaRN</h3><p>无论是Position Interpolation还是NTK类方法，本质都是通过减小旋转弧度，降低旋转速度，来达到长度扩展的目的。这将导致&#x3D;&#x3D;位置之间的旋转弧度差距变小，词向量之间的距离变得比原来更近，词向量之间的点乘变大，破坏模型原始的注意力分布。所以经过插值之后，模型在原来的训练长度内的困惑度均有所提升，性能受损&#x3D;&#x3D;。</p>
