@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【LLM】相关技术总结 | Xinyao</title>
+  <meta name="keywords" content=" LLM , 架构 ">
+  <meta name="description" content="【LLM】相关技术总结 | Xinyao">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="勇攀高峰">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://zhengxinyao.github.io/tags/index.html">
+<meta property="og:site_name" content="Xinyao">
+<meta property="og:description" content="勇攀高峰">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-07T15:59:52.000Z">
+<meta property="article:modified_time" content="2024-02-07T15:59:52.773Z">
+<meta property="article:author" content="zxy">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/favicon.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/myself.png"/>
+</a>
+<div class="author">
+    <span>zxy</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/zhengxinyao"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="linkedin"
+               href="https://www.linkedin.com/in/%E6%98%95%E7%91%B6-%E9%83%91-956a732b5/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-linkedin"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qq_43543209?spm=1010.2135.3001.5343"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1601835186@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1601835186&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(38)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文记录">
+            
+            论文记录
+            <small>(15)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识总结">
+            
+            知识总结
+            <small>(19)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文阅读">
+            
+            论文阅读
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="阅读分享">
+            
+            阅读分享
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="38">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>侧信道</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态缓存划分</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多租户调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分组加密</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>共享内存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>加速器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>论文</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存保护</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>虚拟化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>云安全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI加速器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AMD SEV-SNP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ARM CCA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPU</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel SGX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Intel TDX</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NVM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PENGLAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TEE</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/27/%E6%A8%A1%E5%9E%8B%E6%8F%90%E5%8F%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2024-04-27 12:29:39">2024/04/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文阅读 "
+           href="/2024/04/15/TEE-IceClave-A-Trusted-Execution-Environment-for-In-Storage-Computing/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="[TEE]IceClave: A Trusted Execution Environment for In-Storage Computing">[TEE]IceClave: A Trusted Execution Environment for In-Storage Computing</span>
+            <span class="post-date" title="2024-04-15 19:05:53">2024/04/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/15/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/%E3%80%90TEE%E3%80%91IceClave%20A%20Trusted%20Execution%20Environment%20for%20In-Storage%20Computing/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2024-04-15 19:04:54">2024/04/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/03/05/%E3%80%90TEE%E3%80%91%E5%86%85%E5%AD%98%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4/"
+           data-tag="架构,安全,TEE,内存保护"
+           data-author="" >
+            <span class="post-title" title="【TEE】内存完整性保护">【TEE】内存完整性保护</span>
+            <span class="post-date" title="2024-03-05 23:01:15">2024/03/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/29/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91LLM-on-hardware-code-generation/"
+           data-tag="LLM,安全"
+           data-author="" >
+            <span class="post-title" title="【LLM安全】LLM on secure hardware code generation">【LLM安全】LLM on secure hardware code generation</span>
+            <span class="post-date" title="2024-02-29 20:29:23">2024/02/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/28/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91Security-and-Performance-in-the-Delegated-User-level-Virtualization%EF%BC%882023-OSDI%EF%BC%89/"
+           data-tag="云安全,虚拟化"
+           data-author="" >
+            <span class="post-title" title="【云安全】Security and Performance in the Delegated User-level Virtualization（2023 OSDI）">【云安全】Security and Performance in the Delegated User-level Virtualization（2023 OSDI）</span>
+            <span class="post-date" title="2024-02-28 19:07:28">2024/02/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/28/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91Bifrost-Analysis-and-Optimization-of-Network-I-O-Tax-in-Confidential-Virtual-Machines-2023OSDI/"
+           data-tag="TEE,云安全"
+           data-author="" >
+            <span class="post-title" title="【云安全】Bifrost: Analysis and Optimization of Network I/O Tax in Confidential Virtual Machines 2023OSDI">【云安全】Bifrost: Analysis and Optimization of Network I/O Tax in Confidential Virtual Machines 2023OSDI</span>
+            <span class="post-date" title="2024-02-28 14:17:03">2024/02/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/27/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91Privacy-in-Large-Language-Models-Attacks-Defenses-and-Future-Directions%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89/"
+           data-tag="LLM,安全"
+           data-author="" >
+            <span class="post-title" title="【LLM安全】Privacy in Large Language Models: Attacks, Defenses and Future Directions（综述）">【LLM安全】Privacy in Large Language Models: Attacks, Defenses and Future Directions（综述）</span>
+            <span class="post-date" title="2024-02-27 15:45:08">2024/02/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/27/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91PERSONAL%20LLM%20AGENTS%E7%9A%84%E9%9A%90%E7%A7%81%E5%92%8C%E5%AE%89%E5%85%A8/"
+           data-tag="LLM,安全"
+           data-author="" >
+            <span class="post-title" title="【LLM安全】PERSONAL LLM AGENTS的隐私和安全">【LLM安全】PERSONAL LLM AGENTS的隐私和安全</span>
+            <span class="post-date" title="2024-02-27 11:03:20">2024/02/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 阅读分享 "
+           href="/2024/02/26/%E3%80%90%E9%98%85%E8%AF%BB%E3%80%91%E9%80%BB%E8%BE%91%E6%96%B0%E5%BC%95-%E6%80%8E%E4%B9%88%E5%88%A4%E5%88%AB%E6%98%AF%E9%9D%9E%EF%BC%88%E6%AE%B7%E6%B5%B7%E5%85%89%EF%BC%89/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="【阅读】逻辑新引 怎么判别是非（殷海光）">【阅读】逻辑新引 怎么判别是非（殷海光）</span>
+            <span class="post-date" title="2024-02-26 21:53:30">2024/02/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/26/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91A-Survey-on-Large-Language-Model-LLM-Security-and-Privacy-The-Good-the-Bad-and-the-Ugly%EF%BC%88%E7%BB%BC%E8%BF%B0%EF%BC%89/"
+           data-tag="LLM,安全"
+           data-author="" >
+            <span class="post-title" title="【LLM安全】A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly（综述）
+【LLM安全】A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly（综述）">【LLM安全】A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly（综述）
+【LLM安全】A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly（综述）</span>
+            <span class="post-date" title="2024-02-26 20:29:06">2024/02/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91SRAM%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/"
+           data-tag="架构,安全"
+           data-author="" >
+            <span class="post-title" title="【架构】SRAM的安全性">【架构】SRAM的安全性</span>
+            <span class="post-date" title="2024-02-25 22:55:54">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91%E9%9D%A2%E5%90%91%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%EF%BC%88AI%EF%BC%89-%E7%9A%84%E7%A1%AC%E4%BB%B6%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7/"
+           data-tag="架构,安全,AI,加速器"
+           data-author="" >
+            <span class="post-title" title="【架构】面向人工智能 （AI） 的硬件的可靠性">【架构】面向人工智能 （AI） 的硬件的可靠性</span>
+            <span class="post-date" title="2024-02-25 22:33:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90LLM%E3%80%91%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/"
+           data-tag="LLM,架构"
+           data-author="" >
+            <span class="post-title" title="【LLM】相关技术总结">【LLM】相关技术总结</span>
+            <span class="post-date" title="2024-02-25 20:52:00">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/"
+           data-tag="架构,GPU"
+           data-author="" >
+            <span class="post-title" title="【架构】GPU架构总结">【架构】GPU架构总结</span>
+            <span class="post-date" title="2024-02-25 20:52:00">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90LLM%E5%AE%89%E5%85%A8%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E7%BB%BC%E8%BF%B0/"
+           data-tag="LLM,安全"
+           data-author="" >
+            <span class="post-title" title="【LLM安全】大模型安全综述">【LLM安全】大模型安全综述</span>
+            <span class="post-date" title="2024-02-25 20:28:32">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91ProMT-Optimizing-Integrity-Tree-Updates-for-Write-Intensive-Pages-in-Secure-NVMs/"
+           data-tag="NVM,内存安全"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】ProMT: Optimizing Integrity Tree Updates for Write-Intensive Pages in Secure NVMs">【TEE论文】ProMT: Optimizing Integrity Tree Updates for Write-Intensive Pages in Secure NVMs</span>
+            <span class="post-date" title="2024-02-25 20:27:27">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91GPU%E8%99%9A%E6%8B%9F%E5%8C%96/"
+           data-tag="虚拟化,GPU"
+           data-author="" >
+            <span class="post-title" title="【架构】GPU虚拟化">【架构】GPU虚拟化</span>
+            <span class="post-date" title="2024-02-25 20:26:11">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90%E4%BA%91%E5%AE%89%E5%85%A8%E3%80%91%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88TLS%EF%BC%89%E5%A4%A7%E6%B1%87%E6%80%BB/"
+           data-tag="云安全"
+           data-author="" >
+            <span class="post-title" title="【云安全】传输层安全性（TLS）大汇总">【云安全】传输层安全性（TLS）大汇总</span>
+            <span class="post-date" title="2024-02-25 20:22:53">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91VELTAIR-Towards-High-Performance-Multi-tenant-Deep-Learning-Services-via-Adaptive-Compilation/"
+           data-tag="架构,多租户调度"
+           data-author="" >
+            <span class="post-title" title="【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation">【架构论文】VELTAIR: Towards High-Performance Multi-tenant Deep Learning Services via Adaptive Compilation</span>
+            <span class="post-date" title="2024-02-25 20:21:48">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91Composable-Cachelets-Protecting-Enclaves-from-Cache-Side-Channel-Attacks%EF%BC%882022USENIX-Security%EF%BC%89/"
+           data-tag="架构,TEE,侧信道"
+           data-author="" >
+            <span class="post-title" title="【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）">【架构论文】Composable Cachelets: Protecting Enclaves from Cache Side-Channel Attacks（2022USENIX Security）</span>
+            <span class="post-date" title="2024-02-25 20:19:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90%E6%9E%B6%E6%9E%84%E8%AE%BA%E6%96%87%E3%80%91SecDCP-Secure-dynamic-cache-partitioning-for-efficient-timing-channel-protection%EF%BC%882016-DAC%EF%BC%89/"
+           data-tag="论文,动态缓存划分"
+           data-author="" >
+            <span class="post-title" title="【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）">【架构论文】SecDCP: Secure dynamic cache partitioning for efficient timing channel protection（2016 DAC）</span>
+            <span class="post-date" title="2024-02-25 20:17:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Reusable-Enclaves-for-Confidential-Serverless-Computing%EF%BC%88usenixsecurity23%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）">【TEE论文】Reusable Enclaves for Confidential Serverless Computing（usenixsecurity23）</span>
+            <span class="post-date" title="2024-02-25 20:14:26">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Serverless-Made-Efficient-with-Plug-In-Enclaves-%EF%BC%882021-ISCA%EF%BC%89/"
+           data-tag="TEE,论文,共享内存"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）">【TEE论文】Confidential Serverless Made Efficient with Plug-In Enclaves （2021 ISCA）</span>
+            <span class="post-date" title="2024-02-25 20:12:45">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Trust-Beyond-Border-Lightweight-Verifiable-User-Isolation-for-Protecting-In-Enclave-Service/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service">【TEE论文】Trust Beyond Border: Lightweight, Verifiable User Isolation for Protecting In-Enclave Service</span>
+            <span class="post-date" title="2024-02-25 20:11:52">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91-HETEE-Enabling-rack-scale-confidential-computing-using-heterogeneous-TEE-2020-SP/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)">【TEE论文】(HETEE)Enabling rack-scale confidential computing using heterogeneous TEE(2020 SP)</span>
+            <span class="post-date" title="2024-02-25 20:08:42">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91HyperEnclave-An-Open-and-Cross-platform-Trusted-Execution-Environment%EF%BC%88USENIX-ATC-2022%EF%BC%89/"
+           data-tag="TEE,论文"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）">【TEE论文】HyperEnclave: An Open and Cross-platform Trusted Execution Environment（USENIX ATC 2022）</span>
+            <span class="post-date" title="2024-02-25 20:07:36">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E7%89%87%E5%A4%96%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9AAES%E5%88%86%E7%BB%84%E7%AE%97%E6%B3%95-MAC%E5%AE%8C%E6%95%B4%E6%80%A7%E9%AA%8C%E8%AF%81/"
+           data-tag="TEE,内存保护,分组加密"
+           data-author="" >
+            <span class="post-title" title="【TEE】片外内存保护：AES分组算法+MAC完整性验证">【TEE】片外内存保护：AES分组算法+MAC完整性验证</span>
+            <span class="post-date" title="2024-02-25 20:05:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel-SGX%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"
+           data-tag="TEE,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel SGX的不足和解决方案">【TEE】Intel SGX的不足和解决方案</span>
+            <span class="post-date" title="2024-02-25 19:59:35">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91Intel%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/"
+           data-tag="TEE,Intel TDX,Intel SGX"
+           data-author="" >
+            <span class="post-title" title="【TEE】Intel可信执行环境的前世今生">【TEE】Intel可信执行环境的前世今生</span>
+            <span class="post-date" title="2024-02-25 19:54:18">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BF%9D%E9%9A%9C%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/"
+           data-tag="LLM,TEE"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境保障大模型安全">【TEE】可信执行环境保障大模型安全</span>
+            <span class="post-date" title="2024-02-25 19:52:39">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91PENGLAI-TEE/"
+           data-tag="TEE,PENGLAI"
+           data-author="" >
+            <span class="post-title" title="【TEE】PENGLAI TEE">【TEE】PENGLAI TEE</span>
+            <span class="post-date" title="2024-02-25 19:51:30">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91AMD-SEV-SNP%E5%92%8CIntel-TDX%E7%9A%84%E6%A6%82%E8%BF%B0/"
+           data-tag="TEE,AMD SEV-SNP,Intel TDX"
+           data-author="" >
+            <span class="post-title" title="【TEE】AMD SEV- SNP和Intel TDX的概述">【TEE】AMD SEV- SNP和Intel TDX的概述</span>
+            <span class="post-date" title="2024-02-25 19:36:13">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91ARM-CCA-%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/"
+           data-tag="TEE,ARM CCA"
+           data-author="" >
+            <span class="post-title" title="【TEE】ARM CCA 可信计算架构">【TEE】ARM CCA 可信计算架构</span>
+            <span class="post-date" title="2024-02-25 19:24:38">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV-SNP-%E7%99%BD%E7%9A%AE%E4%B9%A6%E3%80%91%E9%80%9A%E8%BF%87%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4%E5%8A%A0%E5%BC%BAVM%E9%9A%94%E7%A6%BB/"
+           data-tag="TEE,AMD SEV-SNP"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离">【TEE】【AMD SEV-SNP 白皮书】通过完整性保护加强VM隔离</span>
+            <span class="post-date" title="2024-02-25 19:11:12">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E3%80%90AMD-SEV%E5%86%85%E5%AD%98%E5%8A%A0%E5%AF%86%E3%80%91-%E7%99%BD%E7%9A%AE%E4%B9%A6/"
+           data-tag="TEE,AMD SEV"
+           data-author="" >
+            <span class="post-title" title="【TEE】【AMD SEV内存加密】 白皮书">【TEE】【AMD SEV内存加密】 白皮书</span>
+            <span class="post-date" title="2024-02-25 19:05:02">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文记录 "
+           href="/2024/02/25/%E3%80%90TEE%E8%AE%BA%E6%96%87%E3%80%91Confidential-Computing-within-an-AI-Accelerator/"
+           data-tag="TEE,论文,AI加速器,架构设计"
+           data-author="" >
+            <span class="post-title" title="【TEE论文】Confidential Computing within an AI Accelerator">【TEE论文】Confidential Computing within an AI Accelerator</span>
+            <span class="post-date" title="2024-02-25 18:53:04">2024/02/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 知识总结 "
+           href="/2024/02/25/%E3%80%90TEE%E3%80%91%E5%8F%AF%E4%BF%A1%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%9A%E7%95%8C%E8%B5%84%E6%96%99/"
+           data-tag="TEE"
+           data-author="" >
+            <span class="post-title" title="【TEE】可信执行环境业界资料">【TEE】可信执行环境业界资料</span>
+            <span class="post-date" title="2024-02-25 18:31:25">2024/02/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【LLM】相关技术总结" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【LLM】相关技术总结</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="知识总结">知识总结</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">LLM</a>
+            
+            <a class="color3">架构</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-07-11 17:28:44'>2024-02-25 20:52</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RoPE%E6%97%8B%E8%BD%AC%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81"><span class="toc-text">RoPE旋转位置编码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81%E4%B8%8E%E8%A1%B0%E5%87%8F%E6%80%A7"><span class="toc-text">位置编码与衰减性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81"><span class="toc-text">绝对位置编码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E5%BC%8F%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81"><span class="toc-text">训练式位置编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sinusoidal%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81"><span class="toc-text">Sinusoidal位置编码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RoPE%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81"><span class="toc-text">RoPE位置编码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RoPE%E7%9A%84%E5%87%BA%E5%8F%91%E7%82%B9"><span class="toc-text">RoPE的出发点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81"><span class="toc-text">二维位置编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E5%B9%BF%E5%88%B0%E5%A4%9A%E7%BB%B4"><span class="toc-text">推广到多维</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E8%A1%B0%E5%87%8F%E6%80%A7"><span class="toc-text">远程衰减性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%A8%E6%9C%9F%E6%80%A7"><span class="toc-text">周期性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RoPE%E9%95%BF%E5%BA%A6%E5%A4%96%E6%8E%A8%E6%96%B9%E6%B3%95"><span class="toc-text">RoPE长度外推方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Position-Interpolation"><span class="toc-text">Position Interpolation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NTK-Aware-Interpolation"><span class="toc-text">NTK-Aware Interpolation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NTK-by-parts-Interpolation"><span class="toc-text">NTK-by-parts Interpolation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dynamic-NTK-Interpolation"><span class="toc-text">Dynamic NTK Interpolation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#YaRN"><span class="toc-text">YaRN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RAG"><span class="toc-text">RAG</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82"><span class="toc-text">技术细节</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B4%A2%E5%BC%95"><span class="toc-text">数据索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E7%B4%A2%E7%8E%AF%E8%8A%82%EF%BC%88Retriever%EF%BC%89"><span class="toc-text">检索环节（Retriever）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%94%9F%E6%88%90%EF%BC%88Gen%EF%BC%89"><span class="toc-text">三、生成（Gen）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E4%BC%98%E5%8C%96"><span class="toc-text">技术优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">文本数据预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC"><span class="toc-text">文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B5%8C%E5%85%A5"><span class="toc-text">嵌入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2"><span class="toc-text">查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E7%B4%A2"><span class="toc-text">检索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E7%B4%A2%E5%90%8E%E5%A4%84%E7%90%86"><span class="toc-text">检索后处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90"><span class="toc-text">生成</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%87%8F%E5%8C%96"><span class="toc-text">量化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FlashAttention-FlashAttention"><span class="toc-text">FlashAttention&amp;&amp;FlashAttention++</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PageAttention"><span class="toc-text">PageAttention</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FlashInfer"><span class="toc-text">FlashInfer</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ring-Reduce"><span class="toc-text">Ring-Reduce</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ring-Attention"><span class="toc-text">Ring-Attention</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DeepSeek"><span class="toc-text">DeepSeek</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MoE"><span class="toc-text">MoE</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ZeRO"><span class="toc-text">ZeRO++</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-text">参考文献</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="RoPE旋转位置编码"><a href="#RoPE旋转位置编码" class="headerlink" title="RoPE旋转位置编码"></a>RoPE旋转位置编码</h1><h2 id="位置编码与衰减性"><a href="#位置编码与衰减性" class="headerlink" title="位置编码与衰减性"></a>位置编码与衰减性</h2><p>没有位置序列信息的情况下，改变词语顺序的句子注意力输出是一样的，但实际语义是一样的，导致没有位置信息输入下，将无法准确的做语言建模。需要为模型引入位置编码，让每个词向量都能够感知到它在输入序列中所处的位置信息。</p>
+<p>理想的位置编码，应当是随相对位置距离增大而减少，并且是单调衰减关系。</p>
+<p>我们希望的衰减性曲线为：</p>
+<ol>
+<li>可以在无限长度下保持单调衰减</li>
+<li>衰减曲线是非线性的，近距离衰减变化迅速， 远距离衰减平缓</li>
+<li>在衰减过程中，尽可能少震荡</li>
+<li>在<code>1024</code>长度下，一种简单的方式为增大位置编码的特征维度，<code>dim=4096</code>时呈现较好的衰减性，<code>dim=512</code>时过早出现震荡</li>
+</ol>
+<h2 id="绝对位置编码"><a href="#绝对位置编码" class="headerlink" title="绝对位置编码"></a>绝对位置编码</h2><h3 id="训练式位置编码"><a href="#训练式位置编码" class="headerlink" title="训练式位置编码"></a>训练式位置编码</h3><p>训练式位置编码，顾名思义就是每个位置的位置向量会随着模型一起训练。训练式位置编码广泛应用于早期的transformer类型的模型，如BERT、GPT、ALBERT等。</p>
+<p><img src="/image-20240711113229124.png" alt="image-20240711113229124"></p>
+<p>但其缺点是模型&#x3D;&#x3D;不具有长度外推性&#x3D;&#x3D;，因为位置编码矩阵的大小是预设的，若对其进行扩展，将会破坏模型在预训练阶段学习到的位置信息。例如将512*768扩展为1024*768，新拓展的512个位置向量缺乏训练，无法正确表示512~1023的位置信息。</p>
+<h3 id="Sinusoidal位置编码"><a href="#Sinusoidal位置编码" class="headerlink" title="Sinusoidal位置编码"></a>Sinusoidal位置编码</h3><p><img src="/image-20240711112656718.png" alt="image-20240711112656718"></p>
+<p>Sinusoidal位置编码的每个分量都是正弦或余弦函数，所有每个分量的数值都具有周期性。每个分量都具有周期性，并且&#x3D;&#x3D;越靠后的分量，波长越长，频率越低&#x3D;&#x3D;。</p>
+<p>Sinusoidal位置编码具有远程衰减的性质，具体表现为：对于两个相同的词向量，如果它们之间的&#x3D;&#x3D;距离越近，则他们的内积分数越高，反之则越低&#x3D;&#x3D;。</p>
+<p>因为Sinusoidal位置编码中的正弦余弦函数具备周期性，并且具备远程衰减的特性，所以理论上也具备一定长度外推的能力。</p>
+<h2 id="RoPE位置编码"><a href="#RoPE位置编码" class="headerlink" title="RoPE位置编码"></a>RoPE位置编码</h2><p>&#x3D;&#x3D;RoPE位置编码通过将一个向量旋转某个角度，为其赋予位置信息。&#x3D;&#x3D;</p>
+<h3 id="RoPE的出发点"><a href="#RoPE的出发点" class="headerlink" title="RoPE的出发点"></a>RoPE的出发点</h3><p>RoPE而言，作者的出发点为：&#x3D;&#x3D;通过绝对位置编码的方式实现相对位置编码&#x3D;&#x3D;。</p>
+<p><img src="/image-20240711113425628.png" alt="image-20240711113425628"></p>
+<h3 id="二维位置编码"><a href="#二维位置编码" class="headerlink" title="二维位置编码"></a>二维位置编码</h3><p>作者给出了如下位置编码函数：$m$为位置下表，$\theta$为一个常数，左侧的$R_m$是一个旋转矩阵， $f(q,m)$表示在保持向量$q$的模长的同时，将其逆时针旋转$m\theta$ 。这意味着只需要&#x3D;&#x3D;将向量旋转某个角度，即可实现对该向量添加绝对位置信息&#x3D;&#x3D;。并且&#x3D;&#x3D;向量旋转具有周期性&#x3D;&#x3D;。</p>
+<p><img src="/image-20240711113602284.png" alt="image-20240711113602284"></p>
+<p>求两个向量之间的点积会发现，它们的点积是一个关于$q$、$k$ 、$m-n$ 的函数$g(q,k,m-n)$，所以函数$f(q,m)$实现了以绝对位置编码的方式实现相对位置编码。</p>
+<p><img src="/640" alt="图片"></p>
+<h3 id="推广到多维"><a href="#推广到多维" class="headerlink" title="推广到多维"></a>推广到多维</h3><p>我们把高维向量，两两一组，分别旋转。最终高维向量的旋转可表示成如下公式，可以认为左侧便是高维向量的旋转矩阵： </p>
+<p><img src="/image-20240711114341218.png" alt="image-20240711114341218"></p>
+<h3 id="远程衰减性"><a href="#远程衰减性" class="headerlink" title="远程衰减性"></a>远程衰减性</h3><p>鉴Sinusoidal位置编码，可以将每个分组的$\theta$设为不同的常量，从而引入远程衰减的性质。这里作者直接沿用了Sinusoidal位置编码的设置， $\theta&#x3D;10000^{-\frac{2i}{d}}$。</p>
+<p>将高维向量的旋转矩阵更新为如下：</p>
+<p><img src="/image-20240711114834289.png" alt="image-20240711114834289"></p>
+<p>上式中的旋转矩阵十分稀疏，为了节省算力，可以以下面的方式等效实现：</p>
+<p><img src="/image-20240711114849390.png" alt="image-20240711114849390"></p>
+<p>发现随着q和k的相对距离的增加，它们之间的内积分数呈现出远程衰减的性质，这正是我们希望的。</p>
+<p><img src="/image-20240711114917830.png" alt="image-20240711114917830"></p>
+<p>继续深入探讨一下$\theta_i&#x3D;base^{-\frac{2i}{d}}$中base的取值的影响。可以总结得到一些规律，base的不同取值会影响注意力远程衰减的程度。随着base的提升，远程衰减的程度会逐渐削弱，改变模型的注意力分布，导致模型的输出质量下降。但太小的base也会破坏注意力远程衰减的性质。</p>
+<p><img src="/image-20240711115511583.png" alt="image-20240711115511583"></p>
+<h3 id="周期性"><a href="#周期性" class="headerlink" title="周期性"></a>周期性</h3><p>每组分量的旋转都具有周期性，因为旋转一圈的弧度是$2\pi$，所以RoPE中的向量旋转就像时钟一样，具有周期性。</p>
+<p>我们可以更直观地看到，越靠后的分组，它的旋转速度越慢，正弦函数的周期越大、频率越低。</p>
+<p><img src="/image-20240711120719835.png" alt="image-20240711120719835"></p>
+<h2 id="RoPE长度外推方法"><a href="#RoPE长度外推方法" class="headerlink" title="RoPE长度外推方法"></a>RoPE长度外推方法</h2><p>RoPE却有着较弱的长度外推性，也就是在推理时，当模型的输入长度超出训练长度时，模型的性能会急剧下降，具体表现为困惑度的急剧上升。涌现出了一系列基于RoPE的大模型长度扩展的工作，包括线性插值、NTK-Aware插值、NTK-by-parts、Dynamic NTK、YaRN等。上述方法均通过&#x3D;&#x3D;减小RoPE的旋转弧度来进行长度扩展&#x3D;&#x3D;。</p>
+<p><img src="/image-20240711115841840.png" alt="image-20240711115841840"></p>
+<h3 id="Position-Interpolation"><a href="#Position-Interpolation" class="headerlink" title="Position Interpolation"></a>Position Interpolation</h3><p>我们可以合理地猜想：模型在训练时，只见过$[0,(L-1)\theta]$范围内的旋转弧度，未见过大于$(L-1)\theta$的旋转弧度，所以当推理长度大于$L$时，模型难以理解新的旋转弧度，无法正确注入位置信息，导致模型性能下降。</p>
+<p>Position Interpolation的做法简单且直观：&#x3D;&#x3D;缩小每个位置的旋转弧度，让向量旋转得慢一些，每个位置的旋转弧度变为原来的$\frac{L}{L’}$，长度扩大几倍，则旋转弧度缩小几倍&#x3D;&#x3D;。这相当于在原来的弧度范围内，插入更多的位置，由于旋转弧度是线性变化的，所以也称为线性位置插值。</p>
+<p>最终，经过调整后，位置$m$的旋转弧度如下公式所示： </p>
+<p><img src="/image-20240711120015148.png" alt="image-20240711120015148"></p>
+<p>进行位置插值后+，&#x3D;&#x3D;向量旋转速度变慢，周期变大，频率变慢&#x3D;&#x3D;。</p>
+<h3 id="NTK-Aware-Interpolation"><a href="#NTK-Aware-Interpolation" class="headerlink" title="NTK-Aware Interpolation"></a>NTK-Aware Interpolation</h3><p>作者认为高频信息对于神经网络非常重要，而Position Interpolation对于向量的所有分组不加区分地缩小旋转弧度，降低旋转速度（进一步体现为对其正弦函数进行拉伸），会&#x3D;&#x3D;导致模型的高频信息缺失，从而影响模型的性能&#x3D;&#x3D;。</p>
+<p>&#x3D;&#x3D;位置越靠前的向量分组，旋转速度越快，频率越高；越靠后的分组的旋转速度越慢，频率越低，周期越长&#x3D;&#x3D;。作者希望保留靠前分组的高频信息。</p>
+<p>在NTK-Aware插值中，经过调整后，位置$m$的旋转弧度如下公式所示：</p>
+<p><img src="/image-20240711120926315.png" alt="image-20240711120926315"></p>
+<p>调整后的旋转弧度与原始旋转弧度的倍数关系为$100^{-\frac{2i}{d}}$，越靠后的分组，旋转弧度缩小的倍数越大。</p>
+<p>可以将NTK-Aware Interpolation的思想总结为：&#x3D;&#x3D;保留高频信息；高频分量旋转速度降幅低，低频分量旋转速度降幅高；在高频部分进行外推，低频部分进行内插&#x3D;&#x3D;。</p>
+<p>我们可以将NTK-Aware Interpolation奏效的原因按照如下方式进行解释：</p>
+<ol>
+<li>靠前的分组，在训练中见过非常多完整的旋转周期，位置信息得到了充分的训练，所以具有较强的外推能力。</li>
+<li>靠后的分组，在训练中无法见到完整的旋转周期，或者见到的旋转周期非常少，训练不够充分，外推性能弱，需要进行位置插值。</li>
+</ol>
+<h3 id="NTK-by-parts-Interpolation"><a href="#NTK-by-parts-Interpolation" class="headerlink" title="NTK-by-parts Interpolation"></a>NTK-by-parts Interpolation</h3><p>其核心思想是：&#x3D;&#x3D;不改变高频部分，仅缩小低频部分的旋转弧度&#x3D;&#x3D;。也就是不改变靠前分组的旋转弧度，仅减小靠后分组的旋转弧度，这就是by-patrs的含义。</p>
+<p><img src="/image-20240711121919342.png" alt="image-20240711121919342"></p>
+<h3 id="Dynamic-NTK-Interpolation"><a href="#Dynamic-NTK-Interpolation" class="headerlink" title="Dynamic NTK Interpolation"></a>Dynamic NTK Interpolation</h3><p>当超出训练长度时，上述插值方法都比原模型直接外推的效果更好，但是它们都有一个共同的缺点，在训练长度内，推理表现都比原模型差。</p>
+<p>Dynamic NTK Interpolation是一种动态插值的方法，思路也很简单：&#x3D;&#x3D;推理长度小于等于训练长度时，不进行插值；推理长度大于训练长度时，每一步都通过NTK-Aware Interpolation动态放大base&#x3D;&#x3D;。</p>
+<h3 id="YaRN"><a href="#YaRN" class="headerlink" title="YaRN"></a>YaRN</h3><p>无论是Position Interpolation还是NTK类方法，本质都是通过减小旋转弧度，降低旋转速度，来达到长度扩展的目的。这将导致&#x3D;&#x3D;位置之间的旋转弧度差距变小，词向量之间的距离变得比原来更近，词向量之间的点乘变大，破坏模型原始的注意力分布。所以经过插值之后，模型在原来的训练长度内的困惑度均有所提升，性能受损&#x3D;&#x3D;。</p>
+<p>无论是NTK还是线性插值，相对距离固定时，q和k之间的内积分数都将变大，进而导致模型的注意力分布改变。并且可以发现，RoPE的注意力远程衰减的性质变弱，这也将导致整个序列的注意力分布变得更加平滑。</p>
+<p>YaRN本质上是NTK-by-parts Interpolation与注意力分布修正策略的结合，仅缩小低频部分的旋转弧度，且通过温度系数修正注意力分布。只需将原来的注意力分数除以温度$t$即可。 </p>
+<p>回顾温度系数对注意力分布的影响，当$t$变大，注意力分布更加平滑，方差更小；当$t$变小，注意力分布更加尖锐，区分度变大，方差变大。 $t&#x3D;0.6853$意味着缓解注意力分布过于平滑的问题，让注意力分布方差更大些。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>一句话总结各种方法的特点：</p>
+<ol>
+<li>Position Interpolation：目标长度是原来的n倍，则旋转弧度减小至原来的1&#x2F;n。</li>
+<li>NTK-Aware Interpolation：增大RoPE的base，保留高频信息；高频分量旋转速度降幅低，低频分量旋转速度降幅高；在高频部分进行外推，低频部分进行内插。</li>
+<li>NTK-by-parts Interpolation：不改变高频部分，仅缩小低频部分的旋转弧度。</li>
+<li>Dynamic NTK Interpolation：推理长度小于等于训练长度时，不进行插值；推理长度大于训练长度时，每一步都通过NTK-Aware插值动态放大base。</li>
+<li>YaRN：NTK-by-parts Interpolation与注意力分布修正策略的结合，通过温度系数修正注意力分布。</li>
+</ol>
+<h1 id="RAG"><a href="#RAG" class="headerlink" title="RAG"></a>RAG</h1><h2 id="技术细节"><a href="#技术细节" class="headerlink" title="技术细节"></a>技术细节</h2><p><img src="https://luxiangdong.com/images/ragone/2.png" alt="2"></p>
+<h3 id="数据索引"><a href="#数据索引" class="headerlink" title="数据索引"></a>数据索引</h3><ul>
+<li><strong>数据提取</strong><ul>
+<li>数据清洗：包括数据Loader，提取PDF、word、markdown以及数据库和API等；</li>
+<li>数据处理：包括数据格式处理，不可识别内容的剔除，压缩和格式化等；</li>
+<li>元数据提取：提取文件名、时间、章节title、图片alt等信息，非常关键。</li>
+</ul>
+</li>
+<li><strong>分块</strong>（Chunking）<ul>
+<li>固定大小的分块方式：一般是256&#x2F;512个tokens，取决于embedding模型的情况。</li>
+<li>基于意图的分块方式：<ul>
+<li>句分割：最简单的是通过句号和换行来做切分。</li>
+<li>递归分割：通过分治的方法，用递归切分到最小单元的一种方式；</li>
+<li>特殊分割：还有很多不常见的，用于特殊场景，这里就不提了。</li>
+</ul>
+</li>
+<li>影响分块策略的因素：<ul>
+<li>取决于你的索引类型，包括文本类型和长度，文章和微博推文的分块方式就会很不同；</li>
+<li>取决于你的模型类型：你使用什么LLM也会有不同，因为ChatGLM、ChatGPT和Claude.ai等的tokens限制长度不一样，会影响你分块的尺寸；</li>
+<li>取决于问答的文本的长度和复杂度：最好问答的文本长度和你分块的尺寸差不多，这样会对检索效率更友好；</li>
+<li>应用类型：你的RAG的应用是检索、问答和摘要等，都会对分块策略有不同的影响。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>向量化</strong>（embedding）：这是将文本、图像、音频和视频等转化为向量矩阵的过程，也就是变成计算机可以理解的格式，embedding模型的好坏会直接影响到后面检索的质量，特别是相关度。<ul>
+<li><strong>BGE</strong>：这是国人开发的中文embedding模型，实力强劲；</li>
+<li><strong>M3E</strong>：也是国人开发的中文embedding模型；</li>
+<li><strong>通义千问的embedding模型</strong>：</li>
+<li><strong>Text-embedding-ada-002</strong>：这是OpenAI的embedding模型，1536维，应该是目前最好的模型</li>
+</ul>
+</li>
+</ul>
+<h3 id="检索环节（Retriever）"><a href="#检索环节（Retriever）" class="headerlink" title="检索环节（Retriever）"></a>检索环节（Retriever）</h3><p>检索环节技术含量依然很高。</p>
+<p>检索优化一般分为下面五部分工作：</p>
+<ul>
+<li><p><strong>元数据过滤</strong>：当我们把索引分成许多chunks的时候，检索效率会成为问题。这时候，如果可以通过元数据先进行过滤，就会大大提升效率和相关度。比如，我们问“帮我整理一下XX部门今年5月份的所有合同中，包含XX设备采购的合同有哪些？”。这时候，如果有元数据，我们就可以去搜索“<strong>XX部门+2023年5月</strong>”的相关数据，检索量一下子就可能变成了全局的万分之一；</p>
+</li>
+<li><p><strong>图关系检索</strong>：如果可以将很多实体变成node，把它们之间的关系变成relation，就可以利用知识之间的关系做更准确的回答。特别是针对一些多跳问题，利用图数据索引会让检索的相关度变得更高；</p>
+</li>
+<li><p><strong>检索技术</strong>：前面说的是一些前置的预处理的方法，检索的主要方式还是这几种：</p>
+<ul>
+<li><strong>相似度检索</strong>：包括欧氏距离、曼哈顿距离、余弦等。</li>
+<li><strong>关键词检索</strong>先把chunk做摘要，再通过关键词检索找到可能相关的chunk，增加检索效率。</li>
+<li><strong>SQL检索</strong>：对于一些本地化的企业应用来说，SQL查询是必不可少的一步。</li>
+</ul>
+</li>
+<li><p><strong>重排序（Rerank）</strong>：需要有一些策略来对检索的结果做重排序，比如使用planB重排序，或者把组合相关度、匹配度等因素做一些重新调整，得到更符合我们业务场景的排序。</p>
+</li>
+<li><p><strong>查询轮换</strong>：这是查询检索的一种方式，一般会有几种方式：</p>
+<ul>
+<li><strong>子查询</strong>：可以在不同的场景中使用各种查询策略，比如可以使用LlamaIndex等框架提供的查询器，采用树查询（从叶子结点，一步步查询，合并），采用向量查询，或者最原始的顺序查询chunks等；</li>
+<li><strong>HyDE</strong>：这是一种抄作业的方式，生成相似的，或者更标准的prompt模板。</li>
+</ul>
+<h4 id="三、生成（Gen）"><a href="#三、生成（Gen）" class="headerlink" title="三、生成（Gen）"></a>三、生成（Gen）</h4><p>使用的框架有Langchain和LlamaIndex，还有一套完整的Java框架可以使用，所以这一块我没有太多研究。</p>
+</li>
+</ul>
+<h2 id="技术优化"><a href="#技术优化" class="headerlink" title="技术优化"></a>技术优化</h2><p><a target="_blank" rel="noopener" href="https://github.com/Jenqyang/LLM-Powered-RAG-System">https://github.com/Jenqyang/LLM-Powered-RAG-System</a></p>
+<h3 id="文本数据预处理"><a href="#文本数据预处理" class="headerlink" title="文本数据预处理"></a>文本数据预处理</h3><p>由于其数据驱动的特性，高信噪比的数据仍然是十分重要：</p>
+<ol>
+<li><strong>实体解析</strong>：消除歧义以实现一致的引用。例如，将“LLM”、“大语言模型”和“大模型”标准化为通用术语。</li>
+<li><strong>文档划分</strong>：合理地划分不同主题的文档。如果人类都不能轻松地判断出需要查阅哪个文档才能回答提问，那么检索系统也无法做到。</li>
+<li><strong>数据增强</strong>：使用同义词、释义甚至其它语言的翻译来增加知识库的多样性。</li>
+<li><strong>处理特殊数据</strong>：例如时间敏感数据，对于经常更新的主题，实施一种机制来使过时的文档失效或更新。</li>
+<li><strong>增加元数据</strong>：增加内容摘要、时间戳、用户可能提出的问题等附加信息来丰富知识库。</li>
+</ol>
+<h3 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h3><p>做到在不超出LLM输入长度限制的情况下，保证<strong>块之间的差异性</strong>和<strong>块内部的一致性</strong>。可以采用以下高级的分块方法：</p>
+<ol>
+<li><strong>句分割</strong>：使用NLTK或者spaCy库提供的句子分割功能。</li>
+<li><strong>递归分割</strong>：通过重复地应用分块规则来递归地分解文本。例如，在langchain中会先通过段落换行符（<code>\n\n</code>）进行分割。例如，对于文本中的密集信息部分，可能需要更细的分割来捕捉细节；而对于信息较少的部分，则可以使用更大的块。</li>
+<li><strong>语义分割</strong>：通过计算向量化后的<strong>文本的相似度</strong>来进行语义层面的分割。</li>
+<li><strong>特殊结构分割</strong>：针对特定结构化内容（例如Markdown、LaTex、JSON等）的专门分割器。</li>
+</ol>
+<p>分块还有一个因素比较重要，就是块的大小。文档的类型和用户查询的长度及复杂性也是决定分块大小的重要因素。</p>
+<p>实际场景中，可能还是需要不断实验调整，在一些测试中，128大小的分块往往是最佳选择</p>
+<h3 id="嵌入"><a href="#嵌入" class="headerlink" title="嵌入"></a>嵌入</h3><p>对文本数据使用嵌入（Embedding）模型进行向量化（Vectorization）以便于在检索阶段使用向量检索（Vector Retrieval）。</p>
+<ol>
+<li><strong>尽量使用动态嵌入</strong>：动态嵌入相较于静态嵌入更能够处理一词多义的情况，使得同一个词在不同语境下有不同的向量表示。</li>
+<li><strong>微调嵌入</strong>：大多数嵌入模型都是在通用语料上进行训练的，有些项目为了让模型对垂直领域的词汇有更好的理解，会对嵌入模型进行微调。使模型能够对垂直领域词汇和通用词汇一视同仁，不被分散注意力。</li>
+<li><strong>混合嵌入</strong>：对用户问题和知识库文本使用不同的嵌入模型。</li>
+</ol>
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><p>检索阶段召回率和准确率较低，这时就需要对查询做一个优化，便于在系统中检索到与用户相关的文档。</p>
+<ol>
+<li><strong>查询重写</strong>：通过提示LLM或者使用专门的“问题重写器”（通常是经过微调的小型Transformer）来对用户的问题进行改写。</li>
+<li><strong>后退提示</strong>：提示LLM提出一个关于高层次概念或原则的抽象通用问题（称之为“后退”问题）。后退问题的抽象程度需要根据特定任务进行调整。最终后退问题和原始问题一起进行检索。例如，对于问题“Estella Leopold在1954年8月至11月期间上了哪所学校？”这个问题很难直接解决，因为有时间范围的详细限制。在这两种情况下，提出一个后退问题“Estella Leopold的教育经历怎么样的？”则有助于系统的检索。</li>
+<li><strong>Follow Up Questions</strong>：使用LLM针对历史对话和当前问题生成一个独立问题。主要针对以下情况：a. 后续问题建立在前一次对话的基础上。b.嵌入整个对话（或最后k条消息）。</li>
+<li><strong>HyDE</strong>：用LLM生成一个“假设”答案，将其和问题一起进行检索。HyDE的核心思想是接收用户提问后，先让LLM在没有外部知识的情况下生成一个假设性的回复。然后，将这个假设性回复和原始查询一起用于向量检索。假设回复可能包含虚假信息，但蕴含着LLM认为相关的信息和文档模式，有助于在知识库中寻找类似的文档。</li>
+<li><strong>多问题查询</strong>：基于原始问题，提示LLM从不同角度产生多个新问题或者子问题，在后续阶段使用RRF或者rerank合并来自不同问题的检索结果。例如，对于原始问题：谁最近赢得了总冠军，红袜队还是爱国者队？，可以生成两个子问题：a. 红袜者队上一次赢得总冠军是什么时候？b. 爱国者队上一次赢得总冠军是什么时候？</li>
+</ol>
+<h3 id="检索"><a href="#检索" class="headerlink" title="检索"></a>检索</h3><p>获取最相关的文档或者保证最相关的文档在获取的文档列表中存在。</p>
+<ol>
+<li><strong>上下文压缩</strong>：当文档过大时，可能包含不相关的信息。通根据上下文对单个文档内容进行压缩，或者对返回结果进行一定程度的过滤。</li>
+<li><strong>句子窗口搜索</strong>：文档文块太小会导致上下文的缺失。其中一种解决方案就是窗口搜索，将该文档块周围的块作为上下文一并交给LLM进行输出，来增加LLM对文档上下文的理解。</li>
+<li><strong>父文档搜索</strong>：父文档搜索也是一种很相似的解决方案，父文档搜索先将文档分为尺寸更大的主文档，再把主文档分割为更短的子文档两个层级，用户问题会与子文档匹配，然后将该子文档所属的主文档发送给LLM。</li>
+<li><strong>自动合并</strong>：自动合并是在父文档搜索上更进一步的复杂解决方案。在检索时只拿叶子节点和问题进行匹配，当某个父节点下的多数叶子节点都与问题匹配则将该父节点作为结果返回。</li>
+<li><strong>混合检索</strong>：混合检索通过混合多个检索方法来实现不同检索技术的协同作用从而能够最大化事实召回率。例如，可以采用向量检索+关键词检索的组合来构建RAG系统的检索模块。</li>
+<li><strong>路由机制</strong>：当建立了多个针对不同数据类型和查询需求的索引后，就需要使用路由机制来选择最合适的索引进行数据检索，从而提升检索质量和响应速度。</li>
+<li><strong>使用Agent</strong>：该方法就是使用Agent来决定应该采用什么样的检索方法，从不同的检索方法中选取一种或多种进行召回。</li>
+</ol>
+<h3 id="检索后处理"><a href="#检索后处理" class="headerlink" title="检索后处理"></a>检索后处理</h3><p>检索后处理是对检索结果进行进一步的处理以便于后续LLM更好的生成，比较典型的就是重排序（Rerank）。向量检索其实就是计算语义层面的相似性，但语义最相似并不总是代表最相关。重排模型通过对初始检索结果进行更深入的相关性评估和排序，确保最终展示给用户的结果更加符合其查询意图。实现重排序除了可以提示LLM进行重排，更多的是使用了专门的重排序模型（例如闭源的有Cohere，开源有BAAI和IBM发布的模型）。这些模型会考虑更多的特征，如查询意图、词汇的多重语义、用户的历史行为和上下文信息，从而保证最相关的文档排在结果列表的最前面。</p>
+<h3 id="生成"><a href="#生成" class="headerlink" title="生成"></a>生成</h3><p>在生成（Generation）阶段的优化更多的是考虑用户体验，有以下几点可以供参考：</p>
+<ol>
+<li><strong>多轮对话</strong>：也就是带聊天历史的RAG，用户可以通过连续对话来深入了解解决某个问题。</li>
+<li><strong>增加追问机制</strong>：在prompt中加入“如果无法从背景知识回答用户的问题，则根据背景知识内容，对用户进行追问，问题限制在3个以内”。这个机制并没有什么技术含量，主要依靠大模型的能力。不过大大改善了用户体验，用户在多轮引导中逐步明确了自己的问题，从而能够得到合适的答案。</li>
+<li><strong>prompt优化</strong>：RAG系统中的prompt应明确指出回答仅基于搜索结果，不要添加任何其他信息。例如，可以设置prompt：“你是一名智能客服。你的目标是提供准确的信息，并尽可能帮助提问者解决问题。你应保持友善，但不要过于啰嗦。请根据提供的上下文信息，在不考虑已有知识的情况下，回答相关查询。”当然也可以根据场景需要，适当让模型的回答融入一些主观性或其对知识的理解。此外，使用Few-shot的方法指导LLM如何利用检索到的知识，也是提升LLM生成内容质量的有效方法。</li>
+<li><strong>用户反馈循环</strong>：基于现实世界用户的反馈不断更新数据库，标记它们的真实性。</li>
+</ol>
+<h1 id="量化"><a href="#量化" class="headerlink" title="量化"></a>量化</h1><h1 id="FlashAttention-FlashAttention"><a href="#FlashAttention-FlashAttention" class="headerlink" title="FlashAttention&amp;&amp;FlashAttention++"></a>FlashAttention&amp;&amp;FlashAttention++</h1><h1 id="PageAttention"><a href="#PageAttention" class="headerlink" title="PageAttention"></a>PageAttention</h1><h1 id="FlashInfer"><a href="#FlashInfer" class="headerlink" title="FlashInfer"></a>FlashInfer</h1><h1 id="Ring-Reduce"><a href="#Ring-Reduce" class="headerlink" title="Ring-Reduce"></a>Ring-Reduce</h1><h1 id="Ring-Attention"><a href="#Ring-Attention" class="headerlink" title="Ring-Attention"></a>Ring-Attention</h1><h1 id="DeepSeek"><a href="#DeepSeek" class="headerlink" title="DeepSeek"></a>DeepSeek</h1><h1 id="MoE"><a href="#MoE" class="headerlink" title="MoE"></a>MoE</h1><h1 id="ZeRO"><a href="#ZeRO" class="headerlink" title="ZeRO++"></a>ZeRO++</h1><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1] <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/-1xVXjoM0imXMC7DKqo-Gw">图解RoPE旋转位置编码及其特性 (qq.com)</a></p>
+<p>[2] <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MTgwODE1Ng==&mid=2247484826&idx=1&sn=8935f0bcb2e09f438cbf3ae63825d671&chksm=9f26a069a851297f568ba7cd111082e603108716928b8444a253457233f24d09d3a18447d6b9&cur_album_id=3199751010206973953&scene=189#wechat_redirect">详解基于调整RoPE旋转角度的大模型长度外推方法 (qq.com)</a></p>
+<p>[3] <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/DjY5eTUM-IvtMzlNKB60SQ">ZeRO++引领万亿模型训练，吞吐量飙升200%</a></p>
+<p>[4] <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/xMsPh8qicRD395vjFR250A">一文详谈20多种RAG优化方法</a></p>
+<p>[5] <a target="_blank" rel="noopener" href="https://luxiangdong.com/2023/09/25/ragone/">大模型主流应用RAG的介绍——从架构到技术细节</a></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 zxy
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
